@@ -8,7 +8,7 @@ const SiteNav = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border/60">
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between relative">
         {/* Left: menu */}
         <button
           onClick={() => setOpen(true)}
@@ -26,7 +26,7 @@ const SiteNav = () => {
           </span>
         </a>
 
-        {/* Right: standards + account + cart */}
+        {/* Right */}
         <div className="flex items-center gap-4 sm:gap-6">
           <a
             href="#k5Ingredients"
@@ -37,9 +37,9 @@ const SiteNav = () => {
           <button aria-label="Hesap" className="text-primary hover:opacity-70 transition-opacity hidden sm:inline-flex">
             <User className="w-5 h-5" />
           </button>
-          <button
-            onClick={() => setCartOpen(true)}
-            aria-label="Sepet"
+          <a
+            href="#k5Product"
+            aria-label="Sepete git"
             className="relative text-primary hover:opacity-70 transition-opacity"
           >
             <ShoppingBag className="w-5 h-5" />
@@ -48,7 +48,7 @@ const SiteNav = () => {
                 {itemCount}
               </span>
             )}
-          </button>
+          </a>
         </div>
       </div>
 

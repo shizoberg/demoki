@@ -1,37 +1,45 @@
 import { useReveal } from "@/hooks/useReveal";
 import { useBalanceProduct } from "@/hooks/useBalanceProduct";
 import ScrollProgress from "@/components/ScrollProgress";
-import UrgencyBar from "@/components/UrgencyBar";
-import HeroSection from "@/components/HeroSection";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import SiteNav from "@/components/SiteNav";
+import EditorialHero from "@/components/EditorialHero";
+import ValueStrip from "@/components/ValueStrip";
+import IngredientTransparency from "@/components/IngredientTransparency";
+import ScienceSection from "@/components/ScienceSection";
+import MadeTraceable from "@/components/MadeTraceable";
 import ReviewsSection from "@/components/ReviewsSection";
-import VideoTestimonials from "@/components/VideoTestimonials";
-import BeforeAfter from "@/components/BeforeAfter";
-import IngredientsSection from "@/components/IngredientsSection";
 import ProductSection from "@/components/ProductSection";
+import FaqSection from "@/components/FaqSection";
+import SiteFooter from "@/components/SiteFooter";
 import StickyATC from "@/components/StickyATC";
 
 /**
- * Alternatif .ki Balance landing page — bağlı: Shopify ürünü ".ki Balance | Döngü Takviyesi"
- * Tüm bölümler ayrı componentlerdir; Index içindeki sıralamayı değiştirerek
- * veya bir component'i kaldırarak/ekleyerek kolayca yeniden düzenleyebilirsin.
+ * .ki Balance landing page — editorial redesign inspired by ritual.com structure,
+ * built with the .ki palette (deep plum primary, sage, rose, cream).
  */
 const Balance = () => {
   useReveal();
   const { data: product, isLoading } = useBalanceProduct();
 
   return (
-    <div className="pb-[72px]">
+    <div className="pb-[72px] bg-background">
       <ScrollProgress />
-      <UrgencyBar />
+      <AnnouncementBar />
+      <SiteNav />
 
-      <div id="heroSection">
-        <HeroSection />
-      </div>
-      <ReviewsSection />
-      <VideoTestimonials />
-      <BeforeAfter />
-      <IngredientsSection />
-      <ProductSection product={product} isLoading={isLoading} />
+      <main id="heroSection">
+        <EditorialHero />
+        <ValueStrip />
+        <IngredientTransparency />
+        <ScienceSection />
+        <MadeTraceable />
+        <ReviewsSection />
+        <ProductSection product={product} isLoading={isLoading} />
+        <FaqSection />
+      </main>
+
+      <SiteFooter />
       <StickyATC product={product} isLoading={isLoading} />
     </div>
   );
