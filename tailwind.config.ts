@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         primary: ["Raleway", "Helvetica Neue", "system-ui", "sans-serif"],
+        display: ["Fraunces", "Times New Roman", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
