@@ -1,96 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
+    --font-primary: 'Raleway', 'Helvetica Neue', system-ui, sans-serif;
+
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 24 27% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 24 27% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 24 27% 9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 258 57% 26%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary-medium: 258 47% 38%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 258 40% 94%;
+    --secondary-foreground: 258 57% 26%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 33 20% 91%;
+    --muted-foreground: 24 7% 44%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 258 40% 94%;
+    --accent-foreground: 258 57% 26%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --rose: 349 42% 48%;
+    --rose-light: 349 82% 95%;
+
+    --sage: 155 42% 30%;
+    --sage-light: 155 42% 92%;
+
+    --amber: 38 68% 41%;
+    --amber-light: 38 68% 93%;
+
+    --star: 44 90% 62%;
+
+    --cream-2: 33 20% 93%;
+    --cream-3: 33 15% 87%;
+
+    --plum-pale: 258 60% 97%;
+
+    --border: 258 20% 92%;
+    --input: 258 20% 92%;
+    --ring: 258 57% 26%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --shadow-sm: 0 1px 4px hsla(24, 27%, 9%, 0.06);
+    --shadow-md: 0 4px 20px hsla(24, 27%, 9%, 0.09);
+    --shadow-lg: 0 8px 40px hsla(24, 27%, 9%, 0.12);
   }
 }
 
@@ -100,6 +68,84 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    font-family: var(--font-primary);
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
   }
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-medium)), hsl(var(--rose)));
+  z-index: 9999;
+  transition: width 0.08s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Reveal animations */
+.k5-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.k5-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.k5-reveal-d1 { transition-delay: 0.1s; }
+.k5-reveal-d2 { transition-delay: 0.2s; }
+.k5-reveal-d3 { transition-delay: 0.3s; }
+.k5-reveal-d4 { transition-delay: 0.4s; }
+.k5-reveal-d5 { transition-delay: 0.5s; }
+.k5-reveal-d6 { transition-delay: 0.6s; }
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Count up animation */
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Urgency shimmer */
+@keyframes urgShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Scrollbar hide for tracks */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { scrollbar-width: none; }
+
+/* Grab cursor for draggable */
+.grab-cursor { cursor: grab; }
+.grab-cursor:active, .grab-cursor.dragging { cursor: grabbing; }
+
+/* Animation delay utility */
+.animation-delay-2000 { animation-delay: 2s; }
+
+/* Animated gradient background sizing */
+.animate-gradient-shift {
+  background-size: 200% 200%;
+}
+
+/* Sachet 360 spin */
+@keyframes sachetSpin {
+  0% { transform: perspective(800px) rotateY(0deg); }
+  100% { transform: perspective(800px) rotateY(360deg); }
+}
+.sachet-spin {
+  animation: sachetSpin 6s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,0.35));
 }
