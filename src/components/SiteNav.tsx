@@ -5,7 +5,6 @@ import { useCartStore } from "@/stores/cartStore";
 const SiteNav = () => {
   const [open, setOpen] = useState(false);
   const itemCount = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
-  const setCartOpen = useCartStore((s) => s.setOpen);
 
   return (
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border/60">
