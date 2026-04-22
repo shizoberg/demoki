@@ -12,7 +12,6 @@ const SiteNav = () => {
   const navItems: { key: MenuKey; label: string; hasDropdown: boolean; dot?: boolean; href?: string }[] = [
     { key: "products", label: "Ürünler", hasDropdown: true },
     { key: "about", label: "Biz Kimiz?", hasDropdown: true, dot: true },
-    { key: "donate", label: "Bağış Kültürü", hasDropdown: false, href: "#" },
   ];
 
   return (
@@ -21,11 +20,15 @@ const SiteNav = () => {
       onMouseLeave={() => setActiveMenu(null)}
     >
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between relative">
-        {/* Left: logo + desktop nav */}
-        <div className="flex items-center gap-8">
-          <a href="/balance" aria-label=".ki ana sayfa" className="flex-shrink-0">
-            <img src={kiLogo} alt=".ki" className="h-7 sm:h-8 w-auto" draggable={false} />
-          </a>
+        {/* Left: desktop nav / mobile menu trigger */}
+        <div className="flex items-center">
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="Menüyü aç"
+            className="lg:hidden flex items-center gap-2 text-[13px] font-semibold text-primary hover:opacity-70 transition-opacity"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
           <nav className="hidden lg:flex items-center gap-7">
             {navItems.map((item) => {
               const isActive = activeMenu === item.key;
@@ -58,19 +61,10 @@ const SiteNav = () => {
           </nav>
         </div>
 
-        {/* Mobile: menu trigger */}
-        <button
-          onClick={() => setOpen(true)}
-          aria-label="Menüyü aç"
-          className="lg:hidden flex items-center gap-2 text-[13px] font-semibold text-primary hover:opacity-70 transition-opacity absolute left-5 sm:left-8"
-        >
-          <Menu className="w-5 h-5" />
-        </button>
-
-        {/* Mobile: centered logo overlay */}
+        {/* Center: logo */}
         <a
           href="/balance"
-          className="lg:hidden absolute left-1/2 -translate-x-1/2"
+          className="absolute left-1/2 -translate-x-1/2"
           aria-label=".ki ana sayfa"
         >
           <img src={kiLogo} alt=".ki" className="h-7 sm:h-8 w-auto" draggable={false} />
