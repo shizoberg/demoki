@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ChevronDown, Menu, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import kiLogo from "@/assets/ki-logo.webp";
+import userAvatar from "@/assets/user-avatar.png";
 import MegaMenu, { type MenuKey } from "./MegaMenu";
 
 const SiteNav = () => {
