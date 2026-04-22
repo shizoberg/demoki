@@ -82,9 +82,9 @@ const CollectionSection = () => {
 
               {/* Body */}
               <div className="flex flex-col flex-1 p-4 lg:p-4">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Star className="w-3.5 h-3.5 fill-star text-star" />
-                  <span className="text-[12px] font-semibold text-foreground/80">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Star className="w-[18px] h-[18px] fill-star text-star" strokeWidth={1.5} />
+                  <span className="text-[14px] font-semibold text-foreground/80">
                     {pack.rating.toFixed(1)}
                   </span>
                 </div>
