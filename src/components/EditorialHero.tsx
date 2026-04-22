@@ -3,18 +3,18 @@ import sachet from "@/assets/sachet.png";
 const EditorialHero = () => {
   return (
     <section className="bg-background">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] min-h-[560px]">
-        {/* Image side */}
-        <div className="relative bg-secondary flex items-center justify-center overflow-hidden min-h-[420px] lg:min-h-[640px]">
-          {/* Soft cream backdrop wedge */}
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-plum-pale to-cream-2" />
-          <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-rose-light/60 blur-3xl" />
-          <div className="absolute -bottom-32 -right-16 w-[380px] h-[380px] rounded-full bg-sage-light/60 blur-3xl" />
+      <div className="grid grid-cols-1 lg:grid-cols-[1.85fr_1fr] min-h-[560px] lg:min-h-[760px]">
+        {/* Image side - large editorial panel */}
+        <div className="relative bg-rose-light flex items-center justify-center overflow-hidden min-h-[480px] lg:min-h-[760px]">
+          {/* Soft backdrop layers */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-light via-rose-light to-plum-pale/70" />
+          <div className="absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-sage-light/40 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 w-[460px] h-[460px] rounded-full bg-cream-2/70 blur-3xl" />
 
           <img
             src={sachet}
             alt=".ki Balance şase ürünü"
-            className="relative z-10 w-[58%] max-w-[420px] drop-shadow-[0_30px_60px_rgba(45,27,105,0.25)] k5-reveal"
+            className="relative z-10 w-[42%] max-w-[360px] drop-shadow-[0_40px_80px_rgba(45,27,105,0.28)] k5-reveal"
             draggable={false}
           />
           {/* Caption chip */}
@@ -23,8 +23,8 @@ const EditorialHero = () => {
           </div>
         </div>
 
-        {/* Copy side */}
-        <div className="bg-background flex flex-col justify-center px-7 sm:px-12 lg:px-16 py-14 lg:py-20">
+        {/* Copy side - narrow editorial column */}
+        <div className="bg-secondary flex flex-col justify-center px-7 sm:px-10 lg:px-12 py-14 lg:py-20">
           <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-5">
             Yeni · Döngü Takviyesi
           </span>
