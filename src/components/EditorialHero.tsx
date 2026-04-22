@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-lifestyle.png";
 import padsImage from "@/assets/hero-pads.png";
+import menopauseImage from "@/assets/hero-menopause.png";
 
 type Slide = {
   id: string;
@@ -56,6 +57,25 @@ const slides: Slide[] = [
     copyBg: "bg-cream",
     reviewText: "4.9 · 1.200+ yorum",
     trustText: "12.000+ kadının düzenli seçimi",
+  },
+  {
+    id: "menopause",
+    eyebrow: "Yeni · Menopoz Takviyesi",
+    title: (
+      <>
+        Değişim <em className="italic font-light">güzeldir</em>, yanında biz varız.
+      </>
+    ),
+    description:
+      "Sıcak basmaları, gece terlemeleri ve ruh hali dalgalanmaları için geliştirilen .ki Menopause — Bor, Genistein ve Black Cohosh ile peri-menopoz ve menopoz döneminde günlük doğal destek.",
+    primaryCta: { label: ".ki Menopause'u incele", href: "#k5Product" },
+    secondaryCta: { label: "İçindekileri gör", href: "#k5Ingredients" },
+    image: menopauseImage,
+    imageAlt: ".ki Menopause kullanan kadın",
+    imageBg: "bg-cream",
+    copyBg: "bg-rose-light",
+    reviewText: "4.8 · 320+ yorum",
+    trustText: "Change is good — 50+ kadının yanında",
   },
 ];
 
