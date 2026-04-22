@@ -47,23 +47,23 @@ const packs: Pack[] = [
 
 const CollectionSection = () => {
   return (
-    <section className="bg-background py-16 lg:py-24">
+    <section className="bg-background pt-8 lg:pt-10 pb-12 lg:pb-16">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="flex items-end justify-between gap-6 mb-10 lg:mb-12">
-          <h2 className="k5-reveal font-display font-medium text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.1] text-primary tracking-tight">
-            Topluluğumuzun Favorileri
+        <div className="flex items-end justify-between gap-6 mb-6 lg:mb-8">
+          <h2 className="k5-reveal font-display font-medium text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.1] text-primary tracking-tight">
+            Sana özel oluşturduğumuz paketler
           </h2>
           <a
             href="#k5Product"
             className="k5-reveal hidden sm:inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
-            Tüm Paketler
+            Kendi'ne özel paket oluştur
           </a>
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {packs.map((pack, idx) => (
             <article
               key={pack.id}
@@ -81,25 +81,25 @@ const CollectionSection = () => {
               </div>
 
               {/* Body */}
-              <div className="flex flex-col flex-1 p-5 lg:p-6">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Star className="w-4 h-4 fill-star text-star" />
-                  <span className="text-[13px] font-semibold text-foreground/80">
+              <div className="flex flex-col flex-1 p-4 lg:p-4">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <Star className="w-3.5 h-3.5 fill-star text-star" />
+                  <span className="text-[12px] font-semibold text-foreground/80">
                     {pack.rating.toFixed(1)}
                   </span>
                 </div>
 
-                <h3 className="font-display text-[18px] lg:text-[19px] leading-snug text-primary mb-4 min-h-[48px]">
+                <h3 className="font-display text-[16px] lg:text-[17px] leading-snug text-primary mb-3 min-h-[42px]">
                   {pack.name}
                 </h3>
 
                 <div className="mt-auto">
-                  <p className="text-[16px] font-semibold text-foreground mb-4">
+                  <p className="text-[15px] font-semibold text-foreground mb-3">
                     {pack.price}
                   </p>
                   <button
                     type="button"
-                    className="w-full inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[13px] font-bold py-3 px-5 rounded-full hover:bg-primary-medium transition-all"
+                    className="w-full inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[13px] font-bold py-2.5 px-4 rounded-full hover:bg-primary-medium transition-all"
                   >
                     Sepete Ekle
                   </button>
@@ -109,13 +109,13 @@ const CollectionSection = () => {
           ))}
         </div>
 
-        {/* Mobile "Tüm Paketler" */}
-        <div className="mt-8 sm:hidden flex justify-center">
+        {/* Mobile CTA */}
+        <div className="mt-6 sm:hidden flex justify-center">
           <a
             href="#k5Product"
             className="inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
-            Tüm Paketler
+            Kendi'ne özel paket oluştur
           </a>
         </div>
       </div>
