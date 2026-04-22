@@ -116,7 +116,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out both",
         "gradient-shift": "gradient-shift 12s ease-in-out infinite",
         blob: "blob 14s ease-in-out infinite",
-        marquee: "marquee 35s linear infinite",
+        marquee: "marquee 45s linear infinite",
       },
     },
   },
