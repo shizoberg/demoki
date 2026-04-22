@@ -1,4 +1,8 @@
 import { Star } from "lucide-react";
+import packPads from "@/assets/pack-pads.png";
+import packSachet from "@/assets/pack-sachet.png";
+import packSpray from "@/assets/pack-spray.png";
+import packOil from "@/assets/pack-oil.png";
 
 type Pack = {
   id: string;
@@ -9,39 +13,38 @@ type Pack = {
   bgClass: string;
 };
 
-// Placeholder packs — replace `image` with the 4 visuals you'll provide.
 const packs: Pack[] = [
   {
     id: "balance-deneme",
     name: "Balance Deneme Paketi",
     rating: 4.9,
     price: "₺197,50",
-    image: "/placeholder.svg",
-    bgClass: "bg-rose-light",
+    image: packSachet,
+    bgClass: "bg-primary",
   },
   {
     id: "tanisma",
     name: "Tanışma Paketi: .ki ile başla",
     rating: 4.7,
     price: "₺349,00",
-    image: "/placeholder.svg",
-    bgClass: "bg-sage-light",
+    image: packPads,
+    bgClass: "bg-primary",
   },
   {
     id: "aylik",
     name: "Aylık Döngü Paketi",
     rating: 4.8,
     price: "₺499,00",
-    image: "/placeholder.svg",
-    bgClass: "bg-cream-2",
+    image: packOil,
+    bgClass: "bg-primary",
   },
   {
     id: "yogun",
     name: "Yoğun Destek Paketi",
     rating: 4.8,
     price: "₺695,00",
-    image: "/placeholder.svg",
-    bgClass: "bg-secondary",
+    image: packSpray,
+    bgClass: "bg-primary",
   },
 ];
 
@@ -82,9 +85,9 @@ const CollectionSection = () => {
 
               {/* Body */}
               <div className="flex flex-col flex-1 p-4 lg:p-4">
-                <div className="flex items-center gap-1.5 mb-1.5">
-                  <Star className="w-3.5 h-3.5 fill-star text-star" />
-                  <span className="text-[12px] font-semibold text-foreground/80">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Star className="w-[18px] h-[18px] fill-star text-star" strokeWidth={1.5} />
+                  <span className="text-[14px] font-semibold text-foreground/80">
                     {pack.rating.toFixed(1)}
                   </span>
                 </div>
