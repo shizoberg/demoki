@@ -93,35 +93,38 @@ const EditorialHero = () => {
 
   return (
     <section ref={sectionRef} className="bg-background relative" aria-roledescription="carousel">
-      <div
-        key={slide.id}
-        className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] min-h-[560px] lg:min-h-[760px]"
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] min-h-[560px] lg:min-h-[760px]">
         {/* Image side */}
         <div className={`relative ${slide.imageBg} overflow-hidden min-h-[480px] lg:min-h-[760px]`}>
-          <img
-            src={slide.image}
-            alt={slide.imageAlt}
-            className="absolute inset-0 w-full h-full object-cover k5-reveal"
-            draggable={false}
-          />
+          {slides.map((s, i) => (
+            <img
+              key={s.id}
+              src={s.image}
+              alt={s.imageAlt}
+              draggable={false}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                i === active ? "opacity-100" : "opacity-0"
+              }`}
+              aria-hidden={i !== active}
+            />
+          ))}
         </div>
 
         {/* Copy side */}
         <div
-          className={`${slide.copyBg} flex flex-col justify-center px-7 sm:px-10 lg:px-12 py-14 lg:py-20`}
+          className={`${slide.copyBg} flex flex-col justify-center px-7 sm:px-10 lg:px-12 py-14 lg:py-20 transition-colors duration-500`}
         >
-          <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-5">
+          <span key={`eyebrow-${slide.id}`} className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-5">
             {slide.eyebrow}
           </span>
-          <h1 className="k5-reveal k5-reveal-d1 font-display font-medium text-[44px] sm:text-[56px] lg:text-[64px] leading-[1.02] text-primary tracking-tight mb-6">
+          <h1 key={`title-${slide.id}`} className="k5-reveal k5-reveal-d1 font-display font-medium text-[44px] sm:text-[56px] lg:text-[64px] leading-[1.02] text-primary tracking-tight mb-6">
             {slide.title}
           </h1>
-          <p className="k5-reveal k5-reveal-d2 text-[15px] sm:text-[16px] leading-relaxed text-foreground/75 mb-8 max-w-[460px]">
+          <p key={`desc-${slide.id}`} className="k5-reveal k5-reveal-d2 text-[15px] sm:text-[16px] leading-relaxed text-foreground/75 mb-8 max-w-[460px]">
             {slide.description}
           </p>
 
-          <div className="k5-reveal k5-reveal-d3 flex flex-col sm:flex-row gap-3 mb-4">
+          <div key={`cta-${slide.id}`} className="k5-reveal k5-reveal-d3 flex flex-col sm:flex-row gap-3 mb-4">
             <a
               href={slide.primaryCta.href}
               className="inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[14px] font-bold py-3.5 px-6 rounded-full hover:bg-primary-medium transition-all hover:-translate-y-0.5"
@@ -137,7 +140,7 @@ const EditorialHero = () => {
           </div>
 
           {/* Trust row */}
-          <div className="k5-reveal k5-reveal-d4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-muted-foreground font-medium mb-8">
+          <div key={`trust-${slide.id}`} className="k5-reveal k5-reveal-d4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-muted-foreground font-medium mb-10">
             <div className="flex items-center gap-1.5">
               <span className="text-star text-base tracking-wide">★★★★★</span>
               <span>{slide.reviewText}</span>
@@ -146,24 +149,28 @@ const EditorialHero = () => {
             <span>{slide.trustText}</span>
           </div>
 
-          {/* Slide controls */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2" role="tablist" aria-label="Hero slaytları">
-              {slides.map((s, i) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === active}
-                  aria-label={`Slayt ${i + 1}`}
-                  onClick={() => setActive(i)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === active ? "w-8 bg-primary" : "w-4 bg-primary/25 hover:bg-primary/50"
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70 hidden sm:inline">
+          {/* Minimal slayt navigasyonu */}
+          <div className="flex items-center gap-6">
+            <button
+              type="button"
+              onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
+              aria-label="Önceki slayt"
+              className="text-foreground/80 hover:text-primary transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
+            </button>
+            <span className="text-[14px] font-medium text-foreground/80 tabular-nums tracking-wide">
+              {active + 1}/{slides.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => setActive((i) => (i + 1) % slides.length)}
+              aria-label="Sonraki slayt"
+              className="text-foreground/80 hover:text-primary transition-colors"
+            >
+              <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
+            </button>
+            <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70 hidden sm:inline ml-2">
               ← → ile gez
             </span>
           </div>
