@@ -172,16 +172,16 @@ const EditorialHero = () => {
           </div>
 
           {/* Minimal slayt navigasyonu */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             <button
               type="button"
               onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
               aria-label="Önceki slayt"
               className="text-foreground/80 hover:text-primary transition-colors"
             >
-              <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
+              <ArrowLeft className="w-8 h-8" strokeWidth={1.5} />
             </button>
-            <span className="text-[14px] font-medium text-foreground/80 tabular-nums tracking-wide">
+            <span className="text-[16px] font-medium text-foreground/80 tabular-nums tracking-wide">
               {active + 1}/{slides.length}
             </span>
             <button
@@ -190,11 +190,8 @@ const EditorialHero = () => {
               aria-label="Sonraki slayt"
               className="text-foreground/80 hover:text-primary transition-colors"
             >
-              <ArrowRight className="w-5 h-5" strokeWidth={1.5} />
+              <ArrowRight className="w-8 h-8" strokeWidth={1.5} />
             </button>
-            <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground/70 hidden sm:inline ml-2">
-              ← → ile gez
-            </span>
           </div>
         </div>
       </div>
