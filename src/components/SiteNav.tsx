@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, ShoppingBag, User, X } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
+import kiLogo from "@/assets/ki-logo.webp";
 
 const SiteNav = () => {
   const [open, setOpen] = useState(false);
@@ -20,10 +21,8 @@ const SiteNav = () => {
         </button>
 
         {/* Center: wordmark */}
-        <a href="/balance" className="absolute left-1/2 -translate-x-1/2">
-          <span className="font-display font-medium text-[26px] sm:text-[28px] text-primary tracking-tight leading-none">
-            .ki
-          </span>
+        <a href="/balance" className="absolute left-1/2 -translate-x-1/2" aria-label=".ki ana sayfa">
+          <img src={kiLogo} alt=".ki" className="h-7 sm:h-8 w-auto" draggable={false} />
         </a>
 
         {/* Right */}
