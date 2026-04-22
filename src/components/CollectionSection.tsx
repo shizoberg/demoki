@@ -50,13 +50,13 @@ const CollectionSection = () => {
     <section className="bg-background pt-8 lg:pt-10 pb-12 lg:pb-16">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="flex items-end justify-between gap-6 mb-6 lg:mb-8">
-          <h2 className="k5-reveal font-display font-medium text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.1] text-primary tracking-tight">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
+          <h2 className="font-display font-medium text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.1] text-primary tracking-tight">
             Sana özel oluşturduğumuz paketler
           </h2>
           <a
             href="#k5Product"
-            className="k5-reveal hidden sm:inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
+            className="hidden sm:inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
             Kendi'ne özel paket oluştur
           </a>
