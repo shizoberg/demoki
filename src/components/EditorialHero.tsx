@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-lifestyle.png";
 import padsImage from "@/assets/hero-pads.png";
 
