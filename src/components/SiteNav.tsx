@@ -78,8 +78,8 @@ const SiteNav = () => {
           >
             Kendi paketini oluştur
           </a>
-          <button aria-label="Hesap" className="text-primary hover:opacity-70 transition-opacity hidden sm:inline-flex">
-            <User className="w-5 h-5" />
+          <button aria-label="Hesap" className="hover:opacity-70 transition-opacity hidden sm:inline-flex">
+            <img src={userAvatar} alt="Hesap" className="w-7 h-7 object-contain" draggable={false} />
           </button>
           <a
             href="#k5Product"
