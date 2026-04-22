@@ -1,27 +1,78 @@
 import { useState } from "react";
-import { Menu, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingBag, User, X } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import kiLogo from "@/assets/ki-logo.webp";
+import MegaMenu, { type MenuKey } from "./MegaMenu";
 
 const SiteNav = () => {
   const [open, setOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
   const itemCount = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
 
+  const navItems: { key: MenuKey; label: string; hasDropdown: boolean; dot?: boolean; href?: string }[] = [
+    { key: "products", label: "Ürünler", hasDropdown: true },
+    { key: "about", label: "Biz Kimiz?", hasDropdown: true, dot: true },
+    { key: "donate", label: "Bağış Kültürü", hasDropdown: false, href: "#" },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border/60">
+    <header
+      className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/60"
+      onMouseLeave={() => setActiveMenu(null)}
+    >
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between relative">
-        {/* Left: menu */}
+        {/* Left: logo + desktop nav */}
+        <div className="flex items-center gap-8">
+          <a href="/balance" aria-label=".ki ana sayfa" className="flex-shrink-0">
+            <img src={kiLogo} alt=".ki" className="h-7 sm:h-8 w-auto" draggable={false} />
+          </a>
+          <nav className="hidden lg:flex items-center gap-7">
+            {navItems.map((item) => {
+              const isActive = activeMenu === item.key;
+              return item.hasDropdown ? (
+                <button
+                  key={item.key}
+                  onMouseEnter={() => setActiveMenu(item.key)}
+                  className={`flex items-center gap-1.5 text-[14px] font-semibold text-primary py-4 border-b-2 transition-colors ${
+                    isActive ? "border-primary" : "border-transparent hover:opacity-70"
+                  }`}
+                >
+                  {item.label}
+                  {item.dot && <span className="w-1.5 h-1.5 rounded-full bg-rose" />}
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform ${isActive ? "rotate-180" : ""}`}
+                  />
+                </button>
+              ) : (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  onMouseEnter={() => setActiveMenu(null)}
+                  className="flex items-center gap-1.5 text-[14px] font-semibold text-primary py-4 border-b-2 border-transparent hover:opacity-70 transition-opacity"
+                >
+                  {item.label}
+                  {item.dot && <span className="w-1.5 h-1.5 rounded-full bg-rose" />}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Mobile: menu trigger */}
         <button
           onClick={() => setOpen(true)}
           aria-label="Menüyü aç"
-          className="flex items-center gap-2 text-[13px] font-semibold text-primary hover:opacity-70 transition-opacity"
+          className="lg:hidden flex items-center gap-2 text-[13px] font-semibold text-primary hover:opacity-70 transition-opacity absolute left-5 sm:left-8"
         >
           <Menu className="w-5 h-5" />
-          <span className="hidden sm:inline">Menü</span>
         </button>
 
-        {/* Center: wordmark */}
-        <a href="/balance" className="absolute left-1/2 -translate-x-1/2" aria-label=".ki ana sayfa">
+        {/* Mobile: centered logo overlay */}
+        <a
+          href="/balance"
+          className="lg:hidden absolute left-1/2 -translate-x-1/2"
+          aria-label=".ki ana sayfa"
+        >
           <img src={kiLogo} alt=".ki" className="h-7 sm:h-8 w-auto" draggable={false} />
         </a>
 
@@ -51,9 +102,14 @@ const SiteNav = () => {
         </div>
       </div>
 
-      {/* Slide-in menu */}
+      {/* Mega menu (desktop) */}
+      <div className="hidden lg:block">
+        <MegaMenu active={activeMenu} onClose={() => setActiveMenu(null)} />
+      </div>
+
+      {/* Slide-in menu (mobile) */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-foreground/40" onClick={() => setOpen(false)}>
+        <div className="fixed inset-0 z-50 bg-foreground/40 lg:hidden" onClick={() => setOpen(false)}>
           <aside
             onClick={(e) => e.stopPropagation()}
             className="absolute left-0 top-0 h-full w-[88%] max-w-[380px] bg-background shadow-2xl p-7 animate-fade-in"
