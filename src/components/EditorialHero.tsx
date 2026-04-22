@@ -68,8 +68,8 @@ const slides: Slide[] = [
     ),
     description:
       "Sıcak basmaları, gece terlemeleri ve ruh hali dalgalanmaları için geliştirilen .ki Menopause — Bor, Genistein ve Black Cohosh ile peri-menopoz ve menopoz döneminde günlük doğal destek.",
-    primaryCta: { label: ".ki Menopause'u incele", href: "#k5Product" },
-    secondaryCta: { label: "İçindekileri gör", href: "#k5Ingredients" },
+    primaryCta: { label: "Change Is Good'u incele", href: "#k5Product" },
+    secondaryCta: { label: "Paketini oluştur", href: "#k5Collection" },
     image: menopauseImage,
     imageAlt: ".ki Menopause kullanan kadın",
     imageBg: "bg-cream",
