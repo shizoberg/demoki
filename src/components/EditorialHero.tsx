@@ -31,7 +31,7 @@ const slides: Slide[] = [
     description:
       "Şişkinlik, kas/sinir gerilimleri ve ruh hali dalgalanmalarına karşı geliştirilen .ki Balance — Vitex, Magnezyum Bisglisinat, B6 ve Çinko ile günlük döngü desteği.",
     primaryCta: { label: ".ki Balance'ı incele", href: "#k5Product" },
-    secondaryCta: { label: "İçindekileri gör", href: "#k5Ingredients" },
+    secondaryCta: { label: "Paketini oluştur", href: "#k5Collection" },
     image: heroImage,
     imageAlt: ".ki Balance kullanan kadın",
     imageBg: "bg-rose-light",
