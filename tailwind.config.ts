@@ -105,6 +105,10 @@ export default {
           "33%": { transform: "translate(20px, -30px) scale(1.1)" },
           "66%": { transform: "translate(-15px, 20px) scale(0.95)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -112,6 +116,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out both",
         "gradient-shift": "gradient-shift 12s ease-in-out infinite",
         blob: "blob 14s ease-in-out infinite",
+        marquee: "marquee 35s linear infinite",
       },
     },
   },
