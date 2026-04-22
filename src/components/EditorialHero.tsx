@@ -132,7 +132,7 @@ const EditorialHero = () => {
 
         {/* Copy side */}
         <div
-          className={`${slide.copyBg} flex flex-col justify-center px-7 sm:px-10 lg:px-12 py-14 lg:py-20 transition-colors duration-500`}
+          className={`relative ${slide.copyBg} flex flex-col justify-center px-7 sm:px-10 lg:px-12 pt-14 lg:pt-20 pb-28 lg:pb-32 transition-colors duration-500`}
         >
           <div key={slide.id} className="animate-fade-in">
             <span className="block text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-5">
@@ -161,7 +161,7 @@ const EditorialHero = () => {
             </div>
 
             {/* Trust row */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-muted-foreground font-medium mb-10">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-muted-foreground font-medium">
               <div className="flex items-center gap-1.5">
                 <span className="text-star text-base tracking-wide">★★★★★</span>
                 <span>{slide.reviewText}</span>
@@ -171,8 +171,8 @@ const EditorialHero = () => {
             </div>
           </div>
 
-          {/* Minimal slayt navigasyonu */}
-          <div className="flex items-center gap-8">
+          {/* Sabit slayt navigasyonu — tüm slaytlarda aynı konumda */}
+          <div className="absolute left-7 sm:left-10 lg:left-12 bottom-8 lg:bottom-10 flex items-center gap-8">
             <button
               type="button"
               onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
