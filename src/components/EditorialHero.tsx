@@ -3,7 +3,7 @@ import sachet from "@/assets/sachet.png";
 const EditorialHero = () => {
   return (
     <section className="bg-background">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.85fr_1fr] min-h-[560px] lg:min-h-[760px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] min-h-[560px] lg:min-h-[760px]">
         {/* Image side - large editorial panel */}
         <div className="relative bg-rose-light flex items-center justify-center overflow-hidden min-h-[480px] lg:min-h-[760px]">
           {/* Soft backdrop layers */}
