@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ChevronDown, Menu, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import kiLogo from "@/assets/ki-logo.webp";
+import userAvatar from "@/assets/user-avatar.png";
 import MegaMenu, { type MenuKey } from "./MegaMenu";
 
 const SiteNav = () => {
@@ -78,8 +79,8 @@ const SiteNav = () => {
           >
             Kendi paketini oluştur
           </a>
-          <button aria-label="Hesap" className="text-primary hover:opacity-70 transition-opacity hidden sm:inline-flex">
-            <User className="w-5 h-5" />
+          <button aria-label="Hesap" className="hover:opacity-70 transition-opacity hidden sm:inline-flex">
+            <img src={userAvatar} alt="Hesap" className="w-7 h-7 object-contain" draggable={false} />
           </button>
           <a
             href="#k5Product"
