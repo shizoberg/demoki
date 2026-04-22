@@ -1,20 +1,15 @@
-import sachet from "@/assets/sachet.png";
+import heroImage from "@/assets/hero-lifestyle.png";
 
 const EditorialHero = () => {
   return (
     <section className="bg-background">
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] min-h-[560px] lg:min-h-[760px]">
         {/* Image side - large editorial panel */}
-        <div className="relative bg-rose-light flex items-center justify-center overflow-hidden min-h-[480px] lg:min-h-[760px]">
-          {/* Soft backdrop layers */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-light via-rose-light to-plum-pale/70" />
-          <div className="absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-sage-light/40 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 w-[460px] h-[460px] rounded-full bg-cream-2/70 blur-3xl" />
-
+        <div className="relative bg-rose-light overflow-hidden min-h-[480px] lg:min-h-[760px]">
           <img
-            src={sachet}
-            alt=".ki Balance şase ürünü"
-            className="relative z-10 w-[42%] max-w-[360px] drop-shadow-[0_40px_80px_rgba(45,27,105,0.28)] k5-reveal"
+            src={heroImage}
+            alt=".ki Balance kullanan kadın"
+            className="absolute inset-0 w-full h-full object-cover k5-reveal"
             draggable={false}
           />
         </div>
