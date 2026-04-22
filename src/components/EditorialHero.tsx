@@ -35,23 +35,23 @@ const EditorialHero = () => {
             Şişkinlik, kas/sinir gerilimleri ve ruh hali dalgalanmalarına karşı geliştirilen .ki Balance — Vitex, Magnezyum Bisglisinat, B6 ve Çinko ile günlük döngü desteği.
           </p>
 
-          <div className="k5-reveal k5-reveal-d3 flex flex-col sm:flex-row gap-3 mb-8">
+          <div className="k5-reveal k5-reveal-d3 flex flex-col sm:flex-row gap-3 mb-4">
             <a
               href="#k5Product"
-              className="inline-flex items-center justify-center bg-primary text-primary-foreground text-[14px] font-bold py-4 px-8 rounded-full hover:bg-primary-medium transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[14px] font-bold py-3.5 px-6 rounded-full hover:bg-primary-medium transition-all hover:-translate-y-0.5"
             >
               .ki Balance'ı incele
             </a>
             <a
               href="#k5Ingredients"
-              className="inline-flex items-center justify-center border-2 border-primary text-primary text-[14px] font-bold py-4 px-8 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
+              className="inline-flex items-center justify-center whitespace-nowrap border-2 border-primary text-primary text-[14px] font-bold py-3.5 px-6 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
             >
               İçindekileri gör
             </a>
           </div>
 
           {/* Trust row */}
-          <div className="k5-reveal k5-reveal-d4 flex items-center gap-5 text-[12px] text-muted-foreground font-medium">
+          <div className="k5-reveal k5-reveal-d4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-muted-foreground font-medium">
             <div className="flex items-center gap-1.5">
               <span className="text-star text-base tracking-wide">★★★★★</span>
               <span>5.0 · 90+ yorum</span>
