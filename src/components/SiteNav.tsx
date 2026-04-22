@@ -28,10 +28,10 @@ const SiteNav = () => {
         {/* Right */}
         <div className="flex items-center gap-4 sm:gap-6">
           <a
-            href="#k5Ingredients"
-            className="hidden md:inline text-[13px] font-semibold text-primary hover:opacity-70 transition-opacity"
+            href="#k5Product"
+            className="hidden md:inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[12px] font-bold py-2 px-4 rounded-full hover:bg-primary-medium transition-all"
           >
-            Standartlarımız
+            Kendi paketini oluştur
           </a>
           <button aria-label="Hesap" className="text-primary hover:opacity-70 transition-opacity hidden sm:inline-flex">
             <User className="w-5 h-5" />
