@@ -12,7 +12,6 @@ const SiteNav = () => {
   const navItems: { key: MenuKey; label: string; hasDropdown: boolean; dot?: boolean; href?: string }[] = [
     { key: "products", label: "Ürünler", hasDropdown: true },
     { key: "about", label: "Biz Kimiz?", hasDropdown: true, dot: true },
-    { key: "donate", label: "Bağış Kültürü", hasDropdown: false, href: "#" },
   ];
 
   return (
