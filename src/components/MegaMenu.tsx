@@ -148,35 +148,36 @@ export type MenuKey = "products" | "about" | "donate";
 
 const productsColumns: Column[] = [
   {
-    title: "Menstrüel Ürünler",
+    title: "Pedler",
     items: [
-      { label: ".ki Ped", href: "#", icon: "leaf" },
-      { label: ".ki Günlük Ped", href: "#", icon: "drop" },
-      { label: ".ki Tampon", href: "#", icon: "flower" },
-      { label: ".ki Kap", href: "#", icon: "cup" },
-      { label: "Isı Bandı", href: "#", icon: "heat" },
-      { label: ".ki Cycle Essentials", href: "#", icon: "pill" },
-      { label: ".ki Menstrüel Disk", href: "#", icon: "bowl" },
+      { label: "Günlük Ped", href: "#", icon: "leaf" },
+      { label: "Gündüz Ped", href: "#", icon: "drop" },
+      { label: "Gece Ped", href: "#", icon: "flower" },
     ],
   },
   {
-    title: "Günlük Kullanım",
+    title: "İntim Bakım",
     items: [
-      { label: ".ki Günlük Ped", href: "#", icon: "drop" },
-      { label: ".ki Hijyenik Huni", href: "#", icon: "spray" },
-      { label: ".ki Cranberry Essentials", href: "#", icon: "berry" },
-      { label: ".ki Akne Bandı", href: "#", icon: "patch" },
+      { label: "Bakım Jeli · Daily", href: "#", icon: "drop" },
+      { label: "Bakım Jeli · Sens", href: "#", icon: "drop" },
+      { label: "Bakım Jeli · Flow", href: "#", icon: "drop" },
+      { label: "Bakım Jeli · 50+", href: "#", icon: "drop" },
+      { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
     ],
   },
   {
-    title: "Avantajlar",
-    items: [{ label: ".ki Kampüs", href: "#", icon: "campus" }],
+    title: "Takviyeler & Aroma",
+    items: [
+      { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
+      { label: ".ki Change · Kapsül", href: "#", icon: "pill" },
+      { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "drop" },
+    ],
   },
 ];
 
 const productsFeatures: FeatureCard[] = [
   { label: ".ki Paketleri", image: packPads, href: "#k5Product" },
-  { label: "Tüm Ürünler", image: packSachet, href: "#k5Product" },
+  { label: "Tüm Ürünler", image: packSachet, href: "#tum-urunler" },
 ];
 
 const aboutColumns: Column[] = [
