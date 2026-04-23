@@ -1,11 +1,14 @@
 import { ArrowRight } from "lucide-react";
+import bentoPads from "@/assets/bento-pads.png";
+import bentoBalance from "@/assets/bento-balance.png";
+import bentoJeller from "@/assets/bento-jeller.png";
+import bentoChange from "@/assets/bento-change.png";
+import bentoSprey from "@/assets/bento-sprey.png";
+import bentoYag from "@/assets/bento-yag.png";
 
 /**
  * AllProductsSection
- * 4-category bento grid matching the user's reference layout:
- *   [PEDLER (tall)] [BALANCE]  [BAKIM JELLERİ (wide)]
- *                  [CHANGE]    [SPREY] [YAĞ]
- * Each tile represents a category or hero product, not individual SKUs.
+ * Bento grid with product photography backgrounds.
  */
 
 type CategoryKey = "supplement" | "intim" | "aroma" | "ped";
@@ -13,11 +16,13 @@ type CategoryKey = "supplement" | "intim" | "aroma" | "ped";
 type Tile = {
   name: string;
   subtitle: string;
-  bg: string;
+  image: string;
   text: string;
   category: CategoryKey;
   col: 1 | 2 | 3 | 4;
   row: 1 | 2;
+  /** tailwind object-position class to keep product centred when cropped */
+  position?: string;
 };
 
 /* Category icons — pulled from MegaMenu vocabulary (pill, flower, drop, leaf) */
@@ -53,17 +58,13 @@ const categoryIcon = (cat: CategoryKey, className: string) => {
   }
 };
 
-/* 6-column grid, 2 rows.
-   Row 1: [PEDLER 2x2] [BALANCE 2x1] [BAKIM JELLERİ 2x1]
-   Row 2:              [CHANGE 2x1]  [SPREY 1x1] [YAĞ 1x1]
-*/
 const tiles: Tile[] = [
-  { name: "Pedler", subtitle: "Günlük · Gündüz · Gece", bg: "bg-[hsl(0,68%,55%)]", text: "text-white", category: "ped", col: 2, row: 2 },
-  { name: ".ki Balance", subtitle: "Regl döngüsü · saşe", bg: "bg-[hsl(210,55%,60%)]", text: "text-white", category: "supplement", col: 2, row: 1 },
-  { name: "Bakım Jelleri", subtitle: "Daily · Sens · Flow · 50+", bg: "bg-[hsl(15,55%,55%)]", text: "text-white", category: "intim", col: 2, row: 1 },
-  { name: ".ki Change", subtitle: "Menopoz · kapsül", bg: "bg-[hsl(300,35%,50%)]", text: "text-white", category: "supplement", col: 2, row: 1 },
-  { name: "Sprey", subtitle: "İntim bakım spreyi", bg: "bg-[hsl(5,45%,45%)]", text: "text-white", category: "intim", col: 1, row: 1 },
-  { name: "Yağ", subtitle: "Cycle Care · 10 ml", bg: "bg-[hsl(175,55%,42%)]", text: "text-white", category: "aroma", col: 1, row: 1 },
+  { name: "Pedler", subtitle: "Günlük · Gündüz · Gece", image: bentoPads, text: "text-white", category: "ped", col: 2, row: 2, position: "object-center" },
+  { name: ".ki Balance", subtitle: "Regl döngüsü · saşe", image: bentoBalance, text: "text-white", category: "supplement", col: 2, row: 1, position: "object-right" },
+  { name: "Bakım Jelleri", subtitle: "Daily · Sens · Flow · 50+", image: bentoJeller, text: "text-white", category: "intim", col: 2, row: 1, position: "object-center" },
+  { name: ".ki Change", subtitle: "Menopoz · kapsül", image: bentoChange, text: "text-white", category: "supplement", col: 2, row: 1, position: "object-right" },
+  { name: "Sprey", subtitle: "İntim bakım spreyi", image: bentoSprey, text: "text-white", category: "intim", col: 1, row: 1, position: "object-center" },
+  { name: "Yağ", subtitle: "Cycle Care · 10 ml", image: bentoYag, text: "text-white", category: "aroma", col: 1, row: 1, position: "object-center" },
 ];
 
 const colMap: Record<Tile["col"], string> = {
@@ -80,37 +81,43 @@ const rowMap: Record<Tile["row"], string> = {
 const TileCard = ({ tile }: { tile: Tile }) => (
   <a
     href="#"
-    className={`group relative overflow-hidden rounded-2xl ${tile.bg} ${tile.text} ${colMap[tile.col]} ${rowMap[tile.row]}
+    className={`group relative overflow-hidden rounded-2xl ${tile.text} ${colMap[tile.col]} ${rowMap[tile.row]}
       col-span-2
       p-4 md:p-5
       flex flex-col justify-end
       transition-all duration-500
-      hover:scale-[1.015] hover:shadow-xl
+      hover:shadow-xl
       cursor-pointer`}
   >
+    {/* Background image */}
+    <img
+      src={tile.image}
+      alt={tile.name}
+      loading="lazy"
+      className={`absolute inset-0 w-full h-full object-cover ${tile.position ?? "object-center"} transition-transform duration-700 group-hover:scale-[1.04]`}
+    />
+    {/* Subtle gradient for text legibility */}
+    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+
     <span
       aria-hidden
-      className={`absolute top-3 right-3 inline-flex items-center justify-center h-8 w-8 rounded-full
-        ${tile.text === "text-white" ? "bg-white/20 text-white" : "bg-[hsl(258,57%,26%)]/15 text-[hsl(258,57%,26%)]"}
-        backdrop-blur-sm`}
+      className="absolute top-3 right-3 inline-flex items-center justify-center h-8 w-8 rounded-full bg-white/20 text-white backdrop-blur-sm"
     >
       {categoryIcon(tile.category, "w-4 h-4")}
     </span>
 
     <div className="relative z-10">
-      <h3 className="font-display text-base md:text-lg leading-tight">
+      <h3 className="font-display text-base md:text-lg leading-tight drop-shadow-sm">
         {tile.name}
       </h3>
-      <p className="mt-1 text-[11px] md:text-xs opacity-90 leading-snug">
+      <p className="mt-1 text-[11px] md:text-xs opacity-95 leading-snug drop-shadow-sm">
         {tile.subtitle}
       </p>
     </div>
 
     <span
       aria-hidden
-      className={`absolute bottom-3 right-3 inline-flex h-7 w-7 items-center justify-center rounded-full
-        ${tile.text === "text-white" ? "bg-white/15" : "bg-[hsl(258,57%,26%)]/10"}
-        transition-all duration-300 group-hover:translate-x-0.5`}
+      className="absolute bottom-3 right-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:translate-x-0.5"
     >
       <ArrowRight className="h-3.5 w-3.5" />
     </span>
