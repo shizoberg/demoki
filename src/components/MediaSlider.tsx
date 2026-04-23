@@ -104,6 +104,22 @@ const MediaSlider = () => {
   const startX = useRef(0);
   const scrollL = useRef(0);
 
+  useEffect(() => {
+    const handlePointerMove = (e: PointerEvent) => {
+      const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+      setPaused(Boolean(target?.closest('[data-media-card="true"]')));
+    };
+
+    const resetPause = () => setPaused(false);
+
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerleave", resetPause);
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", resetPause);
+    };
+  }, []);
+
   // Auto-scroll loop (yavaş, sonsuz)
   useEffect(() => {
     const el = trackRef.current;
@@ -163,11 +179,8 @@ const MediaSlider = () => {
         {loopItems.map((it, i) => (
           <div
             key={`${it.id}-${i}`}
+            data-media-card="true"
             className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onTouchStart={() => setPaused(true)}
-            onTouchEnd={() => setPaused(false)}
           >
             {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
           </div>
