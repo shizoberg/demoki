@@ -232,25 +232,29 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
         <div className="grid grid-cols-12 gap-8">
           {/* Columns */}
           <div className="col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-8">
-            {columns.map((col) => (
-              <div key={col.title}>
-                <h3 className="text-[15px] font-bold text-primary mb-5">{col.title}</h3>
-                <ul className="flex flex-col gap-4">
-                  {col.items.map((item) => (
-                    <li key={item.label}>
-                      <a
-                        href={item.href}
-                        onClick={onClose}
-                        className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
-                      >
-                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
-                          <Icon name={item.icon} />
-                        </span>
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+            {columns.map((group, gIdx) => (
+              <div key={gIdx} className="flex flex-col gap-8">
+                {group.map((col) => (
+                  <div key={col.title}>
+                    <h3 className="text-[15px] font-bold text-primary mb-5">{col.title}</h3>
+                    <ul className="flex flex-col gap-4">
+                      {col.items.map((item) => (
+                        <li key={item.label}>
+                          <a
+                            href={item.href}
+                            onClick={onClose}
+                            className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
+                          >
+                            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
+                              <Icon name={item.icon} />
+                            </span>
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
