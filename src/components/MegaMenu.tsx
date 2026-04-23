@@ -199,10 +199,10 @@ const productsColumns: ColumnGroup[] = [
     {
       title: "İntim Bakım",
       items: [
-        { label: "Bakım Jeli · Daily", href: "#", icon: "gelTube" },
-        { label: "Bakım Jeli · Sens", href: "#", icon: "gelTube" },
-        { label: "Bakım Jeli · Flow", href: "#", icon: "gelTube" },
-        { label: "Bakım Jeli · 50+", href: "#", icon: "gelTube" },
+        { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "gel50" },
         { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
       ],
     },
