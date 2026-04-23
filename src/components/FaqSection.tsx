@@ -32,22 +32,19 @@ const faqs = [
 ];
 
 const FaqSection = () => (
-  <section className="py-20 sm:py-24 bg-cream-2/40 overflow-hidden" id="k5Faq">
-    <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,360px)_1fr] gap-8 lg:gap-12 items-end">
-        {/* Illustration */}
-        <div className="hidden lg:flex items-end justify-center lg:justify-start self-end">
-          <img
-            src={faqFlorence}
-            alt="Düşünen kadın illüstrasyonu"
-            className="k5-reveal w-full max-w-[360px] h-auto select-none pointer-events-none"
-            loading="lazy"
-          />
-        </div>
+  <section className="relative py-20 sm:py-24 bg-cream-2/40 overflow-hidden" id="k5Faq">
+    {/* Illustration — absolute, overlaps behind content */}
+    <img
+      src={faqFlorence}
+      alt=""
+      aria-hidden="true"
+      className="hidden lg:block absolute left-0 bottom-0 w-[460px] xl:w-[540px] h-auto select-none pointer-events-none z-0"
+      loading="lazy"
+    />
 
-        {/* Content */}
-        <div className="max-w-[820px] w-full">
-          <div className="text-center mb-12">
+    <div className="relative z-10 max-w-[1180px] mx-auto px-5 sm:px-8">
+      <div className="max-w-[860px] mx-auto">
+        <div className="text-center mb-12">
             <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
               Sıkça sorulanlar
             </span>
