@@ -9,12 +9,12 @@ type MediaItem =
   | { id: string; type: "image"; src: string; alt: string; caption?: string };
 
 const items: MediaItem[] = [
-  { id: "ulyana", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · 21" },
   { id: "pms", type: "video", src: pmsVideo, caption: "PMS günleri" },
-  { id: "sinem", type: "image", src: sinemImg, alt: ".ki kullanıcısı Sinem", caption: "Sinem · 25" },
-  { id: "ulyana2", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · mutfakta" },
+  { id: "ulyana", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · 21" },
   { id: "pms2", type: "video", src: pmsVideo, caption: "Döngü hikayesi" },
-  { id: "sinem2", type: "image", src: sinemImg, alt: ".ki kullanıcısı Sinem", caption: "Sabah rutini" },
+  { id: "sinem", type: "image", src: sinemImg, alt: ".ki kullanıcısı Sinem", caption: "Sinem · 25" },
+  { id: "pms3", type: "video", src: pmsVideo, caption: "Sabah rutini" },
+  { id: "ulyana2", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · mutfakta" },
 ];
 
 const VideoCard = ({ item }: { item: Extract<MediaItem, { type: "video" }> }) => {
@@ -100,8 +100,31 @@ const ImageCard = ({ item }: { item: Extract<MediaItem, { type: "image" }> }) =>
 const MediaSlider = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
+  const [paused, setPaused] = useState(false);
   const startX = useRef(0);
   const scrollL = useRef(0);
+
+  // Auto-scroll loop (yavaş, sonsuz)
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    const speed = 25; // px/sec
+
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (!paused && !dragging) {
+        const half = el.scrollWidth / 2;
+        el.scrollLeft += speed * dt;
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [paused, dragging]);
 
   const onMouseDown = (e: React.MouseEvent) => {
     if (!trackRef.current) return;
@@ -117,18 +140,14 @@ const MediaSlider = () => {
   };
   const onEnd = () => setDragging(false);
 
+  const loopItems = [...items, ...items];
+
   return (
     <section className="py-20 lg:py-28 bg-background">
       <div className="container max-w-6xl text-center mb-12 lg:mb-16">
-        <span className="block text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-5">
-          .ki Topluluğu
-        </span>
         <h2 className="font-display font-medium text-[36px] sm:text-[44px] lg:text-[52px] leading-[1.05] text-primary tracking-tight">
-          Şüphecilerden, <em className="italic font-light">şüpheciler için</em>.
+          Bizi bir de <em className="italic font-light">onlardan</em> dinle.
         </h2>
-        <p className="mt-5 text-[15px] sm:text-[16px] text-foreground/70 max-w-xl mx-auto">
-          İzlenebilir kadın sağlığını birlikte savunmak için bize katılan kadınlardan kareler.
-        </p>
       </div>
 
       <div
@@ -139,14 +158,15 @@ const MediaSlider = () => {
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onEnd}
-        onMouseLeave={onEnd}
-        style={{ scrollSnapType: "x mandatory" }}
+        onMouseLeave={() => { onEnd(); setPaused(false); }}
+        onMouseEnter={() => setPaused(true)}
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setPaused(false)}
       >
-        {items.map((it) => (
+        {loopItems.map((it, i) => (
           <div
-            key={it.id}
+            key={`${it.id}-${i}`}
             className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
-            style={{ scrollSnapAlign: "start" }}
           >
             {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
           </div>
