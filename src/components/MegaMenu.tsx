@@ -192,17 +192,19 @@ const productsFeatures: FeatureCard[] = [
   { label: "Tüm Ürünler", image: packSachet, href: "#tum-urunler" },
 ];
 
-const aboutColumns: Column[] = [
-  {
-    title: "Biz Kimiz?",
-    items: [
-      { label: "Neden .ki?", href: "#", icon: "tree" },
-      { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
-      { label: "Fiyat Politikası", href: "#", icon: "tag" },
-      { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
-      { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
-    ],
-  },
+const aboutColumns: ColumnGroup[] = [
+  [
+    {
+      title: "Biz Kimiz?",
+      items: [
+        { label: "Neden .ki?", href: "#", icon: "tree" },
+        { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
+        { label: "Fiyat Politikası", href: "#", icon: "tag" },
+        { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
+        { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
+      ],
+    },
+  ],
 ];
 
 const aboutFeatures: FeatureCard[] = [
