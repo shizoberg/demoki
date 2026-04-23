@@ -255,7 +255,7 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
                 key={f.label}
                 href={f.href}
                 onClick={onClose}
-                className="group relative rounded-2xl overflow-hidden bg-secondary/60 aspect-[4/5] flex flex-col"
+                className="group relative rounded-2xl overflow-hidden bg-secondary/60 aspect-[4/5] flex flex-col ring-1 ring-primary/30 hover:ring-primary/60 transition-shadow"
               >
                 {f.badge && (
                   <span className="absolute top-3 left-1/2 -translate-x-1/2 z-10 bg-background/90 backdrop-blur text-primary text-[11px] font-semibold px-3 py-1 rounded-full whitespace-nowrap">
