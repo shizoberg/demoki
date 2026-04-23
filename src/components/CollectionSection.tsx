@@ -75,14 +75,14 @@ const CollectionSection = () => {
             return (
               <article
                 key={pack.id}
-                className={`k5-reveal k5-reveal-d${Math.min(idx + 1, 4)} group relative flex flex-col transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.25)] ${hasFlorence ? "overflow-visible pt-14 lg:pt-16" : "overflow-hidden rounded-2xl"}`}
+                className={`k5-reveal k5-reveal-d${Math.min(idx + 1, 4)} group relative flex flex-col transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.25)] ${hasFlorence ? "overflow-visible" : "overflow-hidden rounded-2xl"}`}
               >
                 {hasFlorence && (
                   <img
                     src={florenceHover}
                     alt=""
                     aria-hidden="true"
-                    className="hidden lg:block absolute left-1/2 top-0 z-30 h-auto w-[220px] xl:w-[250px] -translate-x-1/2 -translate-y-[28%] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)]"
+                    className="hidden lg:block absolute left-1/2 bottom-full z-30 h-auto w-[220px] xl:w-[250px] -translate-x-1/2 translate-y-[18%] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)]"
                     loading="lazy"
                   />
                 )}
