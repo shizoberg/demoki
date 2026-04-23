@@ -131,30 +131,28 @@ const AllProductsSection = () => {
   return (
     <section
       id="tum-urunler"
-      className="relative py-12 md:py-16 overflow-visible bg-background"
+      className="relative py-12 md:py-16 overflow-hidden bg-background"
     >
+      {/* Illustration — absolute, overlaps behind content */}
+      <img
+        src={florenceBento}
+        alt=""
+        aria-hidden="true"
+        className="hidden lg:block absolute right-0 bottom-0 w-[460px] xl:w-[540px] h-auto select-none pointer-events-none z-0"
+        loading="lazy"
+      />
 
-      <div className="relative max-w-6xl mx-auto px-4 md:px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
         <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-left mr-auto">
           <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
             Kendine iyi bakman için<em className="italic text-primary/80">:</em>
           </h2>
         </div>
 
-        <div className="relative">
-          <div className="relative z-10 grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
-            {tiles.map((t) => (
-              <TileCard key={t.name} tile={t} />
-            ))}
-          </div>
-
-          <img
-            src={florenceBento}
-            alt=""
-            aria-hidden="true"
-            className="hidden lg:block absolute bottom-0 right-0 z-0 h-auto w-[520px] xl:w-[620px] select-none pointer-events-none translate-x-[18%] translate-y-[12%]"
-            loading="lazy"
-          />
+        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
+          {tiles.map((t) => (
+            <TileCard key={t.name} tile={t} />
+          ))}
         </div>
       </div>
     </section>
