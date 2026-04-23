@@ -11,6 +11,7 @@ import IngredientTransparency from "@/components/IngredientTransparency";
 import ScienceSection from "@/components/ScienceSection";
 
 import ReviewsSection from "@/components/ReviewsSection";
+import AllProductsSection from "@/components/AllProductsSection";
 import ProductSection from "@/components/ProductSection";
 import FaqSection from "@/components/FaqSection";
 import SiteFooter from "@/components/SiteFooter";
@@ -39,6 +40,7 @@ const Balance = () => {
         <ScienceSection />
         
         <ReviewsSection />
+        <AllProductsSection />
         <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
       </main>
