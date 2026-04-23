@@ -155,11 +155,8 @@ const SiteFooter = () => {
 
             {/* Newsletter */}
             <div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-foreground/60 mb-3">
-                Bültene Katıl
-              </div>
-              <p className="text-[14px] text-primary-foreground/80 mb-5 max-w-[380px]">
-                Yeni ürünler, döngü ipuçları ve özel kampanyalar için e-posta listemize katıl.
+              <p className="text-[18px] md:text-[20px] text-primary-foreground mb-5 max-w-[440px] whitespace-nowrap">
+                Sana özel şeylerden haberdar ol.
               </p>
               <form onSubmit={handleSubmit} className="flex items-end gap-3">
                 <input
