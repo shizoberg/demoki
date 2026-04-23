@@ -7,7 +7,7 @@ import EditorialHero from "@/components/EditorialHero";
 import ValueStrip from "@/components/ValueStrip";
 import CollectionSection from "@/components/CollectionSection";
 import MediaSlider from "@/components/MediaSlider";
-import IngredientTransparency from "@/components/IngredientTransparency";
+
 
 import AllProductsSection from "@/components/AllProductsSection";
 import ProductSection from "@/components/ProductSection";
@@ -35,7 +35,6 @@ const Balance = () => {
         <CollectionSection />
         <MediaSlider />
         <AllProductsSection />
-        <IngredientTransparency />
         <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
       </main>
