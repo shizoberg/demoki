@@ -9,12 +9,12 @@ type MediaItem =
   | { id: string; type: "image"; src: string; alt: string; caption?: string };
 
 const items: MediaItem[] = [
-  { id: "ulyana", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · 21" },
   { id: "pms", type: "video", src: pmsVideo, caption: "PMS günleri" },
-  { id: "sinem", type: "image", src: sinemImg, alt: ".ki kullanıcısı Sinem", caption: "Sinem · 25" },
-  { id: "ulyana2", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · mutfakta" },
+  { id: "ulyana", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · 21" },
   { id: "pms2", type: "video", src: pmsVideo, caption: "Döngü hikayesi" },
-  { id: "sinem2", type: "image", src: sinemImg, alt: ".ki kullanıcısı Sinem", caption: "Sabah rutini" },
+  { id: "sinem", type: "image", src: sinemImg, alt: ".ki kullanıcısı Sinem", caption: "Sinem · 25" },
+  { id: "pms3", type: "video", src: pmsVideo, caption: "Sabah rutini" },
+  { id: "ulyana2", type: "image", src: ulyanaImg, alt: ".ki kullanıcısı Ulyana", caption: "Ulyana · mutfakta" },
 ];
 
 const VideoCard = ({ item }: { item: Extract<MediaItem, { type: "video" }> }) => {
