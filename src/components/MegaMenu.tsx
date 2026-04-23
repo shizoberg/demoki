@@ -232,8 +232,12 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
                         onClick={onClose}
                         className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
                       >
-                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
-                          <Icon name={item.icon} />
+                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors text-base leading-none">
+                          {"emoji" in item && item.emoji ? (
+                            <span aria-hidden>{item.emoji}</span>
+                          ) : (
+                            <Icon name={item.icon} />
+                          )}
                         </span>
                         {item.label}
                       </a>
