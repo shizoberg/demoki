@@ -106,6 +106,9 @@ const TileCard = ({ tile }: { tile: Tile }) => (
       <p className="mt-1 text-[11px] md:text-xs opacity-95 leading-snug drop-shadow-sm">
         {tile.subtitle}
       </p>
+      <p className="mt-1 text-[10px] md:text-[11px] opacity-80 leading-snug drop-shadow-sm">
+        00₺'den başlayan fiyatlarla
+      </p>
     </div>
 
     <span
