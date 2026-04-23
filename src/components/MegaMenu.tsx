@@ -146,31 +146,34 @@ type FeatureCard = { label: string; image: string; href: string; badge?: string 
 
 export type MenuKey = "products" | "about" | "donate";
 
-const productsColumns: Column[] = [
+type LinkItemEmoji = LinkItem & { emoji?: string };
+type ColumnEmoji = { title: string; items: LinkItemEmoji[] };
+
+const productsColumns: ColumnEmoji[] = [
   {
     title: "Pedler",
     items: [
-      { label: "Günlük Ped", href: "#", icon: "leaf" },
-      { label: "Gündüz Ped", href: "#", icon: "drop" },
-      { label: "Gece Ped", href: "#", icon: "flower" },
-    ],
-  },
-  {
-    title: "İntim Bakım",
-    items: [
-      { label: "Bakım Jeli · Daily", href: "#", icon: "drop" },
-      { label: "Bakım Jeli · Sens", href: "#", icon: "drop" },
-      { label: "Bakım Jeli · Flow", href: "#", icon: "drop" },
-      { label: "Bakım Jeli · 50+", href: "#", icon: "drop" },
-      { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
+      { label: "Günlük Ped", href: "#", icon: "leaf", emoji: "🌿" },
+      { label: "Gündüz Ped", href: "#", icon: "drop", emoji: "☀️" },
+      { label: "Gece Ped", href: "#", icon: "flower", emoji: "🌙" },
     ],
   },
   {
     title: "Takviyeler & Aroma",
     items: [
-      { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
-      { label: ".ki Change · Kapsül", href: "#", icon: "pill" },
-      { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "drop" },
+      { label: ".ki Balance · Saşe", href: "#", icon: "pill", emoji: "⚖️" },
+      { label: ".ki Change · Kapsül", href: "#", icon: "pill", emoji: "🦋" },
+      { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "drop", emoji: "🪻" },
+    ],
+  },
+  {
+    title: "İntim Bakım",
+    items: [
+      { label: "Bakım Jeli · Daily", href: "#", icon: "drop", emoji: "💧" },
+      { label: "Bakım Jeli · Sens", href: "#", icon: "drop", emoji: "🌸" },
+      { label: "Bakım Jeli · Flow", href: "#", icon: "drop", emoji: "🌊" },
+      { label: "Bakım Jeli · 50+", href: "#", icon: "drop", emoji: "✨" },
+      { label: "İntim Bakım Spreyi", href: "#", icon: "spray", emoji: "🍃" },
     ],
   },
 ];
@@ -229,8 +232,12 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
                         onClick={onClose}
                         className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
                       >
-                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
-                          <Icon name={item.icon} />
+                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors text-base leading-none">
+                          {(item as LinkItemEmoji).emoji ? (
+                            <span aria-hidden>{(item as LinkItemEmoji).emoji}</span>
+                          ) : (
+                            <Icon name={item.icon} />
+                          )}
                         </span>
                         {item.label}
                       </a>
@@ -248,7 +255,7 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
                 key={f.label}
                 href={f.href}
                 onClick={onClose}
-                className="group relative rounded-2xl overflow-hidden bg-secondary/60 aspect-[4/5] flex flex-col"
+                className="group relative rounded-2xl overflow-hidden bg-secondary/60 aspect-[4/5] flex flex-col ring-1 ring-primary/30 hover:ring-primary/60 transition-shadow"
               >
                 {f.badge && (
                   <span className="absolute top-3 left-1/2 -translate-x-1/2 z-10 bg-background/90 backdrop-blur text-primary text-[11px] font-semibold px-3 py-1 rounded-full whitespace-nowrap">
