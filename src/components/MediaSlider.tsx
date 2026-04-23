@@ -20,14 +20,12 @@ const items: MediaItem[] = [
 const VideoCard = ({ item }: { item: Extract<MediaItem, { type: "video" }> }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(true);
-  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        setInView(entry.isIntersecting);
         if (entry.isIntersecting && playing) {
           el.play().catch(() => {});
         } else {
@@ -64,7 +62,6 @@ const VideoCard = ({ item }: { item: Extract<MediaItem, { type: "video" }> }) =>
         preload="metadata"
         className="w-full h-full object-cover"
       />
-      {/* gradient bottom for caption + button legibility */}
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent pointer-events-none" />
       {item.caption && (
         <div className="absolute left-3 bottom-3 text-primary-foreground text-[12px] font-semibold tracking-wide drop-shadow">
@@ -98,93 +95,31 @@ const ImageCard = ({ item }: { item: Extract<MediaItem, { type: "image" }> }) =>
 );
 
 const MediaSlider = () => {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [dragging, setDragging] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const startX = useRef(0);
-  const scrollL = useRef(0);
-
-  useEffect(() => {
-    const handlePointerMove = (e: PointerEvent) => {
-      const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
-      setPaused(Boolean(target?.closest('[data-media-card="true"]')));
-    };
-
-    const resetPause = () => setPaused(false);
-
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerleave", resetPause);
-    return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerleave", resetPause);
-    };
-  }, []);
-
-  // Auto-scroll loop (yavaş, sonsuz)
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    let raf = 0;
-    let last = performance.now();
-    const speed = 25; // px/sec
-
-    const tick = (now: number) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      if (!paused && !dragging) {
-        const half = el.scrollWidth / 2;
-        el.scrollLeft += speed * dt;
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [paused, dragging]);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (!trackRef.current) return;
-    setDragging(true);
-    startX.current = e.pageX - trackRef.current.offsetLeft;
-    scrollL.current = trackRef.current.scrollLeft;
-  };
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!dragging || !trackRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - trackRef.current.offsetLeft;
-    trackRef.current.scrollLeft = scrollL.current - (x - startX.current) * 1.4;
-  };
-  const onEnd = () => setDragging(false);
-
   const loopItems = [...items, ...items];
 
   return (
-    <section className="pt-6 pb-16 lg:pt-8 lg:pb-20 bg-background">
+    <section className="pt-6 pb-16 lg:pt-8 lg:pb-20 bg-background overflow-hidden">
       <div className="container max-w-6xl text-center mb-8 lg:mb-10">
         <h2 className="font-display font-medium text-[36px] sm:text-[44px] lg:text-[52px] leading-[1.05] text-primary tracking-tight">
           Bizi bir de <em className="italic font-light">onlardan</em> dinle.
         </h2>
       </div>
 
-      <div
-        ref={trackRef}
-        className={`flex gap-3 sm:gap-4 overflow-x-auto hide-scrollbar pb-2 px-6 sm:px-10 lg:px-12 select-none ${
-          dragging ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onEnd}
-        onMouseLeave={onEnd}
-      >
-        {loopItems.map((it, i) => (
-          <div
-            key={`${it.id}-${i}`}
-            data-media-card="true"
-            className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
-          >
-            {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
-          </div>
-        ))}
+      <div className="relative">
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-background to-transparent z-10" />
+
+        <div className="flex w-max gap-3 sm:gap-4 animate-marquee hover:[animation-play-state:paused]">
+          {loopItems.map((it, i) => (
+            <div
+              key={`${it.id}-${i}`}
+              className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
+            >
+              {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
