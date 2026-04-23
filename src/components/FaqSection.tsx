@@ -42,8 +42,8 @@ const FaqSection = () => (
       loading="lazy"
     />
 
-    <div className="relative z-10 max-w-[1180px] mx-auto px-5 sm:px-8">
-      <div className="max-w-[860px] mx-auto">
+    <div className="relative z-10 max-w-[1280px] mx-auto px-5 sm:px-8">
+      <div className="max-w-[820px] lg:ml-auto lg:mr-0">
         <div className="text-center mb-12">
             <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
               Sıkça sorulanlar
