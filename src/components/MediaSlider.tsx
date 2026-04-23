@@ -143,8 +143,8 @@ const MediaSlider = () => {
   const loopItems = [...items, ...items];
 
   return (
-    <section className="py-20 lg:py-28 bg-background">
-      <div className="container max-w-6xl text-center mb-12 lg:mb-16">
+    <section className="pt-6 pb-16 lg:pt-8 lg:pb-20 bg-background">
+      <div className="container max-w-6xl text-center mb-8 lg:mb-10">
         <h2 className="font-display font-medium text-[36px] sm:text-[44px] lg:text-[52px] leading-[1.05] text-primary tracking-tight">
           Bizi bir de <em className="italic font-light">onlardan</em> dinle.
         </h2>
@@ -158,15 +158,16 @@ const MediaSlider = () => {
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onEnd}
-        onMouseLeave={() => { onEnd(); setPaused(false); }}
-        onMouseEnter={() => setPaused(true)}
-        onTouchStart={() => setPaused(true)}
-        onTouchEnd={() => setPaused(false)}
+        onMouseLeave={onEnd}
       >
         {loopItems.map((it, i) => (
           <div
             key={`${it.id}-${i}`}
             className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onTouchStart={() => setPaused(true)}
+            onTouchEnd={() => setPaused(false)}
           >
             {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
           </div>
