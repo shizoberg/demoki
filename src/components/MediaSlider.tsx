@@ -179,11 +179,8 @@ const MediaSlider = () => {
         {loopItems.map((it, i) => (
           <div
             key={`${it.id}-${i}`}
+            data-media-card="true"
             className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onTouchStart={() => setPaused(true)}
-            onTouchEnd={() => setPaused(false)}
           >
             {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
           </div>
