@@ -50,14 +50,14 @@ const SiteFooter = () => {
         {/* Main grid: Brand | Products(2 cols) | Right (CTA + Newsletter) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12 pb-14">
           {/* Brand block */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 lg:pt-8">
             <div className="relative mb-7 overflow-hidden rounded-2xl">
               <img
                 src={kiFooterIllustration}
                 alt=".ki — Kendine iyi bak"
                 className="w-full h-auto block"
               />
-              <p className="absolute left-4 right-4 bottom-4 font-display text-[22px] sm:text-[26px] leading-[1.05] font-medium text-primary">
+              <p className="absolute left-5 right-5 bottom-5 font-display text-[22px] sm:text-[26px] leading-[1.05] font-medium text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
                 Kendine iyi bak.
               </p>
             </div>
