@@ -134,22 +134,22 @@ const SiteFooter = () => {
             {/* Reglini Çiz card */}
             <a
               href="#"
-              className="group block rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors p-6 border border-primary-foreground/10"
+              className="group relative block overflow-hidden rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors border border-primary-foreground/10 aspect-[16/10]"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="font-display text-[22px] leading-tight font-medium mb-1">
-                    Reglini Çiz!
-                  </div>
-                  <p className="text-[13px] text-primary/75 max-w-[260px]">
-                    Hislerini yansıtmanı sağlayan bir platform.
-                  </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold">
-                    Ziyaret Et
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
+              <img
+                src={regliniCizBg}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover opacity-90 pointer-events-none"
+              />
+              <ArrowUpRight className="absolute top-5 right-5 w-5 h-5 text-foreground/70 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+              <div className="absolute left-6 bottom-6 right-6">
+                <div className="font-display text-[22px] leading-tight font-medium mb-1 text-foreground">
+                  Reglini Çiz!
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-primary/60 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                <p className="text-[13px] text-foreground/80 max-w-[260px]">
+                  Hislerini yansıtmanı sağlayan bir platform.
+                </p>
               </div>
             </a>
 
