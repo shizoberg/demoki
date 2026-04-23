@@ -37,7 +37,7 @@ const Balance = () => {
         <MediaSlider />
         <IngredientTransparency />
         <ScienceSection />
-        <MadeTraceable />
+        
         <ReviewsSection />
         <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
