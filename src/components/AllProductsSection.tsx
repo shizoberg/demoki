@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import florenceHover from "@/assets/florence-hover.png";
 import bentoPads from "@/assets/bento-pads.png";
 import bentoBalance from "@/assets/bento-balance.png";
 import bentoJeller from "@/assets/bento-jeller.png";
@@ -134,13 +135,30 @@ const AllProductsSection = () => {
     >
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-left mr-auto">
-          <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
+        <div className="relative mb-8 md:mb-10 k5-reveal flex items-end justify-between gap-4">
+          <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1] max-w-3xl">
             Kendine iyi bakman için<em className="italic text-primary/80">:</em>
           </h2>
+
+          {/* Florence hovering — sits between title and CTA, peeking up from below */}
+          <img
+            src={florenceHover}
+            alt=""
+            aria-hidden="true"
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 bottom-[-40px] md:bottom-[-56px] w-[180px] lg:w-[220px] h-auto select-none pointer-events-none z-10 drop-shadow-[0_8px_20px_hsl(var(--primary)/0.18)]"
+            loading="lazy"
+          />
+
+          <a
+            href="#tum-urunler"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full border border-primary/30 px-5 py-2.5 text-[13px] md:text-sm font-medium text-primary hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap"
+          >
+            Kendi'ne özel paket oluştur
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
+        <div className="relative grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
           {tiles.map((t) => (
             <TileCard key={t.name} tile={t} />
           ))}
