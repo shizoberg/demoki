@@ -172,11 +172,18 @@ export type MenuKey = "products" | "about" | "donate";
 const productsColumns: ColumnGroup[] = [
   [
     {
-      title: "Pedler & Takviyeler",
+      title: "Pedler",
       items: [
         { label: "Günlük Ped", href: "#", icon: "padLiner" },
         { label: "Gece Ped", href: "#", icon: "padNight" },
         { label: "Gündüz Ped", href: "#", icon: "padDay" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "Takviyeler",
+      items: [
         { label: ".ki Change · Kapsül", href: "#", icon: "capsule" },
         { label: ".ki Balance · Saşe", href: "#", icon: "sachet" },
       ],
@@ -184,7 +191,7 @@ const productsColumns: ColumnGroup[] = [
   ],
   [
     {
-      title: "Bakım & Aroma",
+      title: "Jeller & Yağlar",
       items: [
         { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
         { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
