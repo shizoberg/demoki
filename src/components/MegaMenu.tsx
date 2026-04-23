@@ -160,6 +160,11 @@ const productsColumns: Column[] = [
     items: [
       { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
       { label: ".ki Change · Kapsül", href: "#", icon: "berry" },
+    ],
+  },
+  {
+    title: "Masaj Yağı",
+    items: [
       { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "tree" },
     ],
   },
