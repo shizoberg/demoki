@@ -133,7 +133,7 @@ const SiteFooter = () => {
             {/* Reglini Çiz card */}
             <a
               href="#"
-              className="group block rounded-2xl bg-[hsl(252,60%,78%)] hover:bg-[hsl(252,60%,82%)] text-primary transition-colors p-6 border border-primary-foreground/10"
+              className="group block rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors p-6 border border-primary-foreground/10"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -185,14 +185,11 @@ const SiteFooter = () => {
         </div>
 
         {/* Payment logos row */}
-        <div className="flex items-center justify-between flex-wrap gap-4 py-6 border-t border-primary-foreground/15">
-          <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-foreground/60">
-            Güvenli Ödeme
-          </div>
+        <div className="flex items-center justify-center py-6 border-t border-primary-foreground/15">
           <img
             src={paymentLogos}
             alt="Kabul edilen ödeme yöntemleri"
-            className="h-6 w-auto brightness-0 invert opacity-90"
+            className="h-6 w-auto"
           />
         </div>
 
