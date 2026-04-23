@@ -9,7 +9,7 @@ import CollectionSection from "@/components/CollectionSection";
 import MediaSlider from "@/components/MediaSlider";
 import IngredientTransparency from "@/components/IngredientTransparency";
 import ScienceSection from "@/components/ScienceSection";
-import MadeTraceable from "@/components/MadeTraceable";
+
 import ReviewsSection from "@/components/ReviewsSection";
 import ProductSection from "@/components/ProductSection";
 import FaqSection from "@/components/FaqSection";
