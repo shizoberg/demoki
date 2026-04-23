@@ -110,11 +110,11 @@ const MediaSlider = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-background to-transparent z-10" />
 
-        <div className="flex w-max gap-3 sm:gap-4 animate-marquee">
+        <div className="flex w-max gap-3 sm:gap-4 animate-marquee hover:[animation-play-state:paused]">
           {loopItems.map((it, i) => (
             <div
               key={`${it.id}-${i}`}
-              className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm hover:[animation-play-state:paused]"
+              className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
             >
               {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
             </div>
