@@ -3,6 +3,7 @@ import packPads from "@/assets/pack-pads.png";
 import packSachet from "@/assets/pack-sachet.png";
 import packSpray from "@/assets/pack-spray.png";
 import packOil from "@/assets/pack-oil.png";
+import florenceHover from "@/assets/florence-hover.png";
 
 type Pack = {
   id: string;
