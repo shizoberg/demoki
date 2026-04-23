@@ -194,19 +194,20 @@ const SiteFooter = () => {
         </div>
 
         {/* Bottom: Legal */}
-        <div className="pt-6 border-t border-primary-foreground/15 flex flex-col gap-4 items-center text-center">
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px] text-primary-foreground/65">
+        <div className="pt-6 border-t border-primary-foreground/15">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12px] text-primary-foreground/65">
             {legalLinks.map((l) => (
-              <li key={l.label}>
-                <a href={l.href} className="hover:text-primary-foreground transition-colors">
-                  {l.label}
-                </a>
-              </li>
+              <a
+                key={l.label}
+                href={l.href}
+                className="hover:text-primary-foreground transition-colors"
+              >
+                {l.label}
+              </a>
             ))}
-          </ul>
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 sm:items-center sm:justify-center text-[11px] text-primary-foreground/55">
-            <div>© {new Date().getFullYear()} .ki — Tüm hakları saklıdır.</div>
-            <div>.Ki Magnezyum ve Hayıt İçeren Takviye Edici Gıda · Onay No: 024990-06.11.2025</div>
+            <span className="ml-auto text-primary-foreground/55 text-[11px]">
+              © {new Date().getFullYear()} .ki — Tüm hakları saklıdır.
+            </span>
           </div>
         </div>
       </div>
