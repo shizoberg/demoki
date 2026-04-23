@@ -99,14 +99,20 @@ const TileCard = ({ tile }: { tile: Tile }) => (
     {/* Subtle gradient for text legibility */}
     <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-    <div className="relative z-10">
-      <h3 className="font-display text-base md:text-lg leading-tight drop-shadow-sm">
+    <div
+      className="relative z-10"
+      style={{
+        textShadow:
+          "0 1px 14px hsl(var(--primary) / 0.7), 0 1px 3px hsl(var(--primary) / 0.55)",
+      }}
+    >
+      <h3 className="font-display text-base md:text-lg leading-tight">
         {tile.name}
       </h3>
-      <p className="mt-1 text-[11px] md:text-xs opacity-95 leading-snug drop-shadow-sm">
+      <p className="mt-1 text-[11px] md:text-xs opacity-95 leading-snug">
         {tile.subtitle}
       </p>
-      <p className="mt-1 text-[10px] md:text-[11px] opacity-80 leading-snug drop-shadow-sm">
+      <p className="mt-1 text-[10px] md:text-[11px] opacity-85 leading-snug">
         00₺'den başlayan fiyatlarla
       </p>
     </div>
