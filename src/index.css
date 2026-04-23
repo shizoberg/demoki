@@ -24,14 +24,14 @@
 
     --primary-medium: 247 44% 55%;
 
-    --secondary: 258 40% 94%;
-    --secondary-foreground: 258 57% 26%;
+    --secondary: 247 40% 94%;
+    --secondary-foreground: 247 44% 43%;
 
     --muted: 33 20% 91%;
     --muted-foreground: 24 7% 44%;
 
-    --accent: 258 40% 94%;
-    --accent-foreground: 258 57% 26%;
+    --accent: 247 40% 94%;
+    --accent-foreground: 247 44% 43%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -50,10 +50,10 @@
     --cream-2: 33 20% 93%;
     --cream-3: 33 15% 87%;
 
-    --plum-pale: 258 60% 97%;
+    --plum-pale: 247 60% 97%;
 
-    --border: 258 20% 92%;
-    --input: 258 20% 92%;
+    --border: 247 20% 92%;
+    --input: 247 20% 92%;
     --ring: 247 44% 43%;
 
     --radius: 0.5rem;
