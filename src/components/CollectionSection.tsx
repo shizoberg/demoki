@@ -51,7 +51,7 @@ const packs: Pack[] = [
 
 const CollectionSection = () => {
   return (
-    <section className="bg-background pt-8 lg:pt-10 pb-12 lg:pb-16">
+    <section className="relative bg-background pt-8 lg:pt-10 pb-12 lg:pb-16 overflow-visible">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="relative flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
@@ -59,12 +59,12 @@ const CollectionSection = () => {
             Sana özel oluşturduğumuz paketler
           </h2>
 
-          {/* Florence hovering — between title and CTA, peeking down over the cards */}
+          {/* Florence hovering — sized so her bun overlaps the slider/strip above the section */}
           <img
             src={florenceHover}
             alt=""
             aria-hidden="true"
-            className="hidden md:block absolute left-1/2 -translate-x-1/2 -bottom-6 lg:-bottom-8 w-[200px] lg:w-[240px] h-auto select-none pointer-events-none z-20 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.18)]"
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 w-[300px] lg:w-[360px] xl:w-[400px] h-auto select-none pointer-events-none z-30 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.2)] bottom-[calc(100%-56px)] lg:bottom-[calc(100%-64px)]"
             loading="lazy"
           />
 
