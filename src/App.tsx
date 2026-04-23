@@ -23,7 +23,7 @@ const App = () => (
       <BrowserRouter>
         <CartSyncProvider>
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<Balance />} />
             <Route path="/balance" element={<Balance />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

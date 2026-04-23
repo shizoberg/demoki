@@ -121,22 +121,8 @@ const AllProductsSection = () => {
   return (
     <section
       id="tum-urunler"
-      className="relative py-12 md:py-16 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--plum-pale)) 60%, hsl(var(--secondary)) 100%)",
-      }}
+      className="relative py-12 md:py-16 overflow-hidden bg-background"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full opacity-30 blur-3xl"
-        style={{ background: "hsl(var(--rose-light))" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full opacity-30 blur-3xl"
-        style={{ background: "hsl(var(--sage-light))" }}
-      />
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
         <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-left mr-auto">
