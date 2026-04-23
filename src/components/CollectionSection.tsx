@@ -54,19 +54,10 @@ const CollectionSection = () => {
     <section className="relative bg-background pt-8 lg:pt-10 pb-12 lg:pb-16 overflow-visible">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="relative flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
           <h2 className="font-display font-medium text-[24px] sm:text-[26px] lg:text-[32px] xl:text-[36px] leading-[1.1] text-primary tracking-tight whitespace-nowrap">
             Sana özel oluşturduğumuz paketler
           </h2>
-
-          {/* Florence hovering — sits between the title and the CTA, bun overlaps the strip above */}
-          <img
-            src={florenceHover}
-            alt=""
-            aria-hidden="true"
-            className="hidden md:block absolute left-[62%] lg:left-[64%] -translate-x-1/2 w-[230px] lg:w-[270px] xl:w-[300px] h-auto select-none pointer-events-none z-30 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.2)] bottom-[calc(100%-48px)] lg:bottom-[calc(100%-54px)]"
-            loading="lazy"
-          />
 
           <a
             href="#k5Product"
@@ -77,7 +68,15 @@ const CollectionSection = () => {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          {/* Florence — peeking down over the 3rd card (Aylık Döngü Paketi) */}
+          <img
+            src={florenceHover}
+            alt=""
+            aria-hidden="true"
+            className="hidden lg:block absolute pointer-events-none select-none z-30 w-[260px] xl:w-[300px] h-auto drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)] left-[62.5%] -translate-x-1/2 -top-[110px] xl:-top-[130px]"
+            loading="lazy"
+          />
           {packs.map((pack, idx) => (
             <article
               key={pack.id}
