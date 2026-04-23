@@ -3,6 +3,7 @@ import packPads from "@/assets/pack-pads.png";
 import packSachet from "@/assets/pack-sachet.png";
 import packSpray from "@/assets/pack-spray.png";
 import packOil from "@/assets/pack-oil.png";
+import florenceHover from "@/assets/florence-hover.png";
 
 type Pack = {
   id: string;
@@ -53,10 +54,20 @@ const CollectionSection = () => {
     <section className="bg-background pt-8 lg:pt-10 pb-12 lg:pb-16">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
-          <h2 className="font-display font-medium text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.1] text-primary tracking-tight">
+        <div className="relative flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
+          <h2 className="font-display font-medium text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.1] text-primary tracking-tight max-w-[520px]">
             Sana özel oluşturduğumuz paketler
           </h2>
+
+          {/* Florence hovering — between title and CTA, peeking down over the cards */}
+          <img
+            src={florenceHover}
+            alt=""
+            aria-hidden="true"
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 -bottom-6 lg:-bottom-8 w-[200px] lg:w-[240px] h-auto select-none pointer-events-none z-20 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.18)]"
+            loading="lazy"
+          />
+
           <a
             href="#k5Product"
             className="hidden sm:inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
