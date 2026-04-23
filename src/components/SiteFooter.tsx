@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Instagram, Youtube, Linkedin, ArrowRight, ArrowUpRight } from "lucide-react";
-import kiLogo from "@/assets/ki-logo-white.png";
+import kiFooterIllustration from "@/assets/ki-footer-illustration.png";
 import paymentLogos from "@/assets/payment-logos.png";
 import regliniCizBg from "@/assets/reglini-ciz-bg.png";
 
@@ -51,10 +51,16 @@ const SiteFooter = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12 pb-14">
           {/* Brand block */}
           <div className="lg:col-span-3">
-            <img src={kiLogo} alt=".ki" className="h-12 w-auto mb-6" />
-            <p className="font-display text-[28px] sm:text-[32px] leading-[1.05] font-medium mb-7 whitespace-nowrap">
-              Kendine iyi bak.
-            </p>
+            <div className="relative mb-7 overflow-hidden rounded-2xl">
+              <img
+                src={kiFooterIllustration}
+                alt=".ki — Kendine iyi bak"
+                className="w-full h-auto block"
+              />
+              <p className="absolute left-4 right-4 bottom-4 font-display text-[22px] sm:text-[26px] leading-[1.05] font-medium text-primary">
+                Kendine iyi bak.
+              </p>
+            </div>
 
             <div className="flex items-center gap-3 mb-8">
               <a
