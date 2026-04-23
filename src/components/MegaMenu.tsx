@@ -188,22 +188,22 @@ const productsColumns: ColumnGroup[] = [
         { label: ".ki Change · Kapsül", href: "#", icon: "capsule" },
       ],
     },
-    {
-      title: "Masaj Yağı",
-      items: [
-        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "oilBottle" },
-      ],
-    },
   ],
   [
     {
-      title: "İntim Bakım",
+      title: "İntim Bakım Jeli",
       items: [
         { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
         { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
         { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
         { label: "Bakım Jeli · 50+", href: "#", icon: "gel50" },
+      ],
+    },
+    {
+      title: "Sprey & Yağ",
+      items: [
         { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
+        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "oilBottle" },
       ],
     },
   ],
