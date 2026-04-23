@@ -131,7 +131,7 @@ const AllProductsSection = () => {
   return (
     <section
       id="tum-urunler"
-      className="relative py-12 md:py-16 overflow-hidden bg-background"
+      className="relative py-12 md:py-16 overflow-visible bg-background"
     >
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
