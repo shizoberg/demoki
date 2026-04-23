@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Instagram, Youtube, Linkedin, ArrowRight, ArrowUpRight } from "lucide-react";
 import kiLogo from "@/assets/ki-logo-white.png";
 import paymentLogos from "@/assets/payment-logos.png";
+import regliniCizBg from "@/assets/reglini-ciz-bg.png";
 
 const productsCol1 = [
   { label: "Günlük Ped", href: "#" },
