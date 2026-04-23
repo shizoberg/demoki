@@ -6,6 +6,7 @@ import SiteNav from "@/components/SiteNav";
 import EditorialHero from "@/components/EditorialHero";
 import ValueStrip from "@/components/ValueStrip";
 import CollectionSection from "@/components/CollectionSection";
+import MediaSlider from "@/components/MediaSlider";
 import IngredientTransparency from "@/components/IngredientTransparency";
 import ScienceSection from "@/components/ScienceSection";
 import MadeTraceable from "@/components/MadeTraceable";
@@ -33,6 +34,7 @@ const Balance = () => {
         <EditorialHero />
         <ValueStrip />
         <CollectionSection />
+        <MediaSlider />
         <IngredientTransparency />
         <ScienceSection />
         <MadeTraceable />
