@@ -139,10 +139,7 @@ const AllProductsSection = () => {
       />
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-center mx-auto">
-          <p className="text-xs uppercase tracking-[0.18em] text-primary/70 mb-2">
-            Tüm koleksiyon
-          </p>
+        <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-right ml-auto">
           <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
             Kendine iyi bakman için<em className="italic text-primary/80">:</em>
           </h2>
