@@ -35,7 +35,6 @@ const Balance = () => {
         <CollectionSection />
         <MediaSlider />
         <AllProductsSection />
-        <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
       </main>
 
