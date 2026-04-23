@@ -9,24 +9,24 @@ import { MessageCircle } from "lucide-react";
 
 const faqs = [
   {
-    q: ".ki Balance ne kadar sürede etki gösterir?",
-    a: "Çoğu kullanıcı 2-3 döngü düzenli kullanım sonrası belirgin fark bildiriyor. Magnezyum etkisi ilk 1-2 hafta içinde, Vitex'in hormonal etkisi ise 4-6 haftada netleşir.",
+    q: ".ki Balance Your Cycle Modern Takviye Gıdası Nedir?",
+    a: ".ki Balance Your Cycle, kadın döngüsünü desteklemek üzere formüle edilmiş; bitkisel ekstreler, mineraller ve doğal bileşenler içeren şase formda bir takviye edici gıdadır.\n\nDöngü boyunca oluşabilen fiziksel ve duygusal dalgalanmaları dengelemeye yardımcı olmayı amaçlarken, döngünün dinleyen ritmine uyum sağlayan ve her ay yeniden dengeye gelmeni desteklemek için tasarlanmıştır.\n\nBu ürün ilaç mı?\nHayır. İlaç değildir ve adet söktürücü olarak tasarlanmamıştır. Tedavi edici amaç taşımaz.",
   },
   {
-    q: "Günde kaç şase kullanmalıyım?",
-    a: "Önerilen kullanım günde 1 şasedir. Tercihen yemekle birlikte ve aynı saatte alınması önerilir.",
+    q: ".ki Change is Good Modern Takviye Gıdası Nedir?",
+    a: "Kadınların ilerleyen yaş dönemindeki desteklemek üzere formüle edilmiş; bitkisel ekstreler, vitaminler, mineraller ve doğal bileşenler içeren kapsül formda bir takviye edici gıdadır.\n\nYaş ilerlemesi ile birlikte ortaya çıkabilen fiziksel ve duygusal değişimleri nazikçe desteklemeyi amaçlarken; değişimi doğal bir süreç olarak ele alan, bedenin yeni ritmine uyum sağlamasına yardımcı olmak üzere tasarlanmıştır.\n\nBu ürün ilaç mı?\nÜrünümüz ilaç değildir.\n\nDeğişim iyidir.\nBu dönem, kendinle yeniden denge kurma zamanıdır.",
   },
   {
-    q: "Doğum kontrol hapı kullanırken alabilir miyim?",
-    a: "Vitex hormonal etki gösterdiği için, doğum kontrol hapı kullanıyorsanız doktorunuza danışmadan kullanmamanızı öneririz. Eczacımız ücretsiz danışmanlık sağlayabilir.",
+    q: ".ki Balance Your Cycle Modern Takviye Gıdası Kimler İçin Uygun?",
+    a: "Döngüsünü desteklemek isteyen 18 yaş üstü kadınların kullanımına uygundur.\n\nÖzellikle:\n• Döngü sürecinde fiziksel ve duygusal dalgalanmalar yaşayanlar.\n• Döngü öncesini daha dengeli geçirmek isteyenler.\n• Bitkisel içerikli ve pratik bir destek arayanlar.\n• Günlük rutinine kolayca eklenebilen bir takviye tercih edenler.\n• Şase form sayesinde kapsül yutmakta zorlanan veya hassas mideye sahip olanlar.\n\nTakviye edici gıdalar, normal beslenmenin yerine geçmez.",
   },
   {
-    q: "Hamilelikte veya emzirirken kullanılır mı?",
-    a: "Hayır. Vitex içeriği nedeniyle hamilelik ve emzirme döneminde kullanılması önerilmez.",
+    q: ".ki Change is Good Modern Takviye Gıdası Kimler için Uygun?",
+    a: "İleriki yaş dönemindeki yetişkin kadınlar için uygundur.\n\nÖzellikle:\n• Ruh hali dalgalanmalarını daha dengeli geçirmek isteyenler.\n• Bitkisel içerikli, hormon içermeyen bir destek arayanlar.\n• Günlük rutinine kolayca eklenebilen bir takviye tercih edenler.\n• Bedenindeki değişimi daha bilinçli ve nazik şekilde desteklemek isteyenler.\n\nTakviye edici gıdalar, normal beslenmenin yerine geçmez.",
   },
   {
-    q: "İade politikanız nedir?",
-    a: "30 gün boyunca memnun kalmazsanız ücretsiz iade hakkınız vardır. Açılmış paketler dahil.",
+    q: "Modern Takviye Edici Gıdalarımız Ne Değildir?",
+    a: "Ne Değildir?\n• İlaç değildir.\n• Hormon içermez.\n• Tedavi edici amaç taşımaz.",
   },
 ];
 
@@ -48,7 +48,7 @@ const FaqSection = () => (
             <AccordionTrigger className="font-display text-[18px] sm:text-[20px] font-medium text-primary text-left py-5 hover:no-underline hover:opacity-80">
               {f.q}
             </AccordionTrigger>
-            <AccordionContent className="text-[14px] leading-relaxed text-foreground/75 pb-6 pr-8">
+            <AccordionContent className="text-[14px] leading-relaxed text-foreground/75 pb-6 pr-8 whitespace-pre-line">
               {f.a}
             </AccordionContent>
           </AccordionItem>
