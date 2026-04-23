@@ -2,16 +2,16 @@ import { ArrowRight } from "lucide-react";
 
 /**
  * AllProductsSection
- * Bento-grid styled product showcase inspired by beije.co — colored cards,
- * placeholder image areas (to be replaced with real product photography),
- * organized by .ki product categories.
+ * Compact bento-grid product showcase — entire .ki range at a glance,
+ * organized by category. Placeholder colored cards (real product photography
+ * to be added later).
  */
 
 type Product = {
   name: string;
   price: string;
-  bg: string; // tailwind bg color class
-  text: string; // tailwind text color class
+  bg: string;
+  text: string;
   size: "sm" | "md" | "lg" | "xl";
 };
 
@@ -76,7 +76,7 @@ const categories: Category[] = [
         price: "Durulama gerektirmez",
         bg: "bg-[hsl(170,45%,45%)]",
         text: "text-white",
-        size: "lg",
+        size: "md",
       },
     ],
   },
@@ -121,49 +121,48 @@ const categories: Category[] = [
 ];
 
 const sizeMap: Record<Product["size"], string> = {
-  sm: "md:col-span-2 md:row-span-1",
-  md: "md:col-span-2 md:row-span-1",
-  lg: "md:col-span-3 md:row-span-1",
-  xl: "md:col-span-4 md:row-span-1",
+  sm: "md:col-span-2",
+  md: "md:col-span-2",
+  lg: "md:col-span-3",
+  xl: "md:col-span-6",
 };
 
 const ProductCard = ({ product }: { product: Product }) => (
   <a
     href="#"
-    className={`group relative overflow-hidden rounded-2xl ${product.bg} ${product.text} ${sizeMap[product.size]}
-      col-span-2 row-span-1
-      min-h-[180px] md:min-h-[200px]
-      p-6 md:p-7
+    className={`group relative overflow-hidden rounded-xl ${product.bg} ${product.text} ${sizeMap[product.size]}
+      col-span-2
+      min-h-[110px] md:min-h-[120px]
+      p-3.5 md:p-4
       flex flex-col justify-between
       transition-all duration-500
-      hover:scale-[1.02] hover:shadow-xl
+      hover:scale-[1.02] hover:shadow-lg
       cursor-pointer`}
   >
-    {/* Placeholder visual area — soft circular tint to suggest product */}
     <div
       aria-hidden
-      className="absolute right-4 top-4 h-24 w-24 md:h-28 md:w-28 rounded-full bg-white/15 blur-sm transition-transform duration-700 group-hover:scale-110"
+      className="absolute right-2 top-2 h-14 w-14 md:h-16 md:w-16 rounded-full bg-white/15 blur-sm transition-transform duration-700 group-hover:scale-110"
     />
     <div
       aria-hidden
-      className="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-white/10"
+      className="absolute -right-4 -bottom-4 h-20 w-20 rounded-full bg-white/10"
     />
 
     <div className="relative z-10">
-      <h3 className="font-display text-xl md:text-2xl leading-tight">
+      <h3 className="font-display text-sm md:text-base leading-tight">
         {product.name}
       </h3>
-      <p className="mt-2 text-sm md:text-[15px] opacity-90 leading-snug">
+      <p className="mt-1 text-[11px] md:text-xs opacity-90 leading-snug">
         {product.price}
       </p>
     </div>
 
     <div className="relative z-10 flex justify-end">
       <span
-        className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm
+        className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm
           transition-all duration-300 group-hover:bg-white/35 group-hover:translate-x-1"
       >
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="h-3 w-3" />
       </span>
     </div>
   </a>
@@ -173,13 +172,12 @@ const AllProductsSection = () => {
   return (
     <section
       id="tum-urunler"
-      className="relative py-20 md:py-28 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
       style={{
         background:
           "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--plum-pale)) 50%, hsl(var(--secondary)) 100%)",
       }}
     >
-      {/* Soft decorative blobs */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full opacity-30 blur-3xl"
@@ -191,34 +189,30 @@ const AllProductsSection = () => {
         style={{ background: "hsl(var(--sage-light))" }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mb-14 md:mb-16 k5-reveal">
-          <p className="text-sm uppercase tracking-[0.18em] text-primary/70 mb-3">
+      <div className="relative max-w-6xl mx-auto px-4 md:px-6">
+        <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-center mx-auto">
+          <p className="text-xs uppercase tracking-[0.18em] text-primary/70 mb-2">
             Tüm koleksiyon
           </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.05]">
+          <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
             Günün her anında,{" "}
             <em className="italic text-primary/80">döngünün her gününde.</em>
           </h2>
-          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl">
-            Modern formüllerden günlük bakıma — döngünün her evresine eşlik eden
-            .ki ürünleri.
-          </p>
         </div>
 
-        <div className="space-y-12 md:space-y-16">
+        <div className="space-y-6 md:space-y-8">
           {categories.map((cat, idx) => (
             <div key={cat.title} className={`k5-reveal k5-reveal-d${Math.min(idx + 1, 4)}`}>
-              <div className="flex items-baseline justify-between mb-5 md:mb-6">
-                <h3 className="font-display text-2xl md:text-3xl text-primary">
+              <div className="flex items-baseline justify-between mb-3">
+                <h3 className="font-display text-lg md:text-xl text-primary">
                   {cat.title}
                 </h3>
-                <span className="text-xs md:text-sm text-muted-foreground">
+                <span className="text-[11px] md:text-xs text-muted-foreground">
                   {cat.products.length} ürün
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[180px] md:auto-rows-[200px] gap-3 md:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-2.5 md:gap-3">
                 {cat.products.map((p) => (
                   <ProductCard key={p.name} product={p} />
                 ))}
