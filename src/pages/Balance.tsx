@@ -35,7 +35,6 @@ const Balance = () => {
         <CollectionSection />
         <MediaSlider />
         <AllProductsSection />
-        <IngredientTransparency />
         <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
       </main>
