@@ -99,13 +99,6 @@ const TileCard = ({ tile }: { tile: Tile }) => (
     {/* Subtle gradient for text legibility */}
     <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
-    <span
-      aria-hidden
-      className="absolute top-3 right-3 inline-flex items-center justify-center h-8 w-8 rounded-full bg-white/20 text-white backdrop-blur-sm"
-    >
-      {categoryIcon(tile.category, "w-4 h-4")}
-    </span>
-
     <div className="relative z-10">
       <h3 className="font-display text-base md:text-lg leading-tight drop-shadow-sm">
         {tile.name}
