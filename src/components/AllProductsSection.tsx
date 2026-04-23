@@ -2,154 +2,117 @@ import { ArrowRight } from "lucide-react";
 
 /**
  * AllProductsSection
- * Compact bento-grid product showcase — entire .ki range at a glance,
- * organized by category. Placeholder colored cards (real product photography
- * to be added later).
+ * Beije-inspired bento grid (variable column & row spans for visual rhythm).
+ * Category indicator icon (top-right) per card. No category headings.
  */
+
+type CategoryKey = "supplement" | "intim" | "aroma" | "ped";
 
 type Product = {
   name: string;
   price: string;
   bg: string;
   text: string;
-  size: "sm" | "md" | "lg" | "xl";
+  category: CategoryKey;
+  // beije-style cell: width × height in 6-col grid
+  col: 2 | 3 | 4;
+  row: 1 | 2;
 };
 
-type Category = {
-  title: string;
-  products: Product[];
+/* Category icons — pulled from MegaMenu vocabulary (pill, flower, drop, leaf) */
+const categoryIcon = (cat: CategoryKey, className: string) => {
+  switch (cat) {
+    case "supplement":
+      // pill
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-25 12 12)" />
+          <path d="M12 6l3 6" transform="rotate(-25 12 12)" />
+        </svg>
+      );
+    case "intim":
+      // flower
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="2.5" />
+          <path d="M12 9.5V4M12 14.5V20M9.5 12H4M14.5 12H20M9 9l-3-3M15 15l3 3M15 9l3-3M9 15l-3 3" />
+        </svg>
+      );
+    case "aroma":
+      // oil drop
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z" />
+        </svg>
+      );
+    case "ped":
+      // leaf-pad
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z" />
+          <path d="M5 19c4-4 8-6 14-14" />
+        </svg>
+      );
+  }
 };
 
-const categories: Category[] = [
-  {
-    title: "Modern Takviye Edici Gıdalar",
-    products: [
-      {
-        name: ".ki Balance",
-        price: "₺440'dan başlayan fiyatlarla",
-        bg: "bg-[hsl(258,57%,26%)]",
-        text: "text-white",
-        size: "lg",
-      },
-      {
-        name: ".ki Change",
-        price: "₺600'den başlayan fiyatlarla",
-        bg: "bg-[hsl(349,42%,48%)]",
-        text: "text-white",
-        size: "lg",
-      },
-    ],
-  },
-  {
-    title: "İntim Bakım Serisi",
-    products: [
-      {
-        name: ".ki Daily.Care",
-        price: "İntim Yıkama Jeli",
-        bg: "bg-[hsl(155,42%,55%)]",
-        text: "text-white",
-        size: "md",
-      },
-      {
-        name: ".ki Sens.Care",
-        price: "İntim Yıkama Jeli",
-        bg: "bg-[hsl(33,55%,75%)]",
-        text: "text-[hsl(258,57%,26%)]",
-        size: "md",
-      },
-      {
-        name: ".ki Flow.Care",
-        price: "İntim Yıkama Jeli",
-        bg: "bg-[hsl(210,55%,55%)]",
-        text: "text-white",
-        size: "md",
-      },
-      {
-        name: ".ki 50+.Care",
-        price: "İntim Yıkama Jeli",
-        bg: "bg-[hsl(280,40%,50%)]",
-        text: "text-white",
-        size: "md",
-      },
-      {
-        name: ".ki İntim Bakım Spreyi",
-        price: "Durulama gerektirmez",
-        bg: "bg-[hsl(170,45%,45%)]",
-        text: "text-white",
-        size: "md",
-      },
-    ],
-  },
-  {
-    title: "Aromaterapi",
-    products: [
-      {
-        name: ".ki Cycle Care",
-        price: "Aromaterapi Yağı · 10 ml",
-        bg: "bg-[hsl(38,68%,55%)]",
-        text: "text-white",
-        size: "xl",
-      },
-    ],
-  },
-  {
-    title: "Ped",
-    products: [
-      {
-        name: ".ki Günlük Ped",
-        price: "155 mm · 30 adet",
-        bg: "bg-[hsl(15,70%,60%)]",
-        text: "text-white",
-        size: "md",
-      },
-      {
-        name: ".ki Gündüz Pedi",
-        price: "245 mm · 12 adet",
-        bg: "bg-[hsl(349,55%,55%)]",
-        text: "text-white",
-        size: "md",
-      },
-      {
-        name: ".ki Gece Pedi",
-        price: "335 mm · 8 adet",
-        bg: "bg-[hsl(258,47%,38%)]",
-        text: "text-white",
-        size: "md",
-      },
-    ],
-  },
+/* Beije-like layout: tall + wide cards interleaved across categories */
+const products: Product[] = [
+  // Row band 1
+  { name: ".ki Balance", price: "₺440'dan başlayan fiyatlarla", bg: "bg-[hsl(0,68%,55%)]", text: "text-white", category: "supplement", col: 2, row: 2 },
+  { name: ".ki Change", price: "₺600'den başlayan fiyatlarla", bg: "bg-[hsl(155,42%,55%)]", text: "text-white", category: "supplement", col: 2, row: 1 },
+  { name: ".ki Daily.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(180,40%,42%)]", text: "text-white", category: "intim", col: 4, row: 1 },
+
+  // Row band 2
+  { name: ".ki Sens.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(210,55%,60%)]", text: "text-white", category: "intim", col: 2, row: 1 },
+  { name: ".ki Flow.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(15,70%,60%)]", text: "text-white", category: "intim", col: 2, row: 1 },
+
+  // Row band 3
+  { name: ".ki 50+.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(33,55%,75%)]", text: "text-[hsl(258,57%,26%)]", category: "intim", col: 2, row: 1 },
+  { name: ".ki İntim Bakım Spreyi", price: "Durulama gerektirmez", bg: "bg-[hsl(280,40%,50%)]", text: "text-white", category: "intim", col: 2, row: 1 },
+  { name: ".ki Cycle Care Yağı", price: "Aromaterapi · 10 ml", bg: "bg-[hsl(38,68%,55%)]", text: "text-white", category: "aroma", col: 2, row: 2 },
+
+  // Row band 4
+  { name: ".ki Günlük Ped", price: "155 mm · 30 adet", bg: "bg-[hsl(170,45%,45%)]", text: "text-white", category: "ped", col: 2, row: 1 },
+  { name: ".ki Gündüz Pedi", price: "245 mm · 12 adet", bg: "bg-[hsl(349,55%,55%)]", text: "text-white", category: "ped", col: 2, row: 1 },
+
+  // Row band 5
+  { name: ".ki Gece Pedi", price: "335 mm · 8 adet", bg: "bg-[hsl(258,47%,38%)]", text: "text-white", category: "ped", col: 4, row: 1 },
 ];
 
-const sizeMap: Record<Product["size"], string> = {
-  sm: "md:col-span-2",
-  md: "md:col-span-2",
-  lg: "md:col-span-3",
-  xl: "md:col-span-6",
+const colMap: Record<Product["col"], string> = {
+  2: "md:col-span-2",
+  3: "md:col-span-3",
+  4: "md:col-span-4",
+};
+const rowMap: Record<Product["row"], string> = {
+  1: "md:row-span-1",
+  2: "md:row-span-2",
 };
 
 const ProductCard = ({ product }: { product: Product }) => (
   <a
     href="#"
-    className={`group relative overflow-hidden rounded-xl ${product.bg} ${product.text} ${sizeMap[product.size]}
+    className={`group relative overflow-hidden rounded-2xl ${product.bg} ${product.text} ${colMap[product.col]} ${rowMap[product.row]}
       col-span-2
-      min-h-[110px] md:min-h-[120px]
-      p-3.5 md:p-4
-      flex flex-col justify-between
+      p-4 md:p-5
+      flex flex-col justify-end
       transition-all duration-500
-      hover:scale-[1.02] hover:shadow-lg
+      hover:scale-[1.015] hover:shadow-xl
       cursor-pointer`}
   >
-    <div
+    {/* Category icon — top-right */}
+    <span
       aria-hidden
-      className="absolute right-2 top-2 h-14 w-14 md:h-16 md:w-16 rounded-full bg-white/15 blur-sm transition-transform duration-700 group-hover:scale-110"
-    />
-    <div
-      aria-hidden
-      className="absolute -right-4 -bottom-4 h-20 w-20 rounded-full bg-white/10"
-    />
+      className={`absolute top-3 right-3 inline-flex items-center justify-center h-8 w-8 rounded-full
+        ${product.text === "text-white" ? "bg-white/20 text-white" : "bg-[hsl(258,57%,26%)]/15 text-[hsl(258,57%,26%)]"}
+        backdrop-blur-sm`}
+    >
+      {categoryIcon(product.category, "w-4 h-4")}
+    </span>
 
     <div className="relative z-10">
-      <h3 className="font-display text-sm md:text-base leading-tight">
+      <h3 className="font-display text-base md:text-lg leading-tight">
         {product.name}
       </h3>
       <p className="mt-1 text-[11px] md:text-xs opacity-90 leading-snug">
@@ -157,14 +120,14 @@ const ProductCard = ({ product }: { product: Product }) => (
       </p>
     </div>
 
-    <div className="relative z-10 flex justify-end">
-      <span
-        className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm
-          transition-all duration-300 group-hover:bg-white/35 group-hover:translate-x-1"
-      >
-        <ArrowRight className="h-3 w-3" />
-      </span>
-    </div>
+    <span
+      aria-hidden
+      className={`absolute bottom-3 right-3 inline-flex h-7 w-7 items-center justify-center rounded-full
+        ${product.text === "text-white" ? "bg-white/15" : "bg-[hsl(258,57%,26%)]/10"}
+        transition-all duration-300 group-hover:translate-x-0.5`}
+    >
+      <ArrowRight className="h-3.5 w-3.5" />
+    </span>
   </a>
 );
 
@@ -175,7 +138,7 @@ const AllProductsSection = () => {
       className="relative py-12 md:py-16 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--plum-pale)) 50%, hsl(var(--secondary)) 100%)",
+          "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--plum-pale)) 60%, hsl(var(--secondary)) 100%)",
       }}
     >
       <div
@@ -200,24 +163,9 @@ const AllProductsSection = () => {
           </h2>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
-          {categories.map((cat, idx) => (
-            <div key={cat.title} className={`k5-reveal k5-reveal-d${Math.min(idx + 1, 4)}`}>
-              <div className="flex items-baseline justify-between mb-3">
-                <h3 className="font-display text-lg md:text-xl text-primary">
-                  {cat.title}
-                </h3>
-                <span className="text-[11px] md:text-xs text-muted-foreground">
-                  {cat.products.length} ürün
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-6 gap-2.5 md:gap-3">
-                {cat.products.map((p) => (
-                  <ProductCard key={p.name} product={p} />
-                ))}
-              </div>
-            </div>
+        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[120px] md:auto-rows-[130px] gap-3 md:gap-3.5 k5-reveal">
+          {products.map((p) => (
+            <ProductCard key={p.name} product={p} />
           ))}
         </div>
       </div>
