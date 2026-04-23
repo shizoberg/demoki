@@ -50,7 +50,7 @@ const SiteFooter = () => {
         {/* Main grid: Brand | Products(2 cols) | Right (CTA + Newsletter) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12 pb-14">
           {/* Brand block */}
-          <div className="lg:col-span-3 lg:pt-8">
+          <div className="lg:col-span-3">
             <p className="font-display text-[28px] sm:text-[32px] leading-[1.05] font-medium text-primary-foreground mb-4">
               Kendine iyi bak.
             </p>
