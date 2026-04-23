@@ -5,16 +5,14 @@ import packSpray from "@/assets/pack-spray.png";
 import packOil from "@/assets/pack-oil.png";
 
 type IconName =
-  | "leaf"
-  | "drop"
-  | "flower"
-  | "cup"
-  | "heat"
-  | "pill"
-  | "bowl"
+  | "padDay"
+  | "padLiner"
+  | "padNight"
+  | "sachet"
+  | "capsule"
+  | "oilBottle"
+  | "gelTube"
   | "spray"
-  | "berry"
-  | "patch"
   | "campus"
   | "tree"
   | "globe"
