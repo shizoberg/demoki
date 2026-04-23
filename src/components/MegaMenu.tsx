@@ -142,42 +142,49 @@ const Icon = ({ name }: { name: IconName }) => {
 
 type LinkItem = { label: string; href: string; icon: IconName };
 type Column = { title: string; items: LinkItem[] };
+type ColumnGroup = Column[];
 type FeatureCard = { label: string; image: string; href: string; badge?: string };
 
 export type MenuKey = "products" | "about" | "donate";
 
-const productsColumns: Column[] = [
-  {
-    title: "Pedler",
-    items: [
-      { label: "Günlük Ped", href: "#", icon: "leaf" },
-      { label: "Gündüz Ped", href: "#", icon: "flower" },
-      { label: "Gece Ped", href: "#", icon: "drop" },
-    ],
-  },
-  {
-    title: "Takviyeler & Aroma",
-    items: [
-      { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
-      { label: ".ki Change · Kapsül", href: "#", icon: "berry" },
-    ],
-  },
-  {
-    title: "Masaj Yağı",
-    items: [
-      { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "tree" },
-    ],
-  },
-  {
-    title: "İntim Bakım",
-    items: [
-      { label: "Bakım Jeli · Daily", href: "#", icon: "bowl" },
-      { label: "Bakım Jeli · Sens", href: "#", icon: "patch" },
-      { label: "Bakım Jeli · Flow", href: "#", icon: "cup" },
-      { label: "Bakım Jeli · 50+", href: "#", icon: "heat" },
-      { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
-    ],
-  },
+const productsColumns: ColumnGroup[] = [
+  [
+    {
+      title: "Pedler",
+      items: [
+        { label: "Günlük Ped", href: "#", icon: "leaf" },
+        { label: "Gündüz Ped", href: "#", icon: "flower" },
+        { label: "Gece Ped", href: "#", icon: "drop" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "Takviyeler & Aroma",
+      items: [
+        { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
+        { label: ".ki Change · Kapsül", href: "#", icon: "berry" },
+      ],
+    },
+    {
+      title: "Masaj Yağı",
+      items: [
+        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "tree" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "İntim Bakım",
+      items: [
+        { label: "Bakım Jeli · Daily", href: "#", icon: "bowl" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "patch" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "cup" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "heat" },
+        { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
+      ],
+    },
+  ],
 ];
 
 const productsFeatures: FeatureCard[] = [
