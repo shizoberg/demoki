@@ -82,7 +82,7 @@ const CollectionSection = () => {
                     src={florenceHover}
                     alt=""
                     aria-hidden="true"
-                    className="hidden lg:block absolute left-1/2 bottom-full z-30 h-auto w-[220px] xl:w-[250px] -translate-x-1/2 translate-y-[30%] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)]"
+                    className="hidden lg:block absolute left-1/2 bottom-full z-30 h-auto w-[220px] xl:w-[250px] -translate-x-1/2 translate-y-[29%] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)]"
                     loading="lazy"
                   />
                 )}
