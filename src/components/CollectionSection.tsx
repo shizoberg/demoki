@@ -55,16 +55,16 @@ const CollectionSection = () => {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="relative flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-6 lg:mb-8">
-          <h2 className="font-display font-medium text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.1] text-primary tracking-tight max-w-[520px]">
+          <h2 className="font-display font-medium text-[24px] sm:text-[26px] lg:text-[32px] xl:text-[36px] leading-[1.1] text-primary tracking-tight whitespace-nowrap">
             Sana özel oluşturduğumuz paketler
           </h2>
 
-          {/* Florence hovering — sized so her bun overlaps the slider/strip above the section */}
+          {/* Florence hovering — sits between the title and the CTA, bun overlaps the strip above */}
           <img
             src={florenceHover}
             alt=""
             aria-hidden="true"
-            className="hidden md:block absolute left-1/2 -translate-x-1/2 w-[300px] lg:w-[360px] xl:w-[400px] h-auto select-none pointer-events-none z-30 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.2)] bottom-[calc(100%-56px)] lg:bottom-[calc(100%-64px)]"
+            className="hidden md:block absolute left-1/2 -translate-x-1/2 w-[180px] lg:w-[210px] xl:w-[230px] h-auto select-none pointer-events-none z-30 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.2)] bottom-[calc(100%-40px)] lg:bottom-[calc(100%-44px)]"
             loading="lazy"
           />
 
