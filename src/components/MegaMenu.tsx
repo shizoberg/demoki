@@ -142,42 +142,49 @@ const Icon = ({ name }: { name: IconName }) => {
 
 type LinkItem = { label: string; href: string; icon: IconName };
 type Column = { title: string; items: LinkItem[] };
+type ColumnGroup = Column[];
 type FeatureCard = { label: string; image: string; href: string; badge?: string };
 
 export type MenuKey = "products" | "about" | "donate";
 
-const productsColumns: Column[] = [
-  {
-    title: "Pedler",
-    items: [
-      { label: "Günlük Ped", href: "#", icon: "leaf" },
-      { label: "Gündüz Ped", href: "#", icon: "flower" },
-      { label: "Gece Ped", href: "#", icon: "drop" },
-    ],
-  },
-  {
-    title: "Takviyeler & Aroma",
-    items: [
-      { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
-      { label: ".ki Change · Kapsül", href: "#", icon: "berry" },
-    ],
-  },
-  {
-    title: "Masaj Yağı",
-    items: [
-      { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "tree" },
-    ],
-  },
-  {
-    title: "İntim Bakım",
-    items: [
-      { label: "Bakım Jeli · Daily", href: "#", icon: "bowl" },
-      { label: "Bakım Jeli · Sens", href: "#", icon: "patch" },
-      { label: "Bakım Jeli · Flow", href: "#", icon: "cup" },
-      { label: "Bakım Jeli · 50+", href: "#", icon: "heat" },
-      { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
-    ],
-  },
+const productsColumns: ColumnGroup[] = [
+  [
+    {
+      title: "Pedler",
+      items: [
+        { label: "Günlük Ped", href: "#", icon: "leaf" },
+        { label: "Gündüz Ped", href: "#", icon: "flower" },
+        { label: "Gece Ped", href: "#", icon: "drop" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "Takviyeler & Aroma",
+      items: [
+        { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
+        { label: ".ki Change · Kapsül", href: "#", icon: "berry" },
+      ],
+    },
+    {
+      title: "Masaj Yağı",
+      items: [
+        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "tree" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "İntim Bakım",
+      items: [
+        { label: "Bakım Jeli · Daily", href: "#", icon: "bowl" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "patch" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "cup" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "heat" },
+        { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
+      ],
+    },
+  ],
 ];
 
 const productsFeatures: FeatureCard[] = [
@@ -185,17 +192,19 @@ const productsFeatures: FeatureCard[] = [
   { label: "Tüm Ürünler", image: packSachet, href: "#tum-urunler" },
 ];
 
-const aboutColumns: Column[] = [
-  {
-    title: "Biz Kimiz?",
-    items: [
-      { label: "Neden .ki?", href: "#", icon: "tree" },
-      { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
-      { label: "Fiyat Politikası", href: "#", icon: "tag" },
-      { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
-      { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
-    ],
-  },
+const aboutColumns: ColumnGroup[] = [
+  [
+    {
+      title: "Biz Kimiz?",
+      items: [
+        { label: "Neden .ki?", href: "#", icon: "tree" },
+        { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
+        { label: "Fiyat Politikası", href: "#", icon: "tag" },
+        { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
+        { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
+      ],
+    },
+  ],
 ];
 
 const aboutFeatures: FeatureCard[] = [
@@ -223,25 +232,29 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
         <div className="grid grid-cols-12 gap-8">
           {/* Columns */}
           <div className="col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-8">
-            {columns.map((col) => (
-              <div key={col.title}>
-                <h3 className="text-[15px] font-bold text-primary mb-5">{col.title}</h3>
-                <ul className="flex flex-col gap-4">
-                  {col.items.map((item) => (
-                    <li key={item.label}>
-                      <a
-                        href={item.href}
-                        onClick={onClose}
-                        className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
-                      >
-                        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
-                          <Icon name={item.icon} />
-                        </span>
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+            {columns.map((group, gIdx) => (
+              <div key={gIdx} className="flex flex-col gap-8">
+                {group.map((col) => (
+                  <div key={col.title}>
+                    <h3 className="text-[15px] font-bold text-primary mb-5">{col.title}</h3>
+                    <ul className="flex flex-col gap-4">
+                      {col.items.map((item) => (
+                        <li key={item.label}>
+                          <a
+                            href={item.href}
+                            onClick={onClose}
+                            className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
+                          >
+                            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
+                              <Icon name={item.icon} />
+                            </span>
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
