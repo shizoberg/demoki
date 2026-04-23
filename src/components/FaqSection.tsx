@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
+import faqFlorence from "@/assets/faq-florence.png";
 
 const faqs = [
   {
@@ -31,44 +32,59 @@ const faqs = [
 ];
 
 const FaqSection = () => (
-  <section className="py-20 sm:py-24 bg-cream-2/40" id="k5Faq">
-    <div className="max-w-[860px] mx-auto px-5 sm:px-8">
-      <div className="text-center mb-12">
-        <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
-          Sıkça sorulanlar
-        </span>
-        <h2 className="k5-reveal k5-reveal-d1 font-display font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
-          Bizce senin aklındaki <em className="italic font-light">sorular.</em>
-        </h2>
-      </div>
+  <section className="py-20 sm:py-24 bg-cream-2/40 overflow-hidden" id="k5Faq">
+    <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,360px)_1fr] gap-8 lg:gap-12 items-end">
+        {/* Illustration */}
+        <div className="hidden lg:flex items-end justify-center lg:justify-start self-end">
+          <img
+            src={faqFlorence}
+            alt="Düşünen kadın illüstrasyonu"
+            className="k5-reveal w-full max-w-[360px] h-auto select-none pointer-events-none"
+            loading="lazy"
+          />
+        </div>
 
-      <Accordion type="single" collapsible className="k5-reveal k5-reveal-d2">
-        {faqs.map((f) => (
-          <AccordionItem key={f.q} value={f.q} className="border-b border-border/80">
-            <AccordionTrigger className="font-display text-[18px] sm:text-[20px] font-medium text-primary text-left py-5 hover:no-underline hover:opacity-80">
-              {f.q}
-            </AccordionTrigger>
-            <AccordionContent className="text-[14px] leading-relaxed text-foreground/75 pb-6 pr-8 whitespace-pre-line">
-              {f.a}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+        {/* Content */}
+        <div className="max-w-[820px] w-full">
+          <div className="text-center mb-12">
+            <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
+              Sıkça sorulanlar
+            </span>
+            <h2 className="k5-reveal k5-reveal-d1 font-display font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
+              Bizce senin aklındaki <em className="italic font-light">sorular.</em>
+            </h2>
+          </div>
 
-      <div className="k5-reveal k5-reveal-d3 mt-12 flex flex-col items-center gap-3 text-center">
-        <p className="text-[13px] text-foreground/60">
-          Aklındaki başka bir soru mu var?
-        </p>
-        <Button
-          asChild
-          size="lg"
-          className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-[14px] font-medium tracking-wide"
-        >
-          <a href="#eczaci-danisma">
-            <MessageCircle className="h-4 w-4" />
-            Eczacımıza soru sor
-          </a>
-        </Button>
+          <Accordion type="single" collapsible className="k5-reveal k5-reveal-d2">
+            {faqs.map((f) => (
+              <AccordionItem key={f.q} value={f.q} className="border-b border-border/80">
+                <AccordionTrigger className="font-display text-[18px] sm:text-[20px] font-medium text-primary text-left py-5 hover:no-underline hover:opacity-80">
+                  {f.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-[14px] leading-relaxed text-foreground/75 pb-6 pr-8 whitespace-pre-line">
+                  {f.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+
+          <div className="k5-reveal k5-reveal-d3 mt-12 flex flex-col items-center gap-3 text-center">
+            <p className="text-[13px] text-foreground/60">
+              Aklındaki başka bir soru mu var?
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-[14px] font-medium tracking-wide"
+            >
+              <a href="#eczaci-danisma">
+                <MessageCircle className="h-4 w-4" />
+                Eczacımıza soru sor
+              </a>
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
