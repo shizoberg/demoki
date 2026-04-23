@@ -142,19 +142,19 @@ const AllProductsSection = () => {
         </div>
 
         <div className="relative">
-          <img
-            src={florenceBento}
-            alt=""
-            aria-hidden="true"
-            className="hidden lg:block absolute -right-16 xl:-right-24 -top-72 xl:-top-80 z-0 h-auto w-[260px] xl:w-[300px] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.18)]"
-            loading="lazy"
-          />
-
           <div className="relative z-10 grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
             {tiles.map((t) => (
               <TileCard key={t.name} tile={t} />
             ))}
           </div>
+
+          <img
+            src={florenceBento}
+            alt=""
+            aria-hidden="true"
+            className="hidden lg:block absolute bottom-0 right-0 z-0 h-auto w-[320px] xl:w-[380px] select-none pointer-events-none translate-x-[20%] translate-y-[15%]"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
