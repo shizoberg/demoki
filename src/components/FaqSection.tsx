@@ -82,7 +82,6 @@ const FaqSection = () => (
             </Button>
           </div>
         </div>
-      </div>
     </div>
   </section>
 );
