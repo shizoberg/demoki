@@ -145,24 +145,24 @@ const productsColumns: ColumnGroup[] = [
     {
       title: "Pedler",
       items: [
-        { label: "Günlük Ped", href: "#", icon: "leaf" },
-        { label: "Gündüz Ped", href: "#", icon: "flower" },
-        { label: "Gece Ped", href: "#", icon: "drop" },
+        { label: "Günlük Ped", href: "#", icon: "padLiner" },
+        { label: "Gündüz Ped", href: "#", icon: "padDay" },
+        { label: "Gece Ped", href: "#", icon: "padNight" },
       ],
     },
   ],
   [
     {
-      title: "Takviyeler & Aroma",
+      title: "Takviyeler",
       items: [
-        { label: ".ki Balance · Saşe", href: "#", icon: "pill" },
-        { label: ".ki Change · Kapsül", href: "#", icon: "berry" },
+        { label: ".ki Balance · Saşe", href: "#", icon: "sachet" },
+        { label: ".ki Change · Kapsül", href: "#", icon: "capsule" },
       ],
     },
     {
       title: "Masaj Yağı",
       items: [
-        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "tree" },
+        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "oilBottle" },
       ],
     },
   ],
@@ -170,10 +170,10 @@ const productsColumns: ColumnGroup[] = [
     {
       title: "İntim Bakım",
       items: [
-        { label: "Bakım Jeli · Daily", href: "#", icon: "bowl" },
-        { label: "Bakım Jeli · Sens", href: "#", icon: "patch" },
-        { label: "Bakım Jeli · Flow", href: "#", icon: "cup" },
-        { label: "Bakım Jeli · 50+", href: "#", icon: "heat" },
+        { label: "Bakım Jeli · Daily", href: "#", icon: "gelTube" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "gelTube" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "gelTube" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "gelTube" },
         { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
       ],
     },
