@@ -15,7 +15,7 @@ type Product = {
   text: string;
   category: CategoryKey;
   // beije-style cell: width × height in 6-col grid
-  col: 2 | 3 | 4;
+  col: 1 | 2 | 3 | 4;
   row: 1 | 2;
 };
 
@@ -81,6 +81,7 @@ const products: Product[] = [
 ];
 
 const colMap: Record<Product["col"], string> = {
+  1: "md:col-span-1",
   2: "md:col-span-2",
   3: "md:col-span-3",
   4: "md:col-span-4",
@@ -158,8 +159,7 @@ const AllProductsSection = () => {
             Tüm koleksiyon
           </p>
           <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
-            Günün her anında,{" "}
-            <em className="italic text-primary/80">döngünün her gününde.</em>
+            Kendine iyi bakman için<em className="italic text-primary/80">:</em>
           </h2>
         </div>
 
