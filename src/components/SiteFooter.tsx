@@ -51,7 +51,7 @@ const SiteFooter = () => {
           {/* Brand block */}
           <div className="lg:col-span-3">
             <img src={kiLogo} alt=".ki" className="h-12 w-auto mb-6" />
-            <p className="font-display text-[34px] sm:text-[38px] leading-[1.05] font-medium mb-7">
+            <p className="font-display text-[28px] sm:text-[32px] leading-[1.05] font-medium mb-7 whitespace-nowrap">
               Kendine iyi bak.
             </p>
 
@@ -133,14 +133,14 @@ const SiteFooter = () => {
             {/* Reglini Çiz card */}
             <a
               href="#"
-              className="group block rounded-2xl bg-primary-foreground/12 hover:bg-primary-foreground/18 transition-colors p-6 backdrop-blur-sm border border-primary-foreground/10"
+              className="group block rounded-2xl bg-[hsl(252,60%,78%)] hover:bg-[hsl(252,60%,82%)] text-primary transition-colors p-6 border border-primary-foreground/10"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="font-display text-[22px] leading-tight font-medium mb-1">
                     Reglini Çiz!
                   </div>
-                  <p className="text-[13px] text-primary-foreground/75 max-w-[260px]">
+                  <p className="text-[13px] text-primary/75 max-w-[260px]">
                     Hislerini yansıtmanı sağlayan bir platform.
                   </p>
                   <div className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-semibold">
@@ -148,7 +148,7 @@ const SiteFooter = () => {
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-primary-foreground/60 group-hover:text-primary-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                <ArrowUpRight className="w-5 h-5 text-primary/60 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               </div>
             </a>
 
@@ -189,14 +189,16 @@ const SiteFooter = () => {
           <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-foreground/60">
             Güvenli Ödeme
           </div>
-          <div className="bg-primary-foreground/95 rounded-lg px-4 py-2.5 inline-flex">
-            <img src={paymentLogos} alt="Kabul edilen ödeme yöntemleri" className="h-5 w-auto" />
-          </div>
+          <img
+            src={paymentLogos}
+            alt="Kabul edilen ödeme yöntemleri"
+            className="h-6 w-auto brightness-0 invert opacity-90"
+          />
         </div>
 
         {/* Bottom: Legal */}
-        <div className="pt-6 border-t border-primary-foreground/15 flex flex-col gap-4">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary-foreground/65">
+        <div className="pt-6 border-t border-primary-foreground/15 flex flex-col gap-4 items-center text-center">
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[12px] text-primary-foreground/65">
             {legalLinks.map((l) => (
               <li key={l.label}>
                 <a href={l.href} className="hover:text-primary-foreground transition-colors">
@@ -205,7 +207,7 @@ const SiteFooter = () => {
               </li>
             ))}
           </ul>
-          <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-[11px] text-primary-foreground/55">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 sm:items-center sm:justify-center text-[11px] text-primary-foreground/55">
             <div>© {new Date().getFullYear()} .ki — Tüm hakları saklıdır.</div>
             <div>.Ki Magnezyum ve Hayıt İçeren Takviye Edici Gıda · Onay No: 024990-06.11.2025</div>
           </div>
