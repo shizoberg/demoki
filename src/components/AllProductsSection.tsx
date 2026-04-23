@@ -146,7 +146,7 @@ const AllProductsSection = () => {
             src={florenceBento}
             alt=""
             aria-hidden="true"
-            className="hidden lg:block absolute -right-16 xl:-right-24 -top-32 xl:-top-40 z-0 h-auto w-[260px] xl:w-[300px] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.18)]"
+            className="hidden lg:block absolute -right-16 xl:-right-24 -top-56 xl:-top-64 z-0 h-auto w-[260px] xl:w-[300px] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.18)]"
             loading="lazy"
           />
 
