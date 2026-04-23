@@ -11,7 +11,10 @@ type IconName =
   | "sachet"
   | "capsule"
   | "oilBottle"
-  | "gelTube"
+  | "gelDaily"
+  | "gelSens"
+  | "gelFlow"
+  | "gel50"
   | "spray"
   | "campus"
   | "tree"
@@ -71,13 +74,39 @@ const Icon = ({ name }: { name: IconName }) => {
           <path d="M8 5h8l-1 3a4 4 0 0 1 2 3v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-8a4 4 0 0 1 2-3l-1-3z" />
         </svg>
       );
-    case "gelTube":
-      // Gel tube — squeeze tube
+    case "gelDaily":
+      // Daily — sun
       return (
         <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <path d="M7 6h10v14a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V6z" />
-          <path d="M9 6V4h6v2" />
-          <path d="M10 11h4" />
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
+        </svg>
+      );
+    case "gelSens":
+      // Sens — heart / sensitive
+      return (
+        <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" />
+        </svg>
+      );
+    case "gelFlow":
+      // Flow — waves
+      return (
+        <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M3 8c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+          <path d="M3 14c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+          <path d="M3 20c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+        </svg>
+      );
+    case "gel50":
+      // 50+ — bloom flower for mature
+      return (
+        <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="2" />
+          <path d="M12 10c0-3 2-5 4-5 0 3-1 5-4 5z" />
+          <path d="M12 14c0 3-2 5-4 5 0-3 1-5 4-5z" />
+          <path d="M10 12c-3 0-5-2-5-4 3 0 5 1 5 4z" />
+          <path d="M14 12c3 0 5 2 5 4-3 0-5-1-5-4z" />
         </svg>
       );
     case "spray":
@@ -170,10 +199,10 @@ const productsColumns: ColumnGroup[] = [
     {
       title: "İntim Bakım",
       items: [
-        { label: "Bakım Jeli · Daily", href: "#", icon: "gelTube" },
-        { label: "Bakım Jeli · Sens", href: "#", icon: "gelTube" },
-        { label: "Bakım Jeli · Flow", href: "#", icon: "gelTube" },
-        { label: "Bakım Jeli · 50+", href: "#", icon: "gelTube" },
+        { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "gel50" },
         { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
       ],
     },
