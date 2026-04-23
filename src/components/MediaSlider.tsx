@@ -104,6 +104,22 @@ const MediaSlider = () => {
   const startX = useRef(0);
   const scrollL = useRef(0);
 
+  useEffect(() => {
+    const handlePointerMove = (e: PointerEvent) => {
+      const target = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+      setPaused(Boolean(target?.closest('[data-media-card="true"]')));
+    };
+
+    const resetPause = () => setPaused(false);
+
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerleave", resetPause);
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", resetPause);
+    };
+  }, []);
+
   // Auto-scroll loop (yavaş, sonsuz)
   useEffect(() => {
     const el = trackRef.current;
