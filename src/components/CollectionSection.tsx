@@ -74,7 +74,7 @@ const CollectionSection = () => {
             src={florenceHover}
             alt=""
             aria-hidden="true"
-            className="hidden lg:block absolute pointer-events-none select-none z-30 w-[240px] xl:w-[280px] h-auto drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)] left-[62.5%] -translate-x-1/2 bottom-full translate-y-[55%] xl:translate-y-[58%]"
+            className="hidden lg:block absolute pointer-events-none select-none z-30 w-[240px] xl:w-[280px] h-auto drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)] left-[62.5%] -translate-x-1/2 bottom-full translate-y-[14%] xl:translate-y-[14%]"
             loading="lazy"
           />
           {packs.map((pack, idx) => (
