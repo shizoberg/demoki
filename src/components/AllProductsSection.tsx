@@ -152,7 +152,7 @@ const AllProductsSection = () => {
             src={florenceBento}
             alt=""
             aria-hidden="true"
-            className="hidden lg:block absolute bottom-0 right-0 z-0 h-auto w-[320px] xl:w-[380px] select-none pointer-events-none translate-x-[20%] translate-y-[15%]"
+            className="hidden lg:block absolute bottom-0 right-0 z-0 h-auto w-[520px] xl:w-[620px] select-none pointer-events-none translate-x-[18%] translate-y-[12%]"
             loading="lazy"
           />
         </div>
