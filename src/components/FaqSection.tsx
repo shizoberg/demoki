@@ -4,6 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -36,7 +38,7 @@ const FaqSection = () => (
           Sıkça sorulanlar
         </span>
         <h2 className="k5-reveal k5-reveal-d1 font-display font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
-          Aklındaki <em className="italic font-light">sorular.</em>
+          Bizce senin aklındaki <em className="italic font-light">sorular.</em>
         </h2>
       </div>
 
@@ -52,6 +54,22 @@ const FaqSection = () => (
           </AccordionItem>
         ))}
       </Accordion>
+
+      <div className="k5-reveal k5-reveal-d3 mt-12 flex flex-col items-center gap-3 text-center">
+        <p className="text-[13px] text-foreground/60">
+          Aklındaki başka bir soru mu var?
+        </p>
+        <Button
+          asChild
+          size="lg"
+          className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-[14px] font-medium tracking-wide"
+        >
+          <a href="#eczaci-danisma">
+            <MessageCircle className="h-4 w-4" />
+            Eczacımıza soru sor
+          </a>
+        </Button>
+      </div>
     </div>
   </section>
 );
