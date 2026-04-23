@@ -36,11 +36,11 @@ const Balance = () => {
         <ValueStrip />
         <CollectionSection />
         <MediaSlider />
+        <AllProductsSection />
         <IngredientTransparency />
         <ScienceSection />
         
         <ReviewsSection />
-        <AllProductsSection />
         <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
       </main>
