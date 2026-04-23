@@ -64,7 +64,7 @@ const CollectionSection = () => {
             src={florenceHover}
             alt=""
             aria-hidden="true"
-            className="hidden md:block absolute left-1/2 -translate-x-1/2 w-[180px] lg:w-[210px] xl:w-[230px] h-auto select-none pointer-events-none z-30 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.2)] bottom-[calc(100%-40px)] lg:bottom-[calc(100%-44px)]"
+            className="hidden md:block absolute left-[62%] lg:left-[64%] -translate-x-1/2 w-[230px] lg:w-[270px] xl:w-[300px] h-auto select-none pointer-events-none z-30 drop-shadow-[0_10px_24px_hsl(var(--primary)/0.2)] bottom-[calc(100%-48px)] lg:bottom-[calc(100%-54px)]"
             loading="lazy"
           />
 
