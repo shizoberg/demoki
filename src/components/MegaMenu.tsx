@@ -172,38 +172,26 @@ export type MenuKey = "products" | "about" | "donate";
 const productsColumns: ColumnGroup[] = [
   [
     {
-      title: "Pedler",
+      title: "Pedler & Takviyeler",
       items: [
         { label: "Günlük Ped", href: "#", icon: "padLiner" },
-        { label: "Gündüz Ped", href: "#", icon: "padDay" },
         { label: "Gece Ped", href: "#", icon: "padNight" },
-      ],
-    },
-  ],
-  [
-    {
-      title: "Takviyeler",
-      items: [
-        { label: ".ki Balance · Saşe", href: "#", icon: "sachet" },
+        { label: "Gündüz Ped", href: "#", icon: "padDay" },
         { label: ".ki Change · Kapsül", href: "#", icon: "capsule" },
+        { label: ".ki Balance · Saşe", href: "#", icon: "sachet" },
       ],
     },
   ],
   [
     {
-      title: "İntim Bakım Jeli",
+      title: "Bakım & Aroma",
       items: [
         { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
-        { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
         { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
         { label: "Bakım Jeli · 50+", href: "#", icon: "gel50" },
-      ],
-    },
-    {
-      title: "Sprey & Yağ",
-      items: [
-        { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
         { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "oilBottle" },
+        { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
       ],
     },
   ],
