@@ -10,7 +10,7 @@ import MediaSlider from "@/components/MediaSlider";
 
 
 import AllProductsSection from "@/components/AllProductsSection";
-import ProductSection from "@/components/ProductSection";
+
 import FaqSection from "@/components/FaqSection";
 import SiteFooter from "@/components/SiteFooter";
 import StickyATC from "@/components/StickyATC";
@@ -35,7 +35,6 @@ const Balance = () => {
         <CollectionSection />
         <MediaSlider />
         <AllProductsSection />
-        <ProductSection product={product} isLoading={isLoading} />
         <FaqSection />
       </main>
 
