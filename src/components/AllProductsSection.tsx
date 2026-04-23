@@ -5,6 +5,7 @@ import bentoJeller from "@/assets/bento-jeller.png";
 import bentoChange from "@/assets/bento-change.png";
 import bentoSprey from "@/assets/bento-sprey.png";
 import bentoYag from "@/assets/bento-yag.png";
+import florenceBento from "@/assets/florence-bento.png";
 
 /**
  * AllProductsSection
@@ -130,7 +131,7 @@ const AllProductsSection = () => {
   return (
     <section
       id="tum-urunler"
-      className="relative py-12 md:py-16 overflow-hidden bg-background"
+      className="relative py-12 md:py-16 overflow-visible bg-background"
     >
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
@@ -140,10 +141,20 @@ const AllProductsSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
-          {tiles.map((t) => (
-            <TileCard key={t.name} tile={t} />
-          ))}
+        <div className="relative">
+          <img
+            src={florenceBento}
+            alt=""
+            aria-hidden="true"
+            className="hidden lg:block absolute -right-16 xl:-right-24 -top-32 xl:-top-40 z-20 h-auto w-[260px] xl:w-[300px] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.18)]"
+            loading="lazy"
+          />
+
+          <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
+            {tiles.map((t) => (
+              <TileCard key={t.name} tile={t} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
