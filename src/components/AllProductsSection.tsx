@@ -15,7 +15,7 @@ type Product = {
   text: string;
   category: CategoryKey;
   // beije-style cell: width × height in 6-col grid
-  col: 2 | 3 | 4;
+  col: 1 | 2 | 3 | 4;
   row: 1 | 2;
 };
 
@@ -56,31 +56,32 @@ const categoryIcon = (cat: CategoryKey, className: string) => {
   }
 };
 
-/* Beije-like layout: tall + wide cards interleaved across categories */
+/* Layout matches the reference screenshot:
+   Row 1: [PEDLER tall (2x2)] [BALANCE (2x1)] [BAKIM JELLERİ wide (4x1)]
+   Row 2:                     [CHANGE (2x1)]  [SPREY (1x1)] [YAĞ (1x1)] [50+ (2x1)]
+   Row 3: [Günlük Ped (2x1)]  [Gündüz Pedi (2x1)] [Sens.Care (2x1)] [Flow.Care (2x1)] -> wraps
+*/
 const products: Product[] = [
-  // Row band 1
-  { name: ".ki Balance", price: "₺440'dan başlayan fiyatlarla", bg: "bg-[hsl(0,68%,55%)]", text: "text-white", category: "supplement", col: 2, row: 2 },
-  { name: ".ki Change", price: "₺600'den başlayan fiyatlarla", bg: "bg-[hsl(155,42%,55%)]", text: "text-white", category: "supplement", col: 2, row: 1 },
-  { name: ".ki Daily.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(180,40%,42%)]", text: "text-white", category: "intim", col: 4, row: 1 },
+  // Row 1
+  { name: ".ki Gece Pedi", price: "335 mm · 8 adet", bg: "bg-[hsl(0,68%,55%)]", text: "text-white", category: "ped", col: 2, row: 2 },
+  { name: ".ki Balance", price: "Regl döngüsü · saşe", bg: "bg-[hsl(210,55%,60%)]", text: "text-white", category: "supplement", col: 2, row: 1 },
+  { name: ".ki Daily.Care", price: "İntim Yıkama Jeli · günlük", bg: "bg-[hsl(15,55%,55%)]", text: "text-white", category: "intim", col: 4, row: 1 },
 
-  // Row band 2
-  { name: ".ki Sens.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(210,55%,60%)]", text: "text-white", category: "intim", col: 2, row: 1 },
-  { name: ".ki Flow.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(15,70%,60%)]", text: "text-white", category: "intim", col: 2, row: 1 },
-
-  // Row band 3
+  // Row 2
+  { name: ".ki Change", price: "Menopoz · kapsül", bg: "bg-[hsl(300,35%,50%)]", text: "text-white", category: "supplement", col: 2, row: 1 },
+  { name: ".ki İntim Sprey", price: "Durulama gerektirmez", bg: "bg-[hsl(5,45%,45%)]", text: "text-white", category: "intim", col: 1, row: 1 },
+  { name: ".ki Cycle Yağı", price: "Aromaterapi · 10 ml", bg: "bg-[hsl(175,55%,42%)]", text: "text-white", category: "aroma", col: 1, row: 1 },
   { name: ".ki 50+.Care", price: "İntim Yıkama Jeli", bg: "bg-[hsl(33,55%,75%)]", text: "text-[hsl(258,57%,26%)]", category: "intim", col: 2, row: 1 },
-  { name: ".ki İntim Bakım Spreyi", price: "Durulama gerektirmez", bg: "bg-[hsl(280,40%,50%)]", text: "text-white", category: "intim", col: 2, row: 1 },
-  { name: ".ki Cycle Care Yağı", price: "Aromaterapi · 10 ml", bg: "bg-[hsl(38,68%,55%)]", text: "text-white", category: "aroma", col: 2, row: 2 },
 
-  // Row band 4
+  // Row 3
   { name: ".ki Günlük Ped", price: "155 mm · 30 adet", bg: "bg-[hsl(170,45%,45%)]", text: "text-white", category: "ped", col: 2, row: 1 },
   { name: ".ki Gündüz Pedi", price: "245 mm · 12 adet", bg: "bg-[hsl(349,55%,55%)]", text: "text-white", category: "ped", col: 2, row: 1 },
-
-  // Row band 5
-  { name: ".ki Gece Pedi", price: "335 mm · 8 adet", bg: "bg-[hsl(258,47%,38%)]", text: "text-white", category: "ped", col: 4, row: 1 },
+  { name: ".ki Sens.Care", price: "İntim Yıkama Jeli · hassas", bg: "bg-[hsl(258,47%,38%)]", text: "text-white", category: "intim", col: 1, row: 1 },
+  { name: ".ki Flow.Care", price: "İntim Yıkama Jeli · koruyucu", bg: "bg-[hsl(38,68%,55%)]", text: "text-white", category: "intim", col: 1, row: 1 },
 ];
 
 const colMap: Record<Product["col"], string> = {
+  1: "md:col-span-1",
   2: "md:col-span-2",
   3: "md:col-span-3",
   4: "md:col-span-4",
@@ -158,8 +159,7 @@ const AllProductsSection = () => {
             Tüm koleksiyon
           </p>
           <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
-            Günün her anında,{" "}
-            <em className="italic text-primary/80">döngünün her gününde.</em>
+            Kendine iyi bakman için<em className="italic text-primary/80">:</em>
           </h2>
         </div>
 
