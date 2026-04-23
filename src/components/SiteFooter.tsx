@@ -134,7 +134,7 @@ const SiteFooter = () => {
             {/* Reglini Çiz card */}
             <a
               href="#"
-              className="group relative block overflow-hidden rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors border border-primary-foreground/10 aspect-[16/10]"
+              className="group relative block overflow-hidden rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors border border-primary-foreground/10 aspect-[16/8]"
             >
               <img
                 src={regliniCizBg}
