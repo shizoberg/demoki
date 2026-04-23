@@ -68,58 +68,66 @@ const CollectionSection = () => {
         </div>
 
         {/* Cards grid */}
-        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {/* Florence — arms align exactly with the top edge of the 3rd card (Aylık Döngü Paketi) */}
-          <img
-            src={florenceHover}
-            alt=""
-            aria-hidden="true"
-            className="hidden lg:block absolute pointer-events-none select-none z-30 w-[240px] xl:w-[280px] h-auto drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)] left-[62.5%] -translate-x-1/2 bottom-full translate-y-[14%] xl:translate-y-[14%]"
-            loading="lazy"
-          />
-          {packs.map((pack, idx) => (
-            <article
-              key={pack.id}
-              className={`k5-reveal k5-reveal-d${Math.min(idx + 1, 4)} group flex flex-col bg-card rounded-2xl overflow-hidden border border-border/60 hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.25)] hover:-translate-y-0.5 transition-all duration-300`}
-            >
-              {/* Image */}
-              <div className={`relative aspect-square ${pack.bgClass} overflow-hidden`}>
-                <img
-                  src={pack.image}
-                  alt={pack.name}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  draggable={false}
-                  loading="lazy"
-                />
-              </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          {packs.map((pack, idx) => {
+            const hasFlorence = pack.id === "aylik";
 
-              {/* Body */}
-              <div className="flex flex-col flex-1 p-4 lg:p-4">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Star className="w-[18px] h-[18px] fill-star text-star" strokeWidth={1.5} />
-                  <span className="text-[14px] font-semibold text-foreground/80">
-                    {pack.rating.toFixed(1)}
-                  </span>
+            return (
+              <article
+                key={pack.id}
+                className={`k5-reveal k5-reveal-d${Math.min(idx + 1, 4)} group relative flex flex-col transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_hsl(var(--primary)/0.25)] ${hasFlorence ? "overflow-visible pt-14 lg:pt-16" : "overflow-hidden rounded-2xl"}`}
+              >
+                {hasFlorence && (
+                  <img
+                    src={florenceHover}
+                    alt=""
+                    aria-hidden="true"
+                    className="hidden lg:block absolute left-1/2 top-0 z-30 h-auto w-[220px] xl:w-[250px] -translate-x-1/2 -translate-y-[28%] select-none pointer-events-none drop-shadow-[0_12px_28px_hsl(var(--primary)/0.22)]"
+                    loading="lazy"
+                  />
+                )}
+
+                <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-card">
+                  {/* Image */}
+                  <div className={`relative aspect-square ${pack.bgClass} overflow-hidden`}>
+                    <img
+                      src={pack.image}
+                      alt={pack.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      draggable={false}
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Body */}
+                  <div className="flex flex-1 flex-col p-4 lg:p-4">
+                    <div className="mb-2 flex items-center gap-1.5">
+                      <Star className="h-[18px] w-[18px] fill-star text-star" strokeWidth={1.5} />
+                      <span className="text-[14px] font-semibold text-foreground/80">
+                        {pack.rating.toFixed(1)}
+                      </span>
+                    </div>
+
+                    <h3 className="mb-3 min-h-[42px] font-display text-[16px] leading-snug text-primary lg:text-[17px]">
+                      {pack.name}
+                    </h3>
+
+                    <div className="mt-auto">
+                      <p className="mb-3 text-[15px] font-semibold text-foreground">
+                        {pack.price}
+                      </p>
+                      <button
+                        type="button"
+                        className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full bg-primary px-4 py-2.5 text-[13px] font-bold text-primary-foreground transition-all hover:bg-primary-medium"
+                      >
+                        Sepete Ekle
+                      </button>
+                    </div>
+                  </div>
                 </div>
-
-                <h3 className="font-display text-[16px] lg:text-[17px] leading-snug text-primary mb-3 min-h-[42px]">
-                  {pack.name}
-                </h3>
-
-                <div className="mt-auto">
-                  <p className="text-[15px] font-semibold text-foreground mb-3">
-                    {pack.price}
-                  </p>
-                  <button
-                    type="button"
-                    className="w-full inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[13px] font-bold py-2.5 px-4 rounded-full hover:bg-primary-medium transition-all"
-                  >
-                    Sepete Ekle
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         {/* Mobile CTA */}
