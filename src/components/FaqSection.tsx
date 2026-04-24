@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
-import faqFlorence from "@/assets/faq-florence.png";
+import faqFlorence from "@/assets/faq-florence.webp";
 
 const faqs = [
   {

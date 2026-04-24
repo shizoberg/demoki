@@ -1,9 +1,9 @@
 import { Star } from "lucide-react";
-import packPads from "@/assets/pack-pads.png";
-import packSachet from "@/assets/pack-sachet.png";
-import packSpray from "@/assets/pack-spray.png";
-import packOil from "@/assets/pack-oil.png";
-import florenceHover from "@/assets/florence-on-card.png";
+import packPads from "@/assets/pack-pads.webp";
+import packSachet from "@/assets/pack-sachet.webp";
+import packSpray from "@/assets/pack-spray.webp";
+import packOil from "@/assets/pack-oil.webp";
+import florenceHover from "@/assets/florence-on-card.webp";
 
 type Pack = {
   id: string;
