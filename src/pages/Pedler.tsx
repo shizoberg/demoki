@@ -436,20 +436,20 @@ const Pedler = () => {
             <ul className="mt-7 space-y-4">
               {[
                 {
-                  title: "Organik bambu lifi",
-                  desc: "Yumuşak, nefes alabilen ve doğada çözünebilen üst yüzey.",
+                  title: "Mugwort (Pelin Otu) infüzyonu",
+                  desc: "Geleneksel tıbbın bilgeliğini modern konforla buluşturan doğal antibakteriyel bariyer; koku ve enfeksiyon riskine karşı korur.",
                 },
                 {
-                  title: "Hipoalerjenik & parfümsüz",
-                  desc: "Hassas ciltler için dermatolojik test edilmiş, koku önleyici kimyasal yok.",
+                  title: "Soft Cotton & Bamboo Fiber üst yüzey",
+                  desc: "Yumuşak pamuk ve bambu lifi karışımı, hassas cilde nazikçe uyum sağlar.",
                 },
                 {
-                  title: "Yüksek emicilik · ince yapı",
-                  desc: "Yoğun günlerde bile rahat kullanım için kalın değil etkin.",
+                  title: "SLS / SLES içermez",
+                  desc: "Sert sülfat bazlı kimyasallar yok — pH dengesi korunur, tahriş önlenir.",
                 },
                 {
-                  title: "Klorsuz beyazlatma",
-                  desc: "Beyazlatma için yalnızca oksijen bazlı yöntem kullanılır.",
+                  title: "Nefes alan üst & arka yüzey",
+                  desc: "Breathable yapı sayesinde gün boyu serin ve kuru kullanım hissi.",
                 },
               ].map((b) => (
                 <li key={b.title} className="flex items-start gap-3">
@@ -492,11 +492,15 @@ const Pedler = () => {
             {[
               {
                 q: ".ki Ped içeriği nedir?",
-                a: "Üst yüzey %100 organik bambu lifi, emici çekirdek selüloz ve SAP, alt taban ise nefes alabilen bitki bazlı film içerir. Parfüm, klor veya sentetik renklendirici içermez.",
+                a: "Üst yüzey Soft Cotton & Bamboo Fiber, arka yüzey ise nefes alabilen breathable yapıdadır. Tüm seri Mugwort (Pelin Otu) infüzyonludur ve SLS/SLES içermez.",
               },
               {
                 q: "Hangi pedi seçmeliyim?",
-                a: "Hafif–normal akış için Standart, normal–yoğun gün için Süper, yoğun gece akışı için Süper+ öneriyoruz. Tek paket içinde 3 farklı tipi karıştırabilirsin.",
+                a: "Hafif akıntı, lekelenme ve günlük tazelik için Günlük Ped (155 mm · 30 adet); orta yoğun menstrual akış için Gündüz Pedi (245 mm · 12 adet); yoğun gece akışı için Gece Pedi (335 mm · 8 adet). Tek paket içinde 3 farklı tipi karıştırabilirsin.",
+              },
+              {
+                q: "Pelin Otu (Mugwort) ne işe yarar?",
+                a: "Geleneksel tıpta kullanılan Pelin Otu, doğal antibakteriyel bariyeri sayesinde koku ve enfeksiyon riskine karşı koruma sağlar; cildin doğal pH dengesini destekler.",
               },
               {
                 q: "Aboneliği nasıl yönetirim?",
@@ -505,10 +509,6 @@ const Pedler = () => {
               {
                 q: "Kargo ne kadar sürer?",
                 a: "Hafta içi 16:00'a kadar verilen siparişler aynı gün kargolanır. 1–3 iş günü içinde kapına teslim.",
-              },
-              {
-                q: "750₺ üzeri kargo gerçekten ücretsiz mi?",
-                a: "Evet, sepet tutarın 750₺'yi geçtiğinde kargo ücretsizdir — abonelikte de aynı kural geçerli.",
               },
             ].map((f, i) => {
               const open = openFaq === i;
