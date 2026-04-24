@@ -14,7 +14,6 @@ import bentoBalance from "@/assets/bento-balance.webp";
 import bentoChange from "@/assets/bento-change.webp";
 import bentoJeller from "@/assets/bento-jeller.webp";
 import bentoPads from "@/assets/bento-pads.webp";
-import bentoYag from "@/assets/bento-yag.webp";
 import bentoSprey from "@/assets/bento-sprey.webp";
 
 /* ---------------- Types & catalog ---------------- */
@@ -187,12 +186,12 @@ const PaketOlustur = () => {
   useReveal();
   const [quantities, setQuantities] = useState<Record<ProductId, number>>({} as Record<ProductId, number>);
   const [openCategories, setOpenCategories] = useState<Record<Category, boolean>>({
-    supplement: true,
     ped: true,
-    intim: false,
+    supplement: true,
+    gel: false,
     ritual: false,
   });
-  const [activeTab, setActiveTab] = useState<Category>("supplement");
+  const [activeTab, setActiveTab] = useState<Category>("ped");
 
   const setQty = (id: ProductId, next: number) => {
     setQuantities((q) => {
