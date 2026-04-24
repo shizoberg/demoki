@@ -289,7 +289,12 @@ const PaketOlustur = () => {
                 <button
                   onClick={() => {
                     setActiveTab(null);
-                    setOpenCategories((o) => ({ ...o, ped: true }));
+                    setOpenCategories({
+                      ped: tabsCount("ped") > 0 || true,
+                      supplement: tabsCount("supplement") > 0,
+                      gel: tabsCount("gel") > 0,
+                      ritual: tabsCount("ritual") > 0,
+                    });
                   }}
                   className={`relative shrink-0 text-[13px] font-semibold py-2.5 px-4 rounded-full transition-all border ${
                     activeTab === null
