@@ -13,22 +13,30 @@ import packSpray from "@/assets/pack-spray.webp";
 import bentoBalance from "@/assets/bento-balance.webp";
 import bentoChange from "@/assets/bento-change.webp";
 import bentoJeller from "@/assets/bento-jeller.webp";
+import bentoPads from "@/assets/bento-pads.webp";
+import bentoYag from "@/assets/bento-yag.webp";
+import bentoSprey from "@/assets/bento-sprey.webp";
 
 /* ---------------- Types & catalog ---------------- */
 
 type ProductId =
-  | "balance"
-  | "change"
-  | "pad-standart"
-  | "pad-super"
-  | "pad-superplus"
-  | "pad-gunluk"
-  | "jel-rahatlatici"
-  | "jel-temizleyici"
-  | "yag-massage"
-  | "sprey-ferahlatici";
+  // Pedler
+  | "ped-gunluk"
+  | "ped-gunduz"
+  | "ped-gece"
+  // Takviyeler
+  | "balance-sase"
+  | "change-kapsul"
+  // Bakım Jelleri
+  | "jel-daily"
+  | "jel-sens"
+  | "jel-flow"
+  | "jel-50"
+  // Yağ & Sprey
+  | "yag-cycle-care"
+  | "sprey-intim";
 
-type Category = "supplement" | "ped" | "intim" | "ritual";
+type Category = "ped" | "supplement" | "gel" | "ritual";
 
 interface CatalogItem {
   id: ProductId;
@@ -41,85 +49,100 @@ interface CatalogItem {
 }
 
 const CATALOG: CatalogItem[] = [
+  /* Pedler */
   {
-    id: "balance",
-    name: ".ki Balance",
-    short: "Aylık döngü destek takviyesi · 30 saşe",
+    id: "ped-gunluk",
+    name: "Günlük Ped",
+    short: "Hafif akıntı · nefes alabilen · 20 adet",
+    price: 79,
+    image: bentoPads,
+    category: "ped",
+  },
+  {
+    id: "ped-gunduz",
+    name: "Gündüz Ped",
+    short: "Normal akış · gündüz koruması · 10 adet",
+    price: 95,
+    image: packPads,
+    category: "ped",
+  },
+  {
+    id: "ped-gece",
+    name: "Gece Ped",
+    short: "Yoğun akış · uzun gece koruması · 8 adet",
+    price: 125,
+    image: bentoPads,
+    category: "ped",
+  },
+
+  /* Takviyeler */
+  {
+    id: "balance-sase",
+    name: ".ki Balance · Saşe",
+    short: "Regl döngüsü destek takviyesi · 30 saşe",
     price: 395,
     image: packSachet,
     category: "supplement",
     badge: "EN POPÜLER",
   },
   {
-    id: "change",
-    name: ".ki Change Is Good",
-    short: "Peri-menopoz & menopoz desteği · 30 saşe",
+    id: "change-kapsul",
+    name: ".ki Change · Kapsül",
+    short: "Peri-menopoz & menopoz desteği · 60 kapsül",
     price: 449,
     image: bentoChange,
     category: "supplement",
   },
+
+  /* Bakım Jelleri */
   {
-    id: "pad-standart",
-    name: "Standart Ped",
-    short: "Gündüz · normal akış · 10 adet",
-    price: 95,
-    image: packPads,
-    category: "ped",
-  },
-  {
-    id: "pad-super",
-    name: "Süper Ped",
-    short: "Yoğun gün · 8 adet",
-    price: 110,
-    image: bentoBalance,
-    category: "ped",
-  },
-  {
-    id: "pad-superplus",
-    name: "Süper+ Ped",
-    short: "Gece · uzun koruma · 6 adet",
-    price: 125,
-    image: packPads,
-    category: "ped",
-  },
-  {
-    id: "pad-gunluk",
-    name: "Günlük Ped",
-    short: "Hafif akıntı · nefes alabilen · 20 adet",
-    price: 79,
-    image: packPads,
-    category: "ped",
-  },
-  {
-    id: "jel-rahatlatici",
-    name: "Rahatlatıcı Jel",
-    short: "Regl ağrısı için soğutucu jel · 50 ml",
-    price: 165,
-    image: bentoJeller,
-    category: "intim",
-  },
-  {
-    id: "jel-temizleyici",
-    name: "İntim Temizleyici",
-    short: "pH dengeli, parfümsüz · 200 ml",
+    id: "jel-daily",
+    name: "Bakım Jeli · Daily",
+    short: "Günlük pH dengeli intim temizleyici · 200 ml",
     price: 145,
     image: bentoJeller,
-    category: "intim",
+    category: "gel",
   },
   {
-    id: "yag-massage",
-    name: "Karın Masaj Yağı",
-    short: "Lavanta & papatya · 100 ml",
+    id: "jel-sens",
+    name: "Bakım Jeli · Sens",
+    short: "Hassas ciltler için yatıştırıcı bakım · 200 ml",
+    price: 155,
+    image: bentoJeller,
+    category: "gel",
+  },
+  {
+    id: "jel-flow",
+    name: "Bakım Jeli · Flow",
+    short: "Regl döneminde rahatlatıcı bakım · 200 ml",
+    price: 165,
+    image: bentoJeller,
+    category: "gel",
+  },
+  {
+    id: "jel-50",
+    name: "Bakım Jeli · 50+",
+    short: "Menopoz dönemi için nemlendirici bakım · 200 ml",
+    price: 175,
+    image: bentoJeller,
+    category: "gel",
+  },
+
+  /* Yağ & Sprey */
+  {
+    id: "yag-cycle-care",
+    name: "Cycle Care Yağı",
+    short: "Karın masaj yağı · lavanta & papatya · 10 ml",
     price: 189,
     image: packOil,
     category: "ritual",
   },
   {
-    id: "sprey-ferahlatici",
-    name: "Ferahlatıcı Sprey",
-    short: "Yastık & vücut · gül & adaçayı · 100 ml",
+    id: "sprey-intim",
+    name: "İntim Bakım Spreyi",
+    short: "Anlık ferahlama · pH dostu · 100 ml",
     price: 139,
-    image: packSpray,
+    image: bentoSprey ?? packSpray,
     category: "ritual",
   },
 ];
@@ -131,28 +154,28 @@ const CATEGORIES: {
   hint: string;
 }[] = [
   {
-    key: "supplement",
-    label: "Takviyeler",
-    description: ".ki günlük döngü ve menopoz destek takviyeleri.",
-    hint: "Kullanıcılarımızın çoğu 1 kutu Balance ile başlıyor.",
-  },
-  {
     key: "ped",
     label: "Pedler",
     description: "Organik pamuk üst yüzey, parfümsüz, dermatolojik test edilmiş.",
-    hint: "Çoğu kullanıcı 1 Standart, 1 Süper ve 1 Süper+ Ped tercih ediyor.",
+    hint: "Çoğu kullanıcı 1 Günlük, 1 Gündüz ve 1 Gece Ped tercih ediyor.",
   },
   {
-    key: "intim",
-    label: "İntim Bakım",
-    description: "pH dengeli temizleyiciler ve regl dönemi rahatlatıcı jeller.",
-    hint: "Hassas dönemler için yumuşak ve nefes alabilen bakım.",
+    key: "supplement",
+    label: "Takviyeler",
+    description: ".ki Balance saşe ve .ki Change kapsül — döngü ve menopoz için günlük destek.",
+    hint: "Kullanıcılarımızın çoğu 1 kutu Balance ile başlıyor.",
+  },
+  {
+    key: "gel",
+    label: "Bakım Jelleri",
+    description: "Daily · Sens · Flow · 50+ — döneminin ihtiyacına göre intim bakım jelleri.",
+    hint: "Günlük için Daily, regl için Flow, hassas ciltler için Sens öneriyoruz.",
   },
   {
     key: "ritual",
-    label: "Ritüel",
-    description: "Masaj yağları ve sprey ile rahatlama ritüelin.",
-    hint: "Yastığa 1-2 sprey ile günü kapatabilirsin.",
+    label: "Yağ & Sprey",
+    description: "Cycle Care Yağı ve İntim Bakım Spreyi ile rahatlama ritüelin.",
+    hint: "Karın bölgene 2-3 damla yağ ile masaj yapabilirsin.",
   },
 ];
 
