@@ -41,35 +41,46 @@ interface CatalogItem {
   id: ProductId;
   name: string;
   short: string;
+  /** Birim fiyatı (örn. ped için 10 adetlik kutu fiyatı) */
   price: number;
+  /** Her +/- tıklamasında değişen adet (pedler için 10, diğerleri için 1) */
+  step: number;
+  /** Adet birimi etiketi ("adet", "kutu", "şişe" vb.) */
+  unit: string;
   image: string;
   category: Category;
   badge?: string;
 }
 
 const CATALOG: CatalogItem[] = [
-  /* Pedler */
+  /* Pedler — her tıklamada 10 adet eklenir, fiyat 10 adet kutu fiyatı */
   {
     id: "ped-gunluk",
     name: "Günlük Ped",
-    short: "Hafif akıntı · nefes alabilen · 20 adet",
+    short: "Hafif akıntı · nefes alabilen",
     price: 79,
+    step: 10,
+    unit: "adet",
     image: bentoPads,
     category: "ped",
   },
   {
     id: "ped-gunduz",
     name: "Gündüz Ped",
-    short: "Normal akış · gündüz koruması · 10 adet",
+    short: "Normal akış · gündüz koruması",
     price: 95,
+    step: 10,
+    unit: "adet",
     image: packPads,
     category: "ped",
   },
   {
     id: "ped-gece",
     name: "Gece Ped",
-    short: "Yoğun akış · uzun gece koruması · 8 adet",
+    short: "Yoğun akış · uzun gece koruması",
     price: 125,
+    step: 10,
+    unit: "adet",
     image: bentoPads,
     category: "ped",
   },
@@ -80,6 +91,8 @@ const CATALOG: CatalogItem[] = [
     name: ".ki Balance · Saşe",
     short: "Regl döngüsü destek takviyesi · 30 saşe",
     price: 395,
+    step: 1,
+    unit: "kutu",
     image: packSachet,
     category: "supplement",
     badge: "EN POPÜLER",
@@ -89,6 +102,8 @@ const CATALOG: CatalogItem[] = [
     name: ".ki Change · Kapsül",
     short: "Peri-menopoz & menopoz desteği · 60 kapsül",
     price: 449,
+    step: 1,
+    unit: "kutu",
     image: bentoChange,
     category: "supplement",
   },
@@ -99,6 +114,8 @@ const CATALOG: CatalogItem[] = [
     name: "Bakım Jeli · Daily",
     short: "Günlük pH dengeli intim temizleyici · 200 ml",
     price: 145,
+    step: 1,
+    unit: "şişe",
     image: bentoJeller,
     category: "gel",
   },
@@ -107,6 +124,8 @@ const CATALOG: CatalogItem[] = [
     name: "Bakım Jeli · Sens",
     short: "Hassas ciltler için yatıştırıcı bakım · 200 ml",
     price: 155,
+    step: 1,
+    unit: "şişe",
     image: bentoJeller,
     category: "gel",
   },
@@ -115,6 +134,8 @@ const CATALOG: CatalogItem[] = [
     name: "Bakım Jeli · Flow",
     short: "Regl döneminde rahatlatıcı bakım · 200 ml",
     price: 165,
+    step: 1,
+    unit: "şişe",
     image: bentoJeller,
     category: "gel",
   },
@@ -123,6 +144,8 @@ const CATALOG: CatalogItem[] = [
     name: "Bakım Jeli · 50+",
     short: "Menopoz dönemi için nemlendirici bakım · 200 ml",
     price: 175,
+    step: 1,
+    unit: "şişe",
     image: bentoJeller,
     category: "gel",
   },
@@ -133,6 +156,8 @@ const CATALOG: CatalogItem[] = [
     name: "Cycle Care Yağı",
     short: "Karın masaj yağı · lavanta & papatya · 10 ml",
     price: 189,
+    step: 1,
+    unit: "şişe",
     image: packOil,
     category: "ritual",
   },
@@ -141,6 +166,8 @@ const CATALOG: CatalogItem[] = [
     name: "İntim Bakım Spreyi",
     short: "Anlık ferahlama · pH dostu · 100 ml",
     price: 139,
+    step: 1,
+    unit: "şişe",
     image: bentoSprey ?? packSpray,
     category: "ritual",
   },
@@ -155,8 +182,8 @@ const CATEGORIES: {
   {
     key: "ped",
     label: "Pedler",
-    description: "Organik pamuk üst yüzey, parfümsüz, dermatolojik test edilmiş.",
-    hint: "Çoğu kullanıcı 1 Günlük, 1 Gündüz ve 1 Gece Ped tercih ediyor.",
+    description: "Organik pamuk üst yüzey, parfümsüz, dermatolojik test edilmiş. Her tıklamada 10 adet eklenir.",
+    hint: "Çoğu kullanıcı 10 Günlük, 10 Gündüz ve 10 Gece Ped tercih ediyor.",
   },
   {
     key: "supplement",
@@ -195,7 +222,11 @@ const PaketOlustur = () => {
 
   const setQty = (id: ProductId, next: number) => {
     setQuantities((q) => {
-      const value = Math.max(0, Math.min(20, next));
+      const item = CATALOG.find((c) => c.id === id);
+      const step = item?.step ?? 1;
+      // Yuvarla: değeri en yakın step katına indir, 0..200 arasında tut
+      const snapped = Math.round(next / step) * step;
+      const value = Math.max(0, Math.min(200, snapped));
       const copy = { ...q };
       if (value === 0) delete copy[id];
       else copy[id] = value;
@@ -204,16 +235,16 @@ const PaketOlustur = () => {
   };
 
   const totals = useMemo(() => {
-    const items = CATALOG.filter((c) => (quantities[c.id] ?? 0) > 0).map((c) => ({
-      ...c,
-      qty: quantities[c.id] ?? 0,
-    }));
+    const items = CATALOG.filter((c) => (quantities[c.id] ?? 0) > 0).map((c) => {
+      const qty = quantities[c.id] ?? 0;
+      const units = qty / c.step; // pedlerde "kutu" sayısı, diğerlerinde adet
+      return { ...c, qty, units, lineTotal: units * c.price };
+    });
     const itemCount = items.reduce((sum, i) => sum + i.qty, 0);
-    const subtotal = items.reduce((sum, i) => sum + i.qty * i.price, 0);
-    const discount = subtotal >= 1200 ? Math.round(subtotal * 0.15) : subtotal >= 600 ? Math.round(subtotal * 0.1) : 0;
-    const total = subtotal - discount;
+    const subtotal = items.reduce((sum, i) => sum + i.lineTotal, 0);
+    const total = subtotal;
     const shippingProgress = Math.min(1, total / FREE_SHIPPING_THRESHOLD);
-    return { items, itemCount, subtotal, discount, total, shippingProgress };
+    return { items, itemCount, subtotal, total, shippingProgress };
   }, [quantities]);
 
   const tabsCount = (cat: Category) =>
@@ -355,22 +386,27 @@ const PaketOlustur = () => {
                                   <p className="text-[12.5px] text-muted-foreground mt-0.5 line-clamp-2">{item.short}</p>
                                   <p className="text-[13px] font-semibold text-primary mt-1">
                                     ₺{item.price.toLocaleString("tr-TR")}
+                                    {item.step > 1 && (
+                                      <span className="text-[11.5px] font-medium text-muted-foreground ml-1">
+                                        / {item.step} {item.unit}
+                                      </span>
+                                    )}
                                   </p>
                                 </div>
                                 <div className="shrink-0 flex items-center gap-1 bg-background border border-border rounded-full p-1">
                                   <button
-                                    onClick={() => setQty(item.id, qty - 1)}
+                                    onClick={() => setQty(item.id, qty - item.step)}
                                     disabled={qty === 0}
                                     aria-label={`${item.name} azalt`}
                                     className="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                   >
                                     <Minus className="w-3.5 h-3.5" />
                                   </button>
-                                  <span className="min-w-[24px] text-center text-[14px] font-bold text-primary tabular-nums">
+                                  <span className="min-w-[32px] text-center text-[14px] font-bold text-primary tabular-nums">
                                     {qty}
                                   </span>
                                   <button
-                                    onClick={() => setQty(item.id, qty + 1)}
+                                    onClick={() => setQty(item.id, qty + item.step)}
                                     aria-label={`${item.name} arttır`}
                                     className="w-8 h-8 rounded-full flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary-medium transition-colors"
                                   >
@@ -417,17 +453,17 @@ const PaketOlustur = () => {
                       <div className="relative w-11 h-11 rounded-lg overflow-hidden bg-cream-2 border border-border/60 shrink-0">
                         <img src={it.image} alt={it.name} className="w-full h-full object-cover" loading="lazy" />
                         <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
-                          {it.qty}
+                          {it.units}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-[13px] font-semibold text-primary leading-tight truncate">{it.name}</p>
                         <p className="text-[11.5px] text-muted-foreground">
-                          ₺{it.price.toLocaleString("tr-TR")} × {it.qty}
+                          {it.qty} {it.unit} · ₺{it.price.toLocaleString("tr-TR")} × {it.units}
                         </p>
                       </div>
                       <p className="text-[13px] font-bold text-primary tabular-nums">
-                        ₺{(it.price * it.qty).toLocaleString("tr-TR")}
+                        ₺{it.lineTotal.toLocaleString("tr-TR")}
                       </p>
                     </li>
                   ))}
@@ -460,14 +496,6 @@ const PaketOlustur = () => {
                     ₺{totals.subtotal.toLocaleString("tr-TR")}
                   </dd>
                 </div>
-                {totals.discount > 0 && (
-                  <div className="flex items-center justify-between">
-                    <dt className="text-rose font-medium">Paket indirimi</dt>
-                    <dd className="font-semibold text-rose tabular-nums">
-                      −₺{totals.discount.toLocaleString("tr-TR")}
-                    </dd>
-                  </div>
-                )}
                 <div className="flex items-center justify-between pt-3 border-t border-border/60">
                   <dt className="font-display text-[18px] font-medium text-primary">Toplam</dt>
                   <dd className="font-display text-[22px] font-medium text-primary tabular-nums">
