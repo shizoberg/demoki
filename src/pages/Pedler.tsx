@@ -235,32 +235,34 @@ const Pedler = () => {
                         <Drops filled={p.drops} />
                       </div>
                       <p className="text-[12px] text-muted-foreground mt-0.5">{p.short}</p>
-                      <p className="text-[12.5px] font-semibold text-primary mt-1">
-                        ₺{p.pricePerBox.toLocaleString("tr-TR")}
-                        <span className="text-[11px] font-medium text-muted-foreground ml-1">
-                          / {p.perBox} adet
-                        </span>
+                      <p className="text-[11.5px] font-medium text-primary/70 mt-1">
+                        {p.size} · {p.perBox} adet / paket
                       </p>
                     </div>
-                    <div className="shrink-0 flex items-center gap-1 bg-background border border-border rounded-full p-1">
-                      <button
-                        onClick={() => setQty(p.id, qty - p.perBox)}
-                        disabled={qty === 0}
-                        aria-label={`${p.name} azalt`}
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                      >
-                        <Minus className="w-3.5 h-3.5" />
-                      </button>
-                      <span className="min-w-[28px] text-center text-[14px] font-bold text-primary tabular-nums">
-                        {qty}
+                    <div className="shrink-0 flex flex-col items-end gap-1">
+                      <span className="text-[11px] font-medium text-muted-foreground">
+                        +{p.perBox} adet
                       </span>
-                      <button
-                        onClick={() => setQty(p.id, qty + p.perBox)}
-                        aria-label={`${p.name} arttır`}
-                        className="w-8 h-8 rounded-full flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary-medium transition-colors"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1">
+                        <button
+                          onClick={() => setQty(p.id, qty - p.perBox)}
+                          disabled={qty === 0}
+                          aria-label={`${p.name} azalt`}
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="min-w-[28px] text-center text-[14px] font-bold text-primary tabular-nums">
+                          {qty}
+                        </span>
+                        <button
+                          onClick={() => setQty(p.id, qty + p.perBox)}
+                          aria-label={`${p.name} arttır`}
+                          className="w-8 h-8 rounded-full flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary-medium transition-colors"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
