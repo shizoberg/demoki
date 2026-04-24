@@ -30,11 +30,15 @@ const HeroSection = () => {
         </div>
 
         <div className="k5-reveal k5-reveal-d2 flex justify-center mb-5">
-          <img
-            src="/sachet-360.gif"
-            alt=".ki Balance şase ürünü"
+          <video
+            src="/sachet-360.mp4"
+            aria-label=".ki Balance şase ürünü"
             className="h-32 w-auto sm:h-40 select-none pointer-events-none drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
-            draggable={false}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
           />
         </div>
 
