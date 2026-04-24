@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Check, ChevronDown, Minus, Package, Plus, ShieldCheck, Truck } from "lucide-react";
-import { Link } from "react-router-dom";
+
 import AnnouncementBar from "@/components/AnnouncementBar";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -227,16 +227,8 @@ const PaketOlustur = () => {
       {/* Hero */}
       <section className="border-b border-border/60">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 py-10 sm:py-14 lg:py-16">
-          <nav className="flex items-center gap-2 text-[12px] text-muted-foreground mb-5">
-            <Link to="/" className="hover:text-primary transition-colors">Ana Sayfa</Link>
-            <span>/</span>
-            <span className="text-primary font-semibold">Paketini Oluştur</span>
-          </nav>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-primary/70 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-rose" /> Sana özel
-              </span>
               <h1 className="font-display font-medium text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight text-primary">
                 Paketini Oluştur
               </h1>
