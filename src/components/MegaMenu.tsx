@@ -175,9 +175,9 @@ const productsColumns: ColumnGroup[] = [
     {
       title: "Pedler",
       items: [
-        { label: "Günlük Ped", href: "#", icon: "padLiner" },
-        { label: "Gece Ped", href: "#", icon: "padNight" },
-        { label: "Gündüz Ped", href: "#", icon: "padDay" },
+        { label: "Günlük Ped", href: "/pedler", icon: "padLiner" },
+        { label: "Gece Ped", href: "/pedler", icon: "padNight" },
+        { label: "Gündüz Ped", href: "/pedler", icon: "padDay" },
       ],
     },
   ],
