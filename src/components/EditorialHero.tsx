@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-lifestyle.png";
-import padsImage from "@/assets/hero-pads.png";
-import menopauseImage from "@/assets/hero-menopause.png";
+import heroImage from "@/assets/hero-lifestyle.webp";
+import padsImage from "@/assets/hero-pads.webp";
+import menopauseImage from "@/assets/hero-menopause.webp";
 
 type Slide = {
   id: string;

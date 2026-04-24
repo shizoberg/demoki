@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Instagram, Youtube, Linkedin, ArrowRight, ArrowUpRight } from "lucide-react";
-import kiFooterIllustration from "@/assets/ki-footer-illustration.png";
-import paymentLogos from "@/assets/payment-logos.png";
-import regliniCizBg from "@/assets/reglini-ciz-bg.png";
+import kiFooterIllustration from "@/assets/ki-footer-illustration.webp";
+import paymentLogos from "@/assets/payment-logos.webp";
+import regliniCizBg from "@/assets/reglini-ciz-bg.webp";
 
 const productsCol1 = [
   { label: "Günlük Ped", href: "#" },

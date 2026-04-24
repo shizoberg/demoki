@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import bentoPads from "@/assets/bento-pads.png";
-import bentoBalance from "@/assets/bento-balance.png";
-import bentoJeller from "@/assets/bento-jeller.png";
-import bentoChange from "@/assets/bento-change.png";
-import bentoSprey from "@/assets/bento-sprey.png";
-import bentoYag from "@/assets/bento-yag.png";
-import florenceBento from "@/assets/florence-bento.png";
+import bentoPads from "@/assets/bento-pads.webp";
+import bentoBalance from "@/assets/bento-balance.webp";
+import bentoJeller from "@/assets/bento-jeller.webp";
+import bentoChange from "@/assets/bento-change.webp";
+import bentoSprey from "@/assets/bento-sprey.webp";
+import bentoYag from "@/assets/bento-yag.webp";
+import florenceBento from "@/assets/florence-bento.webp";
 
 /**
  * AllProductsSection

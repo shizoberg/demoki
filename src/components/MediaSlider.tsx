@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
-import sinemImg from "@/assets/testimonials/sinem.png";
-import ulyanaImg from "@/assets/testimonials/ulyana1.png";
+import sinemImg from "@/assets/testimonials/sinem.webp";
+import ulyanaImg from "@/assets/testimonials/ulyana1.webp";
 import pmsVideo from "@/assets/testimonials/pms.mp4";
 
 type MediaItem =
