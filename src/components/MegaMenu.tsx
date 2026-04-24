@@ -3,6 +3,7 @@ import packPads from "@/assets/pack-pads.png";
 import packSachet from "@/assets/pack-sachet.png";
 import packSpray from "@/assets/pack-spray.png";
 import packOil from "@/assets/pack-oil.png";
+import allProductsGrid from "@/assets/all-products-grid.png";
 
 type IconName =
   | "padDay"
@@ -206,7 +207,7 @@ const productsColumns: ColumnGroup[] = [
 
 const productsFeatures: FeatureCard[] = [
   { label: ".ki Paketleri", image: packPads, href: "#k5Product" },
-  { label: "Tüm Ürünler", image: packSachet, href: "#tum-urunler" },
+  { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
 ];
 
 const aboutColumns: ColumnGroup[] = [
@@ -291,11 +292,11 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
                     {f.badge}
                   </span>
                 )}
-                <div className="flex-1 flex items-center justify-center p-6 bg-primary/5">
+                <div className="flex-1 flex items-center justify-center bg-primary/5 overflow-hidden">
                   <img
                     src={f.image}
                     alt={f.label}
-                    className="max-h-[80%] w-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="bg-background flex items-center justify-between px-4 py-3">
