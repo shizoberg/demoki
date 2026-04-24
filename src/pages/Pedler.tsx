@@ -103,9 +103,9 @@ const Pedler = () => {
   useReveal();
 
   const [quantities, setQuantities] = useState<Record<PadId, number>>({
-    standart: 0,
-    super: 0,
-    "super-plus": 0,
+    gunluk: 0,
+    gunduz: 0,
+    gece: 0,
   });
   const [activeImage, setActiveImage] = useState(0);
   const [subscribe, setSubscribe] = useState(true);
@@ -118,16 +118,15 @@ const Pedler = () => {
   const totals = useMemo(() => {
     const lines = PADS.map((p) => {
       const qty = quantities[p.id] ?? 0;
-      const boxes = qty / p.perBox;
-      return { ...p, qty, boxes, lineTotal: boxes * p.pricePerBox };
+      const packs = qty / p.perBox;
+      return { ...p, qty, packs };
     }).filter((l) => l.qty > 0);
 
-    const subtotal = lines.reduce((s, l) => s + l.lineTotal, 0);
-    const discounted = subscribe ? subtotal * (1 - SUBSCRIPTION_DISCOUNT) : subtotal;
     const totalUnits = lines.reduce((s, l) => s + l.qty, 0);
-    const shippingProgress = Math.min(1, discounted / FREE_SHIPPING_THRESHOLD);
-    return { lines, subtotal, discounted, totalUnits, shippingProgress };
-  }, [quantities, subscribe]);
+    const totalPacks = lines.reduce((s, l) => s + l.packs, 0);
+    const shippingProgress = Math.min(1, totalUnits / FREE_SHIPPING_THRESHOLD_UNITS);
+    return { lines, totalUnits, totalPacks, shippingProgress };
+  }, [quantities]);
 
   const heroImages = [bentoPads, packPads, bentoPads];
 
