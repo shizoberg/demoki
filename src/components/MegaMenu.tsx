@@ -3,6 +3,7 @@ import packPads from "@/assets/pack-pads.png";
 import packSachet from "@/assets/pack-sachet.png";
 import packSpray from "@/assets/pack-spray.png";
 import packOil from "@/assets/pack-oil.png";
+import allProductsGrid from "@/assets/all-products-grid.png";
 
 type IconName =
   | "padDay"
@@ -206,7 +207,7 @@ const productsColumns: ColumnGroup[] = [
 
 const productsFeatures: FeatureCard[] = [
   { label: ".ki Paketleri", image: packPads, href: "#k5Product" },
-  { label: "Tüm Ürünler", image: packSachet, href: "#tum-urunler" },
+  { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
 ];
 
 const aboutColumns: ColumnGroup[] = [
