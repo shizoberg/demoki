@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import packPads from "@/assets/pack-pads.webp";
 import packSachet from "@/assets/pack-sachet.webp";
 import packSpray from "@/assets/pack-spray.webp";
@@ -306,6 +306,18 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
               </a>
             ))}
           </div>
+        </div>
+
+        {/* Bottom row */}
+        <div className="mt-8 pt-6 border-t border-border/60 flex items-center justify-between gap-4">
+          <a
+            href="#"
+            onClick={onClose}
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity"
+          >
+            Anlaşmalı Eczanelerimiz
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </div>
