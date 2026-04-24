@@ -41,35 +41,46 @@ interface CatalogItem {
   id: ProductId;
   name: string;
   short: string;
+  /** Birim fiyatı (örn. ped için 10 adetlik kutu fiyatı) */
   price: number;
+  /** Her +/- tıklamasında değişen adet (pedler için 10, diğerleri için 1) */
+  step: number;
+  /** Adet birimi etiketi ("adet", "kutu", "şişe" vb.) */
+  unit: string;
   image: string;
   category: Category;
   badge?: string;
 }
 
 const CATALOG: CatalogItem[] = [
-  /* Pedler */
+  /* Pedler — her tıklamada 10 adet eklenir, fiyat 10 adet kutu fiyatı */
   {
     id: "ped-gunluk",
     name: "Günlük Ped",
-    short: "Hafif akıntı · nefes alabilen · 20 adet",
+    short: "Hafif akıntı · nefes alabilen",
     price: 79,
+    step: 10,
+    unit: "adet",
     image: bentoPads,
     category: "ped",
   },
   {
     id: "ped-gunduz",
     name: "Gündüz Ped",
-    short: "Normal akış · gündüz koruması · 10 adet",
+    short: "Normal akış · gündüz koruması",
     price: 95,
+    step: 10,
+    unit: "adet",
     image: packPads,
     category: "ped",
   },
   {
     id: "ped-gece",
     name: "Gece Ped",
-    short: "Yoğun akış · uzun gece koruması · 8 adet",
+    short: "Yoğun akış · uzun gece koruması",
     price: 125,
+    step: 10,
+    unit: "adet",
     image: bentoPads,
     category: "ped",
   },
