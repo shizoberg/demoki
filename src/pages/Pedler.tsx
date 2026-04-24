@@ -21,59 +21,66 @@ import packPads from "@/assets/pack-pads.webp";
 
 /* ---------------- Types & catalog ---------------- */
 
-type PadId = "standart" | "super" | "super-plus";
+type PadId = "gunluk" | "gunduz" | "gece";
 
 interface PadVariant {
   id: PadId;
   name: string;
+  fullName: string;
   short: string;
   description: string;
   drops: 1 | 2 | 3 | 4;
-  pricePerBox: number;
-  perBox: number; // adet/kutu
+  size: string; // örn. "155 mm"
+  perBox: number; // paket başına adet
+  material: string;
   image: string;
   badge?: string;
 }
 
 const PADS: PadVariant[] = [
   {
-    id: "standart",
-    name: "Standart Ped",
-    short: "Hafif–normal akış",
+    id: "gunluk",
+    name: "Günlük Ped",
+    fullName: ".ki Günlük Ped (Panty Liner)",
+    short: "Hafif akıntı · günlük tazelik",
     description:
-      "Günlük kullanıma uygun, ince yapısıyla nefes alabilen koruma. İlk günler ve akış geçişleri için ideal.",
-    drops: 2,
-    pricePerBox: 79,
-    perBox: 10,
+      "Hassas ciltler için tasarlanmış ultra ince günlük ped. Hafif akıntılar, lekelenmeler veya ekstra tazelik ihtiyacı için ideal. Pelin Otu ekstresi ile doğal antibakteriyel koruma ve koku kontrolü; cildin doğal pH dengesini korurken nefes alan dokusuyla tahrişi önler.",
+    drops: 1,
+    size: "155 mm",
+    perBox: 30,
+    material: "Soft Cotton & Bamboo Fiber üst yüzey, breathable arka yüzey",
     image: bentoPads,
   },
   {
-    id: "super",
-    name: "Süper Ped",
-    short: "Normal–yoğun akış",
+    id: "gunduz",
+    name: "Gündüz Pedi",
+    fullName: ".ki Gündüz Pedi (Sanitary Pad — Day)",
+    short: "Orta yoğun akış · gündüz koruması",
     description:
-      "Yoğun gün koruması için ekstra emiciliğe sahip yapı. Aktif gün boyu rahat ve sızdırmaz koruma.",
+      "Menstrual dönemdeki orta yoğunluktaki akıntılar için tasarlanmış. Gelişmiş emilim teknolojisiyle güçlendirilmiş süper emici katman, günün en hareketli anlarında dahi yüksek koruma sağlar. Pelin Otu özleri doğal antibakteriyel bariyeri ile koku ve enfeksiyon riskine karşı korur; ergonomik tasarımıyla varlığını unutturur.",
     drops: 3,
-    pricePerBox: 95,
-    perBox: 10,
+    size: "245 mm",
+    perBox: 12,
+    material: "Soft Cotton & Bamboo Fiber üst yüzey, breathable arka yüzey",
     badge: "EN POPÜLER",
     image: packPads,
   },
   {
-    id: "super-plus",
-    name: "Süper+ Ped",
-    short: "Yoğun gece akışı",
+    id: "gece",
+    name: "Gece Pedi",
+    fullName: ".ki Gece Pedi (Sanitary Pad — Night)",
+    short: "Yoğun gece akışı · uzun koruma",
     description:
-      "Uzun gece koruması için maksimum emicilik ve daha geniş arka koruma alanı.",
+      "Yoğun akıntılar ve kesintisiz gece uykusu için tasarlanmış. 335 mm ekstra uzun yapısı ve gelişmiş emilim teknolojisiyle sabaha kadar tam koruma vadeder. Genişletilmiş arka tasarımı uyku sırasındaki sızıntıları engeller; Pelin Otu özlerinin rahatlatıcı etkisi en zorlu gecelerde dahi konforu sürdürür.",
     drops: 4,
-    pricePerBox: 125,
-    perBox: 10,
+    size: "335 mm",
+    perBox: 8,
+    material: "Soft Cotton & Bamboo Fiber üst yüzey, breathable arka yüzey",
     image: bentoPads,
   },
 ];
 
-const FREE_SHIPPING_THRESHOLD = 750;
-const SUBSCRIPTION_DISCOUNT = 0.1;
+const FREE_SHIPPING_THRESHOLD_UNITS = 30; // 30 adet üzeri ücretsiz kargo (gösterim amaçlı)
 
 const Drops = ({ filled, total = 4 }: { filled: number; total?: number }) => (
   <span className="inline-flex items-center gap-0.5" aria-label={`${filled}/${total} emicilik`}>
@@ -96,9 +103,9 @@ const Pedler = () => {
   useReveal();
 
   const [quantities, setQuantities] = useState<Record<PadId, number>>({
-    standart: 0,
-    super: 0,
-    "super-plus": 0,
+    gunluk: 0,
+    gunduz: 0,
+    gece: 0,
   });
   const [activeImage, setActiveImage] = useState(0);
   const [subscribe, setSubscribe] = useState(true);
@@ -111,16 +118,15 @@ const Pedler = () => {
   const totals = useMemo(() => {
     const lines = PADS.map((p) => {
       const qty = quantities[p.id] ?? 0;
-      const boxes = qty / p.perBox;
-      return { ...p, qty, boxes, lineTotal: boxes * p.pricePerBox };
+      const packs = qty / p.perBox;
+      return { ...p, qty, packs };
     }).filter((l) => l.qty > 0);
 
-    const subtotal = lines.reduce((s, l) => s + l.lineTotal, 0);
-    const discounted = subscribe ? subtotal * (1 - SUBSCRIPTION_DISCOUNT) : subtotal;
     const totalUnits = lines.reduce((s, l) => s + l.qty, 0);
-    const shippingProgress = Math.min(1, discounted / FREE_SHIPPING_THRESHOLD);
-    return { lines, subtotal, discounted, totalUnits, shippingProgress };
-  }, [quantities, subscribe]);
+    const totalPacks = lines.reduce((s, l) => s + l.packs, 0);
+    const shippingProgress = Math.min(1, totalUnits / FREE_SHIPPING_THRESHOLD_UNITS);
+    return { lines, totalUnits, totalPacks, shippingProgress };
+  }, [quantities]);
 
   const heroImages = [bentoPads, packPads, bentoPads];
 
@@ -182,9 +188,9 @@ const Pedler = () => {
             </div>
 
             <p className="mt-5 text-[15px] leading-relaxed text-foreground/80">
-              Konforun en doğal hali: %100 organik bambu lifinden üretilen .ki Ped,
-              hipoalerjenik ve vegandır. İnce yapısına rağmen yüksek emiciliğiyle
-              rahatlık her zaman seninle.
+              Soft Cotton & Bamboo Fiber üst yüzey ve nefes alan arka yüzeyle hassas
+              ciltler için tasarlandı. Mugwort (Pelin Otu) infüzyonlu doğal bakım
+              formülü; SLS / SLES içermez.
             </p>
 
             {/* Builder header */}
@@ -228,32 +234,34 @@ const Pedler = () => {
                         <Drops filled={p.drops} />
                       </div>
                       <p className="text-[12px] text-muted-foreground mt-0.5">{p.short}</p>
-                      <p className="text-[12.5px] font-semibold text-primary mt-1">
-                        ₺{p.pricePerBox.toLocaleString("tr-TR")}
-                        <span className="text-[11px] font-medium text-muted-foreground ml-1">
-                          / {p.perBox} adet
-                        </span>
+                      <p className="text-[11.5px] font-medium text-primary/70 mt-1">
+                        {p.size} · {p.perBox} adet / paket
                       </p>
                     </div>
-                    <div className="shrink-0 flex items-center gap-1 bg-background border border-border rounded-full p-1">
-                      <button
-                        onClick={() => setQty(p.id, qty - p.perBox)}
-                        disabled={qty === 0}
-                        aria-label={`${p.name} azalt`}
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                      >
-                        <Minus className="w-3.5 h-3.5" />
-                      </button>
-                      <span className="min-w-[28px] text-center text-[14px] font-bold text-primary tabular-nums">
-                        {qty}
+                    <div className="shrink-0 flex flex-col items-end gap-1">
+                      <span className="text-[11px] font-medium text-muted-foreground">
+                        +{p.perBox} adet
                       </span>
-                      <button
-                        onClick={() => setQty(p.id, qty + p.perBox)}
-                        aria-label={`${p.name} arttır`}
-                        className="w-8 h-8 rounded-full flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary-medium transition-colors"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1">
+                        <button
+                          onClick={() => setQty(p.id, qty - p.perBox)}
+                          disabled={qty === 0}
+                          aria-label={`${p.name} azalt`}
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="min-w-[28px] text-center text-[14px] font-bold text-primary tabular-nums">
+                          {qty}
+                        </span>
+                        <button
+                          onClick={() => setQty(p.id, qty + p.perBox)}
+                          aria-label={`${p.name} arttır`}
+                          className="w-8 h-8 rounded-full flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary-medium transition-colors"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
@@ -300,19 +308,14 @@ const Pedler = () => {
                 </button>
               </div>
 
-              <div className="mt-4 flex items-center justify-between rounded-xl bg-card px-4 py-3">
-                <span className="text-[13px] text-muted-foreground">Abonelik fiyatı</span>
-                <div className="flex items-baseline gap-2">
-                  {subscribe && totals.subtotal > 0 && (
-                    <span className="text-[13px] line-through text-muted-foreground">
-                      {totals.subtotal.toLocaleString("tr-TR")}₺
-                    </span>
-                  )}
-                  <span className="text-[18px] font-extrabold text-primary">
-                    {totals.discounted.toLocaleString("tr-TR", { maximumFractionDigits: 0 })}₺
+              {totals.totalUnits > 0 && (
+                <div className="mt-4 flex items-center justify-between rounded-xl bg-card px-4 py-3">
+                  <span className="text-[13px] text-muted-foreground">Toplam paket</span>
+                  <span className="text-[15px] font-extrabold text-primary tabular-nums">
+                    {totals.totalPacks.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} paket · {totals.totalUnits} adet
                   </span>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* CTA */}
@@ -321,14 +324,7 @@ const Pedler = () => {
               disabled={totals.totalUnits === 0}
               className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground text-[15px] font-bold py-4 px-6 hover:bg-primary-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_28px_-12px_hsl(var(--primary)/0.5)]"
             >
-              {totals.totalUnits === 0 ? (
-                "Pedlerini Seç"
-              ) : (
-                <>
-                  Sepete Ekle ·{" "}
-                  {totals.discounted.toLocaleString("tr-TR", { maximumFractionDigits: 0 })}₺
-                </>
-              )}
+              {totals.totalUnits === 0 ? "Pedlerini Seç" : `Sepete Ekle · ${totals.totalUnits} adet`}
             </button>
 
             {/* Free shipping progress */}
@@ -336,9 +332,9 @@ const Pedler = () => {
               <div className="flex items-center justify-between text-[12px] text-muted-foreground mb-1.5">
                 <span className="flex items-center gap-1.5">
                   <Truck className="w-3.5 h-3.5 text-sage" />
-                  {totals.discounted >= FREE_SHIPPING_THRESHOLD
+                  {totals.totalUnits >= FREE_SHIPPING_THRESHOLD_UNITS
                     ? "Ücretsiz kargo kazandın 🎉"
-                    : `${(FREE_SHIPPING_THRESHOLD - totals.discounted).toLocaleString("tr-TR", { maximumFractionDigits: 0 })}₺ daha = ücretsiz kargo`}
+                    : `${FREE_SHIPPING_THRESHOLD_UNITS - totals.totalUnits} adet daha = ücretsiz kargo`}
                 </span>
                 <span className="font-semibold">
                   {Math.round(totals.shippingProgress * 100)}%
@@ -355,13 +351,13 @@ const Pedler = () => {
             {/* Trust badges */}
             <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary/80 font-medium">
               <li className="flex items-center gap-1.5">
-                <Leaf className="w-3.5 h-3.5 text-sage" /> %100 organik bambu
+                <Leaf className="w-3.5 h-3.5 text-sage" /> Mugwort infüzyonlu
               </li>
               <li className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-sage" /> Hipoalerjenik · vegan
+                <ShieldCheck className="w-3.5 h-3.5 text-sage" /> SLS / SLES içermez
               </li>
               <li className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-sage" /> Parfümsüz
+                <Sparkles className="w-3.5 h-3.5 text-sage" /> Nefes alan yapı
               </li>
             </ul>
           </div>
@@ -404,12 +400,9 @@ const Pedler = () => {
                   <p className="mt-2 text-[13.5px] text-muted-foreground leading-relaxed">
                     {p.description}
                   </p>
-                  <div className="mt-5 flex items-center justify-between">
-                    <span className="text-[14px] font-bold text-primary">
-                      ₺{p.pricePerBox.toLocaleString("tr-TR")}
-                      <span className="text-[11.5px] font-medium text-muted-foreground ml-1">
-                        / {p.perBox} adet
-                      </span>
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <span className="text-[12.5px] font-semibold text-primary/80">
+                      {p.size} · {p.perBox} adet / paket
                     </span>
                     <button
                       onClick={() => setQty(p.id, (quantities[p.id] ?? 0) + p.perBox)}
@@ -436,27 +429,28 @@ const Pedler = () => {
               Cildine layık olan ped
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-foreground/80 max-w-xl">
-              Geleneksel pedlerin aksine .ki Ped, sentetik plastik ve parfüm içermez.
-              %100 organik bambu lifi üst yüzeyiyle hassas bölgene nazikçe uyum sağlar.
+              .ki Ped, Soft Cotton & Bamboo Fiber üst yüzey ve nefes alan arka yüzeyle
+              hassas bölgene nazikçe uyum sağlar. Tüm seri Mugwort (Pelin Otu) infüzyonludur
+              ve SLS / SLES içermez.
             </p>
 
             <ul className="mt-7 space-y-4">
               {[
                 {
-                  title: "Organik bambu lifi",
-                  desc: "Yumuşak, nefes alabilen ve doğada çözünebilen üst yüzey.",
+                  title: "Mugwort (Pelin Otu) infüzyonu",
+                  desc: "Geleneksel tıbbın bilgeliğini modern konforla buluşturan doğal antibakteriyel bariyer; koku ve enfeksiyon riskine karşı korur.",
                 },
                 {
-                  title: "Hipoalerjenik & parfümsüz",
-                  desc: "Hassas ciltler için dermatolojik test edilmiş, koku önleyici kimyasal yok.",
+                  title: "Soft Cotton & Bamboo Fiber üst yüzey",
+                  desc: "Yumuşak pamuk ve bambu lifi karışımı, hassas cilde nazikçe uyum sağlar.",
                 },
                 {
-                  title: "Yüksek emicilik · ince yapı",
-                  desc: "Yoğun günlerde bile rahat kullanım için kalın değil etkin.",
+                  title: "SLS / SLES içermez",
+                  desc: "Sert sülfat bazlı kimyasallar yok — pH dengesi korunur, tahriş önlenir.",
                 },
                 {
-                  title: "Klorsuz beyazlatma",
-                  desc: "Beyazlatma için yalnızca oksijen bazlı yöntem kullanılır.",
+                  title: "Nefes alan üst & arka yüzey",
+                  desc: "Breathable yapı sayesinde gün boyu serin ve kuru kullanım hissi.",
                 },
               ].map((b) => (
                 <li key={b.title} className="flex items-start gap-3">
@@ -499,11 +493,15 @@ const Pedler = () => {
             {[
               {
                 q: ".ki Ped içeriği nedir?",
-                a: "Üst yüzey %100 organik bambu lifi, emici çekirdek selüloz ve SAP, alt taban ise nefes alabilen bitki bazlı film içerir. Parfüm, klor veya sentetik renklendirici içermez.",
+                a: "Üst yüzey Soft Cotton & Bamboo Fiber, arka yüzey ise nefes alabilen breathable yapıdadır. Tüm seri Mugwort (Pelin Otu) infüzyonludur ve SLS/SLES içermez.",
               },
               {
                 q: "Hangi pedi seçmeliyim?",
-                a: "Hafif–normal akış için Standart, normal–yoğun gün için Süper, yoğun gece akışı için Süper+ öneriyoruz. Tek paket içinde 3 farklı tipi karıştırabilirsin.",
+                a: "Hafif akıntı, lekelenme ve günlük tazelik için Günlük Ped (155 mm · 30 adet); orta yoğun menstrual akış için Gündüz Pedi (245 mm · 12 adet); yoğun gece akışı için Gece Pedi (335 mm · 8 adet). Tek paket içinde 3 farklı tipi karıştırabilirsin.",
+              },
+              {
+                q: "Pelin Otu (Mugwort) ne işe yarar?",
+                a: "Geleneksel tıpta kullanılan Pelin Otu, doğal antibakteriyel bariyeri sayesinde koku ve enfeksiyon riskine karşı koruma sağlar; cildin doğal pH dengesini destekler.",
               },
               {
                 q: "Aboneliği nasıl yönetirim?",
@@ -512,10 +510,6 @@ const Pedler = () => {
               {
                 q: "Kargo ne kadar sürer?",
                 a: "Hafta içi 16:00'a kadar verilen siparişler aynı gün kargolanır. 1–3 iş günü içinde kapına teslim.",
-              },
-              {
-                q: "750₺ üzeri kargo gerçekten ücretsiz mi?",
-                a: "Evet, sepet tutarın 750₺'yi geçtiğinde kargo ücretsizdir — abonelikte de aynı kural geçerli.",
               },
             ].map((f, i) => {
               const open = openFaq === i;
