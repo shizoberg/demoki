@@ -182,8 +182,8 @@ const CATEGORIES: {
   {
     key: "ped",
     label: "Pedler",
-    description: "Organik pamuk üst yüzey, parfümsüz, dermatolojik test edilmiş.",
-    hint: "Çoğu kullanıcı 1 Günlük, 1 Gündüz ve 1 Gece Ped tercih ediyor.",
+    description: "Organik pamuk üst yüzey, parfümsüz, dermatolojik test edilmiş. Her tıklamada 10 adet eklenir.",
+    hint: "Çoğu kullanıcı 10 Günlük, 10 Gündüz ve 10 Gece Ped tercih ediyor.",
   },
   {
     key: "supplement",
