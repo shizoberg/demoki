@@ -319,7 +319,7 @@ const PaketOlustur = () => {
             </div>
 
             <div className="space-y-4">
-              {CATEGORIES.map((cat) => {
+              {CATEGORIES.filter((cat) => cat.key === activeTab).map((cat) => {
                 const items = CATALOG.filter((c) => c.category === cat.key);
                 const isOpen = openCategories[cat.key];
                 return (
