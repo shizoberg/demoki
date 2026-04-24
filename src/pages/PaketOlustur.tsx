@@ -295,8 +295,6 @@ const PaketOlustur = () => {
                       onClick={() => {
                         setActiveTab(cat.key);
                         setOpenCategories((o) => ({ ...o, [cat.key]: true }));
-                        const el = document.getElementById(`cat-${cat.key}`);
-                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                       }}
                       className={`relative shrink-0 text-[13px] font-semibold py-2.5 px-4 rounded-full transition-all border ${
                         isActive
@@ -321,7 +319,7 @@ const PaketOlustur = () => {
             </div>
 
             <div className="space-y-4">
-              {CATEGORIES.map((cat) => {
+              {CATEGORIES.filter((cat) => cat.key === activeTab).map((cat) => {
                 const items = CATALOG.filter((c) => c.category === cat.key);
                 const isOpen = openCategories[cat.key];
                 return (
