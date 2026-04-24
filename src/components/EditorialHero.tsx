@@ -31,7 +31,7 @@ const slides: Slide[] = [
     description:
       "Şişkinlik, kas/sinir gerilimleri ve ruh hali dalgalanmalarına karşı geliştirilen .ki Balance — Vitex, Magnezyum Bisglisinat, B6 ve Çinko ile günlük döngü desteği.",
     primaryCta: { label: ".ki Balance'ı incele", href: "#k5Product" },
-    secondaryCta: { label: "Paketini oluştur", href: "#k5Collection" },
+    secondaryCta: { label: "Paketini oluştur", href: "/paket-olustur" },
     image: heroImage,
     imageAlt: ".ki Balance kullanan kadın",
     imageBg: "bg-rose-light",
@@ -50,7 +50,7 @@ const slides: Slide[] = [
     description:
       "Organik pamuk üst yüzeyli, parfümsüz ve nefes alabilen .ki Sanitary Pads — hassas ciltler için dermatolojik test edilmiş, gündüz–gece tüm akış seviyelerine uygun koruma.",
     primaryCta: { label: "Pedleri keşfet", href: "#k5Collection" },
-    secondaryCta: { label: "Kendi paketini oluştur", href: "#k5Collection" },
+    secondaryCta: { label: "Kendi paketini oluştur", href: "/paket-olustur" },
     image: padsImage,
     imageAlt: ".ki Sanitary Pads kutuları ile bornozlu kadın",
     imageBg: "bg-sage-light",
@@ -69,7 +69,7 @@ const slides: Slide[] = [
     description:
       "Sıcak basmaları, gece terlemeleri ve ruh hali dalgalanmaları için geliştirilen .ki Menopause — Bor, Genistein ve Black Cohosh ile peri-menopoz ve menopoz döneminde günlük doğal destek.",
     primaryCta: { label: "Change Is Good'u incele", href: "#k5Product" },
-    secondaryCta: { label: "Paketini oluştur", href: "#k5Collection" },
+    secondaryCta: { label: "Paketini oluştur", href: "/paket-olustur" },
     image: menopauseImage,
     imageAlt: ".ki Menopause kullanan kadın",
     imageBg: "bg-cream",

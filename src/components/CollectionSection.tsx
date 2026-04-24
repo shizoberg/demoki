@@ -60,7 +60,7 @@ const CollectionSection = () => {
           </h2>
 
           <a
-            href="#k5Product"
+            href="/paket-olustur"
             className="hidden sm:inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
             Kendine özel paket oluştur
@@ -133,7 +133,7 @@ const CollectionSection = () => {
         {/* Mobile CTA */}
         <div className="mt-6 sm:hidden flex justify-center">
           <a
-            href="#k5Product"
+            href="/paket-olustur"
             className="inline-flex items-center justify-center whitespace-nowrap border border-primary/80 text-primary text-[13px] font-semibold py-2.5 px-5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
             Kendine özel paket oluştur

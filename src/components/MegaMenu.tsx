@@ -206,7 +206,7 @@ const productsColumns: ColumnGroup[] = [
 ];
 
 const productsFeatures: FeatureCard[] = [
-  { label: ".ki Paketleri", image: packPads, href: "#k5Product" },
+  { label: ".ki Paketleri", image: packPads, href: "/paket-olustur" },
   { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
 ];
 
