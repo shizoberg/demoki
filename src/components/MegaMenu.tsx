@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import packPads from "@/assets/pack-pads.webp";
 import packSachet from "@/assets/pack-sachet.webp";
 import packSpray from "@/assets/pack-spray.webp";
