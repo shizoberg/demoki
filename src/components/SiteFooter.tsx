@@ -5,8 +5,8 @@ import paymentLogos from "@/assets/payment-logos.webp";
 import regliniCizBg from "@/assets/reglini-ciz-bg.webp";
 
 const productsCol1 = [
-  { label: "Günlük Ped", href: "#" },
-  { label: "Gece Ped", href: "#" },
+  { label: "Günlük Ped", href: "/pedler" },
+  { label: "Gece Ped", href: "/pedler" },
   { label: ".ki Change · Kapsül", href: "#" },
   { label: "Bakım Jeli · Daily", href: "#" },
   { label: "Bakım Jeli · Flow", href: "#" },
@@ -14,7 +14,7 @@ const productsCol1 = [
 ];
 
 const productsCol2 = [
-  { label: "Gündüz Ped", href: "#" },
+  { label: "Gündüz Ped", href: "/pedler" },
   { label: ".ki Balance · Saşe", href: "#" },
   { label: "Cycle Care Yağı · 10 ml", href: "#" },
   { label: "Bakım Jeli · Sens", href: "#" },
