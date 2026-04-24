@@ -258,17 +258,18 @@ const PaketOlustur = () => {
       {/* Hero */}
       <section className="border-b border-border/60">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 py-10 sm:py-14 lg:py-16">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
             <div className="max-w-2xl">
               <h1 className="font-display font-medium text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight text-primary">
                 Paketini Oluştur
               </h1>
               <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-muted-foreground">
-                İhtiyacına göre Balance, Change, Ped ve ritüel ürünlerini birleştir. 2 ayda bir kapına gelsin —
-                istediğin zaman değiştir veya durdur.
+                İhtiyacına göre Balance, Change, Ped ve ritüel ürünlerini birleştir.
+                <br />
+                2 ayda bir kapına gelsin — istediğin zaman değiştir veya durdur.
               </p>
             </div>
-            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[12.5px] text-primary/80 font-medium">
+            <ul className="flex flex-wrap lg:justify-end gap-x-6 gap-y-2 text-[12.5px] text-primary/80 font-medium lg:pt-3">
               <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-sage" /> İptal yok, esnek abonelik</li>
               <li className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-sage" /> 750₺ üzeri ücretsiz kargo</li>
               <li className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-sage" /> Dermatolojik test edilmiş</li>
