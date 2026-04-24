@@ -214,7 +214,7 @@ const PaketOlustur = () => {
   const [quantities, setQuantities] = useState<Record<ProductId, number>>({} as Record<ProductId, number>);
   const [openCategories, setOpenCategories] = useState<Record<Category, boolean>>({
     ped: true,
-    supplement: true,
+    supplement: false,
     gel: false,
     ritual: false,
   });
@@ -287,7 +287,10 @@ const PaketOlustur = () => {
             <div className="-mx-5 sm:-mx-8 lg:mx-0 mb-6">
               <div className="flex gap-1 overflow-x-auto hide-scrollbar px-5 sm:px-8 lg:px-0 py-3 lg:py-0 border-b border-border/60 lg:border-0">
                 <button
-                  onClick={() => setActiveTab(null)}
+                  onClick={() => {
+                    setActiveTab(null);
+                    setOpenCategories((o) => ({ ...o, ped: true }));
+                  }}
                   className={`relative shrink-0 text-[13px] font-semibold py-2.5 px-4 rounded-full transition-all border ${
                     activeTab === null
                       ? "bg-primary text-primary-foreground border-primary"
