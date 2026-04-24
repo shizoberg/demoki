@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Balance from "./pages/Balance.tsx";
 import PaketOlustur from "./pages/PaketOlustur.tsx";
+import Pedler from "./pages/Pedler.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { useCartSync } from "@/hooks/useCartSync";
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/" element={<Balance />} />
             <Route path="/balance" element={<Balance />} />
             <Route path="/paket-olustur" element={<PaketOlustur />} />
+            <Route path="/pedler" element={<Pedler />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
