@@ -318,18 +318,6 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
             ))}
           </div>
         </div>
-
-        {/* Bottom row */}
-        <div className="mt-8 pt-6 border-t border-border/60 flex items-center justify-between gap-4">
-          <a
-            href="#"
-            onClick={onClose}
-            className="inline-flex items-center gap-2 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity"
-          >
-            Anlaşmalı Eczanelerimiz
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
       </div>
     </div>
   );
