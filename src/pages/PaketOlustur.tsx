@@ -218,7 +218,7 @@ const PaketOlustur = () => {
     gel: false,
     ritual: false,
   });
-  const [activeTab, setActiveTab] = useState<Category>("ped");
+  const [activeTab, setActiveTab] = useState<Category | null>(null);
 
   const setQty = (id: ProductId, next: number) => {
     setQuantities((q) => {
