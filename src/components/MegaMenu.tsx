@@ -249,32 +249,43 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8 py-10">
         <div className="grid grid-cols-12 gap-8">
           {/* Columns */}
-          <div className="col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-8">
-            {columns.map((group, gIdx) => (
-              <div key={gIdx} className="flex flex-col gap-8">
-                {group.map((col) => (
-                  <div key={col.title}>
-                    <h3 className="text-[15px] font-bold text-primary mb-5">{col.title}</h3>
-                    <ul className="flex flex-col gap-4">
-                      {col.items.map((item) => (
-                        <li key={item.label}>
-                          <a
-                            href={item.href}
-                            onClick={onClose}
-                            className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
-                          >
-                            <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
-                              <Icon name={item.icon} />
-                            </span>
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ))}
+          <div className="col-span-12 lg:col-span-7 flex flex-col">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-8">
+              {columns.map((group, gIdx) => (
+                <div key={gIdx} className="flex flex-col gap-8">
+                  {group.map((col) => (
+                    <div key={col.title}>
+                      <h3 className="text-[15px] font-bold text-primary mb-5">{col.title}</h3>
+                      <ul className="flex flex-col gap-4">
+                        {col.items.map((item) => (
+                          <li key={item.label}>
+                            <a
+                              href={item.href}
+                              onClick={onClose}
+                              className="group flex items-center gap-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
+                            >
+                              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors">
+                                <Icon name={item.icon} />
+                              </span>
+                              {item.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#"
+              onClick={onClose}
+              className="mt-8 inline-flex items-center gap-2 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity self-start"
+            >
+              Anlaşmalı Eczanelerimiz
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
           {/* Feature cards */}
@@ -306,18 +317,6 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
               </a>
             ))}
           </div>
-        </div>
-
-        {/* Bottom row */}
-        <div className="mt-8 pt-6 border-t border-border/60 flex items-center justify-between gap-4">
-          <a
-            href="#"
-            onClick={onClose}
-            className="inline-flex items-center gap-2 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity"
-          >
-            Anlaşmalı Eczanelerimiz
-            <ArrowRight className="w-4 h-4" />
-          </a>
         </div>
       </div>
     </div>
