@@ -308,19 +308,14 @@ const Pedler = () => {
                 </button>
               </div>
 
-              <div className="mt-4 flex items-center justify-between rounded-xl bg-card px-4 py-3">
-                <span className="text-[13px] text-muted-foreground">Abonelik fiyatı</span>
-                <div className="flex items-baseline gap-2">
-                  {subscribe && totals.subtotal > 0 && (
-                    <span className="text-[13px] line-through text-muted-foreground">
-                      {totals.subtotal.toLocaleString("tr-TR")}₺
-                    </span>
-                  )}
-                  <span className="text-[18px] font-extrabold text-primary">
-                    {totals.discounted.toLocaleString("tr-TR", { maximumFractionDigits: 0 })}₺
+              {totals.totalUnits > 0 && (
+                <div className="mt-4 flex items-center justify-between rounded-xl bg-card px-4 py-3">
+                  <span className="text-[13px] text-muted-foreground">Toplam paket</span>
+                  <span className="text-[15px] font-extrabold text-primary tabular-nums">
+                    {totals.totalPacks.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} paket · {totals.totalUnits} adet
                   </span>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* CTA */}
@@ -329,14 +324,7 @@ const Pedler = () => {
               disabled={totals.totalUnits === 0}
               className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground text-[15px] font-bold py-4 px-6 hover:bg-primary-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_28px_-12px_hsl(var(--primary)/0.5)]"
             >
-              {totals.totalUnits === 0 ? (
-                "Pedlerini Seç"
-              ) : (
-                <>
-                  Sepete Ekle ·{" "}
-                  {totals.discounted.toLocaleString("tr-TR", { maximumFractionDigits: 0 })}₺
-                </>
-              )}
+              {totals.totalUnits === 0 ? "Pedlerini Seç" : `Sepete Ekle · ${totals.totalUnits} adet`}
             </button>
 
             {/* Free shipping progress */}
@@ -344,9 +332,9 @@ const Pedler = () => {
               <div className="flex items-center justify-between text-[12px] text-muted-foreground mb-1.5">
                 <span className="flex items-center gap-1.5">
                   <Truck className="w-3.5 h-3.5 text-sage" />
-                  {totals.discounted >= FREE_SHIPPING_THRESHOLD
+                  {totals.totalUnits >= FREE_SHIPPING_THRESHOLD_UNITS
                     ? "Ücretsiz kargo kazandın 🎉"
-                    : `${(FREE_SHIPPING_THRESHOLD - totals.discounted).toLocaleString("tr-TR", { maximumFractionDigits: 0 })}₺ daha = ücretsiz kargo`}
+                    : `${FREE_SHIPPING_THRESHOLD_UNITS - totals.totalUnits} adet daha = ücretsiz kargo`}
                 </span>
                 <span className="font-semibold">
                   {Math.round(totals.shippingProgress * 100)}%
@@ -412,12 +400,9 @@ const Pedler = () => {
                   <p className="mt-2 text-[13.5px] text-muted-foreground leading-relaxed">
                     {p.description}
                   </p>
-                  <div className="mt-5 flex items-center justify-between">
-                    <span className="text-[14px] font-bold text-primary">
-                      ₺{p.pricePerBox.toLocaleString("tr-TR")}
-                      <span className="text-[11.5px] font-medium text-muted-foreground ml-1">
-                        / {p.perBox} adet
-                      </span>
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <span className="text-[12.5px] font-semibold text-primary/80">
+                      {p.size} · {p.perBox} adet / paket
                     </span>
                     <button
                       onClick={() => setQty(p.id, (quantities[p.id] ?? 0) + p.perBox)}
