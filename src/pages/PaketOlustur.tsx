@@ -214,7 +214,7 @@ const PaketOlustur = () => {
   const [quantities, setQuantities] = useState<Record<ProductId, number>>({} as Record<ProductId, number>);
   const [openCategories, setOpenCategories] = useState<Record<Category, boolean>>({
     ped: true,
-    supplement: true,
+    supplement: false,
     gel: false,
     ritual: false,
   });
