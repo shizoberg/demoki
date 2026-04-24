@@ -129,17 +129,8 @@ const Pedler = () => {
       <AnnouncementBar />
       <SiteNav />
 
-      {/* Breadcrumb */}
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8 pt-6">
-        <nav className="text-[12.5px] text-muted-foreground" aria-label="Breadcrumb">
-          <a href="/" className="hover:text-primary transition-colors">Anasayfa</a>
-          <span className="mx-2 opacity-50">/</span>
-          <span className="text-primary font-medium">.ki Ped</span>
-        </nav>
-      </div>
-
       {/* Hero / Product top */}
-      <section className="max-w-[1240px] mx-auto px-5 sm:px-8 pt-6 pb-10 lg:pb-14">
+      <section className="max-w-[1240px] mx-auto px-5 sm:px-8 pt-8 lg:pt-12 pb-10 lg:pb-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Gallery */}
           <div className="k5-reveal">
@@ -302,8 +293,8 @@ const Pedler = () => {
                   }`}
                 >
                   <span
-                    className={`absolute top-0.5 w-6 h-6 rounded-full bg-card shadow-md transition-transform ${
-                      subscribe ? "translate-x-[22px]" : "translate-x-0.5"
+                    className={`absolute top-1/2 -translate-y-1/2 left-0.5 w-6 h-6 rounded-full bg-card shadow-md transition-transform ${
+                      subscribe ? "translate-x-[20px]" : "translate-x-0"
                     }`}
                   />
                 </button>
