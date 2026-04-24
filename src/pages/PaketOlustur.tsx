@@ -283,7 +283,7 @@ const PaketOlustur = () => {
           {/* Left: Categories */}
           <div>
             {/* Tabs */}
-            <div className="sticky top-14 z-20 -mx-5 sm:-mx-8 lg:mx-0 mb-6 bg-background/95 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-0">
+            <div className="-mx-5 sm:-mx-8 lg:mx-0 mb-6">
               <div className="flex gap-1 overflow-x-auto hide-scrollbar px-5 sm:px-8 lg:px-0 py-3 lg:py-0 border-b border-border/60 lg:border-0">
                 {CATEGORIES.map((cat) => {
                   const count = tabsCount(cat.key);
