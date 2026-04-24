@@ -21,59 +21,66 @@ import packPads from "@/assets/pack-pads.webp";
 
 /* ---------------- Types & catalog ---------------- */
 
-type PadId = "standart" | "super" | "super-plus";
+type PadId = "gunluk" | "gunduz" | "gece";
 
 interface PadVariant {
   id: PadId;
   name: string;
+  fullName: string;
   short: string;
   description: string;
   drops: 1 | 2 | 3 | 4;
-  pricePerBox: number;
-  perBox: number; // adet/kutu
+  size: string; // örn. "155 mm"
+  perBox: number; // paket başına adet
+  material: string;
   image: string;
   badge?: string;
 }
 
 const PADS: PadVariant[] = [
   {
-    id: "standart",
-    name: "Standart Ped",
-    short: "Hafif–normal akış",
+    id: "gunluk",
+    name: "Günlük Ped",
+    fullName: ".ki Günlük Ped (Panty Liner)",
+    short: "Hafif akıntı · günlük tazelik",
     description:
-      "Günlük kullanıma uygun, ince yapısıyla nefes alabilen koruma. İlk günler ve akış geçişleri için ideal.",
-    drops: 2,
-    pricePerBox: 79,
-    perBox: 10,
+      "Hassas ciltler için tasarlanmış ultra ince günlük ped. Hafif akıntılar, lekelenmeler veya ekstra tazelik ihtiyacı için ideal. Pelin Otu ekstresi ile doğal antibakteriyel koruma ve koku kontrolü; cildin doğal pH dengesini korurken nefes alan dokusuyla tahrişi önler.",
+    drops: 1,
+    size: "155 mm",
+    perBox: 30,
+    material: "Soft Cotton & Bamboo Fiber üst yüzey, breathable arka yüzey",
     image: bentoPads,
   },
   {
-    id: "super",
-    name: "Süper Ped",
-    short: "Normal–yoğun akış",
+    id: "gunduz",
+    name: "Gündüz Pedi",
+    fullName: ".ki Gündüz Pedi (Sanitary Pad — Day)",
+    short: "Orta yoğun akış · gündüz koruması",
     description:
-      "Yoğun gün koruması için ekstra emiciliğe sahip yapı. Aktif gün boyu rahat ve sızdırmaz koruma.",
+      "Menstrual dönemdeki orta yoğunluktaki akıntılar için tasarlanmış. Gelişmiş emilim teknolojisiyle güçlendirilmiş süper emici katman, günün en hareketli anlarında dahi yüksek koruma sağlar. Pelin Otu özleri doğal antibakteriyel bariyeri ile koku ve enfeksiyon riskine karşı korur; ergonomik tasarımıyla varlığını unutturur.",
     drops: 3,
-    pricePerBox: 95,
-    perBox: 10,
+    size: "245 mm",
+    perBox: 12,
+    material: "Soft Cotton & Bamboo Fiber üst yüzey, breathable arka yüzey",
     badge: "EN POPÜLER",
     image: packPads,
   },
   {
-    id: "super-plus",
-    name: "Süper+ Ped",
-    short: "Yoğun gece akışı",
+    id: "gece",
+    name: "Gece Pedi",
+    fullName: ".ki Gece Pedi (Sanitary Pad — Night)",
+    short: "Yoğun gece akışı · uzun koruma",
     description:
-      "Uzun gece koruması için maksimum emicilik ve daha geniş arka koruma alanı.",
+      "Yoğun akıntılar ve kesintisiz gece uykusu için tasarlanmış. 335 mm ekstra uzun yapısı ve gelişmiş emilim teknolojisiyle sabaha kadar tam koruma vadeder. Genişletilmiş arka tasarımı uyku sırasındaki sızıntıları engeller; Pelin Otu özlerinin rahatlatıcı etkisi en zorlu gecelerde dahi konforu sürdürür.",
     drops: 4,
-    pricePerBox: 125,
-    perBox: 10,
+    size: "335 mm",
+    perBox: 8,
+    material: "Soft Cotton & Bamboo Fiber üst yüzey, breathable arka yüzey",
     image: bentoPads,
   },
 ];
 
-const FREE_SHIPPING_THRESHOLD = 750;
-const SUBSCRIPTION_DISCOUNT = 0.1;
+const FREE_SHIPPING_THRESHOLD_UNITS = 30; // 30 adet üzeri ücretsiz kargo (gösterim amaçlı)
 
 const Drops = ({ filled, total = 4 }: { filled: number; total?: number }) => (
   <span className="inline-flex items-center gap-0.5" aria-label={`${filled}/${total} emicilik`}>
