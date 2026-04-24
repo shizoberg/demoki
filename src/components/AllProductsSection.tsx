@@ -24,6 +24,7 @@ type Tile = {
   row: 1 | 2;
   /** tailwind object-position class to keep product centred when cropped */
   position?: string;
+  href?: string;
 };
 
 /* Category icons — pulled from MegaMenu vocabulary (pill, flower, drop, leaf) */
@@ -60,7 +61,7 @@ const categoryIcon = (cat: CategoryKey, className: string) => {
 };
 
 const tiles: Tile[] = [
-  { name: "Pedler", subtitle: "Günlük · Gündüz · Gece", image: bentoPads, text: "text-white", category: "ped", col: 2, row: 2, position: "object-center" },
+  { name: "Pedler", subtitle: "Günlük · Gündüz · Gece", image: bentoPads, text: "text-white", category: "ped", col: 2, row: 2, position: "object-center", href: "/pedler" },
   { name: ".ki Balance", subtitle: "Regl döngüsü · saşe", image: bentoBalance, text: "text-white", category: "supplement", col: 2, row: 1, position: "object-right" },
   { name: "Bakım Jelleri", subtitle: "Daily · Sens · Flow · 50+", image: bentoJeller, text: "text-white", category: "intim", col: 2, row: 1, position: "object-center" },
   { name: ".ki Change", subtitle: "Menopoz · kapsül", image: bentoChange, text: "text-white", category: "supplement", col: 2, row: 1, position: "object-right" },
@@ -81,7 +82,7 @@ const rowMap: Record<Tile["row"], string> = {
 
 const TileCard = ({ tile }: { tile: Tile }) => (
   <a
-    href="#"
+    href={tile.href ?? "#"}
     className={`group relative overflow-hidden rounded-2xl ${tile.text} ${colMap[tile.col]} ${rowMap[tile.row]}
       col-span-2
       p-4 md:p-5
