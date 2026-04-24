@@ -188,9 +188,9 @@ const Pedler = () => {
             </div>
 
             <p className="mt-5 text-[15px] leading-relaxed text-foreground/80">
-              Konforun en doğal hali: %100 organik bambu lifinden üretilen .ki Ped,
-              hipoalerjenik ve vegandır. İnce yapısına rağmen yüksek emiciliğiyle
-              rahatlık her zaman seninle.
+              Soft Cotton & Bamboo Fiber üst yüzey ve nefes alan arka yüzeyle hassas
+              ciltler için tasarlandı. Mugwort (Pelin Otu) infüzyonlu doğal bakım
+              formülü; SLS / SLES içermez.
             </p>
 
             {/* Builder header */}
@@ -351,13 +351,13 @@ const Pedler = () => {
             {/* Trust badges */}
             <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary/80 font-medium">
               <li className="flex items-center gap-1.5">
-                <Leaf className="w-3.5 h-3.5 text-sage" /> %100 organik bambu
+                <Leaf className="w-3.5 h-3.5 text-sage" /> Mugwort infüzyonlu
               </li>
               <li className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-sage" /> Hipoalerjenik · vegan
+                <ShieldCheck className="w-3.5 h-3.5 text-sage" /> SLS / SLES içermez
               </li>
               <li className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-sage" /> Parfümsüz
+                <Sparkles className="w-3.5 h-3.5 text-sage" /> Nefes alan yapı
               </li>
             </ul>
           </div>
@@ -429,8 +429,9 @@ const Pedler = () => {
               Cildine layık olan ped
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-foreground/80 max-w-xl">
-              Geleneksel pedlerin aksine .ki Ped, sentetik plastik ve parfüm içermez.
-              %100 organik bambu lifi üst yüzeyiyle hassas bölgene nazikçe uyum sağlar.
+              .ki Ped, Soft Cotton & Bamboo Fiber üst yüzey ve nefes alan arka yüzeyle
+              hassas bölgene nazikçe uyum sağlar. Tüm seri Mugwort (Pelin Otu) infüzyonludur
+              ve SLS / SLES içermez.
             </p>
 
             <ul className="mt-7 space-y-4">
