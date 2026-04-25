@@ -65,12 +65,12 @@ const CollectionSection = () => {
             href="/paket-olustur"
             className="relative shrink-0 inline-flex items-center justify-center whitespace-nowrap border border-primary/80 bg-background text-primary text-[12px] sm:text-[13px] font-semibold py-2 px-[28px] sm:py-2.5 sm:px-[29px] rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
-            {/* Florence — sadece mobilde görünür, butona anchor */}
+            {/* Florence — mobil + tablet, butona anchor */}
             <img
               src={florenceOnButton}
               alt=""
               aria-hidden="true"
-              className="sm:hidden pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[-10%] w-[115%] h-auto z-10"
+              className="lg:hidden pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[-10%] w-[115%] h-auto z-10"
               loading="lazy"
             />
             <span className="relative sm:hidden">Tüm Paketler</span>
