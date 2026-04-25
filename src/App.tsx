@@ -9,6 +9,7 @@ import PaketOlustur from "./pages/PaketOlustur.tsx";
 import Pedler from "./pages/Pedler.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { useCartSync } from "@/hooks/useCartSync";
+import MobileTabBar from "@/components/MobileTabBar";
 
 const queryClient = new QueryClient();
 
