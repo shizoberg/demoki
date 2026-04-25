@@ -6,13 +6,107 @@ import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
-import bentoPads from "@/assets/bento-pads.webp";
-import bentoBalance from "@/assets/bento-balance.webp";
-import bentoJeller from "@/assets/bento-jeller.webp";
-import bentoChange from "@/assets/bento-change.webp";
-import bentoSprey from "@/assets/bento-sprey.webp";
-import bentoYag from "@/assets/bento-yag.webp";
 import userAvatar from "@/assets/user-avatar.webp";
+
+/* Inline icons matching desktop MegaMenu vocabulary */
+type ProductIconName =
+  | "padDay"
+  | "padLiner"
+  | "padNight"
+  | "sachet"
+  | "capsule"
+  | "oilBottle"
+  | "gelDaily"
+  | "gelSens"
+  | "gelFlow"
+  | "gel50"
+  | "spray";
+
+const ProductIcon = ({ name }: { name: ProductIconName }) => {
+  const cn = "w-[18px] h-[18px] text-primary";
+  switch (name) {
+    case "padDay":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="7" y="3" width="10" height="18" rx="5" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    case "padLiner":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="9" y="3" width="6" height="18" rx="3" />
+          <path d="M12 8v8" />
+        </svg>
+      );
+    case "padNight":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
+        </svg>
+      );
+    case "sachet":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M6 6h12v14H6z" />
+          <path d="M8 6l1-2h6l1 2" />
+          <path d="M9 12h6" />
+        </svg>
+      );
+    case "capsule":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-25 12 12)" />
+          <path d="M12 6l3 6" transform="rotate(-25 12 12)" />
+        </svg>
+      );
+    case "oilBottle":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="9" y="2" width="6" height="3" rx="0.5" />
+          <path d="M8 5h8l-1 3a4 4 0 0 1 2 3v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-8a4 4 0 0 1 2-3l-1-3z" />
+        </svg>
+      );
+    case "gelDaily":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
+        </svg>
+      );
+    case "gelSens":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" />
+        </svg>
+      );
+    case "gelFlow":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M3 8c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+          <path d="M3 14c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+          <path d="M3 20c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+        </svg>
+      );
+    case "gel50":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="2" />
+          <path d="M12 10c0-3 2-5 4-5 0 3-1 5-4 5z" />
+          <path d="M12 14c0 3-2 5-4 5 0-3 1-5 4-5z" />
+          <path d="M10 12c-3 0-5-2-5-4 3 0 5 1 5 4z" />
+          <path d="M14 12c3 0 5 2 5 4-3 0-5-1-5-4z" />
+        </svg>
+      );
+    case "spray":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="8" y="9" width="8" height="12" rx="1.5" />
+          <path d="M10 9V5h4v4M16 4h2M16 7h3M19 5h-1" />
+        </svg>
+      );
+  }
+};
 
 type SheetKey = "about" | "store" | "account" | null;
 
@@ -156,7 +250,7 @@ const MobileTabBar = () => {
 
 /* ---------- Sheets ---------- */
 
-type ListItem = { label: string; href: string };
+type ListItem = { label: string; href: string; icon?: ProductIconName };
 type ListGroup = { title: string; items: ListItem[] };
 type FeatureCard = { label: string; image: string; href: string; badge?: string };
 
@@ -164,18 +258,21 @@ const FlatList = ({ groups, onNavigate }: { groups: ListGroup[]; onNavigate: () 
   <div className="flex flex-col gap-7">
     {groups.map((g) => (
       <div key={g.title}>
-        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-1">
-          {g.title}
-        </h3>
-        <ul className="flex flex-col divide-y divide-border/50">
+        <h3 className="text-[15px] font-bold text-primary mb-2">{g.title}</h3>
+        <ul className="flex flex-col">
           {g.items.map((it) => (
             <li key={it.label}>
               <a
                 href={it.href}
                 onClick={onNavigate}
-                className="flex items-center justify-between py-3.5 text-[15px] text-primary hover:opacity-70 transition-opacity"
+                className="group flex items-center gap-3 py-3 text-[15px] text-primary hover:opacity-70 transition-opacity"
               >
-                <span>{it.label}</span>
+                {it.icon && (
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors shrink-0">
+                    <ProductIcon name={it.icon} />
+                  </span>
+                )}
+                <span className="flex-1">{it.label}</span>
                 <ChevronRight className="w-4 h-4 opacity-50" />
               </a>
             </li>
@@ -259,27 +356,27 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     {
       title: "Pedler",
       items: [
-        { label: "Günlük Ped", href: "/pedler" },
-        { label: "Gece Ped", href: "/pedler" },
-        { label: "Gündüz Ped", href: "/pedler" },
+        { label: "Günlük Ped", href: "/pedler", icon: "padLiner" },
+        { label: "Gece Ped", href: "/pedler", icon: "padNight" },
+        { label: "Gündüz Ped", href: "/pedler", icon: "padDay" },
       ],
     },
     {
       title: "Takviyeler",
       items: [
-        { label: ".ki Change · Kapsül", href: "#" },
-        { label: ".ki Balance · Saşe", href: "#" },
+        { label: ".ki Change · Kapsül", href: "#", icon: "capsule" },
+        { label: ".ki Balance · Saşe", href: "#", icon: "sachet" },
       ],
     },
     {
       title: "Jeller & Yağlar",
       items: [
-        { label: "Bakım Jeli · Daily", href: "#" },
-        { label: "Bakım Jeli · Flow", href: "#" },
-        { label: "Bakım Jeli · Sens", href: "#" },
-        { label: "Bakım Jeli · 50+", href: "#" },
-        { label: "Cycle Care Yağı · 10 ml", href: "#" },
-        { label: "İntim Bakım Spreyi", href: "#" },
+        { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "gel50" },
+        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "oilBottle" },
+        { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
       ],
     },
   ];
@@ -289,49 +386,9 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
   ];
 
-  // Visual product grid from AllProductsSection vocabulary
-  const products = [
-    { name: "Pedler", sub: "Günlük · Gündüz · Gece", image: bentoPads, href: "/pedler" },
-    { name: ".ki Balance", sub: "Regl döngüsü · saşe", image: bentoBalance, href: "#" },
-    { name: "Bakım Jelleri", sub: "Daily · Sens · Flow · 50+", image: bentoJeller, href: "#" },
-    { name: ".ki Change", sub: "Menopoz · kapsül", image: bentoChange, href: "#" },
-    { name: "Sprey", sub: "İntim bakım spreyi", image: bentoSprey, href: "#" },
-    { name: "Yağ", sub: "Cycle Care · 10 ml", image: bentoYag, href: "#" },
-  ];
-
   return (
     <div>
       <FeatureGrid features={heroes} onNavigate={onNavigate} />
-
-      <div className="mt-8">
-        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-3">
-          Tüm Ürünler
-        </h3>
-        <div className="grid grid-cols-2 gap-3">
-          {products.map((p) => (
-            <a
-              key={p.name}
-              href={p.href}
-              onClick={onNavigate}
-              className="rounded-xl overflow-hidden bg-secondary/40 ring-1 ring-primary/15 flex flex-col"
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="w-full h-full object-cover"
-                  draggable={false}
-                />
-              </div>
-              <div className="px-3 py-2.5">
-                <div className="text-[13px] font-bold text-primary leading-tight">{p.name}</div>
-                <div className="text-[11px] text-primary/60 mt-0.5">{p.sub}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
       <div className="mt-8">
         <FlatList groups={groups} onNavigate={onNavigate} />
       </div>
