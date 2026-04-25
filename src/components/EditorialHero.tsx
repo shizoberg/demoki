@@ -132,7 +132,7 @@ const EditorialHero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/75 pointer-events-none" />
 
         {/* Copy overlay — bottom, with horizontal padding to make room for side arrows */}
-        <div className="absolute inset-x-0 bottom-0 px-12 pt-6 pb-5">
+        <div className="absolute inset-x-0 bottom-0 px-12 pt-6 pb-2">
           <div key={slide.id} className="animate-fade-in text-white">
             <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 mb-2 [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
               {slide.eyebrow}
@@ -159,19 +159,12 @@ const EditorialHero = () => {
               </a>
             </div>
 
-            {/* Trust row */}
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[10.5px] text-white/85 font-medium [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
-              <div className="flex items-center gap-1">
-                <span className="text-star text-sm tracking-wide">★★★★★</span>
-                <span>{slide.reviewText}</span>
-              </div>
+            {/* Trust row — single line: rating + tercih */}
+            <div className="flex items-center gap-2 text-[10.5px] text-white/85 font-medium whitespace-nowrap [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+              <span className="text-star text-sm tracking-wide">★★★★★</span>
+              <span>{slide.reviewText}</span>
               <span className="w-px h-3 bg-white/40" />
               <span>{slide.trustText}</span>
-            </div>
-
-            {/* Slide counter — under copy, centered */}
-            <div className="mt-3 text-[12px] font-medium text-white/90 tabular-nums tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
-              {active + 1}/{slides.length}
             </div>
           </div>
         </div>
