@@ -146,6 +146,20 @@ const ProductIcon = ({ name }: { name: ProductIconName }) => {
           <path d="M4 6h16M4 12h16M4 18h10" />
         </svg>
       );
+    case "campus":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M2 10l10-5 10 5-10 5L2 10z" />
+          <path d="M6 12v4c0 1.5 3 3 6 3s6-1.5 6-3v-4" />
+        </svg>
+      );
+    case "building":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="4" y="3" width="16" height="18" rx="1" />
+          <path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2" />
+        </svg>
+      );
   }
 };
 
