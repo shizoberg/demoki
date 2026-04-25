@@ -25,7 +25,7 @@ const Balance = () => {
   const { data: product, isLoading } = useBalanceProduct();
 
   return (
-    <div className="pb-[72px] bg-background">
+    <div className="pb-[140px] lg:pb-[72px] bg-background">
       <ScrollProgress />
       <AnnouncementBar />
       <SiteNav />
