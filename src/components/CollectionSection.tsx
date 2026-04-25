@@ -63,14 +63,14 @@ const CollectionSection = () => {
           {/* Mobile: kompakt "Tüm Paketler" — Desktop: uzun CTA */}
           <a
             href="/paket-olustur"
-            className="relative shrink-0 inline-flex items-center justify-center whitespace-nowrap border border-primary/80 bg-background text-primary text-[12px] sm:text-[13px] font-semibold py-2 px-[19px] sm:py-2.5 sm:px-6 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
+            className="relative shrink-0 inline-flex items-center justify-center whitespace-nowrap border border-primary/80 bg-background text-primary text-[12px] sm:text-[13px] font-semibold py-2 px-[23px] sm:py-2.5 sm:px-[29px] rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
           >
             {/* Florence — anchored to button, scales with it */}
             <img
               src={florenceOnButton}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[20%] w-[115%] h-auto z-10"
+              className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[15%] w-[115%] h-auto z-10"
               loading="lazy"
             />
             <span className="relative sm:hidden">Tüm Paketler</span>
