@@ -20,7 +20,12 @@ type ProductIconName =
   | "gelSens"
   | "gelFlow"
   | "gel50"
-  | "spray";
+  | "spray"
+  | "tree"
+  | "globe"
+  | "tag"
+  | "help"
+  | "list";
 
 const ProductIcon = ({ name }: { name: ProductIconName }) => {
   const cn = "w-[18px] h-[18px] text-primary";
@@ -103,6 +108,40 @@ const ProductIcon = ({ name }: { name: ProductIconName }) => {
         <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
           <rect x="8" y="9" width="8" height="12" rx="1.5" />
           <path d="M10 9V5h4v4M16 4h2M16 7h3M19 5h-1" />
+        </svg>
+      );
+    case "tree":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M12 3c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10z" />
+          <path d="M12 14v7" />
+        </svg>
+      );
+    case "globe":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
+        </svg>
+      );
+    case "tag":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M3 12V4h8l10 10-8 8L3 12z" />
+          <circle cx="7.5" cy="7.5" r="1.2" />
+        </svg>
+      );
+    case "help":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5M12 17h.01" />
+        </svg>
+      );
+    case "list":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M4 6h16M4 12h16M4 18h10" />
         </svg>
       );
   }
@@ -321,11 +360,11 @@ const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     {
       title: "Biz Kimiz?",
       items: [
-        { label: "Neden .ki?", href: "#" },
-        { label: ".ki Nasıl Çalışır?", href: "#k5Science" },
-        { label: "Fiyat Politikası", href: "#" },
-        { label: "Sıkça Sorulan Sorular", href: "#k5Faq" },
-        { label: "Tüm Malzemeler", href: "#k5Ingredients" },
+        { label: "Neden .ki?", href: "#", icon: "tree" },
+        { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
+        { label: "Fiyat Politikası", href: "#", icon: "tag" },
+        { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
+        { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
       ],
     },
   ];
