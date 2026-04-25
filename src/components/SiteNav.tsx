@@ -106,35 +106,190 @@ const SiteNav = () => {
         <MegaMenu active={activeMenu} onClose={() => setActiveMenu(null)} />
       </div>
 
-      {/* Slide-in menu (mobile) */}
+      {/* Slide-in menu (mobile) — mega menu mantığını taşıyan accordion */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-foreground/40 lg:hidden" onClick={() => setOpen(false)}>
+        <div className="fixed inset-0 z-50 bg-foreground/50 lg:hidden animate-fade-in" onClick={() => setOpen(false)}>
           <aside
             onClick={(e) => e.stopPropagation()}
-            className="absolute left-0 top-0 h-full w-[88%] max-w-[380px] bg-background shadow-2xl p-7 animate-fade-in"
+            className="absolute left-0 top-0 h-full w-[92%] max-w-[400px] bg-background shadow-2xl flex flex-col"
           >
-            <button onClick={() => setOpen(false)} aria-label="Kapat" className="mb-8 text-primary">
-              <X className="w-5 h-5" />
-            </button>
-            <nav className="flex flex-col gap-5">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 h-14 border-b border-border/60">
+              <img src={kiLogo} alt=".ki" className="h-7 w-auto" draggable={false} />
+              <button onClick={() => setOpen(false)} aria-label="Kapat" className="text-primary">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Scrollable body */}
+            <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-6">
+              {/* Primary CTA */}
+              <a
+                href="/paket-olustur"
+                onClick={() => setOpen(false)}
+                className="flex items-center justify-center bg-primary text-primary-foreground text-[13px] font-bold py-3.5 rounded-full mb-7 hover:bg-primary-medium transition-all"
+              >
+                Kendi paketini oluştur
+              </a>
+
+              {/* Accordion sections */}
               {[
-                ["Ana Sayfa", "/balance"],
-                ["Ürün", "#k5Product"],
-                ["İçindekiler", "#k5Ingredients"],
-                ["Bilim", "#k5Science"],
-                ["Yorumlar", "#k5Reviews"],
-                ["SSS", "#k5Faq"],
-              ].map(([label, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  className="font-display text-[28px] font-medium text-primary leading-tight hover:opacity-70 transition-opacity"
-                >
-                  {label}
-                </a>
-              ))}
-            </nav>
+                {
+                  key: "products" as const,
+                  label: "Ürünler",
+                  groups: [
+                    {
+                      title: "Pedler",
+                      items: [
+                        { label: "Günlük Ped", href: "/pedler" },
+                        { label: "Gece Ped", href: "/pedler" },
+                        { label: "Gündüz Ped", href: "/pedler" },
+                      ],
+                    },
+                    {
+                      title: "Takviyeler",
+                      items: [
+                        { label: ".ki Change · Kapsül", href: "#" },
+                        { label: ".ki Balance · Saşe", href: "#" },
+                      ],
+                    },
+                    {
+                      title: "Jeller & Yağlar",
+                      items: [
+                        { label: "Bakım Jeli · Daily", href: "#" },
+                        { label: "Bakım Jeli · Flow", href: "#" },
+                        { label: "Bakım Jeli · Sens", href: "#" },
+                        { label: "Bakım Jeli · 50+", href: "#" },
+                        { label: "Cycle Care Yağı · 10 ml", href: "#" },
+                        { label: "İntim Bakım Spreyi", href: "#" },
+                      ],
+                    },
+                  ],
+                  features: [
+                    { label: ".ki Paketleri", image: packPads, href: "/paket-olustur" },
+                    { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
+                  ],
+                },
+                {
+                  key: "about" as const,
+                  label: "Biz Kimiz?",
+                  dot: true,
+                  groups: [
+                    {
+                      title: "Biz Kimiz?",
+                      items: [
+                        { label: "Neden .ki?", href: "#" },
+                        { label: ".ki Nasıl Çalışır?", href: "#k5Science" },
+                        { label: "Fiyat Politikası", href: "#" },
+                        { label: "Sıkça Sorulan Sorular", href: "#k5Faq" },
+                        { label: "Tüm Malzemeler", href: "#k5Ingredients" },
+                      ],
+                    },
+                  ],
+                  features: [
+                    { label: ".ki Kurumsal", image: packSpray, href: "#", badge: "Şirketler için" },
+                    { label: ".ki Kampüs", image: packOil, href: "#", badge: "Öğrenciler için" },
+                  ],
+                },
+              ].map((section) => {
+                const isOpen = mobileSection === section.key;
+                return (
+                  <div key={section.key} className="border-b border-border/60">
+                    <button
+                      onClick={() => setMobileSection(isOpen ? null : section.key)}
+                      className="w-full flex items-center justify-between py-4 text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="font-display text-[22px] font-medium text-primary leading-tight flex items-center gap-2">
+                        {section.label}
+                        {section.dot && <span className="w-1.5 h-1.5 rounded-full bg-rose" />}
+                      </span>
+                      <ChevronDown
+                        className={`w-5 h-5 text-primary transition-transform ${isOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    {isOpen && (
+                      <div className="pb-5 pt-1 animate-fade-in">
+                        {section.groups.map((g) => (
+                          <div key={g.title} className="mb-5 last:mb-0">
+                            <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-2.5">
+                              {g.title}
+                            </h4>
+                            <ul className="flex flex-col">
+                              {g.items.map((it) => (
+                                <li key={it.label}>
+                                  <a
+                                    href={it.href}
+                                    onClick={() => setOpen(false)}
+                                    className="flex items-center justify-between py-2 text-[14px] text-primary hover:opacity-70 transition-opacity"
+                                  >
+                                    <span>{it.label}</span>
+                                    <ChevronRight className="w-4 h-4 opacity-50" />
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+
+                        {/* Feature cards */}
+                        <div className="grid grid-cols-2 gap-3 mt-4">
+                          {section.features.map((f) => (
+                            <a
+                              key={f.label}
+                              href={f.href}
+                              onClick={() => setOpen(false)}
+                              className="relative rounded-xl overflow-hidden bg-secondary/60 ring-1 ring-primary/20 flex flex-col"
+                            >
+                              {f.badge && (
+                                <span className="absolute top-2 left-1/2 -translate-x-1/2 z-10 bg-background/95 backdrop-blur text-primary text-[9.5px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap">
+                                  {f.badge}
+                                </span>
+                              )}
+                              <div className="aspect-[4/3] bg-primary/5 overflow-hidden">
+                                <img
+                                  src={f.image}
+                                  alt={f.label}
+                                  className="w-full h-full object-cover"
+                                  draggable={false}
+                                />
+                              </div>
+                              <div className="bg-background flex items-center justify-between px-2.5 py-2">
+                                <span className="text-[12px] font-semibold text-primary">{f.label}</span>
+                                <ChevronRight className="w-3.5 h-3.5 text-primary" />
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+
+              {/* Anlaşmalı eczaneler */}
+              <a
+                href="#"
+                onClick={() => setOpen(false)}
+                className="mt-6 flex items-center justify-between py-4 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity"
+              >
+                Anlaşmalı Eczanelerimiz
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Footer: account */}
+            <div className="border-t border-border/60 px-6 py-4 flex items-center gap-3">
+              <img src={userAvatar} alt="" className="w-8 h-8 object-contain" draggable={false} />
+              <a
+                href="#"
+                onClick={() => setOpen(false)}
+                className="text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity"
+              >
+                Hesabım
+              </a>
+            </div>
           </aside>
         </div>
       )}
