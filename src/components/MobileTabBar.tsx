@@ -392,6 +392,14 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
       <div className="mt-8">
         <FlatList groups={groups} onNavigate={onNavigate} />
       </div>
+      <a
+        href="#"
+        onClick={onNavigate}
+        className="mt-8 flex items-center justify-between py-4 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity border-t border-border/60"
+      >
+        Anlaşmalı Eczanelerimiz
+        <ArrowRight className="w-4 h-4" />
+      </a>
     </div>
   );
 };
