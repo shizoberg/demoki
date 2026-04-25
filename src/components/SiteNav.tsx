@@ -12,6 +12,7 @@ import MegaMenu, { type MenuKey } from "./MegaMenu";
 const SiteNav = () => {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
+  const [mobileSection, setMobileSection] = useState<MenuKey | null>("products");
   const itemCount = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
 
   const navItems: { key: MenuKey; label: string; hasDropdown: boolean; dot?: boolean; href?: string }[] = [
