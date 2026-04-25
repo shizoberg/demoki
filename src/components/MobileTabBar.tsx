@@ -1,21 +1,26 @@
-import { useState } from "react";
-import { Sparkles, Gift, Store, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Sparkles, Gift, Store, X, ChevronRight, ArrowRight, ShoppingBag } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
+import bentoPads from "@/assets/bento-pads.webp";
+import bentoBalance from "@/assets/bento-balance.webp";
+import bentoJeller from "@/assets/bento-jeller.webp";
+import bentoChange from "@/assets/bento-change.webp";
+import bentoSprey from "@/assets/bento-sprey.webp";
+import bentoYag from "@/assets/bento-yag.webp";
 import userAvatar from "@/assets/user-avatar.webp";
 
-type SheetKey = "about" | "paket" | "store" | "account" | null;
+type SheetKey = "about" | "store" | "account" | null;
 
 type Tab = {
-  key: SheetKey | "home";
+  key: SheetKey | "home" | "paket";
   label: string;
   icon?: LucideIcon;
   image?: string;
-  href?: string;
 };
 
 const tabs: Tab[] = [
@@ -30,44 +35,54 @@ const MobileTabBar = () => {
   const [sheet, setSheet] = useState<SheetKey>(null);
   const itemCount = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
 
+  // Lock background scroll when sheet open
+  useEffect(() => {
+    if (sheet) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [sheet]);
+
+  const handleTabClick = (t: Tab) => {
+    if (t.key === "home") {
+      window.location.href = "/balance";
+    } else if (t.key === "paket") {
+      window.location.href = "/paket-olustur";
+    } else {
+      setSheet(t.key as SheetKey);
+    }
+  };
+
   return (
     <>
       {/* Bottom tab bar */}
       <nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/60 pb-[env(safe-area-inset-bottom)]"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-t border-border/60 pb-[env(safe-area-inset-bottom)]"
         aria-label="Alt menü"
       >
         <ul className="grid grid-cols-5">
           {tabs.map((t) => {
             const Icon = t.icon;
-            const isActive = t.key === "home"; // active state for current page
-            const handleClick = () => {
-              if (t.key === "home" && t.href) {
-                window.location.href = t.href;
-              } else if (t.key === "paket") {
-                window.location.href = "/paket-olustur";
-              } else if (t.key === "store") {
-                document.querySelector("#tum-urunler")?.scrollIntoView({ behavior: "smooth" });
-              } else {
-                setSheet(t.key as SheetKey);
-              }
-            };
+            const isActive =
+              (t.key === "home" && !sheet) ||
+              (t.key !== "home" && t.key !== "paket" && sheet === t.key);
             return (
               <li key={t.label}>
                 <button
-                  onClick={handleClick}
+                  onClick={() => handleTabClick(t)}
                   className="w-full flex flex-col items-center justify-center gap-1 py-2.5 transition-opacity hover:opacity-70 relative"
                 >
                   <span className="h-[28px] flex items-center justify-center">
                     {t.key === "home" ? (
-                      // Sadece dolu yuvarlak — logosuz
                       <span
                         className={`block w-[22px] h-[22px] rounded-full ${
                           isActive ? "bg-rose" : "bg-primary"
                         }`}
                       />
                     ) : t.image ? (
-                      // Avatar/png — buton içinde kalacak şekilde sınırlandırılmış crop
                       <span className="relative w-[26px] h-[26px] overflow-hidden flex items-center justify-center">
                         <img
                           src={t.image}
@@ -85,7 +100,6 @@ const MobileTabBar = () => {
                       )
                     )}
                   </span>
-                  {/* Cart badge on Mağaza */}
                   {t.key === "store" && itemCount > 0 && (
                     <span className="absolute top-1.5 right-[22%] bg-rose text-primary-foreground text-[9px] font-bold rounded-full min-w-[15px] h-[15px] px-1 flex items-center justify-center">
                       {itemCount}
@@ -105,33 +119,35 @@ const MobileTabBar = () => {
         </ul>
       </nav>
 
-      {/* Bottom sheet */}
+      {/* Fullscreen sheet — bottom nav remains visible (z-60 above this z-50) */}
       {sheet && (
         <div
-          className="lg:hidden fixed inset-0 z-50 bg-foreground/50 animate-fade-in"
-          onClick={() => setSheet(null)}
+          className="lg:hidden fixed inset-0 z-50 bg-background animate-fade-in flex flex-col"
+          role="dialog"
+          aria-modal="true"
         >
-          <aside
-            onClick={(e) => e.stopPropagation()}
-            className="absolute inset-x-0 bottom-0 bg-background rounded-t-2xl max-h-[85vh] flex flex-col shadow-2xl"
-          >
-            {/* Grabber + close */}
-            <div className="relative pt-3 pb-2 flex items-center justify-center">
-              <span className="w-10 h-1 rounded-full bg-border" />
-              <button
-                onClick={() => setSheet(null)}
-                aria-label="Kapat"
-                className="absolute right-4 top-3 text-primary"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+          {/* Header */}
+          <div className="flex items-center justify-between px-5 h-14 border-b border-border/60 shrink-0">
+            <h2 className="font-display text-[18px] font-medium text-primary">
+              {sheet === "about" && "Hakkımızda"}
+              {sheet === "store" && "Mağaza"}
+              {sheet === "account" && "Hesabım"}
+            </h2>
+            <button
+              onClick={() => setSheet(null)}
+              aria-label="Kapat"
+              className="text-primary -mr-2 p-2"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
-            <div className="flex-1 overflow-y-auto overscroll-contain px-6 pb-8">
-              {sheet === "about" && <AboutSheet onNavigate={() => setSheet(null)} />}
-              {sheet === "account" && <AccountSheet onNavigate={() => setSheet(null)} />}
-            </div>
-          </aside>
+          {/* Scrollable body — bottom padding clears the tab bar */}
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 pt-5 pb-[calc(env(safe-area-inset-bottom)+96px)]">
+            {sheet === "about" && <AboutSheet onNavigate={() => setSheet(null)} />}
+            {sheet === "store" && <StoreSheet onNavigate={() => setSheet(null)} />}
+            {sheet === "account" && <AccountSheet onNavigate={() => setSheet(null)} />}
+          </div>
         </div>
       )}
     </>
@@ -140,147 +156,95 @@ const MobileTabBar = () => {
 
 /* ---------- Sheets ---------- */
 
+type ListItem = { label: string; href: string };
+type ListGroup = { title: string; items: ListItem[] };
+type FeatureCard = { label: string; image: string; href: string; badge?: string };
+
+const FlatList = ({ groups, onNavigate }: { groups: ListGroup[]; onNavigate: () => void }) => (
+  <div className="flex flex-col gap-7">
+    {groups.map((g) => (
+      <div key={g.title}>
+        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-1">
+          {g.title}
+        </h3>
+        <ul className="flex flex-col divide-y divide-border/50">
+          {g.items.map((it) => (
+            <li key={it.label}>
+              <a
+                href={it.href}
+                onClick={onNavigate}
+                className="flex items-center justify-between py-3.5 text-[15px] text-primary hover:opacity-70 transition-opacity"
+              >
+                <span>{it.label}</span>
+                <ChevronRight className="w-4 h-4 opacity-50" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+);
+
+const FeatureGrid = ({
+  features,
+  onNavigate,
+}: {
+  features: FeatureCard[];
+  onNavigate: () => void;
+}) => (
+  <div className="grid grid-cols-2 gap-3 mt-7">
+    {features.map((f) => (
+      <a
+        key={f.label}
+        href={f.href}
+        onClick={onNavigate}
+        className="relative rounded-xl overflow-hidden bg-secondary/60 ring-1 ring-primary/20 flex flex-col"
+      >
+        {f.badge && (
+          <span className="absolute top-2 left-1/2 -translate-x-1/2 z-10 bg-background/95 backdrop-blur text-primary text-[9.5px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap">
+            {f.badge}
+          </span>
+        )}
+        <div className="aspect-[4/3] bg-primary/5 overflow-hidden">
+          <img src={f.image} alt={f.label} className="w-full h-full object-cover" draggable={false} />
+        </div>
+        <div className="bg-background flex items-center justify-between px-2.5 py-2">
+          <span className="text-[12px] font-semibold text-primary">{f.label}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-primary" />
+        </div>
+      </a>
+    ))}
+  </div>
+);
+
+/* ---------- Hakkımızda (sadece "Biz Kimiz?") ---------- */
 const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
-  const [openSection, setOpenSection] = useState<string | null>("about");
-  const sections = [
+  const groups: ListGroup[] = [
     {
-      key: "products",
-      label: "Ürünler",
-      groups: [
-        {
-          title: "Pedler",
-          items: [
-            { label: "Günlük Ped", href: "/pedler" },
-            { label: "Gece Ped", href: "/pedler" },
-            { label: "Gündüz Ped", href: "/pedler" },
-          ],
-        },
-        {
-          title: "Takviyeler",
-          items: [
-            { label: ".ki Change · Kapsül", href: "#" },
-            { label: ".ki Balance · Saşe", href: "#" },
-          ],
-        },
-        {
-          title: "Jeller & Yağlar",
-          items: [
-            { label: "Bakım Jeli · Daily", href: "#" },
-            { label: "Bakım Jeli · Flow", href: "#" },
-            { label: "Bakım Jeli · Sens", href: "#" },
-            { label: "Bakım Jeli · 50+", href: "#" },
-            { label: "Cycle Care Yağı · 10 ml", href: "#" },
-            { label: "İntim Bakım Spreyi", href: "#" },
-          ],
-        },
-      ],
-      features: [
-        { label: ".ki Paketleri", image: packPads, href: "/paket-olustur" },
-        { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
+      title: "Biz Kimiz?",
+      items: [
+        { label: "Neden .ki?", href: "#" },
+        { label: ".ki Nasıl Çalışır?", href: "#k5Science" },
+        { label: "Fiyat Politikası", href: "#" },
+        { label: "Sıkça Sorulan Sorular", href: "#k5Faq" },
+        { label: "Tüm Malzemeler", href: "#k5Ingredients" },
       ],
     },
-    {
-      key: "about",
-      label: "Biz Kimiz?",
-      groups: [
-        {
-          title: "Biz Kimiz?",
-          items: [
-            { label: "Neden .ki?", href: "#" },
-            { label: ".ki Nasıl Çalışır?", href: "#k5Science" },
-            { label: "Fiyat Politikası", href: "#" },
-            { label: "Sıkça Sorulan Sorular", href: "#k5Faq" },
-            { label: "Tüm Malzemeler", href: "#k5Ingredients" },
-          ],
-        },
-      ],
-      features: [
-        { label: ".ki Kurumsal", image: packSpray, href: "#", badge: "Şirketler için" },
-        { label: ".ki Kampüs", image: packOil, href: "#", badge: "Öğrenciler için" },
-      ],
-    },
+  ];
+  const features: FeatureCard[] = [
+    { label: ".ki Kurumsal", image: packSpray, href: "#", badge: "Şirketler için" },
+    { label: ".ki Kampüs", image: packOil, href: "#", badge: "Öğrenciler için" },
   ];
 
   return (
     <div>
-      <h2 className="font-display text-[22px] font-medium text-primary mb-4">Hakkımızda</h2>
-      {sections.map((section) => {
-        const isOpen = openSection === section.key;
-        return (
-          <div key={section.key} className="border-b border-border/60">
-            <button
-              onClick={() => setOpenSection(isOpen ? null : section.key)}
-              className="w-full flex items-center justify-between py-4 text-left"
-              aria-expanded={isOpen}
-            >
-              <span className="font-display text-[18px] font-medium text-primary">
-                {section.label}
-              </span>
-              <ChevronDown
-                className={`w-5 h-5 text-primary transition-transform ${isOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {isOpen && (
-              <div className="pb-5 pt-1 animate-fade-in">
-                {section.groups.map((g) => (
-                  <div key={g.title} className="mb-5 last:mb-0">
-                    <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-2.5">
-                      {g.title}
-                    </h4>
-                    <ul className="flex flex-col">
-                      {g.items.map((it) => (
-                        <li key={it.label}>
-                          <a
-                            href={it.href}
-                            onClick={onNavigate}
-                            className="flex items-center justify-between py-2 text-[14px] text-primary hover:opacity-70 transition-opacity"
-                          >
-                            <span>{it.label}</span>
-                            <ChevronRight className="w-4 h-4 opacity-50" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                <div className="grid grid-cols-2 gap-3 mt-4">
-                  {section.features.map((f) => (
-                    <a
-                      key={f.label}
-                      href={f.href}
-                      onClick={onNavigate}
-                      className="relative rounded-xl overflow-hidden bg-secondary/60 ring-1 ring-primary/20 flex flex-col"
-                    >
-                      {"badge" in f && f.badge && (
-                        <span className="absolute top-2 left-1/2 -translate-x-1/2 z-10 bg-background/95 backdrop-blur text-primary text-[9.5px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap">
-                          {f.badge}
-                        </span>
-                      )}
-                      <div className="aspect-[4/3] bg-primary/5 overflow-hidden">
-                        <img
-                          src={f.image}
-                          alt={f.label}
-                          className="w-full h-full object-cover"
-                          draggable={false}
-                        />
-                      </div>
-                      <div className="bg-background flex items-center justify-between px-2.5 py-2">
-                        <span className="text-[12px] font-semibold text-primary">{f.label}</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-primary" />
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
-
+      <FlatList groups={groups} onNavigate={onNavigate} />
+      <FeatureGrid features={features} onNavigate={onNavigate} />
       <a
         href="#"
         onClick={onNavigate}
-        className="mt-6 flex items-center justify-between py-4 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity"
+        className="mt-8 flex items-center justify-between py-4 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity border-t border-border/60"
       >
         Anlaşmalı Eczanelerimiz
         <ArrowRight className="w-4 h-4" />
@@ -289,9 +253,95 @@ const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
   );
 };
 
+/* ---------- Mağaza ---------- */
+const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
+  const groups: ListGroup[] = [
+    {
+      title: "Pedler",
+      items: [
+        { label: "Günlük Ped", href: "/pedler" },
+        { label: "Gece Ped", href: "/pedler" },
+        { label: "Gündüz Ped", href: "/pedler" },
+      ],
+    },
+    {
+      title: "Takviyeler",
+      items: [
+        { label: ".ki Change · Kapsül", href: "#" },
+        { label: ".ki Balance · Saşe", href: "#" },
+      ],
+    },
+    {
+      title: "Jeller & Yağlar",
+      items: [
+        { label: "Bakım Jeli · Daily", href: "#" },
+        { label: "Bakım Jeli · Flow", href: "#" },
+        { label: "Bakım Jeli · Sens", href: "#" },
+        { label: "Bakım Jeli · 50+", href: "#" },
+        { label: "Cycle Care Yağı · 10 ml", href: "#" },
+        { label: "İntim Bakım Spreyi", href: "#" },
+      ],
+    },
+  ];
+
+  const heroes: FeatureCard[] = [
+    { label: ".ki Paketleri", image: packPads, href: "/paket-olustur" },
+    { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
+  ];
+
+  // Visual product grid from AllProductsSection vocabulary
+  const products = [
+    { name: "Pedler", sub: "Günlük · Gündüz · Gece", image: bentoPads, href: "/pedler" },
+    { name: ".ki Balance", sub: "Regl döngüsü · saşe", image: bentoBalance, href: "#" },
+    { name: "Bakım Jelleri", sub: "Daily · Sens · Flow · 50+", image: bentoJeller, href: "#" },
+    { name: ".ki Change", sub: "Menopoz · kapsül", image: bentoChange, href: "#" },
+    { name: "Sprey", sub: "İntim bakım spreyi", image: bentoSprey, href: "#" },
+    { name: "Yağ", sub: "Cycle Care · 10 ml", image: bentoYag, href: "#" },
+  ];
+
+  return (
+    <div>
+      <FeatureGrid features={heroes} onNavigate={onNavigate} />
+
+      <div className="mt-8">
+        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-3">
+          Tüm Ürünler
+        </h3>
+        <div className="grid grid-cols-2 gap-3">
+          {products.map((p) => (
+            <a
+              key={p.name}
+              href={p.href}
+              onClick={onNavigate}
+              className="rounded-xl overflow-hidden bg-secondary/40 ring-1 ring-primary/15 flex flex-col"
+            >
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+              </div>
+              <div className="px-3 py-2.5">
+                <div className="text-[13px] font-bold text-primary leading-tight">{p.name}</div>
+                <div className="text-[11px] text-primary/60 mt-0.5">{p.sub}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <FlatList groups={groups} onNavigate={onNavigate} />
+      </div>
+    </div>
+  );
+};
+
+/* ---------- Hesabım ---------- */
 const AccountSheet = ({ onNavigate }: { onNavigate: () => void }) => (
   <div>
-    <h2 className="font-display text-[22px] font-medium text-primary mb-2">Hesabım</h2>
     <p className="text-[13px] text-muted-foreground mb-6">
       Siparişlerini takip etmek ve abonelik paketini yönetmek için giriş yap.
     </p>
@@ -316,7 +366,7 @@ const AccountSheet = ({ onNavigate }: { onNavigate: () => void }) => (
       <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-3">
         Hızlı Erişim
       </h3>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col divide-y divide-border/50">
         {([
           { label: "Sepetim", href: "#k5Product", Icon: ShoppingBag },
           { label: "Anlaşmalı Eczanelerimiz", href: "#", Icon: ArrowRight },
@@ -325,7 +375,7 @@ const AccountSheet = ({ onNavigate }: { onNavigate: () => void }) => (
             <a
               href={href}
               onClick={onNavigate}
-              className="flex items-center justify-between py-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
+              className="flex items-center justify-between py-3.5 text-[15px] text-primary hover:opacity-70 transition-opacity"
             >
               <span className="flex items-center gap-3">
                 <Icon className="w-4 h-4" />
