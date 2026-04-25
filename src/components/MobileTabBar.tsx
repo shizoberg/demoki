@@ -20,7 +20,12 @@ type ProductIconName =
   | "gelSens"
   | "gelFlow"
   | "gel50"
-  | "spray";
+  | "spray"
+  | "tree"
+  | "globe"
+  | "tag"
+  | "help"
+  | "list";
 
 const ProductIcon = ({ name }: { name: ProductIconName }) => {
   const cn = "w-[18px] h-[18px] text-primary";
