@@ -11,13 +11,13 @@ const items = [
 ];
 
 const Item = ({ icon: Icon, title, desc }: { icon: typeof FlaskConical; title: string; desc: string }) => (
-  <div className="flex items-center gap-3 px-6 sm:px-10 flex-shrink-0">
-    <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center flex-shrink-0 border border-border">
-      <Icon className="w-4 h-4 text-primary" strokeWidth={2} />
+  <div className="flex items-center gap-2.5 sm:gap-3 px-5 sm:px-10 flex-shrink-0">
+    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-background flex items-center justify-center flex-shrink-0 border border-border">
+      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" strokeWidth={2} />
     </div>
     <div className="min-w-0 whitespace-nowrap">
-      <div className="text-[13px] font-bold text-primary leading-tight mb-0.5">{title}</div>
-      <div className="text-[11.5px] text-muted-foreground leading-snug">{desc}</div>
+      <div className="text-[11.5px] sm:text-[13px] font-bold text-primary leading-tight mb-0.5">{title}</div>
+      <div className="text-[10px] sm:text-[11.5px] text-muted-foreground leading-snug">{desc}</div>
     </div>
   </div>
 );
