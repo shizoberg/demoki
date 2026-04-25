@@ -69,10 +69,9 @@ const CollectionSection = () => {
           </a>
         </div>
 
-        {/* MOBILE: horizontal snap scroller */}
-        <div className="sm:hidden -mx-5">
+        <div className="sm:hidden -mx-5 pt-12">
           <div
-            className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-px-5 px-5 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="flex gap-3 overflow-x-auto overflow-y-visible snap-x snap-mandatory scroll-px-5 px-5 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {packs.map((pack) => {
               const hasFlorence = pack.id === "aylik";
