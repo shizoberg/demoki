@@ -24,7 +24,7 @@ const Item = ({ icon: Icon, title, desc }: { icon: typeof FlaskConical; title: s
 
 const ValueStrip = () => (
   <section className="bg-cream-2/50 border-y border-border/60 overflow-hidden">
-    <div className="py-7 sm:py-9 relative">
+    <div className="py-5 sm:py-9 relative">
       {/* Edge fades */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-cream-2/90 to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-cream-2/90 to-transparent z-10" />
