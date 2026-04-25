@@ -1,19 +1,30 @@
 import { useState } from "react";
-import { Home, LayoutGrid, Gift, Store, User, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
+import { LayoutGrid, Gift, Store, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
+import kiLogo from "@/assets/ki-logo.webp";
+import userAvatar from "@/assets/user-avatar.webp";
 
 type SheetKey = "about" | "paket" | "store" | "account" | null;
 
-const tabs: { key: SheetKey | "home"; label: string; icon: typeof Home; href?: string }[] = [
-  { key: "home", label: "Ana Sayfa", icon: Home, href: "/balance" },
+type Tab = {
+  key: SheetKey | "home";
+  label: string;
+  icon?: LucideIcon;
+  image?: string;
+  href?: string;
+};
+
+const tabs: Tab[] = [
+  { key: "home", label: "Ana Sayfa", image: kiLogo, href: "/balance" },
   { key: "about", label: "Hakkımızda", icon: LayoutGrid },
   { key: "paket", label: "Paket Oluştur", icon: Gift },
   { key: "store", label: "Mağaza", icon: Store },
-  { key: "account", label: "Giriş Yap", icon: User },
+  { key: "account", label: "Giriş Yap", image: userAvatar },
 ];
 
 const MobileTabBar = () => {
