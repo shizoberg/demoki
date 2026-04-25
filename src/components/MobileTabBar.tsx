@@ -59,29 +59,23 @@ const MobileTabBar = () => {
                   className="w-full flex flex-col items-center justify-center gap-1 py-2.5 transition-opacity hover:opacity-70 relative"
                 >
                   <span className="h-[28px] flex items-center justify-center">
-                    {t.image ? (
-                      t.key === "home" ? (
-                        <span
-                          className={`w-[26px] h-[26px] rounded-full overflow-hidden flex items-center justify-center bg-secondary/60 ${
-                            isActive ? "ring-2 ring-rose" : "ring-1 ring-border"
-                          }`}
-                        >
-                          <img
-                            src={t.image}
-                            alt=""
-                            className="w-full h-full object-contain p-0.5"
-                            draggable={false}
-                          />
-                        </span>
-                      ) : (
+                    {t.key === "home" ? (
+                      // Sadece dolu yuvarlak — logosuz
+                      <span
+                        className={`block w-[22px] h-[22px] rounded-full ${
+                          isActive ? "bg-rose" : "bg-primary"
+                        }`}
+                      />
+                    ) : t.image ? (
+                      // Avatar/png — buton içinde kalacak şekilde sınırlandırılmış crop
+                      <span className="relative w-[26px] h-[26px] overflow-hidden flex items-center justify-center">
                         <img
                           src={t.image}
                           alt=""
-                          className="h-[34px] w-[34px] object-cover object-center scale-[1.35]"
-                          style={{ clipPath: "inset(0)" }}
+                          className="w-[34px] h-[34px] max-w-none object-cover object-center"
                           draggable={false}
                         />
-                      )
+                      </span>
                     ) : (
                       Icon && (
                         <Icon
