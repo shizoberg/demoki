@@ -61,22 +61,21 @@ const CollectionSection = () => {
           </h2>
 
           {/* Mobile: kompakt "Tüm Paketler" — Desktop: uzun CTA */}
-          <div className="relative shrink-0">
+          <a
+            href="/paket-olustur"
+            className="relative shrink-0 inline-flex items-center justify-center whitespace-nowrap border border-primary/80 bg-background text-primary text-[12px] sm:text-[13px] font-semibold py-2 px-[19px] sm:py-2.5 sm:px-6 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
+          >
+            {/* Florence — anchored to button, scales with it */}
             <img
               src={florenceOnButton}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-full -mb-2 sm:-mb-3 w-[80px] sm:w-[110px] lg:w-[140px] h-auto z-10"
+              className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[55%] w-[115%] h-auto z-10"
               loading="lazy"
             />
-            <a
-              href="/paket-olustur"
-              className="relative shrink-0 inline-flex items-center justify-center whitespace-nowrap border border-primary/80 bg-background text-primary text-[12px] sm:text-[13px] font-semibold py-2 px-[19px] sm:py-2.5 sm:px-6 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
-            >
-              <span className="sm:hidden">Tüm Paketler</span>
-              <span className="hidden sm:inline">Kendine özel paket oluştur</span>
-            </a>
-          </div>
+            <span className="relative sm:hidden">Tüm Paketler</span>
+            <span className="relative hidden sm:inline">Kendine özel paket oluştur</span>
+          </a>
         </div>
 
         {/* MOBILE: horizontal snap scroller */}
