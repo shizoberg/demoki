@@ -360,11 +360,11 @@ const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     {
       title: "Biz Kimiz?",
       items: [
-        { label: "Neden .ki?", href: "#" },
-        { label: ".ki Nasıl Çalışır?", href: "#k5Science" },
-        { label: "Fiyat Politikası", href: "#" },
-        { label: "Sıkça Sorulan Sorular", href: "#k5Faq" },
-        { label: "Tüm Malzemeler", href: "#k5Ingredients" },
+        { label: "Neden .ki?", href: "#", icon: "tree" },
+        { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
+        { label: "Fiyat Politikası", href: "#", icon: "tag" },
+        { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
+        { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
       ],
     },
   ];
