@@ -131,8 +131,8 @@ const EditorialHero = () => {
         {/* Readability gradient — top + bottom darken to keep copy legible */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/75 pointer-events-none" />
 
-        {/* Copy overlay */}
-        <div className="absolute inset-x-0 bottom-0 px-5 pt-6 pb-20">
+        {/* Copy overlay — bottom, with horizontal padding to make room for side arrows */}
+        <div className="absolute inset-x-0 bottom-0 px-12 pt-6 pb-5">
           <div key={slide.id} className="animate-fade-in text-white">
             <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 mb-2 [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
               {slide.eyebrow}
@@ -168,31 +168,31 @@ const EditorialHero = () => {
               <span className="w-px h-3 bg-white/40" />
               <span>{slide.trustText}</span>
             </div>
+
+            {/* Slide counter — under copy, centered */}
+            <div className="mt-3 text-[12px] font-medium text-white/90 tabular-nums tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
+              {active + 1}/{slides.length}
+            </div>
           </div>
         </div>
 
-        {/* Slide nav — overlay on image */}
-        <div className="absolute left-5 bottom-4 flex items-center gap-5 text-white">
-          <button
-            type="button"
-            onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
-            aria-label="Önceki slayt"
-            className="text-white/90 hover:text-white transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-          >
-            <ArrowLeft className="w-6 h-6" strokeWidth={1.5} />
-          </button>
-          <span className="text-[13px] font-medium text-white/95 tabular-nums tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
-            {active + 1}/{slides.length}
-          </span>
-          <button
-            type="button"
-            onClick={() => setActive((i) => (i + 1) % slides.length)}
-            aria-label="Sonraki slayt"
-            className="text-white/90 hover:text-white transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-          >
-            <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
-          </button>
-        </div>
+        {/* Side arrows — left & right edges, vertically centered */}
+        <button
+          type="button"
+          onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
+          aria-label="Önceki slayt"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/25 text-white/95 hover:bg-black/45 transition-colors backdrop-blur-sm"
+        >
+          <ArrowLeft className="w-5 h-5" strokeWidth={1.75} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setActive((i) => (i + 1) % slides.length)}
+          aria-label="Sonraki slayt"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/25 text-white/95 hover:bg-black/45 transition-colors backdrop-blur-sm"
+        >
+          <ArrowRight className="w-5 h-5" strokeWidth={1.75} />
+        </button>
       </div>
 
       {/* DESKTOP: split layout (unchanged) */}
