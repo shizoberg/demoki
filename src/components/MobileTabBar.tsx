@@ -250,7 +250,7 @@ const MobileTabBar = () => {
 
 /* ---------- Sheets ---------- */
 
-type ListItem = { label: string; href: string };
+type ListItem = { label: string; href: string; icon?: ProductIconName };
 type ListGroup = { title: string; items: ListItem[] };
 type FeatureCard = { label: string; image: string; href: string; badge?: string };
 
@@ -258,18 +258,21 @@ const FlatList = ({ groups, onNavigate }: { groups: ListGroup[]; onNavigate: () 
   <div className="flex flex-col gap-7">
     {groups.map((g) => (
       <div key={g.title}>
-        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-1">
-          {g.title}
-        </h3>
-        <ul className="flex flex-col divide-y divide-border/50">
+        <h3 className="text-[15px] font-bold text-primary mb-2">{g.title}</h3>
+        <ul className="flex flex-col">
           {g.items.map((it) => (
             <li key={it.label}>
               <a
                 href={it.href}
                 onClick={onNavigate}
-                className="flex items-center justify-between py-3.5 text-[15px] text-primary hover:opacity-70 transition-opacity"
+                className="group flex items-center gap-3 py-3 text-[15px] text-primary hover:opacity-70 transition-opacity"
               >
-                <span>{it.label}</span>
+                {it.icon && (
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/60 group-hover:bg-secondary transition-colors shrink-0">
+                    <ProductIcon name={it.icon} />
+                  </span>
+                )}
+                <span className="flex-1">{it.label}</span>
                 <ChevronRight className="w-4 h-4 opacity-50" />
               </a>
             </li>
