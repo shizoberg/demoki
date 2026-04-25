@@ -272,16 +272,16 @@ const SiteFooter = () => {
 
           {/* 4) Brand kutu (.ki logolu) + sosyal medya */}
           <div>
-            <p className="font-display text-[24px] leading-[1.05] font-medium text-primary-foreground mb-4">
-              Kendine iyi bak.
-            </p>
-            <div className="mb-6 overflow-hidden rounded-2xl">
+            <div className="mb-5 overflow-hidden rounded-2xl">
               <img
                 src={kiFooterIllustration}
                 alt=".ki — Kendine iyi bak"
                 className="w-full h-auto block"
               />
             </div>
+            <p className="font-display text-[22px] leading-[1.05] font-medium text-primary-foreground text-center mb-4">
+              Kendine iyi bak.
+            </p>
             <div className="flex items-center justify-center gap-3">
               <a href="#" aria-label="Instagram" className="w-11 h-11 rounded-full border border-primary-foreground/35 flex items-center justify-center hover:bg-primary-foreground hover:text-primary transition-colors">
                 <Instagram className="w-[18px] h-[18px]" />
