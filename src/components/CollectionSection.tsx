@@ -74,44 +74,56 @@ const CollectionSection = () => {
           <div
             className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-px-5 px-5 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
-            {packs.map((pack) => (
-              <article
-                key={pack.id}
-                className="snap-start shrink-0 w-[68%] max-w-[260px] flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card"
-              >
-                <div className={`relative aspect-square ${pack.bgClass} overflow-hidden`}>
-                  <img
-                    src={pack.image}
-                    alt={pack.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    draggable={false}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-3.5">
-                  <div className="mb-1.5 flex items-center gap-1.5">
-                    <Star className="h-[15px] w-[15px] fill-star text-star" strokeWidth={1.5} />
-                    <span className="text-[12px] font-semibold text-foreground/80">
-                      {pack.rating.toFixed(1)}
-                    </span>
+            {packs.map((pack) => {
+              const hasFlorence = pack.id === "aylik";
+              return (
+                <article
+                  key={pack.id}
+                  className={`snap-start shrink-0 w-[68%] max-w-[260px] flex flex-col bg-card ${hasFlorence ? "relative overflow-visible rounded-2xl border border-border/60" : "overflow-hidden rounded-2xl border border-border/60"}`}
+                >
+                  {hasFlorence && (
+                    <img
+                      src={florenceHover}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute left-1/2 bottom-full z-30 h-auto w-[150px] -translate-x-1/2 translate-y-[30%] select-none pointer-events-none drop-shadow-[0_10px_22px_hsl(var(--primary)/0.22)]"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className={`relative aspect-square ${pack.bgClass} overflow-hidden ${hasFlorence ? "rounded-t-2xl" : ""}`}>
+                    <img
+                      src={pack.image}
+                      alt={pack.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      draggable={false}
+                      loading="lazy"
+                    />
                   </div>
-                  <h3 className="mb-2 min-h-[38px] font-display text-[14px] leading-snug text-primary">
-                    {pack.name}
-                  </h3>
-                  <div className="mt-auto">
-                    <p className="mb-2.5 text-[13px] font-semibold text-foreground">
-                      {pack.price}
-                    </p>
-                    <button
-                      type="button"
-                      className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full bg-primary px-3 py-2 text-[12px] font-bold text-primary-foreground transition-all hover:bg-primary-medium"
-                    >
-                      Sepete Ekle
-                    </button>
+                  <div className="flex flex-1 flex-col p-3.5">
+                    <div className="mb-1.5 flex items-center gap-1.5">
+                      <Star className="h-[15px] w-[15px] fill-star text-star" strokeWidth={1.5} />
+                      <span className="text-[12px] font-semibold text-foreground/80">
+                        {pack.rating.toFixed(1)}
+                      </span>
+                    </div>
+                    <h3 className="mb-2 min-h-[38px] font-display text-[14px] leading-snug text-primary">
+                      {pack.name}
+                    </h3>
+                    <div className="mt-auto">
+                      <p className="mb-2.5 text-[13px] font-semibold text-foreground">
+                        {pack.price}
+                      </p>
+                      <button
+                        type="button"
+                        className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full bg-primary px-3 py-2 text-[12px] font-bold text-primary-foreground transition-all hover:bg-primary-medium"
+                      >
+                        Sepete Ekle
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
 
