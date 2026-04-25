@@ -153,11 +153,13 @@ const ProductIcon = ({ name }: { name: ProductIconName }) => {
           <path d="M6 12v4c0 1.5 3 3 6 3s6-1.5 6-3v-4" />
         </svg>
       );
-    case "building":
+    case "cycleChart":
+      // Döngü çizimi — kalemli daire / pencil-on-cycle
       return (
-        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <rect x="4" y="3" width="16" height="18" rx="1" />
-          <path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2" />
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 12a8 8 0 1 1-3.5-6.6" />
+          <path d="M20 4v4h-4" />
+          <path d="M11 14l5-5 2 2-5 5h-2v-2z" />
         </svg>
       );
   }
