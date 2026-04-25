@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Pause, Play } from "lucide-react";
 import sinemImg from "@/assets/testimonials/sinem.webp";
 import ulyanaImg from "@/assets/testimonials/ulyana1.webp";
@@ -95,7 +95,32 @@ const ImageCard = ({ item }: { item: Extract<MediaItem, { type: "image" }> }) =>
 );
 
 const MediaSlider = () => {
-  const loopItems = [...items, ...items];
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [dragging, setDragging] = useState(false);
+  const startX = useRef(0);
+  const scrollL = useRef(0);
+  const moved = useRef(false);
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    if (!trackRef.current) return;
+    setDragging(true);
+    moved.current = false;
+    startX.current = e.pageX;
+    scrollL.current = trackRef.current.scrollLeft;
+    trackRef.current.setPointerCapture(e.pointerId);
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragging || !trackRef.current) return;
+    const dx = e.pageX - startX.current;
+    if (Math.abs(dx) > 4) moved.current = true;
+    trackRef.current.scrollLeft = scrollL.current - dx;
+  }, [dragging]);
+
+  const onPointerUp = useCallback((e: React.PointerEvent) => {
+    setDragging(false);
+    trackRef.current?.releasePointerCapture(e.pointerId);
+  }, []);
 
   return (
     <section className="pt-6 pb-16 lg:pt-8 lg:pb-20 bg-background overflow-hidden">
@@ -110,11 +135,19 @@ const MediaSlider = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-background to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-background to-transparent z-10" />
 
-        <div className="flex w-max gap-3 sm:gap-4 animate-marquee hover:[animation-play-state:paused]">
-          {loopItems.map((it, i) => (
+        <div
+          ref={trackRef}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          onClickCapture={(e) => { if (moved.current) { e.preventDefault(); e.stopPropagation(); } }}
+          className={`flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 sm:px-12 lg:px-20 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${dragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
+        >
+          {items.map((it) => (
             <div
-              key={`${it.id}-${i}`}
-              className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
+              key={it.id}
+              className="snap-start flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
             >
               {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
             </div>
