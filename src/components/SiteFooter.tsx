@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, Youtube, Linkedin, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Instagram, Youtube, Linkedin, ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import kiFooterIllustration from "@/assets/ki-footer-illustration.webp";
 import paymentLogos from "@/assets/payment-logos.webp";
 import regliniCizBg from "@/assets/reglini-ciz-bg.webp";
@@ -21,6 +21,8 @@ const productsCol2 = [
   { label: "Bakım Jeli · 50+", href: "#" },
 ];
 
+const allProducts = [...productsCol1, ...productsCol2];
+
 const legalLinks = [
   { label: "Hakkımızda", href: "#" },
   { label: "İletişim", href: "#" },
@@ -36,6 +38,37 @@ const TikTokIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+/* Mobile-only collapsible group */
+const MobileAccordion = ({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) => {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-t border-primary-foreground/15">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="w-full flex items-center justify-between py-4 text-left"
+      >
+        <span className="text-[13px] font-bold uppercase tracking-[0.22em] text-primary-foreground/80">
+          {title}
+        </span>
+        <ChevronDown
+          className={`w-4 h-4 text-primary-foreground/70 transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && <div className="pb-5 animate-fade-in">{children}</div>}
+    </div>
+  );
+};
+
 const SiteFooter = () => {
   const [email, setEmail] = useState("");
 
@@ -45,10 +78,10 @@ const SiteFooter = () => {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground pt-20 pb-8">
+    <footer className="bg-primary text-primary-foreground pt-16 lg:pt-20 pb-8">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
         {/* Main grid: Brand | Products(2 cols) | Right (CTA + Newsletter) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12 pb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-10 pb-10 lg:pb-14">
           {/* Brand block */}
           <div className="lg:col-span-3">
             <p className="font-display text-[28px] sm:text-[32px] leading-[1.05] font-medium text-primary-foreground mb-4">
@@ -62,7 +95,8 @@ const SiteFooter = () => {
               />
             </div>
 
-            <div className="flex items-center gap-3 mb-8">
+            {/* Social — centered on mobile, left on desktop */}
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-8">
               <a
                 href="#"
                 aria-label="Instagram"
@@ -95,15 +129,15 @@ const SiteFooter = () => {
 
             <a
               href="#"
-              className="inline-flex items-center gap-2 text-[18px] font-semibold hover:opacity-80 transition-opacity"
+              className="hidden lg:inline-flex items-center gap-2 text-[18px] font-semibold hover:opacity-80 transition-opacity"
             >
               Anlaşmalı Eczanelerimiz
               <ArrowRight className="w-5 h-5" />
             </a>
           </div>
 
-          {/* Products: 2 columns */}
-          <div className="lg:col-span-5 lg:pl-4">
+          {/* Products: desktop 2 columns */}
+          <div className="hidden lg:block lg:col-span-5 lg:pl-4">
             <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary-foreground/60 mb-7">
               Ürünler
             </div>
@@ -137,10 +171,10 @@ const SiteFooter = () => {
 
           {/* Right: Reglini Çiz card + Newsletter */}
           <div className="lg:col-span-4 flex flex-col gap-8">
-            {/* Reglini Çiz card */}
+            {/* Reglini Çiz card — mobil yüksekliği %40 azaltıldı */}
             <a
               href="#"
-              className="group relative block overflow-hidden rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors border border-primary-foreground/10 aspect-[16/8]"
+              className="group relative block overflow-hidden rounded-2xl bg-[hsl(252,70%,90%)] hover:bg-[hsl(252,70%,93%)] text-primary transition-colors border border-primary-foreground/10 aspect-[16/4.8] lg:aspect-[16/8]"
             >
               <img
                 src={regliniCizBg}
@@ -148,12 +182,12 @@ const SiteFooter = () => {
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-cover opacity-90 pointer-events-none"
               />
-              <ArrowUpRight className="absolute top-5 right-5 w-5 h-5 text-foreground/70 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
-              <div className="absolute left-6 bottom-6 right-6">
-                <div className="font-display text-[22px] leading-tight font-medium mb-1 text-foreground">
+              <ArrowUpRight className="absolute top-4 right-4 lg:top-5 lg:right-5 w-5 h-5 text-foreground/70 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+              <div className="absolute left-5 bottom-4 right-5 lg:left-6 lg:bottom-6 lg:right-6">
+                <div className="font-display text-[18px] lg:text-[22px] leading-tight font-medium mb-0.5 lg:mb-1 text-foreground">
                   Reglini Çiz!
                 </div>
-                <p className="text-[13px] text-foreground/80 max-w-[260px]">
+                <p className="text-[12px] lg:text-[13px] text-foreground/80 max-w-[260px] leading-snug">
                   Hislerini yansıtmanı sağlayan bir platform.
                 </p>
               </div>
@@ -161,7 +195,7 @@ const SiteFooter = () => {
 
             {/* Newsletter */}
             <div>
-              <p className="text-[18px] md:text-[20px] text-primary-foreground mb-5 max-w-[440px] whitespace-nowrap">
+              <p className="text-[18px] md:text-[20px] text-primary-foreground mb-5 max-w-[440px] lg:whitespace-nowrap">
                 Sana özel şeylerden haberdar ol.
               </p>
               <form onSubmit={handleSubmit} className="flex items-end gap-3">
@@ -188,6 +222,48 @@ const SiteFooter = () => {
           </div>
         </div>
 
+        {/* MOBILE: accordions */}
+        <div className="lg:hidden mb-6">
+          <MobileAccordion title="Ürünler">
+            <ul className="flex flex-col">
+              {allProducts.map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    className="block py-2.5 text-[15px] text-primary-foreground/90 hover:text-primary-foreground transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </MobileAccordion>
+
+          <MobileAccordion title="Sözleşmeler">
+            <ul className="flex flex-col">
+              {legalLinks.map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    className="block py-2.5 text-[15px] text-primary-foreground/90 hover:text-primary-foreground transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </MobileAccordion>
+
+          {/* Anlaşmalı eczaneler — mobilde accordion'lardan sonra */}
+          <a
+            href="#"
+            className="border-t border-primary-foreground/15 flex items-center justify-between py-4 text-[15px] font-semibold hover:opacity-80 transition-opacity"
+          >
+            Anlaşmalı Eczanelerimiz
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+
         {/* Payment logos row */}
         <div className="flex items-center justify-center py-6 border-t border-primary-foreground/15">
           <img
@@ -197,8 +273,8 @@ const SiteFooter = () => {
           />
         </div>
 
-        {/* Bottom: Legal */}
-        <div className="pt-6 border-t border-primary-foreground/15">
+        {/* Bottom: Legal — desktop only (mobile has it under "Sözleşmeler" accordion) */}
+        <div className="hidden lg:block pt-6 border-t border-primary-foreground/15">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12px] text-primary-foreground/65">
             {legalLinks.map((l) => (
               <a
@@ -213,6 +289,11 @@ const SiteFooter = () => {
               © {new Date().getFullYear()} .ki — Tüm hakları saklıdır.
             </span>
           </div>
+        </div>
+
+        {/* Mobile copyright */}
+        <div className="lg:hidden pt-4 text-center text-[11px] text-primary-foreground/55">
+          © {new Date().getFullYear()} .ki — Tüm hakları saklıdır.
         </div>
       </div>
     </footer>
