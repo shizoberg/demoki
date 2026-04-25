@@ -383,16 +383,18 @@ const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
         { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
       ],
     },
-  ];
-  const features: FeatureCard[] = [
-    { label: ".ki Kurumsal", image: packSpray, href: "#", badge: "Şirketler için" },
-    { label: ".ki Kampüs", image: packOil, href: "#", badge: "Öğrenciler için" },
+    {
+      title: "Projelerimiz",
+      items: [
+        { label: ".ki Kurumsal", href: "#", icon: "building" },
+        { label: ".ki Campus", href: "#", icon: "campus" },
+      ],
+    },
   ];
 
   return (
     <div>
       <FlatList groups={groups} onNavigate={onNavigate} />
-      <FeatureGrid features={features} onNavigate={onNavigate} />
       <a
         href="#"
         onClick={onNavigate}
