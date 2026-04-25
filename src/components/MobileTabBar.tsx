@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { LayoutGrid, Gift, Store, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
+import { Sparkles, Gift, Store, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
-import kiLogo from "@/assets/ki-logo.webp";
 import userAvatar from "@/assets/user-avatar.webp";
 
 type SheetKey = "about" | "paket" | "store" | "account" | null;
@@ -20,8 +19,8 @@ type Tab = {
 };
 
 const tabs: Tab[] = [
-  { key: "home", label: "Ana Sayfa", image: kiLogo, href: "/balance" },
-  { key: "about", label: "Hakkımızda", icon: LayoutGrid },
+  { key: "home", label: "Ana Sayfa" },
+  { key: "about", label: "Hakkımızda", icon: Sparkles },
   { key: "paket", label: "Paket Oluştur", icon: Gift },
   { key: "store", label: "Mağaza", icon: Store },
   { key: "account", label: "Giriş Yap", image: userAvatar },
@@ -60,29 +59,23 @@ const MobileTabBar = () => {
                   className="w-full flex flex-col items-center justify-center gap-1 py-2.5 transition-opacity hover:opacity-70 relative"
                 >
                   <span className="h-[28px] flex items-center justify-center">
-                    {t.image ? (
-                      t.key === "home" ? (
-                        <span
-                          className={`w-[26px] h-[26px] rounded-full overflow-hidden flex items-center justify-center bg-secondary/60 ${
-                            isActive ? "ring-2 ring-rose" : "ring-1 ring-border"
-                          }`}
-                        >
-                          <img
-                            src={t.image}
-                            alt=""
-                            className="w-full h-full object-contain p-0.5"
-                            draggable={false}
-                          />
-                        </span>
-                      ) : (
+                    {t.key === "home" ? (
+                      // Sadece dolu yuvarlak — logosuz
+                      <span
+                        className={`block w-[22px] h-[22px] rounded-full ${
+                          isActive ? "bg-rose" : "bg-primary"
+                        }`}
+                      />
+                    ) : t.image ? (
+                      // Avatar/png — buton içinde kalacak şekilde sınırlandırılmış crop
+                      <span className="relative w-[26px] h-[26px] overflow-hidden flex items-center justify-center">
                         <img
                           src={t.image}
                           alt=""
-                          className="h-[34px] w-[34px] object-cover object-center scale-[1.35]"
-                          style={{ clipPath: "inset(0)" }}
+                          className="w-[34px] h-[34px] max-w-none object-cover object-center"
                           draggable={false}
                         />
-                      )
+                      </span>
                     ) : (
                       Icon && (
                         <Icon
