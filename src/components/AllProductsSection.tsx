@@ -83,7 +83,7 @@ const rowMap: Record<Tile["row"], string> = {
 const TileCard = ({ tile }: { tile: Tile }) => (
   <a
     href={tile.href ?? "#"}
-    className={`group relative overflow-hidden rounded-2xl ${tile.text} md:${colMap[tile.col]} md:${rowMap[tile.row]}
+    className={`group relative overflow-hidden rounded-2xl ${tile.text} ${colMap[tile.col]} ${rowMap[tile.row]}
       col-span-1 row-span-1
       p-4 md:p-5
       flex flex-col justify-end
