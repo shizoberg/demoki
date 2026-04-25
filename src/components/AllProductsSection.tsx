@@ -150,7 +150,7 @@ const AllProductsSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal">
+        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-auto md:auto-rows-[173px] gap-3 md:gap-3.5 k5-reveal [&>a]:aspect-square md:[&>a]:aspect-auto">
           {tiles.map((t) => (
             <TileCard key={t.name} tile={t} />
           ))}
