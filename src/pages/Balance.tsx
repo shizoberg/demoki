@@ -41,6 +41,7 @@ const Balance = () => {
 
       <SiteFooter />
       <StickyATC product={product} isLoading={isLoading} />
+      <MobileTabBar />
     </div>
   );
 };
