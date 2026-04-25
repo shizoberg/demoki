@@ -6,13 +6,107 @@ import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
-import bentoPads from "@/assets/bento-pads.webp";
-import bentoBalance from "@/assets/bento-balance.webp";
-import bentoJeller from "@/assets/bento-jeller.webp";
-import bentoChange from "@/assets/bento-change.webp";
-import bentoSprey from "@/assets/bento-sprey.webp";
-import bentoYag from "@/assets/bento-yag.webp";
 import userAvatar from "@/assets/user-avatar.webp";
+
+/* Inline icons matching desktop MegaMenu vocabulary */
+type ProductIconName =
+  | "padDay"
+  | "padLiner"
+  | "padNight"
+  | "sachet"
+  | "capsule"
+  | "oilBottle"
+  | "gelDaily"
+  | "gelSens"
+  | "gelFlow"
+  | "gel50"
+  | "spray";
+
+const ProductIcon = ({ name }: { name: ProductIconName }) => {
+  const cn = "w-[18px] h-[18px] text-primary";
+  switch (name) {
+    case "padDay":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="7" y="3" width="10" height="18" rx="5" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    case "padLiner":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="9" y="3" width="6" height="18" rx="3" />
+          <path d="M12 8v8" />
+        </svg>
+      );
+    case "padNight":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
+        </svg>
+      );
+    case "sachet":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M6 6h12v14H6z" />
+          <path d="M8 6l1-2h6l1 2" />
+          <path d="M9 12h6" />
+        </svg>
+      );
+    case "capsule":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-25 12 12)" />
+          <path d="M12 6l3 6" transform="rotate(-25 12 12)" />
+        </svg>
+      );
+    case "oilBottle":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="9" y="2" width="6" height="3" rx="0.5" />
+          <path d="M8 5h8l-1 3a4 4 0 0 1 2 3v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-8a4 4 0 0 1 2-3l-1-3z" />
+        </svg>
+      );
+    case "gelDaily":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
+        </svg>
+      );
+    case "gelSens":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" />
+        </svg>
+      );
+    case "gelFlow":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M3 8c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+          <path d="M3 14c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+          <path d="M3 20c2.5-2 4.5 2 7 0s4.5-2 7 0 4 0 4 0" />
+        </svg>
+      );
+    case "gel50":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <circle cx="12" cy="12" r="2" />
+          <path d="M12 10c0-3 2-5 4-5 0 3-1 5-4 5z" />
+          <path d="M12 14c0 3-2 5-4 5 0-3 1-5 4-5z" />
+          <path d="M10 12c-3 0-5-2-5-4 3 0 5 1 5 4z" />
+          <path d="M14 12c3 0 5 2 5 4-3 0-5-1-5-4z" />
+        </svg>
+      );
+    case "spray":
+      return (
+        <svg className={cn} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <rect x="8" y="9" width="8" height="12" rx="1.5" />
+          <path d="M10 9V5h4v4M16 4h2M16 7h3M19 5h-1" />
+        </svg>
+      );
+  }
+};
 
 type SheetKey = "about" | "store" | "account" | null;
 
