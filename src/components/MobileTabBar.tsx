@@ -388,7 +388,7 @@ const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     {
       title: "Projelerimiz",
       items: [
-        { label: ".ki Kurumsal", href: "#", icon: "building" },
+        { label: "Reglini Çiz", href: "#", icon: "cycleChart" },
         { label: ".ki Campus", href: "#", icon: "campus" },
       ],
     },
