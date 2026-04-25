@@ -14,6 +14,7 @@ import AllProductsSection from "@/components/AllProductsSection";
 import FaqSection from "@/components/FaqSection";
 import SiteFooter from "@/components/SiteFooter";
 import StickyATC from "@/components/StickyATC";
+import MobileTabBar from "@/components/MobileTabBar";
 
 /**
  * .ki Balance landing page — editorial redesign inspired by ritual.com structure,
@@ -24,7 +25,7 @@ const Balance = () => {
   const { data: product, isLoading } = useBalanceProduct();
 
   return (
-    <div className="pb-[72px] bg-background">
+    <div className="pb-[140px] lg:pb-[72px] bg-background">
       <ScrollProgress />
       <AnnouncementBar />
       <SiteNav />
@@ -40,6 +41,7 @@ const Balance = () => {
 
       <SiteFooter />
       <StickyATC product={product} isLoading={isLoading} />
+      <MobileTabBar />
     </div>
   );
 };
