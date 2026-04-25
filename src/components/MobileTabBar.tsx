@@ -1,19 +1,30 @@
 import { useState } from "react";
-import { Home, LayoutGrid, Gift, Store, User, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
+import { LayoutGrid, Gift, Store, X, ChevronRight, ChevronDown, ArrowRight, ShoppingBag } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
+import kiLogo from "@/assets/ki-logo.webp";
+import userAvatar from "@/assets/user-avatar.webp";
 
 type SheetKey = "about" | "paket" | "store" | "account" | null;
 
-const tabs: { key: SheetKey | "home"; label: string; icon: typeof Home; href?: string }[] = [
-  { key: "home", label: "Ana Sayfa", icon: Home, href: "/balance" },
+type Tab = {
+  key: SheetKey | "home";
+  label: string;
+  icon?: LucideIcon;
+  image?: string;
+  href?: string;
+};
+
+const tabs: Tab[] = [
+  { key: "home", label: "Ana Sayfa", image: kiLogo, href: "/balance" },
   { key: "about", label: "Hakkımızda", icon: LayoutGrid },
   { key: "paket", label: "Paket Oluştur", icon: Gift },
   { key: "store", label: "Mağaza", icon: Store },
-  { key: "account", label: "Giriş Yap", icon: User },
+  { key: "account", label: "Giriş Yap", image: userAvatar },
 ];
 
 const MobileTabBar = () => {
@@ -37,7 +48,6 @@ const MobileTabBar = () => {
               } else if (t.key === "paket") {
                 window.location.href = "/paket-olustur";
               } else if (t.key === "store") {
-                // scroll to product / open cart-like behavior
                 document.querySelector("#tum-urunler")?.scrollIntoView({ behavior: "smooth" });
               } else {
                 setSheet(t.key as SheetKey);
@@ -49,10 +59,27 @@ const MobileTabBar = () => {
                   onClick={handleClick}
                   className="w-full flex flex-col items-center justify-center gap-1 py-2.5 transition-opacity hover:opacity-70 relative"
                 >
-                  <Icon
-                    className={`w-[22px] h-[22px] ${isActive ? "text-rose" : "text-primary"}`}
-                    strokeWidth={isActive ? 2 : 1.75}
-                  />
+                  {t.image ? (
+                    <span
+                      className={`w-[26px] h-[26px] rounded-full overflow-hidden flex items-center justify-center bg-secondary/60 ${
+                        isActive ? "ring-2 ring-rose" : "ring-1 ring-border"
+                      }`}
+                    >
+                      <img
+                        src={t.image}
+                        alt=""
+                        className="w-full h-full object-contain p-0.5"
+                        draggable={false}
+                      />
+                    </span>
+                  ) : (
+                    Icon && (
+                      <Icon
+                        className={`w-[22px] h-[22px] ${isActive ? "text-rose" : "text-primary"}`}
+                        strokeWidth={isActive ? 2 : 1.75}
+                      />
+                    )
+                  )}
                   {/* Cart badge on Mağaza */}
                   {t.key === "store" && itemCount > 0 && (
                     <span className="absolute top-1.5 right-[22%] bg-rose text-primary-foreground text-[9px] font-bold rounded-full min-w-[15px] h-[15px] px-1 flex items-center justify-center">
