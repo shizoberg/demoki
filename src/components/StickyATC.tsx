@@ -42,7 +42,7 @@ const StickyATC = ({ product, isLoading }: StickyATCProps) => {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-[100] bg-card border-t border-primary/[0.08] py-2.5 px-4 flex items-center justify-center gap-3 shadow-[0_-4px_24px_rgba(0,0,0,0.08)] transition-transform duration-400 ${
+      className={`fixed bottom-[64px] lg:bottom-0 left-0 right-0 z-[60] bg-card border-t border-primary/[0.08] py-2.5 px-4 flex items-center justify-center gap-3 shadow-[0_-4px_24px_rgba(0,0,0,0.08)] transition-transform duration-400 ${
         visible ? "translate-y-0" : "translate-y-full"
       }`}
     >
