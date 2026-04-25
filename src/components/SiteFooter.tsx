@@ -237,10 +237,10 @@ const SiteFooter = () => {
           {/* 2b) Anlaşmalı Eczanelerimiz — Reglini Çiz'in hemen altında */}
           <a
             href="#"
-            className="-mt-4 flex items-center justify-between py-4 text-[15px] font-semibold text-primary-foreground hover:opacity-80 transition-opacity border-b border-primary-foreground/15"
+            className="-mt-4 flex items-center justify-between py-4 text-[18px] font-semibold text-primary-foreground hover:opacity-80 transition-opacity"
           >
             Anlaşmalı Eczanelerimiz
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </a>
 
           {/* 3) Menüler — accordion */}
