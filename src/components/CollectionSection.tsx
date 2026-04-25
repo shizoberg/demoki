@@ -70,7 +70,7 @@ const CollectionSection = () => {
               src={florenceOnButton}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[55%] w-[115%] h-auto z-10"
+              className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-[20%] w-[115%] h-auto z-10"
               loading="lazy"
             />
             <span className="relative sm:hidden">Tüm Paketler</span>
