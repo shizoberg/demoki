@@ -25,7 +25,9 @@ type ProductIconName =
   | "globe"
   | "tag"
   | "help"
-  | "list";
+  | "list"
+  | "campus"
+  | "building";
 
 const ProductIcon = ({ name }: { name: ProductIconName }) => {
   const cn = "w-[18px] h-[18px] text-primary";
