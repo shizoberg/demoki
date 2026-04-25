@@ -234,8 +234,17 @@ const SiteFooter = () => {
             </div>
           </a>
 
+          {/* 2b) Anlaşmalı Eczanelerimiz — Reglini Çiz'in hemen altında */}
+          <a
+            href="#"
+            className="-mt-4 flex items-center justify-between py-4 text-[15px] font-semibold text-primary-foreground hover:opacity-80 transition-opacity border-b border-primary-foreground/15"
+          >
+            Anlaşmalı Eczanelerimiz
+            <ArrowRight className="w-4 h-4" />
+          </a>
+
           {/* 3) Menüler — accordion */}
-          <div>
+          <div className="-mt-4">
             <MobileAccordion title="Ürünler">
               <ul className="flex flex-col">
                 {allProducts.map((l) => (
@@ -259,14 +268,6 @@ const SiteFooter = () => {
                 ))}
               </ul>
             </MobileAccordion>
-
-            <a
-              href="#"
-              className="border-t border-primary-foreground/15 flex items-center justify-between py-4 text-[15px] font-semibold hover:opacity-80 transition-opacity"
-            >
-              Anlaşmalı Eczanelerimiz
-              <ArrowRight className="w-4 h-4" />
-            </a>
           </div>
 
           {/* 4) Brand kutu (.ki logolu) + sosyal medya */}
