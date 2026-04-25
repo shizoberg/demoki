@@ -298,6 +298,29 @@ const SiteFooter = () => {
           </div>
         </div>
 
+        {/* Payment logos row */}
+        <div className="flex items-center justify-center py-6 border-t border-primary-foreground/15">
+          <img
+            src={paymentLogos}
+            alt="Kabul edilen ödeme yöntemleri"
+            className="h-6 w-auto"
+          />
+        </div>
+
+        {/* Bottom: Legal — desktop only */}
+        <div className="hidden lg:block pt-6 border-t border-primary-foreground/15">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12px] text-primary-foreground/65">
+            {legalLinks.map((l) => (
+              <a key={l.label} href={l.href} className="hover:text-primary-foreground transition-colors">
+                {l.label}
+              </a>
+            ))}
+            <span className="ml-auto text-primary-foreground/55 text-[11px]">
+              © {new Date().getFullYear()} .ki — Tüm hakları saklıdır.
+            </span>
+          </div>
+        </div>
+
         {/* Mobile copyright */}
         <div className="lg:hidden pt-4 text-center text-[11px] text-primary-foreground/55">
           © {new Date().getFullYear()} .ki — Tüm hakları saklıdır.
