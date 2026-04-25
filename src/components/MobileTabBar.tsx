@@ -285,27 +285,24 @@ const AccountSheet = ({ onNavigate }: { onNavigate: () => void }) => (
         Hızlı Erişim
       </h3>
       <ul className="flex flex-col">
-        {[
-          ["Sepetim", "#k5Product", ShoppingBag],
-          ["Anlaşmalı Eczanelerimiz", "#", ArrowRight],
-        ].map(([label, href, Icon]) => {
-          const I = Icon as typeof ShoppingBag;
-          return (
-            <li key={label as string}>
-              <a
-                href={href as string}
-                onClick={onNavigate}
-                className="flex items-center justify-between py-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
-              >
-                <span className="flex items-center gap-3">
-                  <I className="w-4 h-4" />
-                  {label}
-                </span>
-                <ChevronRight className="w-4 h-4 opacity-50" />
-              </a>
-            </li>
-          );
-        })}
+        {([
+          { label: "Sepetim", href: "#k5Product", Icon: ShoppingBag },
+          { label: "Anlaşmalı Eczanelerimiz", href: "#", Icon: ArrowRight },
+        ] as const).map(({ label, href, Icon }) => (
+          <li key={label}>
+            <a
+              href={href}
+              onClick={onNavigate}
+              className="flex items-center justify-between py-3 text-[14px] text-primary hover:opacity-70 transition-opacity"
+            >
+              <span className="flex items-center gap-3">
+                <Icon className="w-4 h-4" />
+                {label}
+              </span>
+              <ChevronRight className="w-4 h-4 opacity-50" />
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </div>
