@@ -114,7 +114,7 @@ const EditorialHero = () => {
   return (
     <section ref={sectionRef} className="bg-background relative" aria-roledescription="carousel">
       {/* MOBILE: full-bleed image with overlay copy */}
-      <div className={`lg:hidden relative ${slide.imageBg} overflow-hidden min-h-[640px] h-[calc(100svh-120px)] max-h-[860px] transition-colors duration-500`}>
+      <div className={`lg:hidden relative ${slide.imageBg} overflow-hidden min-h-[420px] h-[calc((100svh-120px)*0.6)] max-h-[560px] transition-colors duration-500`}>
         {slides.map((s, i) => (
           <img
             key={s.id}
@@ -132,56 +132,56 @@ const EditorialHero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/75 pointer-events-none" />
 
         {/* Copy overlay */}
-        <div className="absolute inset-x-0 bottom-0 px-6 pt-10 pb-28">
+        <div className="absolute inset-x-0 bottom-0 px-5 pt-6 pb-20">
           <div key={slide.id} className="animate-fade-in text-white">
-            <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 mb-3 [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
+            <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 mb-2 [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
               {slide.eyebrow}
             </span>
-            <h1 className="font-display font-medium text-[34px] leading-[1.05] tracking-tight mb-4 text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55)]">
+            <h1 className="font-display font-medium text-[26px] leading-[1.08] tracking-tight mb-2.5 text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55)]">
               {slide.title}
             </h1>
-            <p className="text-[14px] leading-relaxed text-white/90 mb-6 max-w-[420px] [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">
+            <p className="text-[12.5px] leading-snug text-white/90 mb-4 max-w-[360px] line-clamp-3 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">
               {slide.description}
             </p>
 
-            <div className="flex flex-col gap-2.5 mb-4">
+            <div className="flex flex-row flex-wrap gap-2 mb-3">
               <a
                 href={slide.primaryCta.href}
-                className="inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[14px] font-bold py-3.5 px-6 rounded-full hover:bg-primary-medium transition-all hover:-translate-y-0.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+                className="inline-flex items-center justify-center whitespace-nowrap bg-primary text-primary-foreground text-[12.5px] font-bold py-2.5 px-4 rounded-full hover:bg-primary-medium transition-all hover:-translate-y-0.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
               >
                 {slide.primaryCta.label}
               </a>
               <a
                 href={slide.secondaryCta.href}
-                className="inline-flex items-center justify-center whitespace-nowrap border-2 border-white/90 text-white text-[14px] font-bold py-3.5 px-6 rounded-full hover:bg-white hover:text-primary transition-all backdrop-blur-sm"
+                className="inline-flex items-center justify-center whitespace-nowrap border-2 border-white/90 text-white text-[12.5px] font-bold py-2.5 px-4 rounded-full hover:bg-white hover:text-primary transition-all backdrop-blur-sm"
               >
                 {slide.secondaryCta.label}
               </a>
             </div>
 
             {/* Trust row */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11.5px] text-white/85 font-medium [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
-              <div className="flex items-center gap-1.5">
-                <span className="text-star text-base tracking-wide">★★★★★</span>
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[10.5px] text-white/85 font-medium [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+              <div className="flex items-center gap-1">
+                <span className="text-star text-sm tracking-wide">★★★★★</span>
                 <span>{slide.reviewText}</span>
               </div>
-              <span className="w-px h-4 bg-white/40" />
+              <span className="w-px h-3 bg-white/40" />
               <span>{slide.trustText}</span>
             </div>
           </div>
         </div>
 
         {/* Slide nav — overlay on image */}
-        <div className="absolute left-6 bottom-6 flex items-center gap-6 text-white">
+        <div className="absolute left-5 bottom-4 flex items-center gap-5 text-white">
           <button
             type="button"
             onClick={() => setActive((i) => (i - 1 + slides.length) % slides.length)}
             aria-label="Önceki slayt"
             className="text-white/90 hover:text-white transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
           >
-            <ArrowLeft className="w-7 h-7" strokeWidth={1.5} />
+            <ArrowLeft className="w-6 h-6" strokeWidth={1.5} />
           </button>
-          <span className="text-[15px] font-medium text-white/95 tabular-nums tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
+          <span className="text-[13px] font-medium text-white/95 tabular-nums tracking-wide [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
             {active + 1}/{slides.length}
           </span>
           <button
@@ -190,7 +190,7 @@ const EditorialHero = () => {
             aria-label="Sonraki slayt"
             className="text-white/90 hover:text-white transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
           >
-            <ArrowRight className="w-7 h-7" strokeWidth={1.5} />
+            <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
           </button>
         </div>
       </div>
