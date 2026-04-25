@@ -27,7 +27,7 @@ type ProductIconName =
   | "help"
   | "list"
   | "campus"
-  | "building";
+  | "cycleChart";
 
 const ProductIcon = ({ name }: { name: ProductIconName }) => {
   const cn = "w-[18px] h-[18px] text-primary";
