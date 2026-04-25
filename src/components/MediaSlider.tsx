@@ -20,32 +20,36 @@ const items: MediaItem[] = [
 const VideoCard = ({ item }: { item: Extract<MediaItem, { type: "video" }> }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(true);
+  const playingRef = useRef(true);
 
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && playing) {
-          el.play().catch(() => {});
-        } else {
+        if (!entry.isIntersecting) {
           el.pause();
+        } else if (playingRef.current) {
+          el.play().catch(() => {});
         }
       },
       { threshold: 0.4 }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [playing]);
+  }, []);
 
-  const toggle = () => {
+  const toggle = (e: React.MouseEvent | React.PointerEvent) => {
+    e.stopPropagation();
     const el = videoRef.current;
     if (!el) return;
     if (el.paused) {
       el.play().catch(() => {});
+      playingRef.current = true;
       setPlaying(true);
     } else {
       el.pause();
+      playingRef.current = false;
       setPlaying(false);
     }
   };
@@ -70,9 +74,10 @@ const VideoCard = ({ item }: { item: Extract<MediaItem, { type: "video" }> }) =>
       )}
       <button
         type="button"
+        onPointerDown={(e) => e.stopPropagation()}
         onClick={toggle}
         aria-label={playing ? "Videoyu duraklat" : "Videoyu oynat"}
-        className="absolute right-3 bottom-3 w-9 h-9 rounded-full bg-primary-foreground/90 backdrop-blur-sm text-primary flex items-center justify-center shadow-md hover:bg-primary-foreground transition-all"
+        className="absolute right-3 bottom-3 w-9 h-9 rounded-full bg-primary-foreground/90 backdrop-blur-sm text-primary flex items-center justify-center shadow-md hover:bg-primary-foreground transition-all z-20"
       >
         {playing ? <Pause className="w-4 h-4 fill-primary" strokeWidth={0} /> : <Play className="w-4 h-4 fill-primary ml-0.5" strokeWidth={0} />}
       </button>
