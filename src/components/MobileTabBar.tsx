@@ -20,8 +20,8 @@ type Tab = {
 };
 
 const tabs: Tab[] = [
-  { key: "home", label: "Ana Sayfa", image: kiLogo, href: "/balance" },
-  { key: "about", label: "Hakkımızda", icon: LayoutGrid },
+  { key: "home", label: "Ana Sayfa" },
+  { key: "about", label: "Hakkımızda", icon: Sparkles },
   { key: "paket", label: "Paket Oluştur", icon: Gift },
   { key: "store", label: "Mağaza", icon: Store },
   { key: "account", label: "Giriş Yap", image: userAvatar },
