@@ -6,7 +6,6 @@ import packPads from "@/assets/pack-pads.webp";
 import packSpray from "@/assets/pack-spray.webp";
 import packOil from "@/assets/pack-oil.webp";
 import allProductsGrid from "@/assets/all-products-grid.webp";
-import kiLogo from "@/assets/ki-logo.webp";
 import userAvatar from "@/assets/user-avatar.webp";
 
 type SheetKey = "about" | "paket" | "store" | "account" | null;
