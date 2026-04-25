@@ -114,7 +114,7 @@ const EditorialHero = () => {
   return (
     <section ref={sectionRef} className="bg-background relative" aria-roledescription="carousel">
       {/* MOBILE: full-bleed image with overlay copy */}
-      <div className={`lg:hidden relative ${slide.imageBg} overflow-hidden min-h-[420px] h-[calc((100svh-120px)*0.6)] max-h-[560px] transition-colors duration-500`}>
+      <div className={`lg:hidden relative ${slide.imageBg} overflow-hidden min-h-[460px] h-[calc((100svh-120px)*0.69)] max-h-[600px] transition-colors duration-500`}>
         {slides.map((s, i) => (
           <img
             key={s.id}
