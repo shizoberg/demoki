@@ -51,7 +51,7 @@ const packs: Pack[] = [
 
 const CollectionSection = () => {
   return (
-    <section className="relative bg-background pt-8 lg:pt-10 pb-12 lg:pb-16 overflow-visible">
+    <section className="relative bg-background pt-16 sm:pt-8 lg:pt-10 pb-12 lg:pb-16 overflow-visible">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 sm:gap-6 mb-5 lg:mb-8">
@@ -85,7 +85,7 @@ const CollectionSection = () => {
                       src={florenceHover}
                       alt=""
                       aria-hidden="true"
-                      className="absolute left-1/2 bottom-full z-30 h-auto w-[150px] -translate-x-1/2 translate-y-[30%] select-none pointer-events-none drop-shadow-[0_10px_22px_hsl(var(--primary)/0.22)]"
+                      className="absolute left-1/2 bottom-full z-50 h-auto w-[150px] -translate-x-1/2 translate-y-[35%] select-none pointer-events-none drop-shadow-[0_10px_22px_hsl(var(--primary)/0.22)]"
                       loading="lazy"
                     />
                   )}
