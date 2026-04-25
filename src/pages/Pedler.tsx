@@ -131,7 +131,7 @@ const Pedler = () => {
   const heroImages = [bentoPads, packPads, bentoPads];
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background min-h-screen pb-20 lg:pb-0">
       <AnnouncementBar />
       <SiteNav />
 
