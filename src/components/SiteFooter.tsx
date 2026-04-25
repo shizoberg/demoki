@@ -57,7 +57,7 @@ const MobileAccordion = ({
         aria-expanded={open}
         className="w-full flex items-center justify-between py-4 text-left"
       >
-        <span className="text-[13px] font-bold uppercase tracking-[0.22em] text-primary-foreground/80">
+        <span className="text-[16px] font-semibold text-primary-foreground">
           {title}
         </span>
         <ChevronDown
