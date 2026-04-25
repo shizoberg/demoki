@@ -14,6 +14,7 @@ import AllProductsSection from "@/components/AllProductsSection";
 import FaqSection from "@/components/FaqSection";
 import SiteFooter from "@/components/SiteFooter";
 import StickyATC from "@/components/StickyATC";
+import MobileTabBar from "@/components/MobileTabBar";
 
 /**
  * .ki Balance landing page — editorial redesign inspired by ritual.com structure,
