@@ -251,7 +251,7 @@ const PaketOlustur = () => {
     CATALOG.filter((c) => c.category === cat).reduce((sum, c) => sum + (quantities[c.id] ?? 0), 0);
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background min-h-screen pb-20 lg:pb-0">
       <AnnouncementBar />
       <SiteNav />
 
