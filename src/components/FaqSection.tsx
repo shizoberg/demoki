@@ -38,7 +38,7 @@ const FaqSection = () => (
       src={faqFlorence}
       alt=""
       aria-hidden="true"
-      className="absolute left-0 bottom-0 w-[180px] sm:w-[240px] md:w-[320px] lg:w-[460px] xl:w-[540px] h-auto select-none pointer-events-none z-0"
+      className="absolute left-0 bottom-0 w-[126px] sm:w-[168px] md:w-[224px] lg:w-[460px] xl:w-[540px] h-auto select-none pointer-events-none z-0"
       loading="lazy"
     />
 
@@ -66,7 +66,7 @@ const FaqSection = () => (
             ))}
           </Accordion>
 
-          <div className="k5-reveal k5-reveal-d3 mt-12 flex flex-col items-center gap-3 text-center">
+          <div className="k5-reveal k5-reveal-d3 mt-12 flex flex-col items-center lg:items-center gap-3 text-center pl-[120px] sm:pl-[160px] lg:pl-0">
             <p className="text-[13px] text-foreground/60">
               Aklındaki başka bir soru mu var?
             </p>
