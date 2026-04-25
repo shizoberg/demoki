@@ -96,10 +96,36 @@ const ImageCard = ({ item }: { item: Extract<MediaItem, { type: "image" }> }) =>
 
 const MediaSlider = () => {
   const trackRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
   const scrollL = useRef(0);
   const moved = useRef(false);
+
+  // Duplicate items for seamless loop
+  const loopItems = [...items, ...items];
+
+  // Auto-scroll loop (rAF)
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    const speed = 40; // px per second
+
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (!paused && !dragging && el) {
+        el.scrollLeft += speed * dt;
+        const half = el.scrollWidth / 2;
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [paused, dragging]);
 
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     if (!trackRef.current) return;
@@ -141,13 +167,17 @@ const MediaSlider = () => {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
           onClickCapture={(e) => { if (moved.current) { e.preventDefault(); e.stopPropagation(); } }}
-          className={`flex gap-3 sm:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 sm:px-12 lg:px-20 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${dragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
+          className={`flex gap-3 sm:gap-4 overflow-x-auto px-6 sm:px-12 lg:px-20 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${dragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
         >
-          {items.map((it) => (
+          {loopItems.map((it, i) => (
             <div
-              key={it.id}
-              className="snap-start flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
+              key={`${it.id}-${i}`}
+              className="flex-none w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] rounded-2xl overflow-hidden bg-secondary shadow-sm"
             >
               {it.type === "video" ? <VideoCard item={it} /> : <ImageCard item={it} />}
             </div>
