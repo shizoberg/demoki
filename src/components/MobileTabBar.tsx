@@ -356,27 +356,27 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     {
       title: "Pedler",
       items: [
-        { label: "Günlük Ped", href: "/pedler" },
-        { label: "Gece Ped", href: "/pedler" },
-        { label: "Gündüz Ped", href: "/pedler" },
+        { label: "Günlük Ped", href: "/pedler", icon: "padLiner" },
+        { label: "Gece Ped", href: "/pedler", icon: "padNight" },
+        { label: "Gündüz Ped", href: "/pedler", icon: "padDay" },
       ],
     },
     {
       title: "Takviyeler",
       items: [
-        { label: ".ki Change · Kapsül", href: "#" },
-        { label: ".ki Balance · Saşe", href: "#" },
+        { label: ".ki Change · Kapsül", href: "#", icon: "capsule" },
+        { label: ".ki Balance · Saşe", href: "#", icon: "sachet" },
       ],
     },
     {
       title: "Jeller & Yağlar",
       items: [
-        { label: "Bakım Jeli · Daily", href: "#" },
-        { label: "Bakım Jeli · Flow", href: "#" },
-        { label: "Bakım Jeli · Sens", href: "#" },
-        { label: "Bakım Jeli · 50+", href: "#" },
-        { label: "Cycle Care Yağı · 10 ml", href: "#" },
-        { label: "İntim Bakım Spreyi", href: "#" },
+        { label: "Bakım Jeli · Daily", href: "#", icon: "gelDaily" },
+        { label: "Bakım Jeli · Flow", href: "#", icon: "gelFlow" },
+        { label: "Bakım Jeli · Sens", href: "#", icon: "gelSens" },
+        { label: "Bakım Jeli · 50+", href: "#", icon: "gel50" },
+        { label: "Cycle Care Yağı · 10 ml", href: "#", icon: "oilBottle" },
+        { label: "İntim Bakım Spreyi", href: "#", icon: "spray" },
       ],
     },
   ];
@@ -386,49 +386,9 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     { label: "Tüm Ürünler", image: allProductsGrid, href: "#tum-urunler" },
   ];
 
-  // Visual product grid from AllProductsSection vocabulary
-  const products = [
-    { name: "Pedler", sub: "Günlük · Gündüz · Gece", image: bentoPads, href: "/pedler" },
-    { name: ".ki Balance", sub: "Regl döngüsü · saşe", image: bentoBalance, href: "#" },
-    { name: "Bakım Jelleri", sub: "Daily · Sens · Flow · 50+", image: bentoJeller, href: "#" },
-    { name: ".ki Change", sub: "Menopoz · kapsül", image: bentoChange, href: "#" },
-    { name: "Sprey", sub: "İntim bakım spreyi", image: bentoSprey, href: "#" },
-    { name: "Yağ", sub: "Cycle Care · 10 ml", image: bentoYag, href: "#" },
-  ];
-
   return (
     <div>
       <FeatureGrid features={heroes} onNavigate={onNavigate} />
-
-      <div className="mt-8">
-        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-3">
-          Tüm Ürünler
-        </h3>
-        <div className="grid grid-cols-2 gap-3">
-          {products.map((p) => (
-            <a
-              key={p.name}
-              href={p.href}
-              onClick={onNavigate}
-              className="rounded-xl overflow-hidden bg-secondary/40 ring-1 ring-primary/15 flex flex-col"
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="w-full h-full object-cover"
-                  draggable={false}
-                />
-              </div>
-              <div className="px-3 py-2.5">
-                <div className="text-[13px] font-bold text-primary leading-tight">{p.name}</div>
-                <div className="text-[11px] text-primary/60 mt-0.5">{p.sub}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
       <div className="mt-8">
         <FlatList groups={groups} onNavigate={onNavigate} />
       </div>
