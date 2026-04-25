@@ -38,7 +38,7 @@ const FaqSection = () => (
       src={faqFlorence}
       alt=""
       aria-hidden="true"
-      className="hidden lg:block absolute left-0 bottom-0 w-[460px] xl:w-[540px] h-auto select-none pointer-events-none z-0"
+      className="absolute left-0 bottom-0 w-[180px] sm:w-[240px] md:w-[320px] lg:w-[460px] xl:w-[540px] h-auto select-none pointer-events-none z-0"
       loading="lazy"
     />
 
