@@ -182,8 +182,8 @@ const CATEGORIES: {
   {
     key: "ped",
     label: "Pedler",
-    description: "Organik pamuk üst yüzey, parfümsüz, dermatolojik test edilmiş. Her tıklamada 10 adet eklenir.",
-    hint: "Çoğu kullanıcı 10 Günlük, 10 Gündüz ve 10 Gece Ped tercih ediyor.",
+    description: "Soft Cotton & Bamboo Fiber üst yüzey · Pelin Otu infüzeli · SLS/SLES içermez · nefes alan arka yüzey.",
+    hint: "Çoğu kullanıcı 1 paket Günlük (30), 1 paket Gündüz (12) ve 1 paket Gece (8) tercih ediyor.",
   },
   {
     key: "supplement",
