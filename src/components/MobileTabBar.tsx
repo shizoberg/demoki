@@ -227,10 +227,10 @@ const MobileTabBar = () => {
                   className="w-full flex flex-col items-center justify-center gap-1 py-2.5 transition-opacity hover:opacity-70 relative"
                 >
                   <span className="h-[28px] flex items-center justify-center">
-                    {t.key === "home" ? (
+                  {t.key === "home" ? (
                       <span
                         className={`block w-[22px] h-[22px] rounded-full ${
-                          isActive ? "bg-rose" : "bg-primary"
+                          isActive ? "bg-primary-medium" : "bg-primary"
                         }`}
                       />
                     ) : t.image ? (
@@ -245,7 +245,7 @@ const MobileTabBar = () => {
                     ) : (
                       Icon && (
                         <Icon
-                          className={`w-[22px] h-[22px] ${isActive ? "text-rose" : "text-primary"}`}
+                          className={`w-[22px] h-[22px] ${isActive ? "text-primary-medium" : "text-primary"}`}
                           strokeWidth={isActive ? 2 : 1.75}
                         />
                       )
@@ -258,7 +258,7 @@ const MobileTabBar = () => {
                   )}
                   <span
                     className={`text-[10.5px] leading-none font-semibold ${
-                      isActive ? "text-rose" : "text-primary"
+                      isActive ? "text-primary-medium" : "text-primary"
                     }`}
                   >
                     {t.label}
