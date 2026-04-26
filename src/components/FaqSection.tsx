@@ -48,7 +48,7 @@ const FaqSection = () => (
             <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
               Sıkça sorulanlar
             </span>
-            <h2 className="k5-reveal k5-reveal-d1 font-display font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
+            <h2 className="k5-reveal k5-reveal-d1 font-primary font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
               Bizce senin aklındaki <em className="italic font-light">sorular.</em>
             </h2>
           </div>
@@ -56,7 +56,7 @@ const FaqSection = () => (
           <Accordion type="single" collapsible className="k5-reveal k5-reveal-d2">
             {faqs.map((f) => (
               <AccordionItem key={f.q} value={f.q} className="border-b border-border/80">
-                <AccordionTrigger className="font-display text-[18px] sm:text-[20px] font-medium text-primary text-left py-5 hover:no-underline hover:opacity-80">
+                <AccordionTrigger className="font-primary text-[18px] sm:text-[20px] font-medium text-primary text-left py-5 hover:no-underline hover:opacity-80">
                   {f.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-[14px] leading-relaxed text-foreground/75 pb-6 pr-8 whitespace-pre-line">

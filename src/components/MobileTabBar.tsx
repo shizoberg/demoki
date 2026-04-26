@@ -279,7 +279,7 @@ const MobileTabBar = () => {
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 h-14 border-b border-border/60 shrink-0">
-            <h2 className="font-display text-[18px] font-medium text-primary">
+            <h2 className="font-primary text-[18px] font-medium text-primary">
               {sheet === "about" && "Hakkımızda"}
               {sheet === "store" && "Mağaza"}
               {sheet === "account" && "Hesabım"}
