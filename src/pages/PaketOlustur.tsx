@@ -260,7 +260,7 @@ const PaketOlustur = () => {
         <div className="max-w-[1240px] mx-auto px-5 sm:px-8 py-10 sm:py-14 lg:py-16">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
             <div className="max-w-2xl">
-              <h1 className="font-display font-medium text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight text-primary">
+              <h1 className="font-primary font-medium text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight text-primary">
                 Paketini Oluştur
               </h1>
               <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-muted-foreground">
@@ -356,7 +356,7 @@ const PaketOlustur = () => {
                     >
                       <div className="min-w-0">
                         <div className="flex items-center gap-3">
-                          <h2 className="font-display text-[22px] sm:text-[26px] font-medium text-primary leading-tight">
+                          <h2 className="font-primary text-[22px] sm:text-[26px] font-medium text-primary leading-tight">
                             {cat.label}
                           </h2>
                           {tabsCount(cat.key) > 0 && (
@@ -456,7 +456,7 @@ const PaketOlustur = () => {
           <aside className="lg:sticky lg:top-20">
             <div className="bg-card border border-border/70 rounded-2xl p-6 sm:p-7 shadow-[var(--shadow-md)]">
               <div className="flex items-center justify-between gap-3 mb-1">
-                <h3 className="font-display text-[24px] font-medium text-primary">Paketin</h3>
+                <h3 className="font-primary text-[24px] font-medium text-primary">Paketin</h3>
                 <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-sage bg-sage-light px-2.5 py-1 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-sage" /> 2 ayda bir kapında
                 </span>
@@ -518,8 +518,8 @@ const PaketOlustur = () => {
                   </dd>
                 </div>
                 <div className="flex items-center justify-between pt-3 border-t border-border/60">
-                  <dt className="font-display text-[18px] font-medium text-primary">Toplam</dt>
-                  <dd className="font-display text-[22px] font-medium text-primary tabular-nums">
+                  <dt className="font-primary text-[18px] font-medium text-primary">Toplam</dt>
+                  <dd className="font-primary text-[22px] font-medium text-primary tabular-nums">
                     ₺{totals.total.toLocaleString("tr-TR")}
                   </dd>
                 </div>
@@ -542,7 +542,7 @@ const PaketOlustur = () => {
 
             {/* How it works */}
             <div className="mt-5 bg-cream-2/60 border border-border/60 rounded-2xl p-5">
-              <h4 className="font-display text-[18px] font-medium text-primary mb-3 flex items-center gap-2">
+              <h4 className="font-primary text-[18px] font-medium text-primary mb-3 flex items-center gap-2">
                 <Package className="w-4 h-4" /> Nasıl çalışır?
               </h4>
               <ol className="space-y-2.5 text-[12.5px] text-primary/80">
@@ -572,7 +572,7 @@ const PaketOlustur = () => {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[11px] text-muted-foreground">{totals.itemCount} ürün · Toplam</p>
-              <p className="font-display text-[20px] font-medium text-primary">
+              <p className="font-primary text-[20px] font-medium text-primary">
                 ₺{totals.total.toLocaleString("tr-TR")}
               </p>
             </div>

@@ -156,7 +156,7 @@ const MediaSlider = () => {
   return (
     <section className="pt-6 pb-16 lg:pt-8 lg:pb-20 bg-background overflow-hidden">
       <div className="container max-w-6xl text-center mb-8 lg:mb-10">
-        <h2 className="font-display font-medium text-[36px] sm:text-[44px] lg:text-[52px] leading-[1.05] text-primary tracking-tight">
+        <h2 className="font-primary font-medium text-[36px] sm:text-[44px] lg:text-[52px] leading-[1.05] text-primary tracking-tight">
           Bizi bir de <em className="italic font-light">onlardan</em> dinle.
         </h2>
       </div>

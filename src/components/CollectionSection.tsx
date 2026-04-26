@@ -56,7 +56,7 @@ const CollectionSection = () => {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 sm:gap-6 mb-5 lg:mb-8">
-          <h2 className="font-display font-medium text-[22px] sm:text-[26px] lg:text-[32px] xl:text-[36px] leading-[1.1] text-primary tracking-tight">
+          <h2 className="font-primary font-medium text-[22px] sm:text-[26px] lg:text-[32px] xl:text-[36px] leading-[1.1] text-primary tracking-tight">
             <span className="lg:whitespace-nowrap">Sana özel oluşturduğumuz paketler</span>
           </h2>
 
@@ -104,7 +104,7 @@ const CollectionSection = () => {
                       {pack.rating.toFixed(1)}
                     </span>
                   </div>
-                  <h3 className="mb-2 min-h-[38px] font-display text-[14px] leading-snug text-primary">
+                  <h3 className="mb-2 min-h-[38px] font-primary text-[14px] leading-snug text-primary">
                     {pack.name}
                   </h3>
                   <div className="mt-auto">
@@ -165,7 +165,7 @@ const CollectionSection = () => {
                       </span>
                     </div>
 
-                    <h3 className="mb-3 min-h-[42px] font-display text-[16px] leading-snug text-primary lg:text-[17px]">
+                    <h3 className="mb-3 min-h-[42px] font-primary text-[16px] leading-snug text-primary lg:text-[17px]">
                       {pack.name}
                     </h3>
 

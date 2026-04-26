@@ -84,7 +84,7 @@ const SiteFooter = () => {
         <div className="hidden lg:grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-10 pb-10 lg:pb-14">
           {/* Brand block */}
           <div className="lg:col-span-3">
-            <p className="font-display text-[28px] sm:text-[32px] leading-[1.05] font-medium text-primary-foreground mb-4">
+            <p className="font-primary text-[28px] sm:text-[32px] leading-[1.05] font-medium text-primary-foreground mb-4">
               Kendine iyi bak.
             </p>
             <div className="mb-7 overflow-hidden rounded-2xl">
@@ -155,7 +155,7 @@ const SiteFooter = () => {
               <img src={regliniCizBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-90 pointer-events-none" />
               <ArrowUpRight className="absolute top-5 right-5 w-5 h-5 text-foreground/70 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               <div className="absolute left-6 bottom-6 right-6">
-                <div className="font-display text-[22px] leading-tight font-medium mb-1 text-foreground">
+                <div className="font-primary text-[22px] leading-tight font-medium mb-1 text-foreground">
                   Reglini Çiz!
                 </div>
                 <p className="text-[13px] text-foreground/80 max-w-[260px]">
@@ -192,7 +192,7 @@ const SiteFooter = () => {
         <div className="lg:hidden flex flex-col gap-8 pb-6">
           {/* 1) Newsletter */}
           <div>
-            <p className="font-display text-[22px] leading-tight font-medium text-primary-foreground mb-4">
+            <p className="font-primary text-[22px] leading-tight font-medium text-primary-foreground mb-4">
               Sana özel şeylerden haberdar ol.
             </p>
             <form onSubmit={handleSubmit} className="flex items-end gap-3">
@@ -225,7 +225,7 @@ const SiteFooter = () => {
             <img src={regliniCizBg} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-90 pointer-events-none" />
             <ArrowUpRight className="absolute top-4 right-4 w-5 h-5 text-foreground/70 transition-all" />
             <div className="absolute left-5 bottom-4 right-5">
-              <div className="font-display text-[18px] leading-tight font-medium mb-0.5 text-foreground">
+              <div className="font-primary text-[18px] leading-tight font-medium mb-0.5 text-foreground">
                 Reglini Çiz!
               </div>
               <p className="text-[12px] text-foreground/80 max-w-[260px] leading-snug">
@@ -279,7 +279,7 @@ const SiteFooter = () => {
                 className="w-full h-auto block"
               />
             </div>
-            <p className="font-display text-[22px] leading-[1.05] font-medium text-primary-foreground text-center mb-4">
+            <p className="font-primary text-[22px] leading-[1.05] font-medium text-primary-foreground text-center mb-4">
               Kendine iyi bak.
             </p>
             <div className="flex items-center justify-center gap-3">

@@ -37,7 +37,7 @@ const IngredientTransparency = () => (
           <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
             Şeffaf formül
           </span>
-          <h2 className="k5-reveal k5-reveal-d1 font-display font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
+          <h2 className="k5-reveal k5-reveal-d1 font-primary font-medium text-[36px] sm:text-[48px] leading-[1.05] text-primary tracking-tight">
             Her bir <em className="italic font-light">miligramın</em> hesabını veriyoruz.
           </h2>
         </div>
@@ -55,7 +55,7 @@ const IngredientTransparency = () => (
           >
             <div className="col-span-12 sm:col-span-5">
               <div className="flex items-baseline gap-3 mb-1">
-                <h3 className="font-display text-[22px] sm:text-[26px] font-medium text-primary leading-tight">
+                <h3 className="font-primary text-[22px] sm:text-[26px] font-medium text-primary leading-tight">
                   {ing.name}
                 </h3>
                 <span className="text-[12px] font-bold text-rose tracking-wide">{ing.dose}</span>

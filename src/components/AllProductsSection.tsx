@@ -108,7 +108,7 @@ const TileCard = ({ tile }: { tile: Tile }) => (
           "0 1px 14px hsl(var(--primary) / 0.7), 0 1px 3px hsl(var(--primary) / 0.55)",
       }}
     >
-      <h3 className="font-display text-base md:text-lg leading-tight">
+      <h3 className="font-primary text-base md:text-lg leading-tight">
         {tile.name}
       </h3>
       <p className="mt-1 text-[11px] md:text-xs opacity-95 leading-snug">
@@ -145,7 +145,7 @@ const AllProductsSection = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
         <div className="max-w-3xl mb-8 md:mb-10 k5-reveal text-left mr-auto">
-          <h2 className="font-display text-2xl md:text-4xl text-primary leading-[1.1]">
+          <h2 className="font-primary text-2xl md:text-4xl text-primary leading-[1.1]">
             Kendine iyi bakman için<em className="italic text-primary/80">:</em>
           </h2>
         </div>

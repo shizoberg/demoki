@@ -137,7 +137,7 @@ const EditorialHero = () => {
             <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-white/85 mb-2 [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
               {slide.eyebrow}
             </span>
-            <h1 className="font-display font-medium text-[26px] leading-[1.08] tracking-tight mb-2.5 text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55)]">
+            <h1 className="font-primary font-medium text-[26px] leading-[1.08] tracking-tight mb-2.5 text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.55)]">
               {slide.title}
             </h1>
             <p className="text-[12.5px] leading-snug text-white/90 mb-4 max-w-[360px] line-clamp-3 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">
@@ -214,7 +214,7 @@ const EditorialHero = () => {
             <span className="block text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-5">
               {slide.eyebrow}
             </span>
-            <h1 className="font-display font-medium text-[64px] leading-[1.02] text-primary tracking-tight mb-6">
+            <h1 className="font-primary font-medium text-[64px] leading-[1.02] text-primary tracking-tight mb-6">
               {slide.title}
             </h1>
             <p className="text-[16px] leading-relaxed text-foreground/75 mb-8 max-w-[460px]">

@@ -176,7 +176,7 @@ const Pedler = () => {
 
           {/* Buy box */}
           <div className="k5-reveal k5-reveal-d2 lg:sticky lg:top-24">
-            <h1 className="font-display font-medium text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.05] tracking-tight text-primary">
+            <h1 className="font-primary font-medium text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.05] tracking-tight text-primary">
               .ki Ped
             </h1>
 
@@ -195,7 +195,7 @@ const Pedler = () => {
 
             {/* Builder header */}
             <div className="mt-7 flex items-center justify-between">
-              <h2 className="font-display text-[20px] text-primary font-medium">
+              <h2 className="font-primary text-[20px] text-primary font-medium">
                 Paketimi Oluştur
               </h2>
               <button
@@ -371,7 +371,7 @@ const Pedler = () => {
             <p className="text-[12px] uppercase tracking-[0.2em] text-rose font-bold mb-3">
               Sana Özel
             </p>
-            <h2 className="font-display font-medium text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-primary tracking-tight">
+            <h2 className="font-primary font-medium text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-primary tracking-tight">
               Senin için en uygun .ki Ped hangisi?
             </h2>
             <p className="mt-4 text-[14.5px] text-muted-foreground">
@@ -394,7 +394,7 @@ const Pedler = () => {
                 </div>
                 <div className="p-5 sm:p-6 flex flex-col flex-1">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="font-display text-[20px] text-primary font-medium">{p.name}</h3>
+                    <h3 className="font-primary text-[20px] text-primary font-medium">{p.name}</h3>
                     <Drops filled={p.drops} />
                   </div>
                   <p className="mt-2 text-[13.5px] text-muted-foreground leading-relaxed">
@@ -425,7 +425,7 @@ const Pedler = () => {
             <p className="text-[12px] uppercase tracking-[0.2em] text-rose font-bold mb-3">
               Doğal · Şeffaf · Güvenli
             </p>
-            <h2 className="font-display font-medium text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-primary tracking-tight">
+            <h2 className="font-primary font-medium text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-primary tracking-tight">
               Cildine layık olan ped
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-foreground/80 max-w-xl">
@@ -485,7 +485,7 @@ const Pedler = () => {
       <section className="bg-secondary/40 border-t border-border/60">
         <div className="max-w-[860px] mx-auto px-5 sm:px-8 py-14 lg:py-20">
           <div className="text-center mb-10 k5-reveal">
-            <h2 className="font-display font-medium text-[28px] sm:text-[36px] leading-[1.1] text-primary tracking-tight">
+            <h2 className="font-primary font-medium text-[28px] sm:text-[36px] leading-[1.1] text-primary tracking-tight">
               Sıkça sorulan sorular
             </h2>
           </div>
