@@ -53,33 +53,33 @@ interface CatalogItem {
 }
 
 const CATALOG: CatalogItem[] = [
-  /* Pedler — her tıklamada 10 adet eklenir, fiyat 10 adet kutu fiyatı */
+  /* Pedler — Mugwort (Pelin Otu) infüzeli, SLS/SLES içermez, nefes alan üst & arka yüzey */
   {
     id: "ped-gunluk",
-    name: "Günlük Ped",
-    short: "Hafif akıntı · nefes alabilen",
-    price: 79,
-    step: 10,
+    name: ".ki Günlük Ped",
+    short: "155 mm · 30 adet · ultra ince panty liner · Pelin Otu ile antibakteriyel koruma",
+    price: 149,
+    step: 30,
     unit: "adet",
     image: bentoPads,
     category: "ped",
   },
   {
     id: "ped-gunduz",
-    name: "Gündüz Ped",
-    short: "Normal akış · gündüz koruması",
-    price: 95,
-    step: 10,
+    name: ".ki Gündüz Pedi",
+    short: "245 mm · 12 adet · orta yoğun akıntı · süper emici · ergonomik gündüz koruması",
+    price: 169,
+    step: 12,
     unit: "adet",
     image: packPads,
     category: "ped",
   },
   {
     id: "ped-gece",
-    name: "Gece Ped",
-    short: "Yoğun akış · uzun gece koruması",
-    price: 125,
-    step: 10,
+    name: ".ki Gece Pedi",
+    short: "335 mm · 8 adet · yoğun akıntı · ekstra uzun · sabaha kadar sızdırmaz koruma",
+    price: 189,
+    step: 8,
     unit: "adet",
     image: bentoPads,
     category: "ped",
