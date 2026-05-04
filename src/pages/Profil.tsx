@@ -352,7 +352,7 @@ const Profil = () => {
               )}
             </TabBtn>
             <TabBtn active={tab === "profile"} onClick={() => setTab("profile")}>
-              <User className="h-4 w-4" /> Profil
+              <User className="h-4 w-4" /> Kullanıcı bilgileri
             </TabBtn>
           </div>
         </div>
