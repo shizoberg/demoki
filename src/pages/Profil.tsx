@@ -885,7 +885,7 @@ const SubscriptionCard = ({
                   onClick={onEdit}
                   className="w-full justify-center gap-2 rounded-full bg-primary hover:bg-primary-medium text-primary-foreground"
                 >
-                  <Pencil className="h-4 w-4" /> Sepeti düzenle
+                  <Pencil className="h-4 w-4" /> Paket içeriğini düzenle
                 </Button>
                 <div className="grid grid-cols-2 gap-2">
                   <Button
