@@ -6,6 +6,7 @@ import {
   Pencil,
   LogOut,
   Calendar,
+  CalendarRange,
   CreditCard,
   Pause,
   Play,
@@ -20,6 +21,7 @@ import {
   Search,
   MapPin,
   Phone,
+  User,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -336,13 +338,13 @@ const Profil = () => {
           {/* Tabs */}
           <div className="flex gap-1 overflow-x-auto hide-scrollbar -mx-1 px-1">
             <TabBtn active={tab === "orders"} onClick={() => setTab("orders")}>
-              Siparişler
+              <Package className="h-4 w-4" /> Siparişler
             </TabBtn>
             <TabBtn
               active={tab === "subscriptions"}
               onClick={() => setTab("subscriptions")}
             >
-              Abonelikler
+              <CalendarRange className="h-4 w-4" /> Abonelikler
               {activeCount > 0 && (
                 <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[11px] font-semibold text-primary-foreground">
                   {activeCount}
@@ -350,7 +352,7 @@ const Profil = () => {
               )}
             </TabBtn>
             <TabBtn active={tab === "profile"} onClick={() => setTab("profile")}>
-              Profil
+              <User className="h-4 w-4" /> Profil
             </TabBtn>
           </div>
         </div>
