@@ -1248,12 +1248,16 @@ const ProfileView = () => {
               {/* İlçe */}
               <div className="mb-3">
                 <Label className="text-sm text-muted-foreground mb-1.5 block">İlçe</Label>
-                <Input
-                  placeholder="İlçe"
-                  value={form.district}
-                  onChange={(e) => setForm((f) => ({ ...f, district: e.target.value }))}
-                  className="rounded-xl bg-secondary/50 border-0 h-11"
-                />
+                <Select value={form.district} onValueChange={(v) => setForm((f) => ({ ...f, district: v }))}>
+                  <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11" disabled={!form.city}>
+                    <SelectValue placeholder={form.city ? "İlçe seçin" : "Önce şehir seçin"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(DISTRICTS[form.city] || []).map((d) => (
+                      <SelectItem key={d} value={d}>{d}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Mahalle */}
