@@ -617,10 +617,6 @@ const PaketOlustur = () => {
               placeholder="Örn: Aylık Bakım Paketim"
               className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
             />
-            <div className="bg-cream-2/60 rounded-xl p-3 space-y-1.5">
-              <p className="text-xs font-medium text-primary/70">{totals.itemCount} ürün · 2 ayda bir teslimat</p>
-              <p className="font-primary text-lg font-medium text-primary">₺{totals.total.toLocaleString("tr-TR")}</p>
-            </div>
             <button
               onClick={() => {
                 setShowNameDialog(false);
