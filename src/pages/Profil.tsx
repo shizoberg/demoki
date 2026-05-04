@@ -1014,6 +1014,17 @@ const OrderCard = ({ order }: { order: Order }) => {
 
 const CITIES = ["İSTANBUL", "İZMİR", "ANKARA", "ANTALYA", "BURSA", "ADANA", "KOCAELİ", "GAZİANTEP"];
 
+const DISTRICTS: Record<string, string[]> = {
+  İSTANBUL: ["KADIKÖY", "BEŞİKTAŞ", "ŞİŞLİ", "ÜSKÜDAR", "BEYOĞLU", "FATİH", "SARIYER", "MALTEPE", "KARTAL", "ATAŞEHIR", "BAKIRKÖY", "BAĞCILAR", "BAYRAMPAŞA", "EYÜPSULTAN", "KÜÇÜKÇEKMECE", "PENDİK", "SULTANBEYLİ", "TUZLA", "ÜMRANİYE", "ZEYTINBURNU"],
+  İZMİR: ["BORNOVA", "KARŞIYAKA", "KONAK", "BAYRAKLI", "ÇİĞLİ", "BUCA", "GAZİEMİR", "BALÇOVA", "NARLIDERE", "KARABAĞLAR", "MENEMEN", "TİRE", "TORBALI", "ÖDEMİŞ", "KEMALPAŞA"],
+  ANKARA: ["ÇANKAYA", "KEÇİÖREN", "MAMAK", "YENİMAHALLE", "ETİMESGUT", "SİNCAN", "PURSAKLAR", "ALTINDAĞ", "GÖLBAŞI", "POLATLI"],
+  ANTALYA: ["MURATPAŞA", "KONYAALTI", "KEPEZ", "AKSU", "DÖŞEMEALTI", "ALANYA", "MANAVGAT", "KAŞI", "KEMER", "SERİK"],
+  BURSA: ["NİLÜFER", "OSMANGAZİ", "YILDIRIM", "GÜRSU", "KESTeL", "MUDANYA", "GEMLİK", "İNEGÖL"],
+  ADANA: ["SEYHAN", "ÇUKUROVA", "YÜREĞİR", "SARIÇAM", "CEYHAN", "KOZAN", "İMAMOĞLU"],
+  KOCAELİ: ["İZMİT", "GEBZE", "DARICA", "ÇAYIROVA", "DİLOVASI", "KARTEPE", "BAŞİSKELE", "GÖLCÜK", "KANDIRA"],
+  GAZİANTEP: ["ŞAHİNBEY", "ŞEHİTKAMİL", "OĞUZELİ", "NİZİP", "ARABAN", "İSLAHİYE"],
+};
+
 const ProfileView = () => {
   const [showAddressDialog, setShowAddressDialog] = useState(false);
   const [addressType, setAddressType] = useState<"home" | "work">("home");
