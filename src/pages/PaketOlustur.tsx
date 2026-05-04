@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, Check, ChevronDown, Minus, Package, Plus, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Lightbulb, Minus, Package, Plus, RotateCcw, ShieldCheck, Truck } from "lucide-react";
 import {
   Dialog,
   DialogContent,
