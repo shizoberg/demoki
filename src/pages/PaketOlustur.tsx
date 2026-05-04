@@ -229,6 +229,7 @@ const PaketOlustur = () => {
   const [activeTab, setActiveTab] = useState<Category | null>(null);
   const [showNameDialog, setShowNameDialog] = useState(false);
   const [packageName, setPackageName] = useState("Kendi Bakım Paketim");
+  const [removedItems, setRemovedItems] = useState<CatalogItem[]>([]);
 
   const setQty = (id: ProductId, next: number) => {
     setQuantities((q) => {
