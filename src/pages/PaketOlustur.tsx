@@ -599,6 +599,41 @@ const PaketOlustur = () => {
           </div>
         </div>
       )}
+
+      {/* Package naming dialog */}
+      <Dialog open={showNameDialog} onOpenChange={setShowNameDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-primary text-xl text-primary">Paketine İsim Ver</DialogTitle>
+            <DialogDescription className="text-muted-foreground text-sm">
+              Aboneliklerim sayfasında paketini kolayca tanıyabilmen için bir isim belirle.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 pt-2">
+            <input
+              type="text"
+              value={packageName}
+              onChange={(e) => setPackageName(e.target.value)}
+              placeholder="Örn: Aylık Bakım Paketim"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-primary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+            />
+            <div className="bg-cream-2/60 rounded-xl p-3 space-y-1.5">
+              <p className="text-xs font-medium text-primary/70">{totals.itemCount} ürün · 2 ayda bir teslimat</p>
+              <p className="font-primary text-lg font-medium text-primary">₺{totals.total.toLocaleString("tr-TR")}</p>
+            </div>
+            <button
+              onClick={() => {
+                setShowNameDialog(false);
+                toast.success(`"${packageName}" paketi sepete eklendi!`);
+              }}
+              disabled={!packageName.trim()}
+              className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground text-[14px] font-bold py-3.5 px-5 rounded-full hover:bg-primary-medium transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Onayla ve Sepete Ekle <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
