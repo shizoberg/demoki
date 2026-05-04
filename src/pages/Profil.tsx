@@ -1247,18 +1247,27 @@ const ProfileView = () => {
         <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="font-semibold text-primary">Ödeme yöntemleri</h3>
-            <Button variant="ghost" size="sm" className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full"
+              onClick={() => { setCardForm({ number: "", name: "", expiry: "", cvc: "" }); setShowCardDialog(true); }}
+            >
               <Plus className="h-4 w-4" /> Ekle
             </Button>
           </div>
-          <div className="flex items-center gap-3 rounded-xl bg-secondary/60 px-4 py-4">
-            <div className="flex h-9 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground text-[10px] font-bold">
-              VISA
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-primary">•••• •••• •••• 4421</p>
-              <p className="text-xs text-muted-foreground mt-0.5">Son kullanım 09/28</p>
-            </div>
+          <div className="grid gap-3">
+            {cards.map((c, i) => (
+              <div key={i} className="flex items-center gap-3 rounded-xl bg-secondary/60 px-4 py-4">
+                <div className="flex h-9 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground text-[10px] font-bold">
+                  {c.brand}
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-primary">•••• •••• •••• {c.last4}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Son kullanım {c.expiry}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
