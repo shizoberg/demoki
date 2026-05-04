@@ -574,6 +574,36 @@ const Profil = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Pause/Resume confirmation */}
+      <AlertDialog
+        open={!!confirmToggle}
+        onOpenChange={(o) => !o && setConfirmToggle(null)}
+      >
+        <AlertDialogContent className="font-primary">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-primary">
+              {confirmToggle?.status === "active"
+                ? "Aboneliği duraklatmak istiyor musun?"
+                : "Aboneliği devam ettirmek istiyor musun?"}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {confirmToggle?.status === "active"
+                ? "Aboneliğin duraklatılacak ve bir sonraki teslimat yapılmayacak. Dilediğin zaman devam ettirebilirsin."
+                : "Aboneliğin tekrar aktif olacak ve teslimatlar planlandığı şekilde devam edecek."}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Vazgeç</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={confirmTogglePause}
+              className="bg-primary text-primary-foreground hover:bg-primary-medium"
+            >
+              {confirmToggle?.status === "active" ? "Evet, duraklat" : "Evet, devam ettir"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
