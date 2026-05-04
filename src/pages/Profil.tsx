@@ -1180,42 +1180,44 @@ const ProfileView = () => {
       <div className="grid gap-5">
         <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <p className="text-base font-semibold text-primary">{userName}</p>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">
-                E-posta
+            <div className="flex-1 space-y-2">
+              <p className="text-base font-semibold text-primary">
+                {profile.firstName} {profile.lastName}
               </p>
-              {editingEmail ? (
-                <div className="flex items-center gap-2 mt-1">
-                  <Input
-                    value={emailDraft}
-                    onChange={(e) => setEmailDraft(e.target.value)}
-                    placeholder="yeni@eposta.com"
-                    className="rounded-xl bg-secondary/50 border-0 h-9 text-sm max-w-[220px]"
-                    autoFocus
-                    onKeyDown={(e) => e.key === "Enter" && handleSaveEmail()}
-                  />
-                  <Button size="sm" className="rounded-full h-8 px-3 text-xs" onClick={handleSaveEmail}>
-                    Kaydet
-                  </Button>
-                  <Button size="sm" variant="ghost" className="rounded-full h-8 px-2 text-xs" onClick={() => setEditingEmail(false)}>
-                    İptal
-                  </Button>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">E-posta</p>
+                  <p className="text-sm">{profile.email}</p>
                 </div>
-              ) : (
-                <p className="text-sm mt-1">{email}</p>
-              )}
+                {profile.phone && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">Telefon</p>
+                    <p className="text-sm">+90 {profile.phone}</p>
+                  </div>
+                )}
+                {profile.tcNo && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">T.C. Kimlik</p>
+                    <p className="text-sm">{"•".repeat(7) + profile.tcNo.slice(-4)}</p>
+                  </div>
+                )}
+                {profile.birthDate && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">Doğum Tarihi</p>
+                    <p className="text-sm">{profile.birthDate}</p>
+                  </div>
+                )}
+              </div>
             </div>
-            {!editingEmail && (
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-primary hover:bg-secondary rounded-full"
-                onClick={() => { setEmailDraft(email); setEditingEmail(true); }}
-              >
-                <Pencil className="h-4 w-4" />
-              </Button>
-            )}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-primary hover:bg-secondary rounded-full shrink-0"
+              onClick={() => { setProfileDraft(profile); setShowProfileDialog(true); }}
+            >
+              <Pencil className="h-4 w-4" />
+            </Button>
           </div>
         </div>
 
