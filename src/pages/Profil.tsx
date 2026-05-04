@@ -13,6 +13,8 @@ import {
   ChevronRight,
   ShoppingBag,
   Info,
+  RotateCcw,
+  Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -230,6 +232,7 @@ const Profil = () => {
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
   const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
+  const [removedFromSub, setRemovedFromSub] = useState<SubscriptionItem[]>([]);
 
   const activeCount = useMemo(
     () => subs.filter((s) => s.status === "active").length,
@@ -334,7 +337,7 @@ const Profil = () => {
         {tab === "subscriptions" && (
           <SubscriptionsView
             subs={subs}
-            onEdit={setEditing}
+            onEdit={(sub) => { setRemovedFromSub([]); setEditing(sub); }}
             onTogglePause={togglePause}
             onCancel={(id) => setConfirmCancel(id)}
           />
@@ -437,6 +440,9 @@ const Profil = () => {
                         <button
                           className="rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-destructive"
                           onClick={() => {
+                            setRemovedFromSub((prev) =>
+                              prev.some((r) => r.id === it.id) ? prev : [it, ...prev].slice(0, 5)
+                            );
                             removeItem(editing.id, it.id);
                             setEditing({
                               ...editing,
@@ -451,6 +457,77 @@ const Profil = () => {
                     ))}
                   </div>
                 </div>
+
+                {/* Recently removed items */}
+                {removedFromSub.length > 0 && (
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-1.5 text-muted-foreground">
+                      <RotateCcw className="w-3.5 h-3.5" /> Son çıkarılan ürünler
+                    </Label>
+                    <div className="divide-y divide-border rounded-lg border border-border/60 bg-secondary/30">
+                      {removedFromSub
+                        .filter((r) => !editing.items.some((ei) => ei.id === r.id))
+                        .map((it) => (
+                          <div key={it.id} className="flex items-center gap-3 p-3">
+                            <img src={it.image} alt={it.name} className="h-10 w-10 rounded-md object-cover opacity-70" />
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-medium text-primary/70">{it.name}</p>
+                              <p className="text-xs text-muted-foreground">{it.variant}</p>
+                            </div>
+                            <button
+                              className="text-xs font-semibold text-primary hover:text-primary-medium px-3 py-1.5 rounded-lg hover:bg-secondary transition-colors"
+                              onClick={() => {
+                                const restoredItem = { ...it, qty: 1 };
+                                setEditing({ ...editing, items: [...editing.items, restoredItem] });
+                                setRemovedFromSub((prev) => prev.filter((r) => r.id !== it.id));
+                              }}
+                            >
+                              Geri Ekle
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Suggested items */}
+                {(() => {
+                  const SUGGESTIONS: SubscriptionItem[] = [
+                    { id: "sug1", name: ".ki Balance · Saşe", variant: "30 saşe", qty: 1, price: 395, image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&h=200&fit=crop" },
+                    { id: "sug2", name: ".ki Intim Bakım Spreyi", variant: "75 ml", qty: 1, price: 269, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&h=200&fit=crop" },
+                    { id: "sug3", name: ".ki Cycle Care Yağ", variant: "30 ml", qty: 1, price: 289, image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop" },
+                  ];
+                  const available = SUGGESTIONS.filter(
+                    (s) => !editing.items.some((ei) => ei.id === s.id)
+                  );
+                  if (available.length === 0) return null;
+                  return (
+                    <div className="space-y-2">
+                      <Label className="flex items-center gap-1.5 text-muted-foreground">
+                        <Lightbulb className="w-3.5 h-3.5" /> Paketine uyabilecek ürünler
+                      </Label>
+                      <div className="divide-y divide-border rounded-lg border border-border/60 bg-sage-light/30">
+                        {available.map((it) => (
+                          <div key={it.id} className="flex items-center gap-3 p-3">
+                            <img src={it.image} alt={it.name} className="h-10 w-10 rounded-md object-cover" />
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-medium">{it.name}</p>
+                              <p className="text-xs text-muted-foreground">{it.variant} · ₺{it.price}</p>
+                            </div>
+                            <button
+                              className="text-xs font-semibold text-sage hover:text-primary px-3 py-1.5 rounded-lg hover:bg-secondary transition-colors"
+                              onClick={() => {
+                                setEditing({ ...editing, items: [...editing.items, it] });
+                              }}
+                            >
+                              + Ekle
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
 
               <DialogFooter className="gap-2 sm:gap-2">
