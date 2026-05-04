@@ -93,6 +93,12 @@ const addDays = (iso: string, days: number) => {
   return d.toISOString().slice(0, 10);
 };
 
+const addMonths = (iso: string, months: number) => {
+  const d = new Date(iso);
+  d.setMonth(d.getMonth() + months);
+  return d.toISOString().slice(0, 10);
+};
+
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("tr-TR", {
     day: "numeric",
