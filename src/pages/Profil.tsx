@@ -764,7 +764,6 @@ const SubscriptionsView = ({
     >
       <Plus className="h-4 w-4" /> Yeni abonelik
     </a>
-    )}
   </section>
 );
 
