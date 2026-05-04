@@ -238,8 +238,9 @@ const Profil = () => {
   const [tab, setTab] = useState<TabKey>("subscriptions");
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
-  const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
-  const [confirmToggle, setConfirmToggle] = useState<Subscription | null>(null);
+ const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
+ const [confirmToggle, setConfirmToggle] = useState<Subscription | null>(null);
+ const [confirmRestart, setConfirmRestart] = useState<string | null>(null);
   const [removedFromSub, setRemovedFromSub] = useState<SubscriptionItem[]>([]);
 
   const activeCount = useMemo(
