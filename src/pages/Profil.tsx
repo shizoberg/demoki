@@ -385,7 +385,16 @@ const Profil = () => {
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="space-y-5 py-2">
+               <div className="space-y-5 py-2">
+                <div className="space-y-2">
+                  <Label>Paket adı</Label>
+                  <Input
+                    value={editing.title}
+                    onChange={(e) => setEditing({ ...editing, title: e.target.value })}
+                    placeholder="Paket adını girin"
+                  />
+                </div>
+
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Repeat className="w-4 h-4" />
                   <span>Teslimat: <span className="font-medium text-primary">2 ayda bir</span></span>
