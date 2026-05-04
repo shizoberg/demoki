@@ -354,6 +354,10 @@ const Profil = () => {
             onEdit={(sub) => { setRemovedFromSub([]); setEditing(sub); }}
             onTogglePause={togglePause}
             onCancel={(id) => setConfirmCancel(id)}
+            onRestart={(id) => {
+              updateSub(id, { status: "active" });
+              toast.success("Abonelik yeniden başlatıldı");
+            }}
           />
         )}
       </main>
@@ -674,11 +678,13 @@ const SubscriptionsView = ({
   onEdit,
   onTogglePause,
   onCancel,
+  onRestart,
 }: {
   subs: Subscription[];
   onEdit: (s: Subscription) => void;
   onTogglePause: (s: Subscription) => void;
   onCancel: (id: string) => void;
+  onRestart: (id: string) => void;
 }) => (
   <section>
     <SectionHeader
@@ -710,6 +716,7 @@ const SubscriptionsView = ({
             onEdit={() => onEdit(s)}
             onTogglePause={() => onTogglePause(s)}
             onCancel={() => onCancel(s.id)}
+            onRestart={() => onRestart(s.id)}
           />
         ))}
       </div>
@@ -745,11 +752,13 @@ const SubscriptionCard = ({
   onEdit,
   onTogglePause,
   onCancel,
+  onRestart,
 }: {
   sub: Subscription;
   onEdit: () => void;
   onTogglePause: () => void;
   onCancel: () => void;
+  onRestart: () => void;
 }) => {
   const itemsTotal = sub.items.reduce((acc, it) => acc + it.qty * it.price, 0);
   const isCanceled = sub.status === "canceled";
