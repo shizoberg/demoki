@@ -78,9 +78,9 @@ const SiteNav = () => {
           >
             Kendi paketini oluştur
           </a>
-          <button aria-label="Hesap" className="text-primary hover:opacity-70 transition-opacity">
+          <a href="/profil" aria-label="Hesap" className="text-primary hover:opacity-70 transition-opacity">
             <User className="w-5 h-5" strokeWidth={1.75} />
-          </button>
+          </a>
           <a
             href="#k5Product"
             aria-label="Sepete git"
