@@ -1069,10 +1069,18 @@ const NEIGHBORHOODS: Record<string, Record<string, string[]>> = {
 const ProfileView = () => {
   const [showAddressDialog, setShowAddressDialog] = useState(false);
   const [showCardDialog, setShowCardDialog] = useState(false);
-  const [editingEmail, setEditingEmail] = useState(false);
-  const [email, setEmail] = useState("shizoberg@gmail.com");
-  const [emailDraft, setEmailDraft] = useState("");
-  const [userName, setUserName] = useState("bek aktas");
+  const [showProfileDialog, setShowProfileDialog] = useState(false);
+
+  const [profile, setProfile] = useState({
+    firstName: "bek",
+    lastName: "aktas",
+    email: "shizoberg@gmail.com",
+    tcNo: "",
+    phone: "",
+    birthDate: "",
+  });
+  const [profileDraft, setProfileDraft] = useState(profile);
+
   const [addressType, setAddressType] = useState<"home" | "work">("home");
   const [addresses, setAddresses] = useState<
     { name: string; label: string; city: string; district: string; detail: string }[]
