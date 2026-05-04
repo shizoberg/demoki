@@ -1123,6 +1123,40 @@ const ProfileView = () => {
     setShowAddressDialog(false);
   };
 
+  const formatCardNumber = (v: string) => {
+    const digits = v.replace(/\D/g, "").slice(0, 16);
+    return digits.replace(/(.{4})/g, "$1 ").trim();
+  };
+
+  const formatExpiry = (v: string) => {
+    const digits = v.replace(/\D/g, "").slice(0, 4);
+    if (digits.length >= 3) return digits.slice(0, 2) + "/" + digits.slice(2);
+    return digits;
+  };
+
+  const handleSaveCard = () => {
+    const digits = cardForm.number.replace(/\D/g, "");
+    if (digits.length < 16 || !cardForm.name.trim() || cardForm.cvc.length < 3 || cardForm.expiry.length < 4) {
+      toast.error("Lütfen tüm kart bilgilerini doldurun.");
+      return;
+    }
+    const brand = digits.startsWith("4") ? "VISA" : digits.startsWith("5") ? "MC" : "KART";
+    setCards((prev) => [...prev, { last4: digits.slice(-4), brand, expiry: formatExpiry(cardForm.expiry) }]);
+    setCardForm({ number: "", name: "", expiry: "", cvc: "" });
+    setShowCardDialog(false);
+    toast.success("Kart başarıyla eklendi.");
+  };
+
+  const handleSaveEmail = () => {
+    if (!emailDraft.trim() || !emailDraft.includes("@")) {
+      toast.error("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+    setEmail(emailDraft.trim());
+    setEditingEmail(false);
+    toast.success("E-posta güncellendi.");
+  };
+
   return (
     <section>
       <SectionHeader
