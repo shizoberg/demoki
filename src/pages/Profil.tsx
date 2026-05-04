@@ -387,15 +387,25 @@ const Profil = () => {
                           <button
                             className="px-2 py-1 text-muted-foreground hover:text-foreground"
                             onClick={() => {
-                              updateItemQty(editing.id, it.id, it.qty - 1);
-                              setEditing({
-                                ...editing,
-                                items: editing.items.map((x) =>
-                                  x.id === it.id
-                                    ? { ...x, qty: Math.max(0, x.qty - 1) }
-                                    : x,
-                                ),
-                              });
+                              const newQty = it.qty - 1;
+                              if (newQty <= 0) {
+                                setRemovedFromSub((prev) =>
+                                  prev.some((r) => r.id === it.id) ? prev : [it, ...prev].slice(0, 5)
+                                );
+                                removeItem(editing.id, it.id);
+                                setEditing({
+                                  ...editing,
+                                  items: editing.items.filter((x) => x.id !== it.id),
+                                });
+                              } else {
+                                updateItemQty(editing.id, it.id, newQty);
+                                setEditing({
+                                  ...editing,
+                                  items: editing.items.map((x) =>
+                                    x.id === it.id ? { ...x, qty: newQty } : x,
+                                  ),
+                                });
+                              }
                             }}
                           >
                             −
