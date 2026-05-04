@@ -232,6 +232,7 @@ const Profil = () => {
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
   const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
+  const [removedFromSub, setRemovedFromSub] = useState<SubscriptionItem[]>([]);
 
   const activeCount = useMemo(
     () => subs.filter((s) => s.status === "active").length,
