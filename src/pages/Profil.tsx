@@ -1025,12 +1025,67 @@ const DISTRICTS: Record<string, string[]> = {
   GAZİANTEP: ["ŞAHİNBEY", "ŞEHİTKAMİL", "OĞUZELİ", "NİZİP", "ARABAN", "İSLAHİYE"],
 };
 
+const NEIGHBORHOODS: Record<string, Record<string, string[]>> = {
+  İSTANBUL: {
+    KADIKÖY: ["CAFERAĞA", "OSMANAĞA", "FENERYoLU", "GÖZTEPE", "KOŞUYOLU", "MODA", "RASIMPAŞA", "SUADIYE"],
+    BEŞİKTAŞ: ["LEVENT", "ETİLER", "BEBEK", "ORTAKÖY", "ARNAVUTKÖY", "KURUÇEŞME", "SİNANPAŞA"],
+    ŞİŞLİ: ["NİŞANTAŞI", "TEŞVIKIYE", "OSMANBEY", "MECIDIYEKÖY", "ESENTEPE", "FULYA", "BOMONTI"],
+    ÜSKÜDAR: ["ACIBADE", "ALTUNIZADE", "BEYLERBEYI", "ÇENGELKÖY", "KUZGUNCUK", "VALİDEİ ATİK"],
+    FATİH: ["SULTANAHMET", "EMİNÖNÜ", "AKSARAY", "LALELI", "BEYAZIT", "KUMKAPI", "BALAT"],
+  },
+  İZMİR: {
+    BORNOVA: ["ERZENE", "KAZIMDIRIK", "MERKEZ", "KEMALPAŞA", "DOĞANLAR", "ALTINDAĞ"],
+    KARŞIYAKA: ["BOSTANLI", "ÇİĞLİ", "MAVIŞEHIR", "AKSOY", "TERSANE", "DEMİRKÖPRÜ"],
+    KONAK: ["ALSANCAK", "PASAPORT", "GÜZELYALI", "HATAY", "GÖZTEPE", "BASMANE"],
+    BUCA: ["ŞİRİNYER", "KOOP", "KOZAĞAÇ", "TINAZTEPE", "ÇAMLIK"],
+  },
+  ANKARA: {
+    ÇANKAYA: ["KIZILAY", "ÇAYYOLU", "ÜMITKÖY", "BAHÇELIEVLER", "AYRANCI", "GAZIOSMANPAŞA", "BALGAT"],
+    KEÇİÖREN: ["ETLİK", "OVACIK", "KUŞCAĞIZ", "SUBAYEVLERI", "KALABA"],
+    YENİMAHALLE: ["BATIKENT", "DEMETEVLER", "ÇAYYOLU", "OSTIM", "MACUNKÖY"],
+  },
+  ANTALYA: {
+    MURATPAŞA: ["LARA", "KONYAALTI", "SIĞACIK", "MELTEM", "FENER", "GÜZELOBA"],
+    KONYAALTI: ["LİMAN", "HURMA", "SARISU", "UNCALI", "ARAPSUYU"],
+  },
+  BURSA: {
+    NİLÜFER: ["GÖRÜKLE", "BEŞEVLER", "ÖZLÜCE", "İHSANİYE", "ATAEVLER", "KONAK"],
+    OSMANGAZİ: ["ÇEKIRGE", "HEYKEL", "KÜKÜRTLÜ", "DEMIRTAŞ", "SOĞANLI"],
+  },
+  ADANA: {
+    SEYHAN: ["REŞATBEY", "DÖŞEME", "SÜMER", "BARKAL", "TELLIDERE"],
+    ÇUKUROVA: ["KURTTEPE", "BELEDIYE EVLERİ", "TOROS", "SEYHAN"],
+  },
+  KOCAELİ: {
+    İZMİT: ["KÖRFEZ", "YENİDOĞAN", "KOZLUK", "ÇARŞI", "BAHÇECİK"],
+    GEBZE: ["MERKEZ", "GÜZELLER", "KINAŞLI", "OSMAN YILMAZ"],
+  },
+  GAZİANTEP: {
+    ŞAHİNBEY: ["BARAK", "GÜNEYKENT", "PERILIKAYA", "FIDANLIK", "KARATAŞ"],
+    ŞEHİTKAMİL: ["İBRAHİMLİ", "BEYAZEVLER", "BATIKENT", "KARAGÖZ"],
+  },
+};
+
 const ProfileView = () => {
   const [showAddressDialog, setShowAddressDialog] = useState(false);
+  const [showCardDialog, setShowCardDialog] = useState(false);
+  const [editingEmail, setEditingEmail] = useState(false);
+  const [email, setEmail] = useState("shizoberg@gmail.com");
+  const [emailDraft, setEmailDraft] = useState("");
+  const [userName, setUserName] = useState("bek aktas");
   const [addressType, setAddressType] = useState<"home" | "work">("home");
   const [addresses, setAddresses] = useState<
     { name: string; label: string; city: string; district: string; detail: string }[]
   >([]);
+  const [cards, setCards] = useState([
+    { last4: "4421", brand: "VISA", expiry: "09/28" },
+  ]);
+  const [cardForm, setCardForm] = useState({
+    number: "",
+    name: "",
+    expiry: "",
+    cvc: "",
+  });
 
   const [form, setForm] = useState({
     firstName: "",
@@ -1068,6 +1123,40 @@ const ProfileView = () => {
     setShowAddressDialog(false);
   };
 
+  const formatCardNumber = (v: string) => {
+    const digits = v.replace(/\D/g, "").slice(0, 16);
+    return digits.replace(/(.{4})/g, "$1 ").trim();
+  };
+
+  const formatExpiry = (v: string) => {
+    const digits = v.replace(/\D/g, "").slice(0, 4);
+    if (digits.length >= 3) return digits.slice(0, 2) + "/" + digits.slice(2);
+    return digits;
+  };
+
+  const handleSaveCard = () => {
+    const digits = cardForm.number.replace(/\D/g, "");
+    if (digits.length < 16 || !cardForm.name.trim() || cardForm.cvc.length < 3 || cardForm.expiry.length < 4) {
+      toast.error("Lütfen tüm kart bilgilerini doldurun.");
+      return;
+    }
+    const brand = digits.startsWith("4") ? "VISA" : digits.startsWith("5") ? "MC" : "KART";
+    setCards((prev) => [...prev, { last4: digits.slice(-4), brand, expiry: formatExpiry(cardForm.expiry) }]);
+    setCardForm({ number: "", name: "", expiry: "", cvc: "" });
+    setShowCardDialog(false);
+    toast.success("Kart başarıyla eklendi.");
+  };
+
+  const handleSaveEmail = () => {
+    if (!emailDraft.trim() || !emailDraft.includes("@")) {
+      toast.error("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+    setEmail(emailDraft.trim());
+    setEditingEmail(false);
+    toast.success("E-posta güncellendi.");
+  };
+
   return (
     <section>
       <SectionHeader
@@ -1079,16 +1168,42 @@ const ProfileView = () => {
       <div className="grid gap-5">
         <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-base font-semibold text-primary">bek aktas</p>
+            <div className="flex-1">
+              <p className="text-base font-semibold text-primary">{userName}</p>
               <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">
                 E-posta
               </p>
-              <p className="text-sm mt-1">shizoberg@gmail.com</p>
+              {editingEmail ? (
+                <div className="flex items-center gap-2 mt-1">
+                  <Input
+                    value={emailDraft}
+                    onChange={(e) => setEmailDraft(e.target.value)}
+                    placeholder="yeni@eposta.com"
+                    className="rounded-xl bg-secondary/50 border-0 h-9 text-sm max-w-[220px]"
+                    autoFocus
+                    onKeyDown={(e) => e.key === "Enter" && handleSaveEmail()}
+                  />
+                  <Button size="sm" className="rounded-full h-8 px-3 text-xs" onClick={handleSaveEmail}>
+                    Kaydet
+                  </Button>
+                  <Button size="sm" variant="ghost" className="rounded-full h-8 px-2 text-xs" onClick={() => setEditingEmail(false)}>
+                    İptal
+                  </Button>
+                </div>
+              ) : (
+                <p className="text-sm mt-1">{email}</p>
+              )}
             </div>
-            <Button variant="ghost" size="icon" className="text-primary hover:bg-secondary rounded-full">
-              <Pencil className="h-4 w-4" />
-            </Button>
+            {!editingEmail && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-primary hover:bg-secondary rounded-full"
+                onClick={() => { setEmailDraft(email); setEditingEmail(true); }}
+              >
+                <Pencil className="h-4 w-4" />
+              </Button>
+            )}
           </div>
         </div>
 
@@ -1132,18 +1247,27 @@ const ProfileView = () => {
         <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="font-semibold text-primary">Ödeme yöntemleri</h3>
-            <Button variant="ghost" size="sm" className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full"
+              onClick={() => { setCardForm({ number: "", name: "", expiry: "", cvc: "" }); setShowCardDialog(true); }}
+            >
               <Plus className="h-4 w-4" /> Ekle
             </Button>
           </div>
-          <div className="flex items-center gap-3 rounded-xl bg-secondary/60 px-4 py-4">
-            <div className="flex h-9 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground text-[10px] font-bold">
-              VISA
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-primary">•••• •••• •••• 4421</p>
-              <p className="text-xs text-muted-foreground mt-0.5">Son kullanım 09/28</p>
-            </div>
+          <div className="grid gap-3">
+            {cards.map((c, i) => (
+              <div key={i} className="flex items-center gap-3 rounded-xl bg-secondary/60 px-4 py-4">
+                <div className="flex h-9 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground text-[10px] font-bold">
+                  {c.brand}
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-primary">•••• •••• •••• {c.last4}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Son kullanım {c.expiry}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -1248,7 +1372,7 @@ const ProfileView = () => {
               {/* İlçe */}
               <div className="mb-3">
                 <Label className="text-sm text-muted-foreground mb-1.5 block">İlçe</Label>
-                <Select value={form.district} onValueChange={(v) => setForm((f) => ({ ...f, district: v }))}>
+                <Select value={form.district} onValueChange={(v) => setForm((f) => ({ ...f, district: v, neighborhood: "" }))}>
                   <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11" disabled={!form.city}>
                     <SelectValue placeholder={form.city ? "İlçe seçin" : "Önce şehir seçin"} />
                   </SelectTrigger>
@@ -1263,12 +1387,16 @@ const ProfileView = () => {
               {/* Mahalle */}
               <div className="mb-3">
                 <Label className="text-sm text-muted-foreground mb-1.5 block">Mahalle</Label>
-                <Input
-                  placeholder="Mahalle"
-                  value={form.neighborhood}
-                  onChange={(e) => setForm((f) => ({ ...f, neighborhood: e.target.value }))}
-                  className="rounded-xl bg-secondary/50 border-0 h-11"
-                />
+                <Select value={form.neighborhood} onValueChange={(v) => setForm((f) => ({ ...f, neighborhood: v }))}>
+                  <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11" disabled={!form.district}>
+                    <SelectValue placeholder={form.district ? "Mahalle seçin" : "Önce ilçe seçin"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(NEIGHBORHOODS[form.city]?.[form.district] || []).map((n) => (
+                      <SelectItem key={n} value={n}>{n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Adres detay */}
@@ -1307,6 +1435,98 @@ const ProfileView = () => {
             </Button>
             <Button className="flex-1 rounded-full" onClick={handleSave}>
               Adresi Kaydet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ── Card Dialog ── */}
+      <Dialog open={showCardDialog} onOpenChange={setShowCardDialog}>
+        <DialogContent className="max-w-md rounded-3xl p-0 gap-0">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle className="text-lg font-bold text-primary">Kart ekle</DialogTitle>
+            <DialogDescription className="text-sm text-muted-foreground">
+              Ödeme için kullanılacak kredi veya banka kartı bilgilerini gir.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="px-6 pb-6 space-y-4">
+            {/* Card visual */}
+            <div className="rounded-2xl bg-gradient-to-br from-primary to-primary-medium p-5 text-primary-foreground shadow-lg">
+              <div className="flex justify-between items-start mb-8">
+                <CreditCard className="h-7 w-7 opacity-80" />
+                <p className="text-xs font-semibold opacity-70">KREDİ KARTI</p>
+              </div>
+              <p className="text-lg font-mono tracking-[0.2em] mb-4">
+                {cardForm.number ? formatCardNumber(cardForm.number) : "•••• •••• •••• ••••"}
+              </p>
+              <div className="flex justify-between text-xs">
+                <div>
+                  <p className="opacity-60 text-[10px]">KART SAHİBİ</p>
+                  <p className="font-semibold">{cardForm.name || "AD SOYAD"}</p>
+                </div>
+                <div className="text-right">
+                  <p className="opacity-60 text-[10px]">SON KULLANIM</p>
+                  <p className="font-semibold">{cardForm.expiry ? formatExpiry(cardForm.expiry) : "MM/YY"}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card number */}
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Kart numarası</Label>
+              <Input
+                placeholder="0000 0000 0000 0000"
+                value={formatCardNumber(cardForm.number)}
+                onChange={(e) => setCardForm((f) => ({ ...f, number: e.target.value.replace(/\D/g, "").slice(0, 16) }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11 font-mono tracking-wider"
+                maxLength={19}
+              />
+            </div>
+
+            {/* Card holder */}
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Kart üzerindeki isim</Label>
+              <Input
+                placeholder="Ad Soyad"
+                value={cardForm.name}
+                onChange={(e) => setCardForm((f) => ({ ...f, name: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            {/* Expiry + CVC */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label className="text-sm text-muted-foreground mb-1.5 block">Son kullanım</Label>
+                <Input
+                  placeholder="MM/YY"
+                  value={formatExpiry(cardForm.expiry)}
+                  onChange={(e) => setCardForm((f) => ({ ...f, expiry: e.target.value.replace(/\D/g, "").slice(0, 4) }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                  maxLength={5}
+                />
+              </div>
+              <div>
+                <Label className="text-sm text-muted-foreground mb-1.5 block">CVC</Label>
+                <Input
+                  placeholder="•••"
+                  value={cardForm.cvc}
+                  onChange={(e) => setCardForm((f) => ({ ...f, cvc: e.target.value.replace(/\D/g, "").slice(0, 4) }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                  maxLength={4}
+                  type="password"
+                />
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="px-6 pb-6 pt-2 flex gap-3">
+            <Button variant="outline" className="flex-1 rounded-full" onClick={() => setShowCardDialog(false)}>
+              Vazgeç
+            </Button>
+            <Button className="flex-1 rounded-full" onClick={handleSaveCard}>
+              Kartı Kaydet
             </Button>
           </DialogFooter>
         </DialogContent>
