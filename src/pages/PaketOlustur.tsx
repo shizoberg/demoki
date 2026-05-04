@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, Check, ChevronDown, Minus, Package, Plus, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Lightbulb, Minus, Package, Plus, RotateCcw, ShieldCheck, Truck } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -229,17 +229,28 @@ const PaketOlustur = () => {
   const [activeTab, setActiveTab] = useState<Category | null>(null);
   const [showNameDialog, setShowNameDialog] = useState(false);
   const [packageName, setPackageName] = useState("Kendi Bakım Paketim");
+  const [removedItems, setRemovedItems] = useState<CatalogItem[]>([]);
 
   const setQty = (id: ProductId, next: number) => {
     setQuantities((q) => {
       const item = CATALOG.find((c) => c.id === id);
       const step = item?.step ?? 1;
-      // Yuvarla: değeri en yakın step katına indir, 0..200 arasında tut
       const snapped = Math.round(next / step) * step;
       const value = Math.max(0, Math.min(200, snapped));
       const copy = { ...q };
-      if (value === 0) delete copy[id];
-      else copy[id] = value;
+      const hadBefore = (q[id] ?? 0) > 0;
+      if (value === 0) {
+        delete copy[id];
+        if (hadBefore && item) {
+          setRemovedItems((prev) =>
+            prev.some((r) => r.id === id) ? prev : [item, ...prev].slice(0, 5)
+          );
+        }
+      } else {
+        copy[id] = value;
+        // If re-added, remove from removed list
+        setRemovedItems((prev) => prev.filter((r) => r.id !== id));
+      }
       return copy;
     });
   };
@@ -256,6 +267,12 @@ const PaketOlustur = () => {
     const shippingProgress = Math.min(1, total / FREE_SHIPPING_THRESHOLD);
     return { items, itemCount, subtotal, total, shippingProgress };
   }, [quantities]);
+
+  const suggestedItems = useMemo(() => {
+    return CATALOG.filter(
+      (c) => (quantities[c.id] ?? 0) === 0 && !removedItems.some((r) => r.id === c.id)
+    ).slice(0, 3);
+  }, [quantities, removedItems]);
 
   const tabsCount = (cat: Category) =>
     CATALOG.filter((c) => c.category === cat).reduce((sum, c) => sum + (quantities[c.id] ?? 0), 0);
@@ -539,6 +556,62 @@ const PaketOlustur = () => {
                 <li className="flex items-center gap-2"><Check className="w-3 h-3 text-sage" /> Ücretsiz iade ve değişim</li>
                 <li className="flex items-center gap-2"><Check className="w-3 h-3 text-sage" /> 2 iş günü içinde kargoda</li>
               </ul>
+
+              {/* Recently removed items */}
+              {removedItems.length > 0 && (
+                <div className="mt-5 pt-4 border-t border-border/60">
+                  <h4 className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <RotateCcw className="w-3 h-3" /> Son Çıkarılanlar
+                  </h4>
+                  <ul className="space-y-2">
+                    {removedItems.map((item) => (
+                      <li key={item.id} className="flex items-center gap-2.5 group">
+                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-cream-2 border border-border/60 shrink-0">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[12px] font-medium text-primary/70 truncate">{item.name}</p>
+                          <p className="text-[10.5px] text-muted-foreground">₺{item.price.toLocaleString("tr-TR")}</p>
+                        </div>
+                        <button
+                          onClick={() => setQty(item.id, item.step)}
+                          className="text-[10.5px] font-semibold text-primary hover:text-primary-medium transition-colors px-2 py-1 rounded-lg hover:bg-secondary"
+                        >
+                          Geri Ekle
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Suggested items */}
+              {suggestedItems.length > 0 && totals.itemCount > 0 && (
+                <div className="mt-5 pt-4 border-t border-border/60">
+                  <h4 className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <Lightbulb className="w-3 h-3" /> Paketine Uyabilecek Ürünler
+                  </h4>
+                  <ul className="space-y-2">
+                    {suggestedItems.map((item) => (
+                      <li key={item.id} className="flex items-center gap-2.5 group">
+                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-cream-2 border border-border/60 shrink-0">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[12px] font-medium text-primary/70 truncate">{item.name}</p>
+                          <p className="text-[10.5px] text-muted-foreground">₺{item.price.toLocaleString("tr-TR")}</p>
+                        </div>
+                        <button
+                          onClick={() => setQty(item.id, item.step)}
+                          className="text-[10.5px] font-semibold text-sage hover:text-primary transition-colors px-2 py-1 rounded-lg hover:bg-secondary"
+                        >
+                          + Ekle
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* How it works */}
