@@ -235,12 +235,22 @@ const PaketOlustur = () => {
     setQuantities((q) => {
       const item = CATALOG.find((c) => c.id === id);
       const step = item?.step ?? 1;
-      // Yuvarla: değeri en yakın step katına indir, 0..200 arasında tut
       const snapped = Math.round(next / step) * step;
       const value = Math.max(0, Math.min(200, snapped));
       const copy = { ...q };
-      if (value === 0) delete copy[id];
-      else copy[id] = value;
+      const hadBefore = (q[id] ?? 0) > 0;
+      if (value === 0) {
+        delete copy[id];
+        if (hadBefore && item) {
+          setRemovedItems((prev) =>
+            prev.some((r) => r.id === id) ? prev : [item, ...prev].slice(0, 5)
+          );
+        }
+      } else {
+        copy[id] = value;
+        // If re-added, remove from removed list
+        setRemovedItems((prev) => prev.filter((r) => r.id !== id));
+      }
       return copy;
     });
   };
