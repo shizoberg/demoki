@@ -1025,6 +1025,47 @@ const DISTRICTS: Record<string, string[]> = {
   GAZİANTEP: ["ŞAHİNBEY", "ŞEHİTKAMİL", "OĞUZELİ", "NİZİP", "ARABAN", "İSLAHİYE"],
 };
 
+const NEIGHBORHOODS: Record<string, Record<string, string[]>> = {
+  İSTANBUL: {
+    KADIKÖY: ["CAFERAĞA", "OSMANAĞA", "FENERYoLU", "GÖZTEPE", "KOŞUYOLU", "MODA", "RASIMPAŞA", "SUADIYE"],
+    BEŞİKTAŞ: ["LEVENT", "ETİLER", "BEBEK", "ORTAKÖY", "ARNAVUTKÖY", "KURUÇEŞME", "SİNANPAŞA"],
+    ŞİŞLİ: ["NİŞANTAŞI", "TEŞVIKIYE", "OSMANBEY", "MECIDIYEKÖY", "ESENTEPE", "FULYA", "BOMONTI"],
+    ÜSKÜDAR: ["ACIBADE", "ALTUNIZADE", "BEYLERBEYI", "ÇENGELKÖY", "KUZGUNCUK", "VALİDEİ ATİK"],
+    FATİH: ["SULTANAHMET", "EMİNÖNÜ", "AKSARAY", "LALELI", "BEYAZIT", "KUMKAPI", "BALAT"],
+  },
+  İZMİR: {
+    BORNOVA: ["ERZENE", "KAZIMDIRIK", "MERKEZ", "KEMALPAŞA", "DOĞANLAR", "ALTINDAĞ"],
+    KARŞIYAKA: ["BOSTANLI", "ÇİĞLİ", "MAVIŞEHIR", "AKSOY", "TERSANE", "DEMİRKÖPRÜ"],
+    KONAK: ["ALSANCAK", "PASAPORT", "GÜZELYALI", "HATAY", "GÖZTEPE", "BASMANE"],
+    BUCA: ["ŞİRİNYER", "KOOP", "KOZAĞAÇ", "TINAZTEPE", "ÇAMLIK"],
+  },
+  ANKARA: {
+    ÇANKAYA: ["KIZILAY", "ÇAYYOLU", "ÜMITKÖY", "BAHÇELIEVLER", "AYRANCI", "GAZIOSMANPAŞA", "BALGAT"],
+    KEÇİÖREN: ["ETLİK", "OVACIK", "KUŞCAĞIZ", "SUBAYEVLERI", "KALABA"],
+    YENİMAHALLE: ["BATIKENT", "DEMETEVLER", "ÇAYYOLU", "OSTIM", "MACUNKÖY"],
+  },
+  ANTALYA: {
+    MURATPAŞA: ["LARA", "KONYAALTI", "SIĞACIK", "MELTEM", "FENER", "GÜZELOBA"],
+    KONYAALTI: ["LİMAN", "HURMA", "SARISU", "UNCALI", "ARAPSUYU"],
+  },
+  BURSA: {
+    NİLÜFER: ["GÖRÜKLE", "BEŞEVLER", "ÖZLÜCE", "İHSANİYE", "ATAEVLER", "KONAK"],
+    OSMANGAZİ: ["ÇEKIRGE", "HEYKEL", "KÜKÜRTLÜ", "DEMIRTAŞ", "SOĞANLI"],
+  },
+  ADANA: {
+    SEYHAN: ["REŞATBEY", "DÖŞEME", "SÜMER", "BARKAL", "TELLIDERE"],
+    ÇUKUROVA: ["KURTTEPE", "BELEDIYE EVLERİ", "TOROS", "SEYHAN"],
+  },
+  KOCAELİ: {
+    İZMİT: ["KÖRFEZ", "YENİDOĞAN", "KOZLUK", "ÇARŞI", "BAHÇECİK"],
+    GEBZE: ["MERKEZ", "GÜZELLER", "KINAŞLI", "OSMAN YILMAZ"],
+  },
+  GAZİANTEP: {
+    ŞAHİNBEY: ["BARAK", "GÜNEYKENT", "PERILIKAYA", "FIDANLIK", "KARATAŞ"],
+    ŞEHİTKAMİL: ["İBRAHİMLİ", "BEYAZEVLER", "BATIKENT", "KARAGÖZ"],
+  },
+};
+
 const ProfileView = () => {
   const [showAddressDialog, setShowAddressDialog] = useState(false);
   const [addressType, setAddressType] = useState<"home" | "work">("home");
