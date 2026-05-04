@@ -683,7 +683,7 @@ const TabBtn = ({
 }) => (
   <button
     onClick={onClick}
-    className={`relative inline-flex items-center whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all ${
+    className={`relative inline-flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all ${
       active
         ? "bg-primary text-primary-foreground shadow-sm"
         : "text-primary/70 hover:bg-secondary hover:text-primary"
