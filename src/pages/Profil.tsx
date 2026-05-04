@@ -238,8 +238,9 @@ const Profil = () => {
   const [tab, setTab] = useState<TabKey>("subscriptions");
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
-  const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
-  const [confirmToggle, setConfirmToggle] = useState<Subscription | null>(null);
+ const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
+ const [confirmToggle, setConfirmToggle] = useState<Subscription | null>(null);
+ const [confirmRestart, setConfirmRestart] = useState<string | null>(null);
   const [removedFromSub, setRemovedFromSub] = useState<SubscriptionItem[]>([]);
 
   const activeCount = useMemo(
@@ -354,10 +355,7 @@ const Profil = () => {
             onEdit={(sub) => { setRemovedFromSub([]); setEditing(sub); }}
             onTogglePause={togglePause}
             onCancel={(id) => setConfirmCancel(id)}
-            onRestart={(id) => {
-              updateSub(id, { status: "active" });
-              toast.success("Abonelik yeniden başlatıldı");
-            }}
+            onRestart={(id) => setConfirmRestart(id)}
           />
         )}
       </main>
@@ -600,7 +598,7 @@ const Profil = () => {
             </AlertDialogTitle>
             <AlertDialogDescription>
               {confirmToggle?.status === "active"
-                ? "Aboneliğin duraklatılacak ve bir sonraki teslimat yapılmayacak. Dilediğin zaman devam ettirebilirsin."
+                ? "Teslimatın önümüzdeki bir ay duraklatılacak ancak sonraki ay otomatik olarak devam edecek. Dilediğin zaman manuel olarak da devam ettirebilirsin."
                 : "Aboneliğin tekrar aktif olacak ve teslimatlar planlandığı şekilde devam edecek."}
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -611,6 +609,38 @@ const Profil = () => {
               className="bg-primary text-primary-foreground hover:bg-primary-medium"
             >
               {confirmToggle?.status === "active" ? "Evet, duraklat" : "Evet, devam ettir"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Restart confirmation */}
+      <AlertDialog
+        open={!!confirmRestart}
+        onOpenChange={(o) => !o && setConfirmRestart(null)}
+      >
+        <AlertDialogContent className="font-primary">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-primary">
+              Aboneliği yeniden başlatmak istiyor musun?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              İptal edilen aboneliğin tekrar aktif hale getirilecek ve teslimatlar planlandığı şekilde devam edecek.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Vazgeç</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (confirmRestart) {
+                  updateSub(confirmRestart, { status: "active" });
+                  toast.success("Abonelik yeniden başlatıldı");
+                }
+                setConfirmRestart(null);
+              }}
+              className="bg-primary text-primary-foreground hover:bg-primary-medium"
+            >
+              Evet, yeniden başlat
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
