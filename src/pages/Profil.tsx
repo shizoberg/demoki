@@ -1545,6 +1545,98 @@ const ProfileView = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* ── Profile Edit Dialog ── */}
+      <Dialog open={showProfileDialog} onOpenChange={setShowProfileDialog}>
+        <DialogContent className="max-w-md rounded-3xl p-0 gap-0 max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle className="text-lg font-bold text-primary">Bilgilerini Güncelle</DialogTitle>
+            <DialogDescription className="text-sm text-muted-foreground">
+              Deneyimini sana göre şekillendirebilmemiz için bilgilerini buradan düzenleyebilirsin.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="px-6 pb-6 space-y-4">
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Adın *</Label>
+              <Input
+                placeholder="Adın"
+                value={profileDraft.firstName}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, firstName: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Soyadın *</Label>
+              <Input
+                placeholder="Soyadın"
+                value={profileDraft.lastName}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, lastName: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">E-mail Adresin *</Label>
+              <Input
+                placeholder="ornek@email.com"
+                type="email"
+                value={profileDraft.email}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, email: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">T.C. Kimlik Numaran</Label>
+              <Input
+                placeholder="T.C. Kimlik Numaran"
+                value={profileDraft.tcNo}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, tcNo: e.target.value.replace(/\D/g, "").slice(0, 11) }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+                maxLength={11}
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Telefon Numaran</Label>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 rounded-xl bg-secondary/50 px-3 h-11 shrink-0">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-primary">+90</span>
+                </div>
+                <Input
+                  placeholder="5XX XXX XX XX"
+                  value={profileDraft.phone}
+                  onChange={(e) => setProfileDraft((f) => ({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11 flex-1"
+                  maxLength={10}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Doğum Tarihin</Label>
+              <Input
+                type="date"
+                value={profileDraft.birthDate}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, birthDate: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+          </div>
+
+          <DialogFooter className="px-6 pb-6 pt-2 flex gap-3">
+            <Button variant="outline" className="flex-1 rounded-full" onClick={() => setShowProfileDialog(false)}>
+              Vazgeç
+            </Button>
+            <Button className="flex-1 rounded-full" onClick={handleSaveProfile}>
+              Kaydet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
