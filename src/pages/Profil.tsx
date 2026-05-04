@@ -1475,9 +1475,9 @@ const ProfileView = () => {
                 {cardForm.number ? formatCardNumber(cardForm.number) : "•••• •••• •••• ••••"}
               </p>
               <div className="flex justify-between text-xs">
-                <div>
+                <div className="min-w-0 flex-1 mr-4">
                   <p className="opacity-60 text-[10px]">KART SAHİBİ</p>
-                  <p className="font-semibold">{cardForm.name || "AD SOYAD"}</p>
+                  <p className="font-semibold truncate">{cardForm.name || "AD SOYAD"}</p>
                 </div>
                 <div className="text-right">
                   <p className="opacity-60 text-[10px]">SON KULLANIM</p>
