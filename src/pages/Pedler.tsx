@@ -327,26 +327,6 @@ const Pedler = () => {
               {totals.totalUnits === 0 ? "Pedlerini Seç" : `Sepete Ekle · ${totals.totalUnits} adet`}
             </button>
 
-            {/* Free shipping progress */}
-            <div className="mt-4">
-              <div className="flex items-center justify-between text-[12px] text-muted-foreground mb-1.5">
-                <span className="flex items-center gap-1.5">
-                  <Truck className="w-3.5 h-3.5 text-sage" />
-                  {totals.totalUnits >= FREE_SHIPPING_THRESHOLD_UNITS
-                    ? "Ücretsiz kargo kazandın 🎉"
-                    : `${FREE_SHIPPING_THRESHOLD_UNITS - totals.totalUnits} adet daha = ücretsiz kargo`}
-                </span>
-                <span className="font-semibold">
-                  {Math.round(totals.shippingProgress * 100)}%
-                </span>
-              </div>
-              <div className="h-1.5 rounded-full bg-secondary overflow-hidden">
-                <div
-                  className="h-full bg-sage transition-all duration-500"
-                  style={{ width: `${totals.shippingProgress * 100}%` }}
-                />
-              </div>
-            </div>
 
             {/* Trust badges */}
             <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary/80 font-medium">
