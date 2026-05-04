@@ -227,6 +227,8 @@ const PaketOlustur = () => {
     ritual: false,
   });
   const [activeTab, setActiveTab] = useState<Category | null>(null);
+  const [showNameDialog, setShowNameDialog] = useState(false);
+  const [packageName, setPackageName] = useState("Kendi Bakım Paketim");
 
   const setQty = (id: ProductId, next: number) => {
     setQuantities((q) => {
