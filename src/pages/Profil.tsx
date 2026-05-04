@@ -318,7 +318,7 @@ const Profil = () => {
 
       {/* Page header / hero strip */}
       <section className="border-b border-border/60 bg-plum-pale">
-        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-8 pb-0">
+        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-10 pb-4">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
@@ -352,7 +352,7 @@ const Profil = () => {
               )}
             </TabBtn>
             <TabBtn active={tab === "profile"} onClick={() => setTab("profile")}>
-              <User className="h-4 w-4" /> Profil
+              <User className="h-4 w-4" /> Kullanıcı bilgileri
             </TabBtn>
           </div>
         </div>
@@ -683,7 +683,7 @@ const TabBtn = ({
 }) => (
   <button
     onClick={onClick}
-    className={`relative inline-flex items-center whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all ${
+    className={`relative inline-flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all ${
       active
         ? "bg-primary text-primary-foreground shadow-sm"
         : "text-primary/70 hover:bg-secondary hover:text-primary"
