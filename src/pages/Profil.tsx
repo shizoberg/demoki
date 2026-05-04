@@ -738,9 +738,7 @@ const SubscriptionsView = ({
 }) => (
   <section>
     <SectionHeader
-      eyebrow="Abonelikler"
-      title="Aktif aboneliklerin"
-      description="Sepetini düzenle, teslimat sıklığını değiştir veya istediğin an duraklat."
+      title="Aktif aboneliklerim"
       action={
         <a
           href="/paket-olustur"
