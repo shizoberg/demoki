@@ -737,18 +737,6 @@ const SubscriptionsView = ({
   onRestart: (id: string) => void;
 }) => (
   <section>
-    <SectionHeader
-      title="Aktif aboneliklerim"
-      action={
-        <a
-          href="/paket-olustur"
-          className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary-medium transition-colors text-[13px] font-bold py-2.5 px-5 rounded-full"
-        >
-          <Plus className="h-4 w-4" /> Yeni abonelik
-        </a>
-      }
-    />
-
     {subs.length === 0 ? (
       <EmptyState
         icon={<Repeat className="h-6 w-6" />}
@@ -768,6 +756,14 @@ const SubscriptionsView = ({
           />
         ))}
       </div>
+    )}
+
+    <a
+      href="/paket-olustur"
+      className="mt-5 flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground hover:bg-primary-medium transition-colors text-sm font-bold py-4 px-5 rounded-2xl"
+    >
+      <Plus className="h-4 w-4" /> Yeni abonelik
+    </a>
     )}
   </section>
 );
