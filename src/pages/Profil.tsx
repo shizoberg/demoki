@@ -316,26 +316,25 @@ const Profil = () => {
 
       {/* Page header / hero strip */}
       <section className="border-b border-border/60 bg-plum-pale">
-        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 py-10 lg:py-14">
-          <div className="flex items-start gap-5">
-            <div className="hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground text-xl font-semibold">
-              B
-            </div>
-            <div>
-              <p className="text-[12px] font-semibold tracking-[0.18em] uppercase text-primary-medium">
-                .ki hesabım
-              </p>
-              <h1 className="mt-2 text-[32px] lg:text-[40px] leading-[1.1] font-semibold text-primary tracking-tight">
-                Merhaba, bek aktas
-              </h1>
-              <p className="mt-2 text-sm text-muted-foreground max-w-md">
-                Siparişlerini takip et, aboneliklerini yönet ve hesap bilgilerini güncelle.
-              </p>
+        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-8 pb-0">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
+                B
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
+                  .ki hesabım
+                </p>
+                <h1 className="text-lg font-semibold text-primary leading-tight mt-0.5">
+                  Merhaba, bek aktas
+                </h1>
+              </div>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="mt-8 flex gap-1 overflow-x-auto hide-scrollbar -mx-1 px-1">
+          <div className="flex gap-1 overflow-x-auto hide-scrollbar -mx-1 px-1">
             <TabBtn active={tab === "orders"} onClick={() => setTab("orders")}>
               Siparişler
             </TabBtn>
