@@ -6,6 +6,7 @@ import {
   Pencil,
   LogOut,
   Calendar,
+  CalendarRange,
   CreditCard,
   Pause,
   Play,
@@ -20,6 +21,7 @@ import {
   Search,
   MapPin,
   Phone,
+  User,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
