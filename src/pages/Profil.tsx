@@ -933,19 +933,7 @@ const OrdersView = () => {
 
   return (
     <section>
-      <SectionHeader
-        eyebrow="Siparişler"
-        title="Sipariş geçmişin"
-        description="Tek seferlik siparişlerini görüntüle ve takip et."
-        action={
-          <a
-            href="/balance"
-            className="inline-flex items-center gap-2 border border-primary/30 text-primary hover:bg-secondary transition-colors text-[13px] font-bold py-2.5 px-5 rounded-full"
-          >
-            Mağazaya git <ChevronRight className="h-4 w-4" />
-          </a>
-        }
-      />
+       <p className="mb-6 text-sm text-muted-foreground">Tek seferlik siparişlerini görüntüle ve takip et.</p>
 
       {orders.length === 0 ? (
         <EmptyState
