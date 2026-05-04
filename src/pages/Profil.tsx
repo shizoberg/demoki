@@ -1439,6 +1439,98 @@ const ProfileView = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* ── Card Dialog ── */}
+      <Dialog open={showCardDialog} onOpenChange={setShowCardDialog}>
+        <DialogContent className="max-w-md rounded-3xl p-0 gap-0">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle className="text-lg font-bold text-primary">Kart ekle</DialogTitle>
+            <DialogDescription className="text-sm text-muted-foreground">
+              Ödeme için kullanılacak kredi veya banka kartı bilgilerini gir.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="px-6 pb-6 space-y-4">
+            {/* Card visual */}
+            <div className="rounded-2xl bg-gradient-to-br from-primary to-primary-medium p-5 text-primary-foreground shadow-lg">
+              <div className="flex justify-between items-start mb-8">
+                <CreditCard className="h-7 w-7 opacity-80" />
+                <p className="text-xs font-semibold opacity-70">KREDİ KARTI</p>
+              </div>
+              <p className="text-lg font-mono tracking-[0.2em] mb-4">
+                {cardForm.number ? formatCardNumber(cardForm.number) : "•••• •••• •••• ••••"}
+              </p>
+              <div className="flex justify-between text-xs">
+                <div>
+                  <p className="opacity-60 text-[10px]">KART SAHİBİ</p>
+                  <p className="font-semibold">{cardForm.name || "AD SOYAD"}</p>
+                </div>
+                <div className="text-right">
+                  <p className="opacity-60 text-[10px]">SON KULLANIM</p>
+                  <p className="font-semibold">{cardForm.expiry ? formatExpiry(cardForm.expiry) : "MM/YY"}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card number */}
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Kart numarası</Label>
+              <Input
+                placeholder="0000 0000 0000 0000"
+                value={formatCardNumber(cardForm.number)}
+                onChange={(e) => setCardForm((f) => ({ ...f, number: e.target.value.replace(/\D/g, "").slice(0, 16) }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11 font-mono tracking-wider"
+                maxLength={19}
+              />
+            </div>
+
+            {/* Card holder */}
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Kart üzerindeki isim</Label>
+              <Input
+                placeholder="Ad Soyad"
+                value={cardForm.name}
+                onChange={(e) => setCardForm((f) => ({ ...f, name: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            {/* Expiry + CVC */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label className="text-sm text-muted-foreground mb-1.5 block">Son kullanım</Label>
+                <Input
+                  placeholder="MM/YY"
+                  value={formatExpiry(cardForm.expiry)}
+                  onChange={(e) => setCardForm((f) => ({ ...f, expiry: e.target.value.replace(/\D/g, "").slice(0, 4) }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                  maxLength={5}
+                />
+              </div>
+              <div>
+                <Label className="text-sm text-muted-foreground mb-1.5 block">CVC</Label>
+                <Input
+                  placeholder="•••"
+                  value={cardForm.cvc}
+                  onChange={(e) => setCardForm((f) => ({ ...f, cvc: e.target.value.replace(/\D/g, "").slice(0, 4) }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                  maxLength={4}
+                  type="password"
+                />
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="px-6 pb-6 pt-2 flex gap-3">
+            <Button variant="outline" className="flex-1 rounded-full" onClick={() => setShowCardDialog(false)}>
+              Vazgeç
+            </Button>
+            <Button className="flex-1 rounded-full" onClick={handleSaveCard}>
+              Kartı Kaydet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
