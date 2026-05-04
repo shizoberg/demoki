@@ -354,6 +354,10 @@ const Profil = () => {
             onEdit={(sub) => { setRemovedFromSub([]); setEditing(sub); }}
             onTogglePause={togglePause}
             onCancel={(id) => setConfirmCancel(id)}
+            onRestart={(id) => {
+              updateSub(id, { status: "active" });
+              toast.success("Abonelik yeniden başlatıldı");
+            }}
           />
         )}
       </main>
@@ -674,11 +678,13 @@ const SubscriptionsView = ({
   onEdit,
   onTogglePause,
   onCancel,
+  onRestart,
 }: {
   subs: Subscription[];
   onEdit: (s: Subscription) => void;
   onTogglePause: (s: Subscription) => void;
   onCancel: (id: string) => void;
+  onRestart: (id: string) => void;
 }) => (
   <section>
     <SectionHeader
@@ -710,6 +716,7 @@ const SubscriptionsView = ({
             onEdit={() => onEdit(s)}
             onTogglePause={() => onTogglePause(s)}
             onCancel={() => onCancel(s.id)}
+            onRestart={() => onRestart(s.id)}
           />
         ))}
       </div>
@@ -745,11 +752,13 @@ const SubscriptionCard = ({
   onEdit,
   onTogglePause,
   onCancel,
+  onRestart,
 }: {
   sub: Subscription;
   onEdit: () => void;
   onTogglePause: () => void;
   onCancel: () => void;
+  onRestart: () => void;
 }) => {
   const itemsTotal = sub.items.reduce((acc, it) => acc + it.qty * it.price, 0);
   const isCanceled = sub.status === "canceled";
@@ -822,41 +831,49 @@ const SubscriptionCard = ({
           </dl>
 
           <div className="mt-5 flex flex-col gap-2">
-            <Button
-              onClick={onEdit}
-              disabled={isCanceled}
-              className="w-full justify-center gap-2 rounded-full bg-primary hover:bg-primary-medium text-primary-foreground"
-            >
-              <Pencil className="h-4 w-4" /> Sepeti düzenle
-            </Button>
-            <div className="grid grid-cols-2 gap-2">
+            {isCanceled ? (
               <Button
-                variant="outline"
-                size="sm"
-                disabled={isCanceled}
-                onClick={onTogglePause}
-                className="gap-1.5 rounded-full"
+                onClick={onRestart}
+                className="w-full justify-center gap-2 rounded-full bg-primary hover:bg-primary-medium text-primary-foreground"
               >
-                {sub.status === "active" ? (
-                  <>
-                    <Pause className="h-3.5 w-3.5" /> Duraklat
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-3.5 w-3.5" /> Devam et
-                  </>
-                )}
+                <RotateCcw className="h-4 w-4" /> Yeniden Başlat
               </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={isCanceled}
-                onClick={onCancel}
-                className="gap-1.5 rounded-full text-destructive hover:bg-destructive/5 hover:text-destructive"
-              >
-                <X className="h-3.5 w-3.5" /> İptal et
-              </Button>
-            </div>
+            ) : (
+              <>
+                <Button
+                  onClick={onEdit}
+                  className="w-full justify-center gap-2 rounded-full bg-primary hover:bg-primary-medium text-primary-foreground"
+                >
+                  <Pencil className="h-4 w-4" /> Sepeti düzenle
+                </Button>
+                <div className="grid grid-cols-2 gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={onTogglePause}
+                    className="gap-1.5 rounded-full"
+                  >
+                    {sub.status === "active" ? (
+                      <>
+                        <Pause className="h-3.5 w-3.5" /> Duraklat
+                      </>
+                    ) : (
+                      <>
+                        <Play className="h-3.5 w-3.5" /> Devam et
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={onCancel}
+                    className="gap-1.5 rounded-full text-destructive hover:bg-destructive/5 hover:text-destructive"
+                  >
+                    <X className="h-3.5 w-3.5" /> İptal et
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         </aside>
       </div>
