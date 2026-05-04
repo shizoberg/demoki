@@ -337,7 +337,7 @@ const Profil = () => {
         {tab === "subscriptions" && (
           <SubscriptionsView
             subs={subs}
-            onEdit={setEditing}
+            onEdit={(sub) => { setRemovedFromSub([]); setEditing(sub); }}
             onTogglePause={togglePause}
             onCancel={(id) => setConfirmCancel(id)}
           />
