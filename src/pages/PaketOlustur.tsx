@@ -556,6 +556,62 @@ const PaketOlustur = () => {
                 <li className="flex items-center gap-2"><Check className="w-3 h-3 text-sage" /> Ücretsiz iade ve değişim</li>
                 <li className="flex items-center gap-2"><Check className="w-3 h-3 text-sage" /> 2 iş günü içinde kargoda</li>
               </ul>
+
+              {/* Recently removed items */}
+              {removedItems.length > 0 && (
+                <div className="mt-5 pt-4 border-t border-border/60">
+                  <h4 className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <RotateCcw className="w-3 h-3" /> Son Çıkarılanlar
+                  </h4>
+                  <ul className="space-y-2">
+                    {removedItems.map((item) => (
+                      <li key={item.id} className="flex items-center gap-2.5 group">
+                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-cream-2 border border-border/60 shrink-0">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[12px] font-medium text-primary/70 truncate">{item.name}</p>
+                          <p className="text-[10.5px] text-muted-foreground">₺{item.price.toLocaleString("tr-TR")}</p>
+                        </div>
+                        <button
+                          onClick={() => setQty(item.id, item.step)}
+                          className="text-[10.5px] font-semibold text-primary hover:text-primary-medium transition-colors px-2 py-1 rounded-lg hover:bg-secondary"
+                        >
+                          Geri Ekle
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Suggested items */}
+              {suggestedItems.length > 0 && totals.itemCount > 0 && (
+                <div className="mt-5 pt-4 border-t border-border/60">
+                  <h4 className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <Lightbulb className="w-3 h-3" /> Paketine Uyabilecek Ürünler
+                  </h4>
+                  <ul className="space-y-2">
+                    {suggestedItems.map((item) => (
+                      <li key={item.id} className="flex items-center gap-2.5 group">
+                        <div className="w-8 h-8 rounded-lg overflow-hidden bg-cream-2 border border-border/60 shrink-0">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[12px] font-medium text-primary/70 truncate">{item.name}</p>
+                          <p className="text-[10.5px] text-muted-foreground">₺{item.price.toLocaleString("tr-TR")}</p>
+                        </div>
+                        <button
+                          onClick={() => setQty(item.id, item.step)}
+                          className="text-[10.5px] font-semibold text-sage hover:text-primary transition-colors px-2 py-1 rounded-lg hover:bg-secondary"
+                        >
+                          + Ekle
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* How it works */}
