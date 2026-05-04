@@ -1069,10 +1069,18 @@ const NEIGHBORHOODS: Record<string, Record<string, string[]>> = {
 const ProfileView = () => {
   const [showAddressDialog, setShowAddressDialog] = useState(false);
   const [showCardDialog, setShowCardDialog] = useState(false);
-  const [editingEmail, setEditingEmail] = useState(false);
-  const [email, setEmail] = useState("shizoberg@gmail.com");
-  const [emailDraft, setEmailDraft] = useState("");
-  const [userName, setUserName] = useState("bek aktas");
+  const [showProfileDialog, setShowProfileDialog] = useState(false);
+
+  const [profile, setProfile] = useState({
+    firstName: "bek",
+    lastName: "aktas",
+    email: "shizoberg@gmail.com",
+    tcNo: "",
+    phone: "",
+    birthDate: "",
+  });
+  const [profileDraft, setProfileDraft] = useState(profile);
+
   const [addressType, setAddressType] = useState<"home" | "work">("home");
   const [addresses, setAddresses] = useState<
     { name: string; label: string; city: string; district: string; detail: string }[]
@@ -1147,14 +1155,18 @@ const ProfileView = () => {
     toast.success("Kart başarıyla eklendi.");
   };
 
-  const handleSaveEmail = () => {
-    if (!emailDraft.trim() || !emailDraft.includes("@")) {
+  const handleSaveProfile = () => {
+    if (!profileDraft.firstName.trim() || !profileDraft.lastName.trim()) {
+      toast.error("Ad ve soyad alanları zorunludur.");
+      return;
+    }
+    if (!profileDraft.email.trim() || !profileDraft.email.includes("@")) {
       toast.error("Geçerli bir e-posta adresi girin.");
       return;
     }
-    setEmail(emailDraft.trim());
-    setEditingEmail(false);
-    toast.success("E-posta güncellendi.");
+    setProfile(profileDraft);
+    setShowProfileDialog(false);
+    toast.success("Bilgilerin güncellendi.");
   };
 
   return (
@@ -1168,42 +1180,44 @@ const ProfileView = () => {
       <div className="grid gap-5">
         <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <p className="text-base font-semibold text-primary">{userName}</p>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">
-                E-posta
+            <div className="flex-1 space-y-2">
+              <p className="text-base font-semibold text-primary">
+                {profile.firstName} {profile.lastName}
               </p>
-              {editingEmail ? (
-                <div className="flex items-center gap-2 mt-1">
-                  <Input
-                    value={emailDraft}
-                    onChange={(e) => setEmailDraft(e.target.value)}
-                    placeholder="yeni@eposta.com"
-                    className="rounded-xl bg-secondary/50 border-0 h-9 text-sm max-w-[220px]"
-                    autoFocus
-                    onKeyDown={(e) => e.key === "Enter" && handleSaveEmail()}
-                  />
-                  <Button size="sm" className="rounded-full h-8 px-3 text-xs" onClick={handleSaveEmail}>
-                    Kaydet
-                  </Button>
-                  <Button size="sm" variant="ghost" className="rounded-full h-8 px-2 text-xs" onClick={() => setEditingEmail(false)}>
-                    İptal
-                  </Button>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">E-posta</p>
+                  <p className="text-sm">{profile.email}</p>
                 </div>
-              ) : (
-                <p className="text-sm mt-1">{email}</p>
-              )}
+                {profile.phone && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">Telefon</p>
+                    <p className="text-sm">+90 {profile.phone}</p>
+                  </div>
+                )}
+                {profile.tcNo && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">T.C. Kimlik</p>
+                    <p className="text-sm">{"•".repeat(7) + profile.tcNo.slice(-4)}</p>
+                  </div>
+                )}
+                {profile.birthDate && (
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">Doğum Tarihi</p>
+                    <p className="text-sm">{profile.birthDate}</p>
+                  </div>
+                )}
+              </div>
             </div>
-            {!editingEmail && (
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-primary hover:bg-secondary rounded-full"
-                onClick={() => { setEmailDraft(email); setEditingEmail(true); }}
-              >
-                <Pencil className="h-4 w-4" />
-              </Button>
-            )}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-primary hover:bg-secondary rounded-full shrink-0"
+              onClick={() => { setProfileDraft(profile); setShowProfileDialog(true); }}
+            >
+              <Pencil className="h-4 w-4" />
+            </Button>
           </div>
         </div>
 
@@ -1527,6 +1541,98 @@ const ProfileView = () => {
             </Button>
             <Button className="flex-1 rounded-full" onClick={handleSaveCard}>
               Kartı Kaydet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ── Profile Edit Dialog ── */}
+      <Dialog open={showProfileDialog} onOpenChange={setShowProfileDialog}>
+        <DialogContent className="max-w-md rounded-3xl p-0 gap-0 max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle className="text-lg font-bold text-primary">Bilgilerini Güncelle</DialogTitle>
+            <DialogDescription className="text-sm text-muted-foreground">
+              Deneyimini sana göre şekillendirebilmemiz için bilgilerini buradan düzenleyebilirsin.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="px-6 pb-6 space-y-4">
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Adın *</Label>
+              <Input
+                placeholder="Adın"
+                value={profileDraft.firstName}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, firstName: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Soyadın *</Label>
+              <Input
+                placeholder="Soyadın"
+                value={profileDraft.lastName}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, lastName: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">E-mail Adresin *</Label>
+              <Input
+                placeholder="ornek@email.com"
+                type="email"
+                value={profileDraft.email}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, email: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">T.C. Kimlik Numaran</Label>
+              <Input
+                placeholder="T.C. Kimlik Numaran"
+                value={profileDraft.tcNo}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, tcNo: e.target.value.replace(/\D/g, "").slice(0, 11) }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+                maxLength={11}
+              />
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Telefon Numaran</Label>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 rounded-xl bg-secondary/50 px-3 h-11 shrink-0">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-primary">+90</span>
+                </div>
+                <Input
+                  placeholder="5XX XXX XX XX"
+                  value={profileDraft.phone}
+                  onChange={(e) => setProfileDraft((f) => ({ ...f, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11 flex-1"
+                  maxLength={10}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label className="text-sm text-muted-foreground mb-1.5 block">Doğum Tarihin</Label>
+              <Input
+                type="date"
+                value={profileDraft.birthDate}
+                onChange={(e) => setProfileDraft((f) => ({ ...f, birthDate: e.target.value }))}
+                className="rounded-xl bg-secondary/50 border-0 h-11"
+              />
+            </div>
+          </div>
+
+          <DialogFooter className="px-6 pb-6 pt-2 flex gap-3">
+            <Button variant="outline" className="flex-1 rounded-full" onClick={() => setShowProfileDialog(false)}>
+              Vazgeç
+            </Button>
+            <Button className="flex-1 rounded-full" onClick={handleSaveProfile}>
+              Kaydet
             </Button>
           </DialogFooter>
         </DialogContent>
