@@ -296,7 +296,12 @@ const Profil = () => {
   const confirmTogglePause = () => {
     if (!confirmToggle) return;
     const next: SubscriptionStatus = confirmToggle.status === "active" ? "paused" : "active";
-    updateSub(confirmToggle.id, { status: next });
+    const updates: Partial<Subscription> = { status: next };
+    if (next === "paused") {
+      // Duraklatılınca sonraki teslimatı 1 ay ileri al
+      updates.nextDelivery = addMonths(confirmToggle.nextDelivery, 1);
+    }
+    updateSub(confirmToggle.id, updates);
     toast.success(
       next === "paused" ? "Abonelik duraklatıldı" : "Abonelik devam ediyor",
     );
