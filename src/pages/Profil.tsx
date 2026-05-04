@@ -1075,9 +1075,6 @@ const ProfileView = () => (
         <Button variant="outline" className="gap-2 rounded-full">
           <LogOut className="h-4 w-4" /> Çıkış yap
         </Button>
-        <Button variant="ghost" className="text-muted-foreground rounded-full">
-          Tüm cihazlardan çıkış yap
-        </Button>
       </div>
     </div>
   </section>
