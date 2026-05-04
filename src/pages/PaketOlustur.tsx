@@ -281,7 +281,7 @@ const PaketOlustur = () => {
             </div>
             <ul className="flex flex-wrap lg:justify-end gap-x-6 gap-y-2 text-[12.5px] text-primary/80 font-medium lg:pt-3">
               <li className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-sage" /> İptal yok, esnek abonelik</li>
-              <li className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-sage" /> 750₺ üzeri ücretsiz kargo</li>
+              <li className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-sage" /> Ücretsiz kargo</li>
               <li className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-sage" /> Dermatolojik test edilmiş</li>
             </ul>
           </div>
@@ -501,21 +501,11 @@ const PaketOlustur = () => {
                 </ul>
               )}
 
-              {/* Free shipping progress */}
+              {/* Free shipping badge */}
               <div className="mt-5 p-3.5 rounded-xl bg-secondary">
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2">
                   <Truck className="w-4 h-4 text-primary" />
-                  <p className="text-[12px] font-semibold text-primary">
-                    {totals.total >= FREE_SHIPPING_THRESHOLD
-                      ? "Ücretsiz kargo hak ettin 🎉"
-                      : `Ücretsiz kargoya ₺${(FREE_SHIPPING_THRESHOLD - totals.total).toLocaleString("tr-TR")} kaldı`}
-                  </p>
-                </div>
-                <div className="h-1.5 bg-background rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-primary to-rose transition-all duration-500"
-                    style={{ width: `${totals.shippingProgress * 100}%` }}
-                  />
+                  <p className="text-[12px] font-semibold text-primary">Ücretsiz kargo 🎉</p>
                 </div>
               </div>
 
