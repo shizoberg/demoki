@@ -745,7 +745,8 @@ const SubscriptionsView = ({
         description="Düzenli ihtiyaçların için bir abonelik oluştur."
       />
     ) : (
-      <div className="grid gap-5">
+       <div className="grid gap-5">
+         <p className="text-sm text-muted-foreground">Şu ana kadar abone olduğun paketler.</p>
         {subs.map((s) => (
           <SubscriptionCard
             key={s.id}
