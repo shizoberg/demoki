@@ -537,6 +537,7 @@ const PaketOlustur = () => {
 
               <button
                 disabled={totals.itemCount === 0}
+                onClick={() => setShowNameDialog(true)}
                 className="mt-5 w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground text-[14px] font-bold py-3.5 px-5 rounded-full hover:bg-primary-medium transition-all disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {totals.itemCount === 0 ? "Önce ürün ekle" : "Sepete ekle"}
