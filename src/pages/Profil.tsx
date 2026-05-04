@@ -359,30 +359,9 @@ const Profil = () => {
               </DialogHeader>
 
               <div className="space-y-5 py-2">
-                <div className="grid gap-2">
-                  <Label>Teslimat sıklığı</Label>
-                  <Select
-                    value={editing.frequency}
-                    onValueChange={(v) =>
-                      setEditing({
-                        ...editing,
-                        frequency: v as Subscription["frequency"],
-                      })
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {(Object.keys(FREQ_LABEL) as Subscription["frequency"][]).map(
-                        (k) => (
-                          <SelectItem key={k} value={k}>
-                            {FREQ_LABEL[k]}
-                          </SelectItem>
-                        ),
-                      )}
-                    </SelectContent>
-                  </Select>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Repeat className="w-4 h-4" />
+                  <span>Teslimat: <span className="font-medium text-primary">2 ayda bir</span></span>
                 </div>
 
                 <div className="space-y-3">
