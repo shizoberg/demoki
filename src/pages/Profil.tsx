@@ -1232,11 +1232,7 @@ const ProfileView = () => {
 
   return (
     <section>
-      <SectionHeader
-        eyebrow="Profil"
-        title="Hesap bilgilerin"
-        description="Adres ve iletişim bilgilerini buradan güncelleyebilirsin."
-      />
+       <p className="mb-6 text-sm text-muted-foreground">Adres ve iletişim bilgilerini buradan güncelleyebilirsin.</p>
 
       <div className="grid gap-5">
         <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
