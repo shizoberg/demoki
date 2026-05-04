@@ -1012,80 +1012,293 @@ const OrderCard = ({ order }: { order: Order }) => {
 
 /* ================== PROFILE ================== */
 
-const ProfileView = () => (
-  <section>
-    <SectionHeader
-      eyebrow="Profil"
-      title="Hesap bilgilerin"
-      description="Adres ve iletişim bilgilerini buradan güncelleyebilirsin."
-    />
+const CITIES = ["İSTANBUL", "İZMİR", "ANKARA", "ANTALYA", "BURSA", "ADANA", "KOCAELİ", "GAZİANTEP"];
 
-    <div className="grid gap-5">
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-base font-semibold text-primary">bek aktas</p>
-            <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">
-              E-posta
-            </p>
-            <p className="text-sm mt-1">shizoberg@gmail.com</p>
+const ProfileView = () => {
+  const [showAddressDialog, setShowAddressDialog] = useState(false);
+  const [addressType, setAddressType] = useState<"home" | "work">("home");
+  const [addresses, setAddresses] = useState<
+    { name: string; label: string; city: string; district: string; detail: string }[]
+  >([]);
+
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    city: "",
+    district: "",
+    neighborhood: "",
+    detail: "",
+    addressLabel: "",
+  });
+
+  const resetForm = () => {
+    setForm({ firstName: "", lastName: "", phone: "", city: "", district: "", neighborhood: "", detail: "", addressLabel: "" });
+    setAddressType("home");
+  };
+
+  const handleSave = () => {
+    if (!form.firstName.trim() || !form.city || !form.detail.trim()) {
+      toast.error("Lütfen gerekli alanları doldurun.");
+      return;
+    }
+    setAddresses((prev) => [
+      ...prev,
+      {
+        name: `${form.firstName} ${form.lastName}`.trim(),
+        label: form.addressLabel || (addressType === "home" ? "Ev" : "İş yeri"),
+        city: form.city,
+        district: form.district,
+        detail: form.detail,
+      },
+    ]);
+    toast.success("Adres başarıyla eklendi.");
+    resetForm();
+    setShowAddressDialog(false);
+  };
+
+  return (
+    <section>
+      <SectionHeader
+        eyebrow="Profil"
+        title="Hesap bilgilerin"
+        description="Adres ve iletişim bilgilerini buradan güncelleyebilirsin."
+      />
+
+      <div className="grid gap-5">
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-base font-semibold text-primary">bek aktas</p>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-primary-medium font-semibold">
+                E-posta
+              </p>
+              <p className="text-sm mt-1">shizoberg@gmail.com</p>
+            </div>
+            <Button variant="ghost" size="icon" className="text-primary hover:bg-secondary rounded-full">
+              <Pencil className="h-4 w-4" />
+            </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-primary hover:bg-secondary rounded-full"
-          >
-            <Pencil className="h-4 w-4" />
+        </div>
+
+        {/* Addresses */}
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-semibold text-primary">Adresler</h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full"
+              onClick={() => { resetForm(); setShowAddressDialog(true); }}
+            >
+              <Plus className="h-4 w-4" /> Ekle
+            </Button>
+          </div>
+
+          {addresses.length === 0 ? (
+            <div className="flex items-center gap-2 rounded-xl border border-dashed border-border bg-secondary/40 px-4 py-4 text-sm text-muted-foreground">
+              <Info className="h-4 w-4" /> Adres eklenmedi
+            </div>
+          ) : (
+            <div className="grid gap-3">
+              {addresses.map((a, i) => (
+                <div key={i} className="flex items-start gap-3 rounded-xl bg-secondary/60 px-4 py-4">
+                  <MapPin className="h-4 w-4 mt-0.5 text-primary-medium shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-primary">{a.label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                      {a.detail}, {a.district} / {a.city}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{a.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Payment */}
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-semibold text-primary">Ödeme yöntemleri</h3>
+            <Button variant="ghost" size="sm" className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full">
+              <Plus className="h-4 w-4" /> Ekle
+            </Button>
+          </div>
+          <div className="flex items-center gap-3 rounded-xl bg-secondary/60 px-4 py-4">
+            <div className="flex h-9 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground text-[10px] font-bold">
+              VISA
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-primary">•••• •••• •••• 4421</p>
+              <p className="text-xs text-muted-foreground mt-0.5">Son kullanım 09/28</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-3 pt-2">
+          <Button variant="outline" className="gap-2 rounded-full">
+            <LogOut className="h-4 w-4" /> Çıkış yap
           </Button>
         </div>
       </div>
 
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="font-semibold text-primary">Adresler</h3>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full"
-          >
-            <Plus className="h-4 w-4" /> Ekle
-          </Button>
-        </div>
-        <div className="flex items-center gap-2 rounded-xl border border-dashed border-border bg-secondary/40 px-4 py-4 text-sm text-muted-foreground">
-          <Info className="h-4 w-4" /> Adres eklenmedi
-        </div>
-      </div>
+      {/* ── Address Dialog ── */}
+      <Dialog open={showAddressDialog} onOpenChange={setShowAddressDialog}>
+        <DialogContent className="max-w-md rounded-3xl p-0 gap-0 max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="px-6 pt-6 pb-2">
+            <DialogTitle className="text-lg font-bold text-primary">Adres ekle</DialogTitle>
+            <DialogDescription className="text-sm text-muted-foreground">
+              Teslimat adresini buradan ekleyebilirsin.
+            </DialogDescription>
+          </DialogHeader>
 
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="font-semibold text-primary">Ödeme yöntemleri</h3>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1 text-primary hover:text-primary hover:bg-secondary rounded-full"
-          >
-            <Plus className="h-4 w-4" /> Ekle
-          </Button>
-        </div>
-        <div className="flex items-center gap-3 rounded-xl bg-secondary/60 px-4 py-4">
-          <div className="flex h-9 w-12 items-center justify-center rounded-md bg-primary text-primary-foreground text-[10px] font-bold">
-            VISA
-          </div>
-          <div className="flex-1">
-            <p className="text-sm font-medium text-primary">•••• •••• •••• 4421</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Son kullanım 09/28</p>
-          </div>
-        </div>
-      </div>
+          <div className="px-6 pb-6 space-y-6">
+            {/* Kişisel Bilgiler */}
+            <div>
+              <p className="text-xs font-semibold text-primary-medium uppercase tracking-widest mb-3 flex items-center gap-2">
+                Kişisel Bilgileriniz
+                <span className="flex-1 h-px bg-border" />
+              </p>
+              <p className="text-sm text-muted-foreground mb-2">Teslim alacak kişinin bilgileri</p>
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <Input
+                  placeholder="Ad"
+                  value={form.firstName}
+                  onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                />
+                <Input
+                  placeholder="Soyad"
+                  value={form.lastName}
+                  onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground mb-2">Telefon</p>
+              <div className="flex items-center gap-2 rounded-xl bg-secondary/50 px-3 h-11">
+                <Phone className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium text-primary">+90</span>
+                <Input
+                  placeholder="5XX XXX XX XX"
+                  value={form.phone}
+                  onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+                  className="border-0 bg-transparent p-0 h-auto focus-visible:ring-0 text-sm"
+                />
+              </div>
+            </div>
 
-      <div className="flex flex-wrap gap-3 pt-2">
-        <Button variant="outline" className="gap-2 rounded-full">
-          <LogOut className="h-4 w-4" /> Çıkış yap
-        </Button>
-      </div>
-    </div>
-  </section>
-);
+            {/* Adres Bilgileri */}
+            <div>
+              <p className="text-xs font-semibold text-primary-medium uppercase tracking-widest mb-3 flex items-center gap-2">
+                Adres Bilgileriniz
+                <span className="flex-1 h-px bg-border" />
+              </p>
+
+              {/* Ev / İş yeri toggle */}
+              <div className="flex gap-3 mb-4">
+                <button
+                  onClick={() => setAddressType("home")}
+                  className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
+                    addressType === "home"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-secondary/60 text-primary hover:bg-secondary"
+                  }`}
+                >
+                  <Home className="h-4 w-4" /> Ev
+                </button>
+                <button
+                  onClick={() => setAddressType("work")}
+                  className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
+                    addressType === "work"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-secondary/60 text-primary hover:bg-secondary"
+                  }`}
+                >
+                  <Building2 className="h-4 w-4" /> İş yeri
+                </button>
+              </div>
+
+              {/* Şehir */}
+              <div className="mb-3">
+                <Label className="text-sm text-muted-foreground mb-1.5 block">Şehir</Label>
+                <Select value={form.city} onValueChange={(v) => setForm((f) => ({ ...f, city: v, district: "", neighborhood: "" }))}>
+                  <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11">
+                    <SelectValue placeholder="Şehir seçin" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {CITIES.map((c) => (
+                      <SelectItem key={c} value={c}>{c}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* İlçe */}
+              <div className="mb-3">
+                <Label className="text-sm text-muted-foreground mb-1.5 block">İlçe</Label>
+                <Input
+                  placeholder="İlçe"
+                  value={form.district}
+                  onChange={(e) => setForm((f) => ({ ...f, district: e.target.value }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                />
+              </div>
+
+              {/* Mahalle */}
+              <div className="mb-3">
+                <Label className="text-sm text-muted-foreground mb-1.5 block">Mahalle</Label>
+                <Input
+                  placeholder="Mahalle"
+                  value={form.neighborhood}
+                  onChange={(e) => setForm((f) => ({ ...f, neighborhood: e.target.value }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                />
+              </div>
+
+              {/* Adres detay */}
+              <div className="mb-3">
+                <Label className="text-sm text-muted-foreground mb-1.5 block">Adres</Label>
+                <Textarea
+                  placeholder="Bina ismi, bina numarası, kat ve daire numarası..."
+                  value={form.detail}
+                  onChange={(e) => setForm((f) => ({ ...f, detail: e.target.value }))}
+                  className="rounded-xl bg-secondary/50 border-0 min-h-[80px] resize-none"
+                  maxLength={120}
+                />
+                <p className="text-right text-xs text-muted-foreground mt-1">{form.detail.length}/120</p>
+              </div>
+
+              {/* Adres adı */}
+              <div>
+                <Label className="text-sm text-muted-foreground mb-1.5 block">Bu adrese bir ad verin</Label>
+                <Input
+                  placeholder="Örnek: Evim, İş yerim vb."
+                  value={form.addressLabel}
+                  onChange={(e) => setForm((f) => ({ ...f, addressLabel: e.target.value }))}
+                  className="rounded-xl bg-secondary/50 border-0 h-11"
+                />
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="px-6 pb-6 pt-2 flex gap-3">
+            <Button
+              variant="outline"
+              className="flex-1 rounded-full"
+              onClick={() => setShowAddressDialog(false)}
+            >
+              Vazgeç
+            </Button>
+            <Button className="flex-1 rounded-full" onClick={handleSave}>
+              Adresi Kaydet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </section>
+  );
+};
 
 /* ================== EMPTY STATE ================== */
 
