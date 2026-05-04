@@ -276,11 +276,17 @@ const Profil = () => {
   };
 
   const togglePause = (s: Subscription) => {
-    const next: SubscriptionStatus = s.status === "active" ? "paused" : "active";
-    updateSub(s.id, { status: next });
+    setConfirmToggle(s);
+  };
+
+  const confirmTogglePause = () => {
+    if (!confirmToggle) return;
+    const next: SubscriptionStatus = confirmToggle.status === "active" ? "paused" : "active";
+    updateSub(confirmToggle.id, { status: next });
     toast.success(
       next === "paused" ? "Abonelik duraklatıldı" : "Abonelik devam ediyor",
     );
+    setConfirmToggle(null);
   };
 
   return (
