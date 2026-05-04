@@ -440,6 +440,9 @@ const Profil = () => {
                         <button
                           className="rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-destructive"
                           onClick={() => {
+                            setRemovedFromSub((prev) =>
+                              prev.some((r) => r.id === it.id) ? prev : [it, ...prev].slice(0, 5)
+                            );
                             removeItem(editing.id, it.id);
                             setEditing({
                               ...editing,
