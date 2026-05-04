@@ -318,7 +318,7 @@ const Profil = () => {
 
       {/* Page header / hero strip */}
       <section className="border-b border-border/60 bg-plum-pale">
-        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-8 pb-0">
+        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-10 pb-4">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
