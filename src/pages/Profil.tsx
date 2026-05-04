@@ -1289,7 +1289,7 @@ const ProfileView = () => {
               {/* İlçe */}
               <div className="mb-3">
                 <Label className="text-sm text-muted-foreground mb-1.5 block">İlçe</Label>
-                <Select value={form.district} onValueChange={(v) => setForm((f) => ({ ...f, district: v }))}>
+                <Select value={form.district} onValueChange={(v) => setForm((f) => ({ ...f, district: v, neighborhood: "" }))}>
                   <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11" disabled={!form.city}>
                     <SelectValue placeholder={form.city ? "İlçe seçin" : "Önce şehir seçin"} />
                   </SelectTrigger>
@@ -1304,12 +1304,16 @@ const ProfileView = () => {
               {/* Mahalle */}
               <div className="mb-3">
                 <Label className="text-sm text-muted-foreground mb-1.5 block">Mahalle</Label>
-                <Input
-                  placeholder="Mahalle"
-                  value={form.neighborhood}
-                  onChange={(e) => setForm((f) => ({ ...f, neighborhood: e.target.value }))}
-                  className="rounded-xl bg-secondary/50 border-0 h-11"
-                />
+                <Select value={form.neighborhood} onValueChange={(v) => setForm((f) => ({ ...f, neighborhood: v }))}>
+                  <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11" disabled={!form.district}>
+                    <SelectValue placeholder={form.district ? "Mahalle seçin" : "Önce ilçe seçin"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(NEIGHBORHOODS[form.city]?.[form.district] || []).map((n) => (
+                      <SelectItem key={n} value={n}>{n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Adres detay */}
