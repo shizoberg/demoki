@@ -1014,6 +1014,17 @@ const OrderCard = ({ order }: { order: Order }) => {
 
 const CITIES = ["İSTANBUL", "İZMİR", "ANKARA", "ANTALYA", "BURSA", "ADANA", "KOCAELİ", "GAZİANTEP"];
 
+const DISTRICTS: Record<string, string[]> = {
+  İSTANBUL: ["KADIKÖY", "BEŞİKTAŞ", "ŞİŞLİ", "ÜSKÜDAR", "BEYOĞLU", "FATİH", "SARIYER", "MALTEPE", "KARTAL", "ATAŞEHIR", "BAKIRKÖY", "BAĞCILAR", "BAYRAMPAŞA", "EYÜPSULTAN", "KÜÇÜKÇEKMECE", "PENDİK", "SULTANBEYLİ", "TUZLA", "ÜMRANİYE", "ZEYTINBURNU"],
+  İZMİR: ["BORNOVA", "KARŞIYAKA", "KONAK", "BAYRAKLI", "ÇİĞLİ", "BUCA", "GAZİEMİR", "BALÇOVA", "NARLIDERE", "KARABAĞLAR", "MENEMEN", "TİRE", "TORBALI", "ÖDEMİŞ", "KEMALPAŞA"],
+  ANKARA: ["ÇANKAYA", "KEÇİÖREN", "MAMAK", "YENİMAHALLE", "ETİMESGUT", "SİNCAN", "PURSAKLAR", "ALTINDAĞ", "GÖLBAŞI", "POLATLI"],
+  ANTALYA: ["MURATPAŞA", "KONYAALTI", "KEPEZ", "AKSU", "DÖŞEMEALTI", "ALANYA", "MANAVGAT", "KAŞI", "KEMER", "SERİK"],
+  BURSA: ["NİLÜFER", "OSMANGAZİ", "YILDIRIM", "GÜRSU", "KESTeL", "MUDANYA", "GEMLİK", "İNEGÖL"],
+  ADANA: ["SEYHAN", "ÇUKUROVA", "YÜREĞİR", "SARIÇAM", "CEYHAN", "KOZAN", "İMAMOĞLU"],
+  KOCAELİ: ["İZMİT", "GEBZE", "DARICA", "ÇAYIROVA", "DİLOVASI", "KARTEPE", "BAŞİSKELE", "GÖLCÜK", "KANDIRA"],
+  GAZİANTEP: ["ŞAHİNBEY", "ŞEHİTKAMİL", "OĞUZELİ", "NİZİP", "ARABAN", "İSLAHİYE"],
+};
+
 const ProfileView = () => {
   const [showAddressDialog, setShowAddressDialog] = useState(false);
   const [addressType, setAddressType] = useState<"home" | "work">("home");
@@ -1237,12 +1248,16 @@ const ProfileView = () => {
               {/* İlçe */}
               <div className="mb-3">
                 <Label className="text-sm text-muted-foreground mb-1.5 block">İlçe</Label>
-                <Input
-                  placeholder="İlçe"
-                  value={form.district}
-                  onChange={(e) => setForm((f) => ({ ...f, district: e.target.value }))}
-                  className="rounded-xl bg-secondary/50 border-0 h-11"
-                />
+                <Select value={form.district} onValueChange={(v) => setForm((f) => ({ ...f, district: v }))}>
+                  <SelectTrigger className="rounded-xl bg-secondary/50 border-0 h-11" disabled={!form.city}>
+                    <SelectValue placeholder={form.city ? "İlçe seçin" : "Önce şehir seçin"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(DISTRICTS[form.city] || []).map((d) => (
+                      <SelectItem key={d} value={d}>{d}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Mahalle */}
