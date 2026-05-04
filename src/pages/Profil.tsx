@@ -13,6 +13,8 @@ import {
   ChevronRight,
   ShoppingBag,
   Info,
+  RotateCcw,
+  Lightbulb,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
