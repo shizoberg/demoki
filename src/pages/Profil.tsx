@@ -311,7 +311,7 @@ const Profil = () => {
             </div>
             <div>
               <p className="text-[12px] font-semibold tracking-[0.18em] uppercase text-primary-medium">
-                Hesabım
+                .ki hesabım
               </p>
               <h1 className="mt-2 text-[32px] lg:text-[40px] leading-[1.1] font-semibold text-primary tracking-tight">
                 Merhaba, bek aktas
