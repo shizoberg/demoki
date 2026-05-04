@@ -355,10 +355,7 @@ const Profil = () => {
             onEdit={(sub) => { setRemovedFromSub([]); setEditing(sub); }}
             onTogglePause={togglePause}
             onCancel={(id) => setConfirmCancel(id)}
-            onRestart={(id) => {
-              updateSub(id, { status: "active" });
-              toast.success("Abonelik yeniden başlatıldı");
-            }}
+            onRestart={(id) => setConfirmRestart(id)}
           />
         )}
       </main>
