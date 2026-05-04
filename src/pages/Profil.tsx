@@ -1155,14 +1155,18 @@ const ProfileView = () => {
     toast.success("Kart başarıyla eklendi.");
   };
 
-  const handleSaveEmail = () => {
-    if (!emailDraft.trim() || !emailDraft.includes("@")) {
+  const handleSaveProfile = () => {
+    if (!profileDraft.firstName.trim() || !profileDraft.lastName.trim()) {
+      toast.error("Ad ve soyad alanları zorunludur.");
+      return;
+    }
+    if (!profileDraft.email.trim() || !profileDraft.email.includes("@")) {
       toast.error("Geçerli bir e-posta adresi girin.");
       return;
     }
-    setEmail(emailDraft.trim());
-    setEditingEmail(false);
-    toast.success("E-posta güncellendi.");
+    setProfile(profileDraft);
+    setShowProfileDialog(false);
+    toast.success("Bilgilerin güncellendi.");
   };
 
   return (
