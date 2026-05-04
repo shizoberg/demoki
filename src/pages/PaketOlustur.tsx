@@ -268,6 +268,12 @@ const PaketOlustur = () => {
     return { items, itemCount, subtotal, total, shippingProgress };
   }, [quantities]);
 
+  const suggestedItems = useMemo(() => {
+    return CATALOG.filter(
+      (c) => (quantities[c.id] ?? 0) === 0 && !removedItems.some((r) => r.id === c.id)
+    ).slice(0, 3);
+  }, [quantities, removedItems]);
+
   const tabsCount = (cat: Category) =>
     CATALOG.filter((c) => c.category === cat).reduce((sum, c) => sum + (quantities[c.id] ?? 0), 0);
 
