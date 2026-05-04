@@ -1,5 +1,13 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Check, ChevronDown, Minus, Package, Plus, ShieldCheck, Truck } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 import AnnouncementBar from "@/components/AnnouncementBar";
 import SiteNav from "@/components/SiteNav";
