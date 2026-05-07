@@ -497,54 +497,118 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
 };
 
 /* ---------- Hesabım ---------- */
-const AccountSheet = ({ onNavigate }: { onNavigate: () => void }) => (
-  <div>
-    <p className="text-[13px] text-muted-foreground mb-6">
-      Siparişlerini takip etmek ve abonelik paketini yönetmek için giriş yap.
-    </p>
-    <div className="flex flex-col gap-3">
-      <a
-        href="#"
-        onClick={onNavigate}
-        className="inline-flex items-center justify-center bg-primary text-primary-foreground text-[14px] font-bold py-3.5 rounded-full hover:bg-primary-medium transition-all"
-      >
-        Giriş Yap
-      </a>
-      <a
-        href="#"
-        onClick={onNavigate}
-        className="inline-flex items-center justify-center border-2 border-primary text-primary text-[14px] font-bold py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-all"
-      >
-        Yeni Hesap Oluştur
-      </a>
-    </div>
+const AccountSheet = ({ onNavigate, onLogin }: { onNavigate: () => void; onLogin: (name: string) => void }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [name, setName] = useState("");
 
-    <div className="mt-8 border-t border-border/60 pt-6">
-      <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-3">
-        Hızlı Erişim
-      </h3>
-      <ul className="flex flex-col divide-y divide-border/50">
-        {([
-          { label: "Sepetim", href: "#k5Product", Icon: ShoppingBag },
-          { label: "Anlaşmalı Eczanelerimiz", href: "#", Icon: ArrowRight },
-        ] as const).map(({ label, href, Icon }) => (
-          <li key={label}>
-            <a
-              href={href}
-              onClick={onNavigate}
-              className="flex items-center justify-between py-3.5 text-[15px] text-primary hover:opacity-70 transition-opacity"
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Mock login — use name or extract from email
+    const displayName = isSignUp && name ? name : email.split("@")[0] || "Kullanıcı";
+    onLogin(displayName);
+  };
+
+  return (
+    <div>
+      <p className="text-[13px] text-muted-foreground mb-6">
+        {isSignUp
+          ? "Hesap oluştur ve siparişlerini takip et."
+          : "Siparişlerini takip etmek ve abonelik paketini yönetmek için giriş yap."}
+      </p>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        {isSignUp && (
+          <div>
+            <label className="block text-[12px] font-semibold text-primary mb-1.5">Ad Soyad</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Adın ve soyadın"
+              className="w-full h-12 px-4 rounded-xl border border-border/80 bg-background text-[14px] text-primary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+              required
+            />
+          </div>
+        )}
+        <div>
+          <label className="block text-[12px] font-semibold text-primary mb-1.5">E-posta</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="ornek@email.com"
+            className="w-full h-12 px-4 rounded-xl border border-border/80 bg-background text-[14px] text-primary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-[12px] font-semibold text-primary mb-1.5">Şifre</label>
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full h-12 px-4 pr-12 rounded-xl border border-border/80 bg-background text-[14px] text-primary placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             >
-              <span className="flex items-center gap-3">
-                <Icon className="w-4 h-4" />
-                {label}
-              </span>
-              <ChevronRight className="w-4 h-4 opacity-50" />
-            </a>
-          </li>
-        ))}
-      </ul>
+              {showPassword ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full h-12 bg-primary text-primary-foreground text-[14px] font-bold rounded-full hover:bg-primary-medium transition-all mt-1"
+        >
+          {isSignUp ? "Hesap Oluştur" : "Giriş Yap"}
+        </button>
+      </form>
+
+      <div className="mt-5 text-center">
+        <button
+          onClick={() => setIsSignUp(!isSignUp)}
+          className="text-[13px] text-primary font-semibold hover:underline"
+        >
+          {isSignUp ? "Zaten hesabın var mı? Giriş Yap" : "Hesabın yok mu? Yeni Hesap Oluştur"}
+        </button>
+      </div>
+
+      <div className="mt-8 border-t border-border/60 pt-6">
+        <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary/60 mb-3">
+          Hızlı Erişim
+        </h3>
+        <ul className="flex flex-col divide-y divide-border/50">
+          {([
+            { label: "Sepetim", href: "#k5Product", Icon: ShoppingBag },
+            { label: "Anlaşmalı Eczanelerimiz", href: "#", Icon: ArrowRight },
+          ] as const).map(({ label, href, Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                onClick={onNavigate}
+                className="flex items-center justify-between py-3.5 text-[15px] text-primary hover:opacity-70 transition-opacity"
+              >
+                <span className="flex items-center gap-3">
+                  <Icon className="w-4 h-4" />
+                  {label}
+                </span>
+                <ChevronRight className="w-4 h-4 opacity-50" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default MobileTabBar;
