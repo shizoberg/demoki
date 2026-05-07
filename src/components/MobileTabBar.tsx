@@ -255,7 +255,12 @@ const MobileTabBar = () => {
                   className="w-full flex flex-col items-center justify-center gap-1 py-2.5 transition-opacity hover:opacity-70 relative"
                 >
                   <span className="h-[28px] flex items-center justify-center">
-                  {t.key === "home" ? (
+                  {t.key === "account" && loggedInUser ? (
+                      <User
+                        className={`w-[22px] h-[22px] ${isActive ? "text-primary-medium" : "text-primary"}`}
+                        strokeWidth={isActive ? 2 : 1.75}
+                      />
+                    ) : t.key === "home" ? (
                       <span
                         className={`block w-[22px] h-[22px] rounded-full ${
                           isActive ? "bg-primary-medium" : "bg-primary"
@@ -285,11 +290,11 @@ const MobileTabBar = () => {
                     </span>
                   )}
                   <span
-                    className={`text-[10.5px] leading-none font-semibold ${
+                    className={`text-[10.5px] leading-none font-semibold truncate max-w-[64px] ${
                       isActive ? "text-primary-medium" : "text-primary"
                     }`}
                   >
-                    {t.label}
+                    {t.key === "account" && loggedInUser ? loggedInUser : t.label}
                   </span>
                 </button>
               </li>
