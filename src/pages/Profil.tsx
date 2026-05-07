@@ -356,7 +356,7 @@ const Profil = () => {
             {/* User info */}
             <div className="flex items-center gap-3 mb-8">
               <div className="h-11 w-11 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                B
+                {userInitial}
               </div>
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
