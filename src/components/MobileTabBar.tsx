@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Sparkles, Gift, Store, X, ChevronRight, ArrowRight, ShoppingBag } from "lucide-react";
+import { Sparkles, Gift, Store, X, ChevronRight, ArrowRight, ShoppingBag, Eye, EyeOff, User } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import packPads from "@/assets/pack-pads.webp";
