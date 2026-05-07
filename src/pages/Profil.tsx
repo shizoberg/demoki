@@ -262,6 +262,8 @@ const Profil = () => {
     setTab(key);
     setMobileMenuOpen(false);
   };
+  const userName = localStorage.getItem("ki_user_name") || "bek aktas";
+  const userInitial = userName.charAt(0).toUpperCase();
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
  const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
