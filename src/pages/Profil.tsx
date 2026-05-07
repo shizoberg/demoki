@@ -406,22 +406,9 @@ const Profil = () => {
         <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-10 pb-4">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              {/* Mobile: menu button */}
-              {isMobile && (
-                <button
-                  onClick={() => setMobileMenuOpen(true)}
-                  className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground"
-                  aria-label="Menüyü aç"
-                >
-                  <Menu className="w-5 h-5" />
-                </button>
-              )}
-              {/* Desktop: avatar */}
-              {!isMobile && (
-                <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                  B
-                </div>
-              )}
+              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
+                B
+              </div>
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
                   .ki hesabım
