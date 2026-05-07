@@ -245,7 +245,23 @@ const sampleOrders: Order[] = [
 /* ================== PAGE ================== */
 
 const Profil = () => {
+  const isMobile = useIsMobile();
   const [tab, setTab] = useState<TabKey>("subscriptions");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
+
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobile && mobileMenuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [isMobile, mobileMenuOpen]);
+
+  const handleMobileTabSelect = (key: TabKey) => {
+    setTab(key);
+    setMobileMenuOpen(false);
+  };
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
  const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
