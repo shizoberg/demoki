@@ -418,7 +418,7 @@ const Profil = () => {
                 <h1 className="text-lg font-semibold text-primary leading-tight mt-0.5">
                   {isMobile
                     ? (tab === "orders" ? "Siparişler" : tab === "subscriptions" ? "Abonelikler" : "Kullanıcı Bilgileri")
-                    : "Merhaba, bek aktas"
+                    : `Merhaba, ${userName}`
                   }
                 </h1>
               </div>
