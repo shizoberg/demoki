@@ -330,7 +330,7 @@ const MobileTabBar = () => {
           <div className="flex-1 overflow-y-auto overscroll-contain px-5 pt-5 pb-[calc(env(safe-area-inset-bottom)+96px)]">
             {sheet === "about" && <AboutSheet onNavigate={() => setSheet(null)} />}
             {sheet === "store" && <StoreSheet onNavigate={() => setSheet(null)} />}
-            {sheet === "account" && <AccountSheet onNavigate={() => setSheet(null)} />}
+            {sheet === "account" && <AccountSheet onNavigate={() => setSheet(null)} onLogin={handleLogin} />}
           </div>
         </div>
       )}
