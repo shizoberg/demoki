@@ -202,6 +202,8 @@ const MobileTabBar = () => {
       window.location.href = "/balance";
     } else if (t.key === "paket") {
       window.location.href = "/paket-olustur";
+    } else if (t.key === "account") {
+      window.location.href = "/profil";
     } else {
       setSheet(t.key as SheetKey);
     }
