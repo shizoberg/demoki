@@ -363,7 +363,7 @@ const Profil = () => {
                   .ki hesabım
                 </p>
                 <p className="text-[15px] font-semibold text-primary leading-tight mt-0.5">
-                  Merhaba, bek aktas
+                  Merhaba, {userName}
                 </p>
               </div>
             </div>
