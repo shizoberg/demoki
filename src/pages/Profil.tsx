@@ -262,6 +262,8 @@ const Profil = () => {
     setTab(key);
     setMobileMenuOpen(false);
   };
+  const userName = localStorage.getItem("ki_user_name") || "bek aktas";
+  const userInitial = userName.charAt(0).toUpperCase();
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
  const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
@@ -354,14 +356,14 @@ const Profil = () => {
             {/* User info */}
             <div className="flex items-center gap-3 mb-8">
               <div className="h-11 w-11 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                B
+                {userInitial}
               </div>
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
                   .ki hesabım
                 </p>
                 <p className="text-[15px] font-semibold text-primary leading-tight mt-0.5">
-                  Merhaba, bek aktas
+                  Merhaba, {userName}
                 </p>
               </div>
             </div>
@@ -407,7 +409,7 @@ const Profil = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                B
+                {userInitial}
               </div>
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
@@ -416,7 +418,7 @@ const Profil = () => {
                 <h1 className="text-lg font-semibold text-primary leading-tight mt-0.5">
                   {isMobile
                     ? (tab === "orders" ? "Siparişler" : tab === "subscriptions" ? "Abonelikler" : "Kullanıcı Bilgileri")
-                    : "Merhaba, bek aktas"
+                    : `Merhaba, ${userName}`
                   }
                 </h1>
               </div>
