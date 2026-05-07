@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import {
   Package,
   Repeat,
@@ -22,7 +22,9 @@ import {
   MapPin,
   Phone,
   User,
+  Menu,
 } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -243,7 +245,23 @@ const sampleOrders: Order[] = [
 /* ================== PAGE ================== */
 
 const Profil = () => {
+  const isMobile = useIsMobile();
   const [tab, setTab] = useState<TabKey>("subscriptions");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
+
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobile && mobileMenuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [isMobile, mobileMenuOpen]);
+
+  const handleMobileTabSelect = (key: TabKey) => {
+    setTab(key);
+    setMobileMenuOpen(false);
+  };
   const [subs, setSubs] = useState<Subscription[]>(initialSubs);
   const [editing, setEditing] = useState<Subscription | null>(null);
  const [confirmCancel, setConfirmCancel] = useState<string | null>(null);
@@ -316,27 +334,110 @@ const Profil = () => {
       <AnnouncementBar />
       <SiteNav />
 
-      {/* Page header / hero strip */}
-      <section className="border-b border-border/60 bg-plum-pale">
-        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-10 pb-4">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
+      {/* Mobile fullscreen menu */}
+      {isMobile && mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 bg-background animate-fade-in flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between px-5 h-14 border-b border-border/60 shrink-0">
+            <h2 className="font-primary text-[18px] font-medium text-primary">Hesabım</h2>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Kapat"
+              className="text-primary -mr-2 p-2"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Menu items */}
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 pt-6 pb-[calc(env(safe-area-inset-bottom)+96px)]">
+            {/* User info */}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-11 w-11 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
                 B
               </div>
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
                   .ki hesabım
                 </p>
-                <h1 className="text-lg font-semibold text-primary leading-tight mt-0.5">
+                <p className="text-[15px] font-semibold text-primary leading-tight mt-0.5">
                   Merhaba, bek aktas
+                </p>
+              </div>
+            </div>
+
+            <ul className="flex flex-col divide-y divide-border/50">
+              {([
+                { key: "orders" as TabKey, label: "Siparişler", Icon: Package, desc: "Tek seferlik siparişlerini görüntüle" },
+                { key: "subscriptions" as TabKey, label: "Abonelikler", Icon: CalendarRange, desc: "Abonelik paketlerini yönet" },
+                { key: "profile" as TabKey, label: "Kullanıcı Bilgileri", Icon: User, desc: "Adres ve iletişim bilgilerini düzenle" },
+              ]).map(({ key, label, Icon, desc }) => (
+                <li key={key}>
+                  <button
+                    onClick={() => handleMobileTabSelect(key)}
+                    className="w-full flex items-center justify-between py-4 text-left hover:opacity-70 transition-opacity"
+                  >
+                    <span className="flex items-center gap-3.5">
+                      <span className="h-10 w-10 flex items-center justify-center rounded-xl bg-plum-pale">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </span>
+                      <span>
+                        <span className="block text-[15px] font-semibold text-primary">{label}</span>
+                        <span className="block text-[12px] text-muted-foreground mt-0.5">{desc}</span>
+                      </span>
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-primary/40 shrink-0" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            {/* Logout */}
+            <button className="mt-8 flex items-center gap-2 text-[14px] text-muted-foreground hover:text-primary transition-colors">
+              <LogOut className="w-4 h-4" />
+              Çıkış Yap
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Page header / hero strip */}
+      <section className="border-b border-border/60 bg-plum-pale">
+        <div className="max-w-[1080px] mx-auto px-5 lg:px-8 pt-10 pb-4">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              {/* Mobile: menu button */}
+              {isMobile && (
+                <button
+                  onClick={() => setMobileMenuOpen(true)}
+                  className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground"
+                  aria-label="Menüyü aç"
+                >
+                  <Menu className="w-5 h-5" />
+                </button>
+              )}
+              {/* Desktop: avatar */}
+              {!isMobile && (
+                <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
+                  B
+                </div>
+              )}
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
+                  .ki hesabım
+                </p>
+                <h1 className="text-lg font-semibold text-primary leading-tight mt-0.5">
+                  {isMobile
+                    ? (tab === "orders" ? "Siparişler" : tab === "subscriptions" ? "Abonelikler" : "Kullanıcı Bilgileri")
+                    : "Merhaba, bek aktas"
+                  }
                 </h1>
               </div>
             </div>
           </div>
 
-          {/* Tabs */}
-          <div className="flex gap-1 overflow-x-auto hide-scrollbar -mx-1 px-1">
+          {/* Tabs — desktop only */}
+          <div className="hidden lg:flex gap-1 overflow-x-auto hide-scrollbar -mx-1 px-1">
             <TabBtn active={tab === "orders"} onClick={() => setTab("orders")}>
               <Package className="h-4 w-4" /> Siparişler
             </TabBtn>
