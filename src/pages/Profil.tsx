@@ -409,7 +409,7 @@ const Profil = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-                B
+                {userInitial}
               </div>
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-primary-medium leading-none">
