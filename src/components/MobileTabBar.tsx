@@ -184,7 +184,21 @@ const tabs: Tab[] = [
 
 const MobileTabBar = () => {
   const [sheet, setSheet] = useState<SheetKey>(null);
+  const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
   const itemCount = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
+
+  // Check login state on mount and listen for storage changes
+  useEffect(() => {
+    const check = () => setLoggedInUser(localStorage.getItem("ki_user_name"));
+    check();
+    window.addEventListener("storage", check);
+    // Custom event for same-tab updates
+    window.addEventListener("ki_login", check);
+    return () => {
+      window.removeEventListener("storage", check);
+      window.removeEventListener("ki_login", check);
+    };
+  }, []);
 
   // Lock background scroll when sheet open
   useEffect(() => {
@@ -203,10 +217,22 @@ const MobileTabBar = () => {
     } else if (t.key === "paket") {
       window.location.href = "/paket-olustur";
     } else if (t.key === "account") {
-      window.location.href = "/profil";
+      if (loggedInUser) {
+        window.location.href = "/profil";
+      } else {
+        setSheet("account");
+      }
     } else {
       setSheet(t.key as SheetKey);
     }
+  };
+
+  const handleLogin = (name: string) => {
+    localStorage.setItem("ki_user_name", name);
+    setLoggedInUser(name);
+    window.dispatchEvent(new Event("ki_login"));
+    setSheet(null);
+    window.location.href = "/profil";
   };
 
   return (
