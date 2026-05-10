@@ -277,16 +277,33 @@ const Product = () => {
               </div>
             </div>
 
-            {/* Subscription toggle (Pedler style) */}
-            <div className="mt-5 rounded-2xl bg-secondary/60 p-4 sm:p-5">
+            {/* Subscription toggle — emphasized */}
+            <div
+              className={`mt-5 rounded-2xl p-4 sm:p-5 transition-all ${
+                subscribe
+                  ? "bg-gradient-to-br from-primary/10 via-secondary to-rose/10 border-2 border-primary shadow-[0_8px_24px_-12px_hsl(var(--primary)/0.4)]"
+                  : "bg-secondary/50 border-2 border-transparent"
+              }`}
+            >
               <div className="flex items-start gap-3">
-                <RefreshCw className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <div
+                  className={`w-9 h-9 shrink-0 rounded-xl flex items-center justify-center transition-colors ${
+                    subscribe ? "bg-primary text-primary-foreground" : "bg-card text-primary"
+                  }`}
+                >
+                  <RefreshCw className="w-4.5 h-4.5" />
+                </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-bold text-[15px] text-primary leading-tight">
-                    Abonelik ile %10 İndirim
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-bold text-[15px] text-primary leading-tight">
+                      Aboneliğe Geç
+                    </span>
+                    <span className="inline-flex items-center bg-rose text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full tracking-wide">
+                      %10 İNDİRİM
+                    </span>
                   </div>
-                  <div className="text-[12.5px] text-muted-foreground mt-0.5">
-                    Her ay otomatik gönderim, istediğin zaman iptal
+                  <div className="text-[12.5px] text-muted-foreground mt-0.5 leading-snug">
+                    Her ay otomatik kapına gelsin · İstediğin an iptal et
                   </div>
                 </div>
                 <button
@@ -305,15 +322,47 @@ const Product = () => {
                   />
                 </button>
               </div>
+
+              {subscribe && (
+                <ul className="mt-3 pt-3 border-t border-primary/15 grid grid-cols-1 gap-1.5 text-[12px] text-primary/85 font-medium">
+                  <li className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-sage shrink-0" />
+                    Ücretsiz kargo · Önceliklendirilmiş gönderim
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-sage shrink-0" />
+                    Sıklığı dilediğin gibi ayarla
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-sage shrink-0" />
+                    Tek tıkla iptal · Bağlayıcı sözleşme yok
+                  </li>
+                </ul>
+              )}
             </div>
 
             {/* CTA */}
             <button
               type="button"
-              className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground text-[15px] font-bold py-4 px-6 hover:bg-primary-medium transition-all shadow-[0_8px_28px_-12px_hsl(var(--primary)/0.5)]"
+              className="group mt-6 w-full inline-flex items-center justify-between gap-3 rounded-full bg-primary text-primary-foreground py-4 px-5 sm:px-6 hover:bg-primary-medium transition-all shadow-[0_8px_28px_-12px_hsl(var(--primary)/0.5)] active:scale-[0.99]"
             >
-              Sepete Ekle · {finalPrice}₺
+              <span className="inline-flex items-center gap-2.5 text-[15px] font-bold">
+                <ShoppingBag className="w-4.5 h-4.5" />
+                {subscribe ? "Aboneliği Başlat" : "Sepete Ekle"}
+              </span>
+              <span className="inline-flex items-center gap-2 text-[15px] font-extrabold tabular-nums">
+                {subscribe && (
+                  <span className="text-primary-foreground/60 line-through text-[12.5px] font-semibold">
+                    {baseOption.price}₺
+                  </span>
+                )}
+                {finalPrice}₺
+              </span>
             </button>
+
+            <p className="mt-2.5 text-center text-[11.5px] text-muted-foreground">
+              500₺ üzeri siparişlerde ücretsiz kargo · 30 gün iade garantisi
+            </p>
 
             {/* Trust badges */}
             <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary/80 font-medium">
@@ -393,22 +442,22 @@ const Product = () => {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
           {PROCESS_STEPS.map(({ Icon, title, text }, i) => (
             <div
               key={title}
-              className={`k5-reveal k5-reveal-d${i + 1} relative rounded-3xl bg-card border border-border/60 p-6 lg:p-7`}
+              className={`k5-reveal k5-reveal-d${i + 1} relative rounded-2xl sm:rounded-3xl bg-card border border-border/60 p-4 sm:p-6 lg:p-7`}
             >
-              <span className="absolute top-4 right-5 text-[40px] font-bold text-primary/10 leading-none tabular-nums">
+              <span className="absolute top-2 right-3 sm:top-4 sm:right-5 text-[28px] sm:text-[40px] font-bold text-primary/10 leading-none tabular-nums">
                 {i + 1}
               </span>
-              <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-4">
-                <Icon className="w-6 h-6 text-primary" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-secondary flex items-center justify-center mb-3 sm:mb-4">
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </div>
-              <h3 className="text-[16px] font-bold text-primary leading-tight">
+              <h3 className="text-[14px] sm:text-[16px] font-bold text-primary leading-tight">
                 {title}
               </h3>
-              <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed">
+              <p className="mt-1.5 sm:mt-2 text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
                 {text}
               </p>
             </div>
