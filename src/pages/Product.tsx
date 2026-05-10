@@ -60,9 +60,6 @@ const OPTIONS: OptionConfig[] = [
 ];
 
 const SUBSCRIPTION_DISCOUNT = 0.1; // %10
-    description: "Otomatik gönderim, istediğin zaman iptal",
-  },
-];
 
 const BENEFITS = [
   {
