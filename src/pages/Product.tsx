@@ -406,19 +406,19 @@ const Product = () => {
             </div>
 
             {/* Benefits grid */}
-            <div className="k5-reveal k5-reveal-d2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="k5-reveal k5-reveal-d2 grid grid-cols-2 gap-3 sm:gap-4">
               {BENEFITS.map(({ Icon, title, text }) => (
                 <div
                   key={title}
-                  className="rounded-2xl bg-card border border-border/60 p-5 hover:shadow-md transition-shadow"
+                  className="rounded-2xl bg-card border border-border/60 p-4 sm:p-5 hover:shadow-md transition-shadow"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-secondary/80 flex items-center justify-center mb-3">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-secondary/80 flex items-center justify-center mb-2.5 sm:mb-3">
+                    <Icon className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-primary" />
                   </div>
-                  <h3 className="text-[15px] font-bold text-primary leading-tight">
+                  <h3 className="text-[14px] sm:text-[15px] font-bold text-primary leading-tight">
                     {title}
                   </h3>
-                  <p className="mt-1.5 text-[13px] text-muted-foreground leading-relaxed">
+                  <p className="mt-1.5 text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
                     {text}
                   </p>
                 </div>
