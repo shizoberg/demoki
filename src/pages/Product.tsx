@@ -136,8 +136,12 @@ const Product = () => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedOption, setSelectedOption] =
     useState<PurchaseOption>("triple");
+  const [subscribe, setSubscribe] = useState(true);
 
-  const selected = OPTIONS.find((o) => o.id === selectedOption)!;
+  const baseOption = OPTIONS.find((o) => o.id === selectedOption)!;
+  const finalPrice = subscribe
+    ? Math.round(baseOption.price * (1 - SUBSCRIPTION_DISCOUNT))
+    : baseOption.price;
 
   return (
     <div className="bg-background min-h-screen pb-20 lg:pb-0 font-primary">
