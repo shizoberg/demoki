@@ -393,22 +393,22 @@ const Product = () => {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
           {PROCESS_STEPS.map(({ Icon, title, text }, i) => (
             <div
               key={title}
-              className={`k5-reveal k5-reveal-d${i + 1} relative rounded-3xl bg-card border border-border/60 p-6 lg:p-7`}
+              className={`k5-reveal k5-reveal-d${i + 1} relative rounded-2xl sm:rounded-3xl bg-card border border-border/60 p-4 sm:p-6 lg:p-7`}
             >
-              <span className="absolute top-4 right-5 text-[40px] font-bold text-primary/10 leading-none tabular-nums">
+              <span className="absolute top-2 right-3 sm:top-4 sm:right-5 text-[28px] sm:text-[40px] font-bold text-primary/10 leading-none tabular-nums">
                 {i + 1}
               </span>
-              <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-4">
-                <Icon className="w-6 h-6 text-primary" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-secondary flex items-center justify-center mb-3 sm:mb-4">
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </div>
-              <h3 className="text-[16px] font-bold text-primary leading-tight">
+              <h3 className="text-[14px] sm:text-[16px] font-bold text-primary leading-tight">
                 {title}
               </h3>
-              <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed">
+              <p className="mt-1.5 sm:mt-2 text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
                 {text}
               </p>
             </div>
