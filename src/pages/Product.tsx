@@ -27,7 +27,7 @@ import allProductsGrid from "@/assets/all-products-grid.webp";
 
 /* ---------------- Types ---------------- */
 
-type PurchaseOption = "single" | "triple" | "subscription";
+type PurchaseOption = "single" | "triple";
 
 interface OptionConfig {
   id: PurchaseOption;
@@ -57,13 +57,9 @@ const OPTIONS: OptionConfig[] = [
     badge: "%13 indirim",
     description: "3 ay yetecek paket — bir kerede al",
   },
-  {
-    id: "subscription",
-    label: "Abonelik",
-    qty: "Her ay 1 paket",
-    price: 169,
-    unitPrice: 169,
-    badge: "%15 indirim",
+];
+
+const SUBSCRIPTION_DISCOUNT = 0.1; // %10
     description: "Otomatik gönderim, istediğin zaman iptal",
   },
 ];
