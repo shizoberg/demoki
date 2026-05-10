@@ -27,7 +27,7 @@ import allProductsGrid from "@/assets/all-products-grid.webp";
 
 /* ---------------- Types ---------------- */
 
-type PurchaseOption = "single" | "triple" | "subscription";
+type PurchaseOption = "single" | "triple";
 
 interface OptionConfig {
   id: PurchaseOption;
@@ -57,16 +57,9 @@ const OPTIONS: OptionConfig[] = [
     badge: "%13 indirim",
     description: "3 ay yetecek paket — bir kerede al",
   },
-  {
-    id: "subscription",
-    label: "Abonelik",
-    qty: "Her ay 1 paket",
-    price: 169,
-    unitPrice: 169,
-    badge: "%15 indirim",
-    description: "Otomatik gönderim, istediğin zaman iptal",
-  },
 ];
+
+const SUBSCRIPTION_DISCOUNT = 0.1; // %10
 
 const BENEFITS = [
   {
@@ -143,8 +136,12 @@ const Product = () => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedOption, setSelectedOption] =
     useState<PurchaseOption>("triple");
+  const [subscribe, setSubscribe] = useState(true);
 
-  const selected = OPTIONS.find((o) => o.id === selectedOption)!;
+  const baseOption = OPTIONS.find((o) => o.id === selectedOption)!;
+  const finalPrice = subscribe
+    ? Math.round(baseOption.price * (1 - SUBSCRIPTION_DISCOUNT))
+    : baseOption.price;
 
   return (
     <div className="bg-background min-h-screen pb-20 lg:pb-0 font-primary">
@@ -280,40 +277,42 @@ const Product = () => {
               </div>
             </div>
 
-            {/* Subscription detail (only when subscription selected) */}
-            {selectedOption === "subscription" && (
-              <div className="mt-4 rounded-2xl bg-secondary/60 p-4 sm:p-5">
-                <div className="flex items-start gap-3">
-                  <RefreshCw className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <div className="flex-1 min-w-0">
-                    <div className="font-bold text-[14px] text-primary leading-tight">
-                      Aboneliğin nasıl çalışır?
-                    </div>
-                    <ul className="mt-2 space-y-1 text-[12.5px] text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <Check className="w-3.5 h-3.5 text-sage shrink-0 mt-0.5" />
-                        Her ay otomatik kapına gelir
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="w-3.5 h-3.5 text-sage shrink-0 mt-0.5" />
-                        Sıklığı istediğin gibi ayarlarsın
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="w-3.5 h-3.5 text-sage shrink-0 mt-0.5" />
-                        İstediğin an tek tıkla iptal edersin
-                      </li>
-                    </ul>
+            {/* Subscription toggle (Pedler style) */}
+            <div className="mt-5 rounded-2xl bg-secondary/60 p-4 sm:p-5">
+              <div className="flex items-start gap-3">
+                <RefreshCw className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-[15px] text-primary leading-tight">
+                    Abonelik ile %10 İndirim
+                  </div>
+                  <div className="text-[12.5px] text-muted-foreground mt-0.5">
+                    Her ay otomatik gönderim, istediğin zaman iptal
                   </div>
                 </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={subscribe}
+                  onClick={() => setSubscribe((s) => !s)}
+                  className={`relative shrink-0 w-12 h-7 rounded-full transition-colors ${
+                    subscribe ? "bg-primary" : "bg-border"
+                  }`}
+                >
+                  <span
+                    className={`absolute top-1/2 -translate-y-1/2 left-0.5 w-6 h-6 rounded-full bg-card shadow-md transition-transform ${
+                      subscribe ? "translate-x-[20px]" : "translate-x-0"
+                    }`}
+                  />
+                </button>
               </div>
-            )}
+            </div>
 
             {/* CTA */}
             <button
               type="button"
               className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground text-[15px] font-bold py-4 px-6 hover:bg-primary-medium transition-all shadow-[0_8px_28px_-12px_hsl(var(--primary)/0.5)]"
             >
-              Sepete Ekle · {selected.price}₺
+              Sepete Ekle · {finalPrice}₺
             </button>
 
             {/* Trust badges */}
