@@ -1,0 +1,542 @@
+[
+  {
+    "name": "Çubukçu Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Kültür, Şair Eşref Blv. No:57 D:g, 35220 Konak/İzmir, Türkiye",
+    "phone": "0 232 463 46 30",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Talatpaşa Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Alsancak, Talatpaşa Blv No:71/C, 35220 Konak/İzmir, Türkiye",
+    "phone": "0 232 422 60 44",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Final Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Erzene, Hasan Ali Yücel Cd., 35040 Bornova/İzmir, Türkiye",
+    "phone": "0 232 347 19 06",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Tanyel Eczanesi",
+    "city": "İzmir",
+    "district": "Karşıyaka",
+    "address": "Alaybey, Şht. Asım Aksoy Cd. No:47, 35600 Karşıyaka/İzmir, Türkiye",
+    "phone": "0 232 366 77 40",
+    "lat": 38.5034452,
+    "lng": 27.1134554
+  },
+  {
+    "name": "Kent Eczanesi",
+    "city": "Manisa",
+    "district": "Yunusemre",
+    "address": "Güzelyurt, 19 Mayıs Blv. No:9/A, 45030 Yunusemre/Manisa, Türkiye",
+    "phone": "0 236 503 40 14",
+    "lat": 38.6086543,
+    "lng": 27.4194561
+  },
+  {
+    "name": "Özmen Eczanesi",
+    "city": "İzmir",
+    "district": "Buca",
+    "address": "Kozağaç, 35678 Buca/İzmir, Türkiye",
+    "phone": "0 232 452 77 41",
+    "lat": 38.3791182,
+    "lng": 27.1735883
+  },
+  {
+    "name": "Itır Eczanesi",
+    "city": "İzmir",
+    "district": "Buca",
+    "address": "Vali Rahmi Bey, Özmen Cd. No:112/1, 35380 Buca/İzmir, Türkiye",
+    "phone": "0 232 448 88 93",
+    "lat": 38.3834933,
+    "lng": 27.1686508
+  },
+  {
+    "name": "Çetin Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "ÖZEL GAZİ HASTANESİ YANI, Mimar Sinan, Can Kulduk Sk. No:15, 35220 Konak/İzmir, Türkiye",
+    "phone": "0530 828 27 52",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Onur Eczanesi",
+    "city": "İstanbul",
+    "district": "Pendik",
+    "address": "Doğu Özel Bölge Hastanesi Ve Kaymakamlık Karşısı, Nevbahar Sk. No:9/A, 34893 Pendik/İstanbul, Türkiye",
+    "phone": "0 505 597 66 87",
+    "lat": 40.8768715,
+    "lng": 29.2349672
+  },
+  {
+    "name": "Mehmet Eczanesi",
+    "city": "İstanbul",
+    "district": "Pendik",
+    "address": "Doğu, Yücel Sk. 3/B, 34890 Pendik/İstanbul, Türkiye",
+    "phone": "0 537 433 38 58",
+    "lat": 40.8768715,
+    "lng": 29.2349672
+  },
+  {
+    "name": "Ece Eczanesi",
+    "city": "İstanbul",
+    "district": "Pendik",
+    "address": "Doğu Mah. Lokman Hekim Cad. No: 17/A Pendik İstanbul",
+    "phone": "0 533 260 54 90",
+    "lat": 40.8768715,
+    "lng": 29.2349672
+  },
+  {
+    "name": "Yeditepe Eczanesi",
+    "city": "İstanbul",
+    "district": "Kurtköy",
+    "address": "Yenişehir Mh. Akkaya Sk. 2FD, 34912 Pendik/İstanbul, Türkiye",
+    "phone": "0  542 228 46 65",
+    "lat": 40.9098874,
+    "lng": 29.2967277
+  },
+  {
+    "name": "21 Mayıs Eczanesi",
+    "city": "İstanbul",
+    "district": "Kartal",
+    "address": "Petroliş, Kızılay Blv. No:21, 34862 Kartal/İstanbul, Türkiye",
+    "phone": "0 538 445 99 19",
+    "lat": 40.88858,
+    "lng": 29.1856536
+  },
+  {
+    "name": "Bağcı Eczanesi",
+    "city": "İzmir",
+    "district": "Karşıyaka",
+    "address": "Tersane, Şht. Asım Aksoy Cd. No:50/A, 35600 Karşıyaka/İzmir, Türkiye",
+    "phone": "0 232 367 57 19",
+    "lat": 38.5034452,
+    "lng": 27.1134554
+  },
+  {
+    "name": "Bilge Eczanesi",
+    "city": "İzmir",
+    "district": "Torbalı",
+    "address": "Bilge Eczanesi, Cumhuriyet, 2026. Sk. no:11 D:1A, 35860 Torbalı/İzmir",
+    "phone": "0 506 755 54 64",
+    "lat": 38.1700242,
+    "lng": 27.3475609
+  },
+  {
+    "name": "Mineralim Eczanesi",
+    "city": "İstanbul",
+    "district": "Üsküdar",
+    "address": "Kısıklı, Alemdağ Cd No:117 D:B, 34692 Üsküdar/İstanbul",
+    "phone": "0 532 467 80 57",
+    "lat": 41.0265498,
+    "lng": 29.0151321
+  },
+  {
+    "name": "Anka Eczanesi",
+    "city": "İzmir",
+    "district": "Bayraklı",
+    "address": "Çınarlı Mah. Şehit Polis Fethi Sekin Cd, Sunucu Plaza No: 3/B, 35170 Konak/İzmir",
+    "phone": "0 530 949 94 39",
+    "lat": 38.4639144,
+    "lng": 27.1644029
+  },
+  {
+    "name": "Yeni Özcan Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Kültür Mahallesi Ali Çetinkaya Bulvarı No:37/A Alsancak Nevvar Salih İşgören Devlet Hastanesi Karşısı, 35220 Konak/İzmir",
+    "phone": "0 232 463 13 86",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Dünya Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Alsancak Semti, Kültür, Şair Eşref Blv. No: 55/D, 35220 Konak/İzmir",
+    "phone": "0 530 183 93 35",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Asrın Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "İsmet Kaptan, Hürriyet Blv. 5 C, 35210 Konak/İzmir",
+    "phone": "0 232 446 13 10",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Emek Eczanesi",
+    "city": "İstanbul",
+    "district": "Kartal",
+    "address": "Petroliş, Kızılay Blv. No:17/A, 34862 Kartal/İstanbul",
+    "phone": "0 216 517 98 08",
+    "lat": 40.88858,
+    "lng": 29.1856536
+  },
+  {
+    "name": "Yeni Petek Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Mithatpaşa, Mithatpaşa Cd. No:535 D:A, 35280 Konak/İzmir",
+    "phone": "0 232 245 51 01",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Meriç Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Mithatpaşa, Mithatpaşa Cd. No:507/A, 35280 Konak/İzmir",
+    "phone": "0 232 232 94 88",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Mavi Eczane",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Kültür Mahallesi, Alsancak, Plevne Blv. no:18/B, 35220 Konak/İzmir",
+    "phone": "0 555 018 69 22",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Adam Eczanesi",
+    "city": "Bursa",
+    "district": "Nilüfer",
+    "address": "30 Ağustos Zafer, 109(520).sokak No:1B/E, 16280 Ni̇lüfer/Bursa",
+    "phone": "0 506 856 08 99",
+    "lat": 40.2169975,
+    "lng": 28.9847907
+  },
+  {
+    "name": "Pınar Eczanesi",
+    "city": "Bursa",
+    "district": "Osmangazi",
+    "address": "Fatih, 1. Fındıklı Sk. NO:4, 16200 Osmangazi̇/Bursa",
+    "phone": "0 224 253 90 10",
+    "lat": 40.1982203,
+    "lng": 29.0612098
+  },
+  {
+    "name": "Dinç Eczanesi",
+    "city": "Antalya",
+    "district": "Finike",
+    "address": "Kum Mahallesi, 141.Sokak No:4AA",
+    "phone": "0 242 865 65 39",
+    "lat": 36.3046148,
+    "lng": 30.1445334
+  },
+  {
+    "name": "Feyza Eczanesi",
+    "city": "Balıkesir",
+    "district": "Karesi",
+    "address": "Paşalanı Mh. 225 Sokak No:1",
+    "phone": "0 266 246 49 79",
+    "lat": 39.6464168,
+    "lng": 27.8853411
+  },
+  {
+    "name": "Cihan Eczanesi",
+    "city": "Bursa",
+    "district": "Kestel",
+    "address": "Ahmet Vefik Paşa Mahallesi, Hakim Aytekin Baysal Sokak No:8/C",
+    "phone": "0 224 373 19 77",
+    "lat": 40.2007544,
+    "lng": 29.2128704
+  },
+  {
+    "name": "Gökçe Eczanesi",
+    "city": "Çankırı",
+    "district": "Merkez",
+    "address": "Abdulhalik Renda Mahallesi, Yanlar Caddesi No:1 Merkez / Çankırı",
+    "phone": "0 376 212 18 90",
+    "lat": 40.5971947,
+    "lng": 33.6212704
+  },
+  {
+    "name": "Şirin Eczanesi",
+    "city": "Balıkesir",
+    "district": "Edremit",
+    "address": "Eroğlan Mahallesi, Yaşar Kemal Caddesi No:93/A Kadıköy / Edremit / Balıkesir",
+    "phone": "0 266 374 04 83",
+    "lat": 39.5938352,
+    "lng": 27.0156844
+  },
+  {
+    "name": "Ebru Eczanesi",
+    "city": "Balıkesir",
+    "district": "Karesi",
+    "address": "Toygar, Kayıran Sk. 51/A, 10020 Balıkesir Merkez/Balıkesir",
+    "phone": "0 266  227 78 03",
+    "lat": 39.6464168,
+    "lng": 27.8853411
+  },
+  {
+    "name": "Ayberk Eczanesi",
+    "city": "İstanbul",
+    "district": "Maltepe",
+    "address": "Cevizli, Kır Sk. No:8, 34846 Maltepe/İstanbul",
+    "phone": "0 216 441 94 42",
+    "lat": 40.9247539,
+    "lng": 29.1310782
+  },
+  {
+    "name": "Diva Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Rafet Paşa, Yıldırım Beyazıt Cd. No:217/D, 35100 Bornova/İzmir",
+    "phone": "0 549 649 11 10",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Barlas Eczanesi",
+    "city": "İzmir",
+    "district": "Karşıyaka",
+    "address": "Bostanlı, Şehitler Blv 14 A, 35590 Karşıyaka/İzmir",
+    "phone": "0 232 330 11 60",
+    "lat": 38.5034452,
+    "lng": 27.1134554
+  },
+  {
+    "name": "Sude Eczanesi",
+    "city": "Aydın",
+    "district": "Efeler",
+    "address": "Gold Towers Rezidans, Işıklı Mah. Işıklı Mücavir Sok.760/B.No:33, Altı, 09199 Efeler/Aydın",
+    "phone": "0 542 547 78 33",
+    "lat": 37.8471749,
+    "lng": 27.8337255
+  },
+  {
+    "name": "Uyar Sağlık Eczanesi",
+    "city": "Bursa",
+    "district": "Nilüfer",
+    "address": "Esentepe, Gürler Cd. No:92A, 16130 Ni̇lüfer/Bursa",
+    "phone": "0 543 183 55 16",
+    "lat": 40.2169975,
+    "lng": 28.9847907
+  },
+  {
+    "name": "Pandora Eczanesi",
+    "city": "Manisa",
+    "district": "Yunusemre",
+    "address": "Uncubozköy, 5526. Sk. No:12/B, 45030 Yunusemre/Manisa",
+    "phone": "0 236 237 07 07",
+    "lat": 38.6086543,
+    "lng": 27.4194561
+  },
+  {
+    "name": "İpek Eczanesi",
+    "city": "Balıkesir",
+    "district": "Altıeylül",
+    "address": "Plevne, Savaştepe Cd. No:24/A, 10100 Altıeylül/Balıkesir",
+    "phone": "0 540 931 00 01",
+    "lat": 39.6446327,
+    "lng": 27.8834414
+  },
+  {
+    "name": "Şehir Eczanesi",
+    "city": "İzmir",
+    "district": "Bayraklı",
+    "address": "R. Şevket İnce, 35040 Bayraklı/İzmir",
+    "phone": "0 232 502 78 33",
+    "lat": 38.4754811,
+    "lng": 27.1801136
+  },
+  {
+    "name": "Aygül Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Evka 3, 127/9. Sk. No:1, 35050 Bornova/İzmir",
+    "phone": "0 232 375 79 16",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Çamdibi Sağlık Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Barbaros, 5311. Sk. No:24, 35270 Bornova/İzmir",
+    "phone": "0 555 019 18 16",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Güzelyurt Eczanesi",
+    "city": "Manisa",
+    "district": "Yunusemre",
+    "address": "Güzelyurt, Sürmene Cd No:20/A, 45030 Yunusemre/Manisa",
+    "phone": "0 236 503 18 79",
+    "lat": 38.6086543,
+    "lng": 27.4194561
+  },
+  {
+    "name": "Palanduz Eczanesi",
+    "city": "İzmir",
+    "district": "Konak",
+    "address": "Alsancak, Vasıf Çınar Blv No:15 B C-D, 35220 Konak/İzmir",
+    "phone": "0 232 464 93 23",
+    "lat": 38.4187168,
+    "lng": 27.1282675
+  },
+  {
+    "name": "Çipiller Eczanesi",
+    "city": "Manisa",
+    "district": "Merkez",
+    "address": "Merkez Efendi Mh. 8 Eylül Cd. Pk:45020 Merkez/Manisa",
+    "phone": "0 236 237 27 57",
+    "lat": 38.6138191,
+    "lng": 27.4105668
+  },
+  {
+    "name": "Organik Eczane",
+    "city": "İzmir",
+    "district": "Karşıyaka",
+    "address": "Mavişehir, Caher Dudayev Blv No:40, 35590 Karşıyaka/İzmir",
+    "phone": "0 232 324 16 56",
+    "lat": 38.5034452,
+    "lng": 27.1134554
+  },
+  {
+    "name": "Yurtsever Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Kazımdirik, Gediz Cd. No: 6 D:G, 35100 Bornova/İzmir",
+    "phone": "0 232 545 25 75",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Forum Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Kazımdirik Mahallesi 372 Sokak, Forum Bornova 40/F, 35100 Bornova/İzmir",
+    "phone": "0 232  374 58 58",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Günay Eczanesi",
+    "city": "İstanbul",
+    "district": "Fatih",
+    "address": "Hobyar, Ankara Cd. No:59 D D:E, 34112 Fatih/İstanbul, Türkiye",
+    "phone": "0 (212) 526-32-84",
+    "lat": 41.0192846,
+    "lng": 28.9479296
+  },
+  {
+    "name": "Umutlu Eczanesi",
+    "city": "İzmir",
+    "district": "Karşıyaka",
+    "address": "Bostanlı, 1735. Sk. No:192/B, 35220 Karşıyaka/İzmir",
+    "phone": "0 (232) 464 75 08",
+    "lat": 38.5034452,
+    "lng": 27.1134554
+  },
+  {
+    "name": "Yazıcı 1988 Eczanesi",
+    "city": "İstanbul",
+    "district": "Kartal",
+    "address": "Atalar, Köroğlu Cd. No:34, 34862 Kartal/İstanbul",
+    "phone": "",
+    "lat": 40.88858,
+    "lng": 29.1856536
+  },
+  {
+    "name": "Alaçayır Eczanesi",
+    "city": "İstanbul",
+    "district": "Kartal",
+    "address": "Petroliş, Rahvanlar Cd. no:29/B, 34862 Kartal/İstanbul",
+    "phone": "(0216) 387 32 92",
+    "lat": 40.88858,
+    "lng": 29.1856536
+  },
+  {
+    "name": "Eren Eczanesi",
+    "city": "Balıkesir",
+    "district": "Merkez",
+    "address": "Bahçelievler, Savaştepe Cd., 10050 Balıkesir Merkez/Balıkesir, Türkiye",
+    "phone": "0 (266) 221-41-77",
+    "lat": 39.6188965,
+    "lng": 27.9202193
+  },
+  {
+    "name": "Duygu Eczanesi",
+    "city": "Rize",
+    "district": "Merkez",
+    "address": "Piriçelebi, Cumhuriyet Cd. No:99/C, 53020 Rize Merkez/Rize, Türkiye",
+    "phone": "0 464 217 2177",
+    "lat": 41.0167911,
+    "lng": 40.6728704
+  },
+  {
+    "name": "Yeni Eczane",
+    "city": "Manisa",
+    "district": "Şehzadeler",
+    "address": "Utku Mahallesi, Dumlupınar Caddesi No:14/C-D Merkez / Manisa",
+    "phone": "0 (236) 232-00-70",
+    "lat": 38.6458586,
+    "lng": 27.502838
+  },
+  {
+    "name": "Eczane Forum",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Kazımdirik Mahallesi 372 Sokak, Forum Bornova 40/F, 35100 Bornova/İzmir, Türkiye",
+    "phone": "0 232 374 58 58",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Yurtsever Eczanesi",
+    "city": "İzmir",
+    "district": "Bornova",
+    "address": "Kazımdirik, Gediz Cd. No: 6 D:G, 35100 Bornova/İzmir, Türkiye",
+    "phone": "0 232 545 25 75",
+    "lat": 38.4661896,
+    "lng": 27.2191942
+  },
+  {
+    "name": "Kampüs Eczanesi",
+    "city": "Bursa",
+    "district": "Nilüfer",
+    "address": "Görükle Dumlupınar Mah. Atatürk Cad. 98/B Nilüfer, Bursa",
+    "phone": "0 224 483 54 83",
+    "lat": 40.2169975,
+    "lng": 28.9847907
+  },
+  {
+    "name": "Odunluk Eczanesi",
+    "city": "Bursa",
+    "district": "Nilüfer",
+    "address": "Misia Sitesi, Odunluk mahallesi Mihraplı caddesi 15300, No:4 G Blok D7 (3C, 16110 Ni̇lüfer/Bursa, Türkiye",
+    "phone": "0 224 999 55 32",
+    "lat": 40.2169975,
+    "lng": 28.9847907
+  },
+  {
+    "name": "Günay Eczanesi",
+    "city": "İstanbul",
+    "district": "Fatih",
+    "address": "Hobyar, Ankara Cd. No:59 D D:E, 34112 Fatih/İstanbul, Türkiye",
+    "phone": "0 532 357 33 07",
+    "lat": 41.0192846,
+    "lng": 28.9479296
+  }
+]
