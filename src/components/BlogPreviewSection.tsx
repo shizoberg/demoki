@@ -63,29 +63,35 @@ const BlogPreviewSection = () => {
           </a>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
-          {POSTS.map((post) => (
-            <a key={post.slug} href={`/blog/${post.slug}`} className="group block">
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                />
-              </div>
-              <h3
-                className="mt-4 font-display text-[16px] sm:text-[18px] lg:text-[20px] leading-snug text-primary font-medium group-hover:opacity-80 transition-opacity"
-                style={{ fontFamily: "var(--font-display)" }}
+        {/* Cards — mobile: horizontal snap scroll (2 visible), desktop: 4-col grid */}
+        <div className="-mx-5 lg:mx-0">
+          <div className="flex lg:grid lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scroll-px-5 px-5 lg:px-0 hide-scrollbar">
+            {POSTS.map((post) => (
+              <a
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group block shrink-0 snap-start w-[calc(50%-0.5rem)] lg:w-auto"
               >
-                {post.title}
-              </h3>
-              <p className="mt-2 text-[12px] sm:text-[13px] text-muted-foreground line-clamp-3">
-                {post.excerpt}
-              </p>
-            </a>
-          ))}
+                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  />
+                </div>
+                <h3
+                  className="mt-4 font-display text-[16px] sm:text-[18px] lg:text-[20px] leading-snug text-primary font-medium group-hover:opacity-80 transition-opacity"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {post.title}
+                </h3>
+                <p className="mt-2 text-[12px] sm:text-[13px] text-muted-foreground line-clamp-3">
+                  {post.excerpt}
+                </p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
