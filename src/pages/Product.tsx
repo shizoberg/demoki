@@ -465,45 +465,8 @@ const Product = () => {
         </div>
       </section>
 
-      {/* ============== USER GALLERY ============== */}
-      <section className="bg-secondary/40 border-t border-border/60">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 py-14 lg:py-20">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-10 k5-reveal">
-            <div className="max-w-xl">
-              <p className="text-[12px] uppercase tracking-[0.2em] text-rose font-bold mb-3">
-                #kiTopluluğu
-              </p>
-              <h2 className="font-medium text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-primary tracking-tight">
-                Topluluğumuzdan
-              </h2>
-              <p className="mt-3 text-[14.5px] text-muted-foreground">
-                Kullanıcılarımızın paylaştığı anlardan bir seçki.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 text-[13px] text-primary/80">
-              <Star className="w-4 h-4 text-star fill-star" />
-              <span className="font-semibold">2.500+ paylaşım</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {USER_GALLERY.map((img, i) => (
-              <button
-                key={i}
-                className="group relative aspect-square rounded-2xl overflow-hidden bg-[hsl(var(--rose-light))] k5-reveal"
-                style={{ animationDelay: `${i * 60}ms` }}
-              >
-                <img
-                  src={img}
-                  alt={`Topluluk paylaşımı ${i + 1}`}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                />
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ============== TESTIMONIALS ============== */}
+      <MediaSlider />
 
       <SiteFooter />
     </div>
