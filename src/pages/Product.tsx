@@ -19,6 +19,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import MediaSlider from "@/components/MediaSlider";
+import CollectionSection from "@/components/CollectionSection";
 import { useReveal } from "@/hooks/useReveal";
 
 import packPads from "@/assets/pack-pads.webp";
