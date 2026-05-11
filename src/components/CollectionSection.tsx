@@ -50,14 +50,14 @@ const packs: Pack[] = [
   },
 ];
 
-const CollectionSection = () => {
+const CollectionSection = ({ title = "Sana özel oluşturduğumuz paketler" }: { title?: string }) => {
   return (
     <section className="relative bg-background pt-8 lg:pt-10 pb-12 lg:pb-16 overflow-visible">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 sm:gap-6 mb-5 lg:mb-8">
           <h2 className="font-primary font-medium text-[22px] sm:text-[26px] lg:text-[32px] xl:text-[36px] leading-[1.1] text-primary tracking-tight">
-            <span className="lg:whitespace-nowrap">Sana özel oluşturduğumuz paketler</span>
+            <span className="lg:whitespace-nowrap">{title}</span>
           </h2>
 
           {/* Mobile: kompakt "Tüm Paketler" — Desktop: uzun CTA */}
