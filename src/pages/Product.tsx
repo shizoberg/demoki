@@ -470,6 +470,9 @@ const Product = () => {
       {/* ============== TESTIMONIALS ============== */}
       <MediaSlider />
 
+      {/* ============== RELATED PACKAGES ============== */}
+      <CollectionSection title="İçerisinde bu ürün olan paketlerimiz" />
+
       <SiteFooter />
     </div>
   );
