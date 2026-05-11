@@ -397,7 +397,7 @@ const Product = () => {
 
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-14 items-center">
             {/* Image */}
-            <div className="k5-reveal rounded-3xl overflow-hidden aspect-[4/5] bg-[hsl(var(--rose-light))]">
+            <div className="order-2 lg:order-1 k5-reveal rounded-3xl overflow-hidden aspect-[4/5] bg-[hsl(var(--rose-light))]">
               <img
                 src={bentoPads}
                 alt="Ürün faydaları"
@@ -406,7 +406,7 @@ const Product = () => {
             </div>
 
             {/* Benefits grid */}
-            <div className="k5-reveal k5-reveal-d2 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="order-1 lg:order-2 k5-reveal k5-reveal-d2 grid grid-cols-2 gap-3 sm:gap-4">
               {BENEFITS.map(({ Icon, title, text }) => (
                 <div
                   key={title}
