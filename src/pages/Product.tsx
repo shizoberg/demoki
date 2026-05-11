@@ -366,7 +366,7 @@ const Product = () => {
             </p>
 
             {/* Trust badges */}
-            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary/80 font-medium justify-center lg:justify-center">
+            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-primary/80 font-medium lg:justify-center">
               <li className="flex items-center gap-1.5">
                 <Leaf className="w-3.5 h-3.5 text-sage" /> Mugwort infüzyonlu
               </li>
