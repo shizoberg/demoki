@@ -10,6 +10,7 @@ import Pedler from "./pages/Pedler.tsx";
 import Profil from "./pages/Profil.tsx";
 import Product from "./pages/Product.tsx";
 import Blog from "./pages/Blog.tsx";
+import Eczaneler from "./pages/Eczaneler.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { useCartSync } from "@/hooks/useCartSync";
 import MobileTabBar from "@/components/MobileTabBar";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/profil" element={<Profil />} />
             <Route path="/product" element={<Product />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/eczaneler" element={<Eczaneler />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

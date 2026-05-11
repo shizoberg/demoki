@@ -431,7 +431,7 @@ const AboutSheet = ({ onNavigate }: { onNavigate: () => void }) => {
     <div>
       <FlatList groups={groups} onNavigate={onNavigate} />
       <a
-        href="#"
+        href="/eczaneler"
         onClick={onNavigate}
         className="mt-8 flex items-center justify-between py-4 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity border-t border-border/60"
       >
@@ -485,7 +485,7 @@ const StoreSheet = ({ onNavigate }: { onNavigate: () => void }) => {
         <FlatList groups={groups} onNavigate={onNavigate} />
       </div>
       <a
-        href="#"
+        href="/eczaneler"
         onClick={onNavigate}
         className="mt-8 flex items-center justify-between py-4 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity border-t border-border/60"
       >
@@ -589,7 +589,7 @@ const AccountSheet = ({ onNavigate, onLogin }: { onNavigate: () => void; onLogin
         <ul className="flex flex-col divide-y divide-border/50">
           {([
             { label: "Sepetim", href: "#k5Product", Icon: ShoppingBag },
-            { label: "Anlaşmalı Eczanelerimiz", href: "#", Icon: ArrowRight },
+            { label: "Anlaşmalı Eczanelerimiz", href: "/eczaneler", Icon: ArrowRight },
           ] as const).map(({ label, href, Icon }) => (
             <li key={label}>
               <a
