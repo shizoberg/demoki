@@ -196,8 +196,8 @@ const Blog = () => {
     [activeTag],
   );
 
-  const featured = filtered.find((p) => p.featured) ?? filtered[0];
-  const rest = filtered.filter((p) => p.slug !== featured?.slug);
+  const heroPosts = filtered.slice(0, 3);
+  const rest = filtered.slice(3);
 
   return (
     <div className="min-h-screen bg-background">
@@ -252,37 +252,51 @@ const Blog = () => {
             </p>
           ) : (
             <>
-              {/* Featured */}
-              {featured && (
-                <a
-                  href={`/blog/${featured.slug}`}
-                  className="group block relative overflow-hidden rounded-3xl mb-8 lg:mb-12 k5-reveal"
-                >
-                  <div className="aspect-[16/10] sm:aspect-[16/8] lg:aspect-[16/7] overflow-hidden bg-muted">
-                    <img
-                      src={featured.image}
-                      alt={featured.title}
-                      loading="eager"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 text-primary-foreground">
-                    <span className="inline-block uppercase tracking-wider text-[11px] sm:text-[12px] font-bold bg-primary-foreground/15 backdrop-blur px-3 py-1 rounded-full">
-                      {featured.tag}
-                    </span>
-                    <h2
-                      className="mt-3 font-display text-[26px] sm:text-[36px] lg:text-[44px] leading-[1.1] font-medium max-w-3xl"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      {featured.title}
-                    </h2>
-                    <div className="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold opacity-90 group-hover:opacity-100">
-                      Yazıyı oku
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </div>
-                </a>
+              {/* Bento hero — 3 main posts */}
+              {heroPosts.length > 0 && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4 lg:gap-5 mb-8 lg:mb-12 lg:h-[560px]">
+                  {heroPosts.map((post, idx) => {
+                    const isLarge = idx === 0;
+                    return (
+                      <a
+                        key={post.slug}
+                        href={`/blog/${post.slug}`}
+                        className={`group relative overflow-hidden rounded-3xl bg-muted k5-reveal ${
+                          isLarge
+                            ? "lg:col-span-2 lg:row-span-2 aspect-[16/10] lg:aspect-auto"
+                            : "aspect-[16/10] lg:aspect-auto"
+                        } ${idx === 1 ? "k5-reveal-d1" : idx === 2 ? "k5-reveal-d2" : ""}`}
+                      >
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          loading={isLarge ? "eager" : "lazy"}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent" />
+                        <div className={`absolute inset-x-0 bottom-0 text-primary-foreground ${isLarge ? "p-6 sm:p-8 lg:p-10" : "p-5 sm:p-6"}`}>
+                          <span className="inline-block uppercase tracking-wider text-[10px] sm:text-[11px] font-bold bg-primary-foreground/15 backdrop-blur px-2.5 py-1 rounded-full">
+                            {post.tag}
+                          </span>
+                          <h2
+                            className={`mt-2.5 font-display leading-[1.1] font-medium ${
+                              isLarge
+                                ? "text-[24px] sm:text-[32px] lg:text-[40px] max-w-2xl"
+                                : "text-[18px] sm:text-[22px]"
+                            }`}
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
+                            {post.title}
+                          </h2>
+                          <div className="mt-2 inline-flex items-center gap-1.5 text-[13px] font-semibold opacity-90 group-hover:opacity-100">
+                            Yazıyı oku
+                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
               )}
 
               {/* Rest */}
