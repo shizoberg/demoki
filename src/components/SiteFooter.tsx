@@ -111,7 +111,7 @@ const SiteFooter = () => {
             </div>
 
             <a
-              href="#"
+              href="/eczaneler"
               className="inline-flex items-center gap-2 text-[18px] font-semibold hover:opacity-80 transition-opacity"
             >
               Anlaşmalı Eczanelerimiz
@@ -236,7 +236,7 @@ const SiteFooter = () => {
 
           {/* 2b) Anlaşmalı Eczanelerimiz — Reglini Çiz'in hemen altında */}
           <a
-            href="#"
+            href="/eczaneler"
             className="-mt-4 flex items-center justify-between py-4 text-[18px] font-semibold text-primary-foreground hover:opacity-80 transition-opacity"
           >
             Anlaşmalı Eczanelerimiz

@@ -279,7 +279,7 @@ const MegaMenu = ({ active, onClose }: MegaMenuProps) => {
             </div>
 
             <a
-              href="#"
+              href="/eczaneler"
               onClick={onClose}
               className="mt-8 inline-flex items-center gap-2 text-[14px] font-semibold text-primary hover:opacity-70 transition-opacity self-start"
             >
