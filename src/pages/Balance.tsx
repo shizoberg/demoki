@@ -12,9 +12,7 @@ import MediaSlider from "@/components/MediaSlider";
 import AllProductsSection from "@/components/AllProductsSection";
 
 import FaqSection from "@/components/FaqSection";
-import BlogPreviewSection from "@/components/BlogPreviewSection";
 import SiteFooter from "@/components/SiteFooter";
-import StickyATC from "@/components/StickyATC";
 
 /**
  * .ki Balance landing page — editorial redesign inspired by ritual.com structure,
