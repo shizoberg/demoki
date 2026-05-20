@@ -37,9 +37,7 @@ const Balance = () => {
         <FaqSection />
       </main>
 
-      <BlogPreviewSection />
       <SiteFooter />
-      <StickyATC product={product} isLoading={isLoading} />
     </div>
   );
 };
