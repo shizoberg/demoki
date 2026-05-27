@@ -217,6 +217,7 @@ const aboutColumns: ColumnGroup[] = [
       items: [
         { label: "Neden .ki?", href: "#", icon: "tree" },
         { label: ".ki Nasıl Çalışır?", href: "#k5Science", icon: "globe" },
+        { label: ".ki Bilim", href: "/bilim", icon: "list" },
         { label: "Fiyat Politikası", href: "#", icon: "tag" },
         { label: "Sıkça Sorulan Sorular", href: "#k5Faq", icon: "help" },
         { label: "Tüm Malzemeler", href: "#k5Ingredients", icon: "list" },
