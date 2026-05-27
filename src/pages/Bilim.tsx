@@ -9,65 +9,69 @@ import bilimMagnezyum from "@/assets/bilim-magnezyum.jpg";
 import bilimB6 from "@/assets/bilim-b6.jpg";
 import bilimCinko from "@/assets/bilim-cinko.jpg";
 
-const rawMaterials = [
-  {
-    name: "Vitex (Hayıt)",
-    latin: "Vitex agnus-castus",
-    img: bilimVitex,
-    origin: "Akdeniz, Türkiye",
-    role: "Hormonal denge",
-    study: "12 hafta · 162 kadın · plasebo kontrollü",
-    desc: "Hipofiz bezindeki dopamin reseptörlerine bağlanarak prolaktin salımını düzenler. Progesteron-östrojen dengesini destekler.",
-  },
-  {
-    name: "Magnezyum Bisglisinat",
-    latin: "Mg + 2 × Glisin",
-    img: bilimMagnezyum,
-    origin: "Almanya",
-    role: "Kas & uyku",
-    study: "8 hafta · 80 kadın · çift kör",
-    desc: "Glisin ile şelatlanmış formu, mide bağırsak sistemini yormadan %40'a varan emilim sağlar. Kas gevşemesi ve melatonin sentezi için kritik.",
-  },
-  {
-    name: "B6 Vitamini (P-5-P)",
-    latin: "Piridoksal-5-fosfat",
-    img: bilimB6,
-    origin: "İsviçre",
-    role: "Ruh hali",
-    study: "10 hafta · 940 kadın · meta-analiz",
-    desc: "Aktif koenzim formu. Serotonin, dopamin ve GABA sentezinde doğrudan rol alır. Premenstrüel ödem üzerinde klinik kanıtı vardır.",
-  },
-  {
-    name: "Çinko Bisglisinat",
-    latin: "Zn + 2 × Glisin",
-    img: bilimCinko,
-    origin: "Almanya",
-    role: "Cilt & bağışıklık",
-    study: "12 hafta · 60 kadın · randomize",
-    desc: "Şelatlı form ile yüksek biyoyararlanım. Hormon metabolizması, kollajen sentezi ve sebum dengesi için temel mineral.",
-  },
-];
-
 const principles = [
   {
     n: "01",
     title: "Önce literatür",
-    body: "Her etkin madde, peer-review yayınlanmış en az iki klinik çalışmaya dayanır. Geleneksel kullanım tek başına yeterli değildir.",
+    body: "Her etkin madde, peer-review yayınlanmış en az iki klinik çalışmaya dayanır.",
   },
   {
     n: "02",
     title: "Klinik dozaj",
-    body: "Etkili olduğu kanıtlanan dozun altına inmeyiz. Pazarlama amaçlı 'iz miktarlı' içerik bizde yoktur.",
+    body: "Etkili olduğu kanıtlanan dozun altına inmeyiz. 'İz miktarlı' içerik bizde yoktur.",
   },
   {
     n: "03",
     title: "Şeffaf kaynak",
-    body: "Hammaddenin hangi ülkeden, hangi tedarikçiden, hangi sertifikayla geldiğini açıkça paylaşırız.",
+    body: "Hammaddenin hangi ülkeden, hangi tedarikçiden, hangi sertifikayla geldiğini açıklarız.",
   },
   {
     n: "04",
     title: "Bağımsız test",
-    body: "Her parti, üretici dışı akredite laboratuvarlarda ağır metal, mikrobiyoloji ve etkin madde testinden geçer.",
+    body: "Her parti, akredite üçüncü taraf laboratuvarlarda etkin madde ve ağır metal testinden geçer.",
+  },
+];
+
+const materials = [
+  {
+    code: "001",
+    latin: "Vitex agnus-castus",
+    name: "Hayıt Meyvesi",
+    img: bilimVitex,
+    origin: "Akdeniz",
+    role: "Hormonal denge",
+    metric: { label: "Klinik referans", value: "12 hf · 162 kadın" },
+    desc: "Hipofiz bezindeki dopamin reseptörlerine bağlanarak prolaktin salımını düzenler. Progesteron–östrojen dengesini destekler.",
+  },
+  {
+    code: "002",
+    latin: "Mg + 2 × Glisin",
+    name: "Magnezyum Bisglisinat",
+    img: bilimMagnezyum,
+    origin: "Almanya",
+    role: "Kas & uyku",
+    metric: { label: "Biyoyararlanım", value: "≈ %40" },
+    desc: "Glisin ile şelatlanmış form, mide-bağırsak sistemini yormadan yüksek emilim sağlar. Kas gevşemesi ve melatonin sentezi için kritik.",
+  },
+  {
+    code: "003",
+    latin: "Piridoksal-5-fosfat",
+    name: "B6 Vitamini",
+    img: bilimB6,
+    origin: "İsviçre",
+    role: "Ruh hali",
+    metric: { label: "Aktif form", value: "P-5-P" },
+    desc: "B6'nın koenzim formu. Serotonin, dopamin ve GABA sentezinde doğrudan rol alır. Premenstrüel ödem üzerinde klinik kanıtı vardır.",
+  },
+  {
+    code: "004",
+    latin: "Zn + 2 × Glisin",
+    name: "Çinko Bisglisinat",
+    img: bilimCinko,
+    origin: "Almanya",
+    role: "Cilt & bağışıklık",
+    metric: { label: "Saflık", value: "%99.8" },
+    desc: "Şelatlı form ile yüksek biyoyararlanım. Hormon metabolizması, kollajen sentezi ve sebum dengesi için temel mineral.",
   },
 ];
 
@@ -75,47 +79,65 @@ const Bilim = () => {
   useReveal();
 
   return (
-    <div className="pb-[72px] bg-background">
+    <div className="pb-[72px] bg-background selection:bg-rose/30 selection:text-primary">
       <ScrollProgress />
       <AnnouncementBar />
       <SiteNav />
 
-      <main>
-        {/* HERO */}
+      <main className="overflow-x-hidden">
+        {/* ───────────── HERO ───────────── */}
         <section className="relative bg-primary text-primary-foreground overflow-hidden">
-          <div className="max-w-[1240px] mx-auto px-5 sm:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28">
-            <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.24em] text-primary-foreground/70 mb-6 block">
-              .ki Bilim
-            </span>
-            <h1 className="k5-reveal k5-reveal-d1 font-primary font-medium text-[40px] sm:text-[72px] leading-[1] tracking-tight max-w-[900px] mb-8">
-              Kadın bedenine <em className="italic font-light">kanıtla</em> bakıyoruz.
+          <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-rose/20 rounded-full blur-[120px] -mr-40 -mt-40 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[320px] h-[320px] bg-sage/20 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none" />
+
+          <div className="relative max-w-[1240px] mx-auto px-5 sm:px-8 pt-14 pb-20 sm:pt-20 sm:pb-28">
+            <div className="flex items-center justify-between mb-10 sm:mb-14">
+              <span className="text-[10px] sm:text-[11px] tracking-[0.36em] uppercase text-primary-foreground/60 font-bold">
+                Arşiv No. 001 / Bilim
+              </span>
+              <span className="font-mono text-[10px] tracking-[0.2em] text-primary-foreground/40">
+                REV_2026.05
+              </span>
+            </div>
+
+            <h1 className="k5-reveal font-display font-medium text-[44px] sm:text-[88px] leading-[0.95] tracking-tight max-w-[920px] mb-10">
+              Kadın bedenine
+              <br />
+              <em className="italic font-light text-rose-light">kanıtla</em> bakıyoruz.
             </h1>
-            <p className="k5-reveal k5-reveal-d2 text-[15px] sm:text-[17px] leading-relaxed text-primary-foreground/80 max-w-[620px] mb-12">
+
+            <div className="k5-reveal k5-reveal-d1 w-12 h-px bg-rose-light mb-8" />
+            <p className="k5-reveal k5-reveal-d2 text-[14px] sm:text-[16px] leading-relaxed text-primary-foreground/75 max-w-[440px] sm:max-w-[560px] mb-14">
               .ki, klinik araştırmalar, eczacılar ve kadın sağlığı uzmanlarıyla geliştirilen bir
               formülasyon laboratuvarıdır. Her hammadde için sorduğumuz tek soru: bilim ne diyor?
             </p>
 
-            <div className="k5-reveal k5-reveal-d3 rounded-2xl overflow-hidden ring-1 ring-primary-foreground/15">
-              <img
-                src={bilimHero}
-                alt=".ki laboratuvar — amber şişeler, kuru bitkiler ve pipet"
-                width={1600}
-                height={1100}
-                className="w-full h-[280px] sm:h-[460px] object-cover"
-              />
+            <div className="k5-reveal k5-reveal-d3 relative">
+              <div className="aspect-[3/4] sm:aspect-[16/9] overflow-hidden rounded-t-[180px] sm:rounded-t-[260px] border border-primary-foreground/10">
+                <img
+                  src={bilimHero}
+                  alt=".ki laboratuvar — amber şişeler, kuru bitkiler ve pipet"
+                  width={1600}
+                  height={1100}
+                  className="w-full h-full object-cover grayscale-[15%]"
+                />
+              </div>
+              <div className="absolute -bottom-3 right-4 bg-rose-light text-primary px-5 py-3 text-[10px] font-bold tracking-[0.24em] uppercase shadow-lg">
+                Ref. Lab-2026
+              </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 sm:gap-12 mt-12 pt-10 border-t border-primary-foreground/15">
+            <div className="grid grid-cols-3 gap-4 sm:gap-12 mt-20 pt-10 border-t border-primary-foreground/15">
               {[
                 { v: "12", l: "klinik araştırma referansı" },
                 { v: "4", l: "bağımsız akredite laboratuvar" },
                 { v: "%100", l: "şeffaf kaynak takibi" },
               ].map((s, i) => (
                 <div key={s.l} className={`k5-reveal k5-reveal-d${i + 1}`}>
-                  <div className="font-primary text-[32px] sm:text-[48px] font-medium leading-none mb-2">
+                  <div className="font-display text-[32px] sm:text-[56px] font-medium leading-none mb-2">
                     {s.v}
                   </div>
-                  <div className="text-[11.5px] sm:text-[13px] text-primary-foreground/70 leading-snug">
+                  <div className="text-[10.5px] sm:text-[12px] text-primary-foreground/60 leading-snug uppercase tracking-wider">
                     {s.l}
                   </div>
                 </div>
@@ -124,156 +146,180 @@ const Bilim = () => {
           </div>
         </section>
 
-        {/* PRINCIPLES */}
-        <section className="py-20 sm:py-28 bg-background">
+        {/* ───────────── PRINCIPLES — index style ───────────── */}
+        <section className="bg-background py-20 sm:py-28 border-b border-border">
           <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-10 mb-16 items-end">
-              <div>
-                <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
-                  Bilim disiplinimiz
-                </span>
-                <h2 className="k5-reveal k5-reveal-d1 font-primary font-medium text-[36px] sm:text-[52px] leading-[1.05] text-primary tracking-tight">
-                  Dört basamaklı bir <em className="italic font-light">kanıt zinciri.</em>
-                </h2>
-              </div>
-              <p className="k5-reveal k5-reveal-d2 text-[15px] leading-relaxed text-foreground/75 max-w-[480px] md:justify-self-end">
-                Bir hammadde .ki formülüne girene kadar dört kapıdan geçer. Hiçbiri pazarlama
-                kararıyla atlanamaz.
-              </p>
+            <div className="flex items-baseline justify-between mb-12 sm:mb-16">
+              <span className="font-display italic text-[13px] sm:text-[15px] tracking-wider text-foreground/50">
+                Bilimsel temellerimiz
+              </span>
+              <span className="font-mono text-[10px] tracking-[0.2em] text-foreground/35 uppercase">
+                §I — IV
+              </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14 sm:gap-y-20">
               {principles.map((p, i) => (
-                <div
-                  key={p.n}
-                  className={`k5-reveal ${i > 0 ? `k5-reveal-d${Math.min(i, 4)}` : ""} bg-secondary/40 rounded-2xl p-7 border border-border h-full flex flex-col`}
-                >
-                  <div className="font-primary text-[28px] text-rose mb-6">{p.n}</div>
-                  <h3 className="font-primary text-[22px] font-medium text-primary mb-3 leading-tight">
-                    {p.title}
-                  </h3>
-                  <p className="text-[14px] leading-relaxed text-foreground/75">{p.body}</p>
+                <div key={p.n} className={`k5-reveal ${i > 0 ? `k5-reveal-d${Math.min(i, 4)}` : ""} relative`}>
+                  <span className="absolute -left-2 -top-10 text-[110px] sm:text-[140px] font-display italic text-rose/[0.08] leading-none select-none pointer-events-none">
+                    {p.n}
+                  </span>
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="font-mono text-[10px] tracking-[0.2em] text-rose uppercase">
+                        {p.n}
+                      </span>
+                      <span className="h-px flex-1 bg-border" />
+                    </div>
+                    <h3 className="font-display text-[24px] sm:text-[30px] font-medium text-primary mb-3 leading-tight tracking-tight">
+                      {p.title}
+                    </h3>
+                    <p className="text-[14px] leading-relaxed text-foreground/70 max-w-[440px]">
+                      {p.body}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* RAW MATERIALS */}
-        <section className="py-20 sm:py-28 bg-secondary/30">
+        {/* ───────────── RAW MATERIAL ARCHIVE — index list ───────────── */}
+        <section className="bg-primary text-primary-foreground py-20 sm:py-28">
           <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-            <div className="text-center max-w-[680px] mx-auto mb-16">
-              <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.2em] text-primary/70 mb-4 block">
-                Hammadde arşivi
+            <div className="flex justify-between items-end mb-12 sm:mb-16">
+              <div>
+                <span className="block text-[10px] tracking-[0.32em] uppercase text-rose-light/80 font-bold mb-4">
+                  Vol. 01 — Active Ingredients
+                </span>
+                <h2 className="font-display font-medium text-[36px] sm:text-[64px] leading-[1] tracking-tight">
+                  Hammadde
+                  <br />
+                  <em className="italic font-light">arşivi.</em>
+                </h2>
+              </div>
+              <span className="font-mono text-[10px] tracking-[0.2em] text-primary-foreground/40 hidden sm:block">
+                INDEX / 24
               </span>
-              <h2 className="k5-reveal k5-reveal-d1 font-primary font-medium text-[36px] sm:text-[52px] leading-[1.05] text-primary tracking-tight mb-5">
-                Toprağından <em className="italic font-light">moleküle.</em>
-              </h2>
-              <p className="k5-reveal k5-reveal-d2 text-[15px] leading-relaxed text-foreground/75">
-                Her hammaddenin nereden geldiğini, hangi formda kullanıldığını ve hangi çalışmaya
-                dayandığını burada görebilirsin.
-              </p>
             </div>
 
-            <div className="space-y-20 sm:space-y-28">
-              {rawMaterials.map((m, i) => (
-                <div
-                  key={m.name}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-14 items-center"
+            {/* Editorial split rows */}
+            <div>
+              {materials.map((m, i) => (
+                <article
+                  key={m.code}
+                  className="k5-reveal group border-t border-primary-foreground/15 py-10 sm:py-14 last:border-b grid grid-cols-12 gap-4 sm:gap-8 items-start"
                 >
-                  <div
-                    className={`k5-reveal rounded-2xl overflow-hidden bg-background aspect-square ${i % 2 === 1 ? "md:order-2" : ""}`}
-                  >
-                    <img
-                      src={m.img}
-                      alt={m.name}
-                      width={1024}
-                      height={1024}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className={`k5-reveal k5-reveal-d1 ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                    <span className="inline-block text-[10.5px] font-bold uppercase tracking-[0.18em] text-sage mb-4">
-                      {m.role}
+                  {/* Code */}
+                  <div className="col-span-2 sm:col-span-1 pt-2">
+                    <span className="font-mono text-[11px] tracking-widest text-rose-light/90">
+                      {m.code}
                     </span>
-                    <h3 className="font-primary text-[32px] sm:text-[44px] font-medium text-primary leading-[1.05] tracking-tight mb-2">
+                  </div>
+
+                  {/* Image */}
+                  <div className="col-span-10 sm:col-span-4 order-3 sm:order-none mt-6 sm:mt-0">
+                    <div className="aspect-[4/5] overflow-hidden rounded-sm bg-background/10">
+                      <img
+                        src={m.img}
+                        alt={m.name}
+                        width={800}
+                        height={1000}
+                        loading="lazy"
+                        className="w-full h-full object-cover grayscale-[20%] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Body */}
+                  <div className="col-span-12 sm:col-span-5 sm:pl-4">
+                    <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-rose-light/80 mb-3">
+                      {m.role}
+                    </div>
+                    <h3 className="font-display text-[30px] sm:text-[44px] font-medium leading-[1.02] tracking-tight mb-1">
                       {m.name}
                     </h3>
-                    <p className="font-primary italic text-[15px] text-foreground/55 mb-7">
+                    <p className="font-display italic text-[14px] text-primary-foreground/55 mb-6">
                       {m.latin}
                     </p>
-                    <p className="text-[15px] leading-relaxed text-foreground/75 mb-8">{m.desc}</p>
+                    <p className="text-[14px] leading-relaxed text-primary-foreground/75 max-w-[460px]">
+                      {m.desc}
+                    </p>
+                  </div>
 
-                    <div className="grid grid-cols-2 gap-x-6 gap-y-5 pt-6 border-t border-border">
-                      <div>
-                        <div className="text-[10px] uppercase tracking-[0.18em] text-foreground/50 mb-1.5">
-                          Kaynak
-                        </div>
-                        <div className="text-[14px] font-semibold text-primary">{m.origin}</div>
+                  {/* Metadata */}
+                  <div className="col-span-12 sm:col-span-2 sm:text-right space-y-5">
+                    <div>
+                      <div className="font-mono text-[9px] tracking-[0.22em] uppercase text-primary-foreground/40 mb-1.5">
+                        Origin
                       </div>
-                      <div>
-                        <div className="text-[10px] uppercase tracking-[0.18em] text-foreground/50 mb-1.5">
-                          Klinik referans
-                        </div>
-                        <div className="text-[14px] font-semibold text-primary">{m.study}</div>
+                      <div className="font-display text-[18px] sm:text-[22px] italic text-rose-light">
+                        {m.origin}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-mono text-[9px] tracking-[0.22em] uppercase text-primary-foreground/40 mb-1.5">
+                        {m.metric.label}
+                      </div>
+                      <div className="text-[13px] font-semibold text-primary-foreground/90">
+                        {m.metric.value}
                       </div>
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* BRAND × SCIENCE */}
-        <section className="py-20 sm:py-28 bg-primary text-primary-foreground">
-          <div className="max-w-[1080px] mx-auto px-5 sm:px-8 text-center">
-            <span className="k5-reveal text-[11px] font-bold uppercase tracking-[0.24em] text-primary-foreground/70 mb-6 block">
-              .ki × Bilim
+        {/* ───────────── QUOTE ───────────── */}
+        <section className="relative bg-background py-24 sm:py-32 overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+            <span className="font-display italic text-[28vw] sm:text-[18rem] text-primary/[0.04] leading-none">
+              Bilim
             </span>
-            <h2 className="k5-reveal k5-reveal-d1 font-primary font-medium text-[36px] sm:text-[56px] leading-[1.05] tracking-tight mb-8">
-              Pazarlama değil, <em className="italic font-light">peer-review.</em>
-            </h2>
-            <p className="k5-reveal k5-reveal-d2 text-[16px] sm:text-[18px] leading-relaxed text-primary-foreground/80 max-w-[680px] mx-auto mb-12">
-              .ki, eczacılar, jinekologlar ve kadın sağlığı araştırmacılarıyla birlikte
-              geliştiriliyor. Bilim Kurulumuz her formülü onaylamadan önce ham veriye, dozaja ve
-              etki mekanizmasına bakar.
-            </p>
-
-            <blockquote className="k5-reveal k5-reveal-d3 font-primary italic text-[22px] sm:text-[28px] leading-[1.3] text-primary-foreground max-w-[760px] mx-auto mb-6">
-              "Kadın bedenini anlamak, onu basitleştirmek değil; karmaşıklığına saygı duymaktır.
-              Biz bu yüzden önce bilime, sonra formüle bakıyoruz."
+          </div>
+          <div className="relative max-w-[820px] mx-auto px-6 sm:px-8 text-center">
+            <span className="font-mono text-[10px] tracking-[0.32em] uppercase text-rose font-bold mb-8 block">
+              .ki × Bilim Kurulu
+            </span>
+            <blockquote className="k5-reveal font-display italic font-medium text-[26px] sm:text-[44px] leading-[1.18] text-primary tracking-tight mb-10">
+              "Kadın bedenini anlamak, onu basitleştirmek değil; karmaşıklığına saygı{" "}
+              <span className="text-rose not-italic">duymaktır.</span>"
             </blockquote>
-            <div className="text-[12px] uppercase tracking-[0.2em] text-primary-foreground/60 font-bold">
-              Ecz. Arin Alan · .ki Bilim Kurulu
-            </div>
+            <div className="h-px w-10 bg-rose mx-auto mb-4" />
+            <cite className="not-italic text-[10px] uppercase tracking-[0.3em] text-foreground/50 font-bold">
+              Ecz. Arin Alan — .ki Bilim Kurulu
+            </cite>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-20 sm:py-24 bg-background">
-          <div className="max-w-[760px] mx-auto px-5 sm:px-8 text-center">
-            <h2 className="k5-reveal font-primary font-medium text-[28px] sm:text-[40px] leading-tight text-primary mb-6 tracking-tight">
-              Kanıta dayalı formülleri keşfet.
+        {/* ───────────── CTA ───────────── */}
+        <section className="bg-secondary/40 py-20 sm:py-24">
+          <div className="max-w-[860px] mx-auto px-5 sm:px-8 text-center">
+            <h2 className="k5-reveal font-display font-medium text-[30px] sm:text-[48px] leading-[1.05] text-primary mb-6 tracking-tight">
+              Kanıta dayalı formülleri <em className="italic font-light">keşfet.</em>
             </h2>
-            <p className="k5-reveal k5-reveal-d1 text-[15px] leading-relaxed text-foreground/75 mb-8">
+            <p className="k5-reveal k5-reveal-d1 text-[14.5px] leading-relaxed text-foreground/70 mb-10 max-w-[520px] mx-auto">
               .ki ürünlerinin her biri, bu sayfada anlattığımız bilim disiplininden geçti.
             </p>
             <div className="k5-reveal k5-reveal-d2 flex flex-wrap items-center justify-center gap-3">
               <a
                 href="/balance"
-                className="inline-flex items-center justify-center bg-primary text-primary-foreground text-[13px] font-bold py-3 px-6 rounded-full hover:bg-primary-medium transition-colors"
+                className="inline-flex items-center justify-center bg-primary text-primary-foreground text-[12px] font-bold tracking-[0.2em] uppercase py-4 px-8 rounded-none hover:bg-primary-medium transition-colors"
               >
                 Ürünleri incele
               </a>
               <a
                 href="/paket-olustur"
-                className="inline-flex items-center justify-center border border-primary text-primary text-[13px] font-bold py-3 px-6 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="inline-flex items-center justify-center border border-primary text-primary text-[12px] font-bold tracking-[0.2em] uppercase py-4 px-8 rounded-none hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 Kendi paketini oluştur
               </a>
             </div>
+            <p className="mt-10 font-display italic text-[12px] text-foreground/40 tracking-wide">
+              Her kapsül bir taahhüttür.
+            </p>
           </div>
         </section>
       </main>
